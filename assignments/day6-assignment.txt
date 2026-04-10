@@ -348,11 +348,11 @@ Code requirements:
 - Use ternary operator: props.userName ? '...' : '...'
 
 Usage:
-<Welcome userName="John" />
+<Welcome userName="Ani" />
 <Welcome />
 
 Expected Result:
-First shows "Welcome, John!"
+First shows "Welcome, Ani!"
 Second shows "Welcome, Guest!"
 
 Template:
