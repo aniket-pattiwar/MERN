@@ -1,0 +1,64 @@
+Day 4 Detailed Notes: Server-side Development with Express.js
+
+What is Express.js?
+- A fast, unopinionated, minimalist web application framework for Node.js.
+- It provides a robust set of features for web and mobile applications, making it much easier to build servers and APIs compared to using raw Node.js (the built-in `http` module).
+- Analogy (Building a House): Plain Node.js is like building a house from raw materials. Express.js is like using a pre-built house frame. It gives you the basic structure (routing, request handling) so you can focus on building the rooms (your features) instead of the foundation.
+
+Basic Project Setup:
+1. Initialize the project: `npm init -y`
+2. Install Express: `npm install express`
+
+Creating an Express Server:
+- Import Express: `const express = require('express');`
+- Initialize: `const app = express();`
+- Listen: `app.listen(3000, () => console.log('Server running!'));`
+- Routing: Determines how an application responds to a client request to a particular endpoint (URI).
+  - Syntax: `app.METHOD(PATH, HANDLER)`
+  - Example:
+    app.get('/', (req, res) => {
+      res.send("Hello Express");
+    });
+
+Middleware:
+- Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function (`next()`).
+- They can execute code, make changes to the req/res objects, end the request-response cycle, or pass control to the next middleware.
+- Analogy 1 (Factory Assembly Line): A request comes in and moves through stations. Station 1 logs the request, Station 2 checks authentication. Each does a specific job and passes the request down the line.
+- Analogy 2 (Office Security Check): 
+  - Client: You arriving at the building.
+  - Middleware: The security guard checking your ID. If authorized, they let you pass by calling `next()`. If not, they end the request (turn you away).
+  - Route Handler: The office you are trying to reach inside the building.
+
+Advanced Middleware & Error Handling:
+- Error handlers act as "Safety Nets" for your application.
+
+1. Custom 404 Error Handler:
+   - Placed after all your valid routes to catch any request that didn't match.
+   - Example:
+     app.use((req, res, next) => {
+       res.status(404).send("Sorry, that page doesn't exist!");
+     });
+
+2. Global Error Handler:
+   - A special middleware that takes 4 arguments: `(err, req, res, next)`.
+   - Placed at the very bottom of your index.js file.
+   - Catches unexpected server errors/crashes and prevents the entire app from going down.
+   - Example:
+     app.use((err, req, res, next) => {
+       console.error(err.stack);
+       res.status(500).send('Something broke!');
+     });
+
+Testing Express Routes (Jest & Supertest):
+- You can test Express APIs without starting a physical server using Supertest.
+- Setup: `npm install --save-dev supertest`
+- Example:
+  const request = require('supertest');
+  const app = require('./index');
+
+  describe('GET /', () => {
+    it('should respond with the homepage', async () => {
+      const response = await request(app).get('/');
+      expect(response.statusCode).toBe(200);
+    });
+  });

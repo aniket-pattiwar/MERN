@@ -1,0 +1,268 @@
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light);">
+        <h2 class="my-2">Building the Full Stack Application</h2>
+    </div>
+    <div class="card-body" >
+        <!-- Session Navigation -->
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day9" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-session21-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-session21" type="button" role="tab" aria-controls="pills-session21"
+                    aria-selected="true">Frontend Setup</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-session22-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-session22" type="button" role="tab" aria-controls="pills-session22"
+                    aria-selected="false">Frontend Labs</button>
+            </li>
+        </ul>
+
+        <!-- Session Content -->
+        <div class="tab-content" id="pills-tabContent-day9">
+            <!-- -->
+            <div class="tab-pane fade show active" id="pills-session21" role="tabpanel"
+                aria-labelledby="pills-session21-tab">
+                <h2 class="mb-3">Building the React Frontend</h2>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Lab 20: Project Setup & UI Framework</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>1. Create the React Project with Vite</h5>
+                        <p>Create a new React project for your frontend application.</p>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code># This creates a new React project in a 'client' folder
+npm create vite@latest client -- --template react</code></pre>
+                        </div>
+
+                        <h5 class="mt-4">2. Install Dependencies</h5>
+                        <p>Navigate into the new folder and install Bootstrap, React Router, and Axios (for API
+                            calls).</p>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>cd client
+npm install
+npm install bootstrap react-router-dom axios</code></pre>
+                        </div>
+
+                        <h5 class="mt-4">3. Integrate Bootstrap</h5>
+                        <p>Import the Bootstrap CSS file into your main entry point, <strong>`src/main.jsx`</strong>,
+                            so the styles are available globally.</p>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;,
+)</code></pre>
+                        </div>
+
+                        <h5 class="mt-4">4. Implement Routing and Navigation</h5>
+                        <p>Set up the main application layout and navigation links in
+                            <strong>`src/App.jsx`</strong>.
+                        </p>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+// Define placeholder components for your pages
+const HomePage = () => &lt;h1&gt;Home&lt;/h1&gt;;
+const ProductPage = () => &lt;h1&gt;Products&lt;/h1&gt;;
+
+function App() {
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;nav className="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+        &lt;div className="container"&gt;
+          &lt;Link className="navbar-brand" to="/"&gt;FinTech Store&lt;/Link&gt;
+          &lt;div className="collapse navbar-collapse"&gt;
+            &lt;ul className="navbar-nav ms-auto mb-2 mb-lg-0"&gt;
+              &lt;li className="nav-item"&gt;&lt;Link className="nav-link" to="/"&gt;Home&lt;/Link&gt;&lt;/li&gt;
+              &lt;li className="nav-item"&gt;&lt;Link className="nav-link" to="/products"&gt;Products&lt;/Link&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/nav&gt;
+
+      &lt;div className="container mt-4"&gt;
+        &lt;Routes&gt;
+          &lt;Route path="/" element={&lt;HomePage /&gt;} /&gt;
+          &lt;Route path="/products" element={&lt;ProductPage /&gt;} /&gt;
+        &lt;/Routes&gt;
+      &lt;/div&gt;
+    &lt;/BrowserRouter&gt;
+  );
+}
+
+export default App;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- -->
+            <div class="tab-pane fade" id="pills-session22" role="tabpanel" aria-labelledby="pills-session22-tab">
+                <h2 class="mb-3">Advanced Frontend Labs</h2>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Lab 21: Displaying & Sorting Products</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>1. Fetch and Display Products</h5>
+                        <p>Create a `ProductList` component that fetches data from your backend API (running on port
+                            5000) and displays it.</p>
+                        <p><strong>`src/ProductList.jsx`</strong></p>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+function ProductList() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Fetch products from the backend API
+    axios.get('http://localhost:5000/api/products')
+      .then(response => setProducts(response.data))
+      .catch(error => console.error('Error fetching products:', error));
+  }, []); // Empty dependency array means this runs once on mount
+
+  return (
+    &lt;div className="row"&gt;
+      {products.map(product => (
+        &lt;div className="col-md-4 mb-4" key={product._id}&gt;
+          &lt;div className="card"&gt;
+            &lt;div className="card-body"&gt;
+              &lt;h5 className="card-title"&gt;{product.name}&lt;/h5&gt;
+              &lt;p className="card-text"&gt;${product.price}&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+export default ProductList;</code></pre>
+                        </div>
+
+                        <h5 class="mt-4">2. Implement Sorting</h5>
+                        <p>Add state and functions to handle sorting the product list.</p>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>// Inside ProductList component...
+const [sortKey, setSortKey] = useState('name');
+
+const sortedProducts = [...products].sort((a, b) => {
+  if (a[sortKey] < b[sortKey]) return -1;
+  if (a[sortKey] > b[sortKey]) return 1;
+  return 0;
+});
+
+// In your JSX, add buttons to change the sort key:
+&lt;div&gt;
+  &lt;button onClick={() => setSortKey('name')}&gt;Sort by Name&lt;/button&gt;
+  &lt;button onClick={() => setSortKey('price')}&gt;Sort by Price&lt;/button&gt;
+  {/* ... then map over sortedProducts instead of products ... */}
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Lab 22: Modal Forms & File Uploads</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>1. Create an "Add Product" Modal</h5>
+                        <p>We can use Bootstrap's modal component to create a popup form.</p>
+                        <p><strong>`src/AddProductModal.jsx`</strong></p>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>import React, { useState } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
+import axios from 'axios';
+
+function AddProductModal({ show, handleClose }) {
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState('');
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setPreview(URL.createObjectURL(file)); // Create a temporary URL for preview
+  };
+
+  const handleSubmit = async () => {
+    // In a real app, you'd upload the image first, get the URL,
+    // then save the product with that URL.
+    await axios.post('http://localhost:5000/api/products', { name, price });
+    handleClose(); // Close modal on success
+  };
+
+  return (
+    &lt;Modal show={show} onHide={handleClose}&gt;
+      &lt;Modal.Header closeButton&gt;&lt;Modal.Title&gt;Add Product&lt;/Modal.Title&gt;&lt;/Modal.Header&gt;
+      &lt;Modal.Body&gt;
+        &lt;Form&gt;
+          {/* ... Form.Group for name and price ... */}
+          &lt;Form.Group&gt;
+            &lt;Form.Label&gt;Product Image&lt;/Form.Label&gt;
+            &lt;Form.Control type="file" onChange={handleImageChange} /&gt;
+          &lt;/Form.Group&gt;
+          {preview && &lt;img src={preview} alt="Preview" width="100" className="mt-2" /&gt;}
+        &lt;/Form&gt;
+      &lt;/Modal.Body&gt;
+      &lt;Modal.Footer&gt;
+        &lt;Button variant="secondary" onClick={handleClose}&gt;Close&lt;/Button&gt;
+        &lt;Button variant="primary" onClick={handleSubmit}&gt;Save Product&lt;/Button&gt;
+      &lt;/Modal.Footer&gt;
+    &lt;/Modal&gt;
+  );
+}
+
+export default AddProductModal;</code></pre>
+                        </div>
+
+                        <h5 class="mt-4">2. Implement Filtering</h5>
+                        <p>Add state to your `ProductList` component to hold the filter query and apply it before
+                            mapping.</p>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>// Inside ProductList component...
+const [filter, setFilter] = useState('');
+
+const filteredProducts = sortedProducts.filter(product =>
+  product.name.toLowerCase().includes(filter.toLowerCase())
+);
+
+// In your JSX, add an input to control the filter:
+&lt;input
+  type="text"
+  placeholder="Filter by name..."
+  value={filter}
+  onChange={(e) => setFilter(e.target.value)}
+/&gt;
+
+{/* ... then map over filteredProducts ... */}
+</code></pre>
+                        </div>
+
+                        <h5 class="mt-4">Final UI</h5>
+                        <p>Your final application will have a list of products fetched from the server, with controls
+                            for sorting and filtering, and a modal to add new products.</p>
+                        <div class="text-center my-3">
+                            <!-- 
+                                IMAGE PROMPT: "A screenshot of a complete React application UI. It should show a product list in cards, with sort and filter controls at the top. A Bootstrap modal for 'Add Product' should be open on top of the list, showing form fields and an image preview."
+                            -->
+                            <img src="./images/final-react-ui.png"
+                                class="img-fluid rounded course-image" alt="Final React UI">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

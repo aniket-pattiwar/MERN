@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERN Stack for FinTech Course</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+/* ================= BASE ================= */
+body {
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+/* LIGHT THEME */
+[data-bs-theme="light"] body {
+    background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+    color: #1f2937;
+}
+
+/* DARK THEME */
+[data-bs-theme="dark"] body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+}
+
+/* ================= HEADER ================= */
+.course-header {
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-radius: 0 0 20px 20px;
+}
+
+/* Light */
+[data-bs-theme="light"] .course-header {
+    background: linear-gradient(135deg, #4f46e5, #3b82f6);
+    color: white;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .course-header {
+    background-color: #161b22;
+    border-bottom: 1px solid #30363d;
+}
+
+/* ================= NAV ================= */
+.nav-pills .nav-link {
+    border-radius: 999px;
+    margin: 5px 5px;
+    transition: 0.3s;
+}
+
+.nav-pills .nav-link.active {
+    transform: scale(1.05);
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5), 0 0 0 2px #ffc107;
+}
+
+.nav-pills .nav-link.active::before {
+    font-family: "bootstrap-icons";
+    content: "\f5b1"; /* bi-slash-circle */
+    margin-right: 6px;
+}
+
+/* Light */
+[data-bs-theme="light"] .nav-pills .nav-link.active {
+    background: linear-gradient(90deg, #6366f1, #3b82f6);
+    color: white;
+}
+
+/* Light Theme - Nav Hover */
+[data-bs-theme="light"] .nav-pills .nav-link:hover:not(.active) {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #b45309;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .nav-pills .nav-link.active {
+    background-color: #238636;
+    color: #ffffff;
+}
+
+/* Dark Theme - Nav Hover */
+[data-bs-theme="dark"] .nav-pills .nav-link:hover:not(.active) {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+}
+
+/* ================= CARDS ================= */
+.card {
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Light */
+[data-bs-theme="light"] .card {
+    background: white;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Dark */
+[data-bs-theme="dark"] .card {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+}
+
+/* ================= CARD HEADER ================= */
+.card-header {
+    background: transparent;
+    font-weight: 600;
+}
+
+/* Light */
+[data-bs-theme="light"] .card-header {
+    color: #1d4ed8;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .card-header {
+            background-color: #161b22 !important;
+    color: #e6edf3 !important;
+    border-bottom: 1px solid #30363d;
+}
+
+/* ================= BUTTONS ================= */
+button, .btn {
+    border-radius: 999px;
+    border: none;
+    padding: 6px 16px;
+    transition: 0.3s;
+}
+
+/* Light */
+[data-bs-theme="light"] button,
+[data-bs-theme="light"] .btn {
+    background: linear-gradient(90deg, #6366f1, #3b82f6);
+    color: white;
+}
+
+/* Dark */
+[data-bs-theme="dark"] button:not(.btn-outline-warning):not(.btn-outline-light):not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-secondary),
+[data-bs-theme="dark"] .btn:not(.btn-outline-warning):not(.btn-outline-light):not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-secondary) {
+    background-color: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+}
+[data-bs-theme="dark"] .btn:hover:not(.btn-outline-warning):not(.btn-outline-light) { background-color: #30363d; }
+
+
+
+/* ================= CODE BLOCK ================= */
+.code-block {
+    padding: 1rem;
+    border-radius: 10px;
+    font-family: monospace;
+    position: relative;
+}
+
+/* Light */
+[data-bs-theme="light"] .code-block {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .code-block {
+    background-color: #010409;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+}
+
+
+
+/* ================= OUTPUT ================= */
+.code-output {
+    margin-top: 1rem;
+    border-radius: 10px;
+    font-family: monospace;
+}
+
+/* Light */
+[data-bs-theme="light"] .code-output {
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .code-output {
+    background-color: #010409;
+    color: #3fb950;
+    border: 1px solid #30363d;
+}
+
+/* ================= FLOW ================= */
+.flow-step div {
+    border-radius: 12px;
+    padding: 10px;
+    transition: 0.3s;
+}
+.flow-arrow {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #7f5af0;
+    text-shadow: 0 0 10px rgba(127,90,240,0.8);
+}
+/* Light */
+[data-bs-theme="light"] .flow-step div {
+    background: #e0e7ff;
+    border: 1px solid #c7d2fe;
+}
+
+[data-bs-theme="light"] .response-step div {
+    background: #d1fae5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .flow-step div {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+}
+
+[data-bs-theme="dark"] .response-step div {
+    background-color: #0d1117;
+    border: 1px solid #238636;
+    color: #3fb950;
+}
+
+/* ================= EVENT LOOP ================= */
+.event-loop-box {
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* Light */
+[data-bs-theme="light"] .event-loop-box {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .event-loop-box {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+}
+
+/* Event Loop Items */
+.event-loop-item {
+    border-radius: 6px;
+    padding: 8px;
+    margin-top: 8px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+[data-bs-theme="light"] .event-loop-item {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+}
+[data-bs-theme="dark"] .event-loop-item {
+    background-color: #21262d;
+    border: 1px solid #30363d;
+}
+
+/* ================= IMAGE ================= */
+.course-image {
+    max-height: 350px;
+    object-fit: contain;
+    margin: 1rem auto;
+    display: block;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+/* Light */
+[data-bs-theme="light"] .course-image {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Dark */
+[data-bs-theme="dark"] .course-image {
+    background-color: #ffffff; /* keep images legible if they have transparent text */
+    border: 1px solid #30363d;
+    opacity: 0.9;
+}
+
+.course-image:hover {
+    transform: scale(1.5);
+}
+
+/* ================= HIGHLIGHT ================= */
+.highlight {
+    transform: scale(1.05);
+}
+
+/* Light */
+[data-bs-theme="light"] .highlight {
+    border: 2px solid #f59e0b;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .highlight {
+    border: 2px solid #58a6ff !important;
+    box-shadow: 0 0 10px rgba(88,166,255,0.2);
+}
+
+/* ================= BOOTSTRAP UTILITY OVERRIDES FOR DARK MODE ================= */
+/* Force light backgrounds to be dark in dark mode */
+        [data-bs-theme="dark"] h1, [data-bs-theme="dark"] h2, [data-bs-theme="dark"] h3, 
+        [data-bs-theme="dark"] h4, [data-bs-theme="dark"] h5, [data-bs-theme="dark"] h6 {
+            color: #e6edf3 !important;
+        }
+        
+        [data-bs-theme="dark"] [style*="color: white"],
+        [data-bs-theme="dark"] [style*="color: black"],
+        [data-bs-theme="dark"] [style*="color: var(--bs-light)"],
+        [data-bs-theme="dark"] [style*="color: var(--bs-dark)"],
+        [data-bs-theme="dark"] [style*="color: #333"] {
+            color: #c9d1d9 !important;
+        }
+        
+        [data-bs-theme="dark"] [style*="background: linear-gradient"],
+        [data-bs-theme="dark"] [style*="background-color: var(--bs-dark)"] {
+            background: #161b22 !important;
+        }
+        
+        /* Event Loop Visuals and Custom Hex Colors */
+        [data-bs-theme="dark"] [style*="background:#e3f2fd"],
+        [data-bs-theme="dark"] [style*="background:#fff3e0"],
+        [data-bs-theme="dark"] [style*="background:#f3e5f5"],
+        [data-bs-theme="dark"] [style*="background:#e8f5e9"],
+        [data-bs-theme="dark"] [style*="background:#ffcdd2"],
+        [data-bs-theme="dark"] [style*="background:#fff9c4"],
+        [data-bs-theme="dark"] [style*="background:#c8e6c9"],
+        [data-bs-theme="dark"] [style*="background:#bbdefb"],
+        [data-bs-theme="dark"] [style*="background:#e1bee7"] {
+            background: #21262d !important;
+            color: #c9d1d9 !important;
+        }
+        
+        [data-bs-theme="dark"] .text-purple { color: #d2a8ff !important; }
+        [data-bs-theme="dark"] .text-warning { color: #d29922 !important; }
+        
+[data-bs-theme="dark"] .bg-light,
+[data-bs-theme="dark"] .bg-white {
+    background-color: #161b22 !important;
+    color: #c9d1d9 !important;
+}
+
+/* Mute dark texts to light grey */
+[data-bs-theme="dark"] .text-dark,
+        [data-bs-theme="dark"] .text-muted,
+        [data-bs-theme="dark"] .text-black {
+    color: #8b949e !important;
+}
+
+/* Fix borders */
+[data-bs-theme="dark"] .border,
+[data-bs-theme="dark"] .border-primary,
+[data-bs-theme="dark"] .border-secondary,
+[data-bs-theme="dark"] .border-success,
+[data-bs-theme="dark"] .border-danger,
+[data-bs-theme="dark"] .border-warning,
+[data-bs-theme="dark"] .border-info,
+[data-bs-theme="dark"] .border-light,
+[data-bs-theme="dark"] .border-dark {
+    border-color: #30363d !important;
+}
+
+/* Tone down vibrant backgrounds */
+        [data-bs-theme="dark"] .bg-success { background-color: #238636 !important; color: #e6edf3 !important; border-color: #238636 !important; }
+        [data-bs-theme="dark"] .bg-danger { background-color: #da3633 !important; color: #e6edf3 !important; border-color: #da3633 !important; }
+        [data-bs-theme="dark"] .bg-primary { background-color: #1f6feb !important; color: #e6edf3 !important; border-color: #1f6feb !important; }
+        [data-bs-theme="dark"] .bg-warning { background-color: #9e6a03 !important; color: #e6edf3 !important; border-color: #9e6a03 !important; }
+        [data-bs-theme="dark"] .bg-info { background-color: #086054 !important; color: #e6edf3 !important; border-color: #086054 !important; }
+        [data-bs-theme="dark"] .bg-secondary { background-color: #30363d !important; color: #e6edf3 !important; border-color: #30363d !important; }
+        [data-bs-theme="dark"] .bg-dark { background-color: #0d1117 !important; color: #e6edf3 !important; border-color: #0d1117 !important; }
+
+[data-bs-theme="dark"] .text-success { color: #3fb950 !important; }
+[data-bs-theme="dark"] .text-danger { color: #f85149 !important; }
+[data-bs-theme="dark"] .text-primary { color: #58a6ff !important; }
+        [data-bs-theme="dark"] .text-white { color: #e6edf3 !important; }
+        
+        /* Modals */
+        [data-bs-theme="dark"] .modal-content {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+        }
+        [data-bs-theme="dark"] .modal-header,
+        [data-bs-theme="dark"] .modal-footer {
+            border-color: #30363d;
+        }
+
+/* Tables */
+[data-bs-theme="dark"] .table { color: #c9d1d9; border-color: #30363d; }
+[data-bs-theme="dark"] .table-light, [data-bs-theme="dark"] .table-light th, [data-bs-theme="dark"] .table-light td, [data-bs-theme="dark"] .table-dark th, [data-bs-theme="dark"] .table thead th { background-color: #161b22 !important; color: #e6edf3 !important; border-color: #30363d !important; }
+[data-bs-theme="dark"] .table-striped>tbody>tr:nth-of-type(odd)>* { background-color: #0d1117; color: #c9d1d9; }
+[data-bs-theme="dark"] .table-hover>tbody>tr:hover>* { background-color: #1f2428; color: #c9d1d9; }
+[data-bs-theme="dark"] .table-bordered>:not(caption)>*>* { border-color: #30363d; }
+
+/* Accordions */
+[data-bs-theme="dark"] .accordion-item { background-color: #161b22; border-color: #30363d; }
+[data-bs-theme="dark"] .accordion-button { background-color: #161b22; color: #c9d1d9; }
+[data-bs-theme="dark"] .accordion-button:not(.collapsed) { background-color: #0d1117; color: #58a6ff; box-shadow: inset 0 -1px 0 #30363d; }
+[data-bs-theme="dark"] .accordion-button::after { filter: invert(1) grayscale(100%) brightness(200%); }
+</style>
+</head>
+
+<body>
+
+    <header class="course-header text-center position-relative">
+        <div class="container">
+            <h1 class="display-4">MERN Stack for FinTech</h1>
+            <p class="lead">A comprehensive course from setup to deployment.</p>
+        </div>
+        <button id="theme-toggle" class="btn btn-outline-light position-absolute top-0 end-0 m-3">Dark Mode</button>
+    </header>
+
+    <main class="container" id="main-container">
+        <!-- Main Day Navigation -->
+        <ul class="nav nav-pills justify-content-center gap-2 mb-4" id="day-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="day1-tab-btn" data-bs-toggle="pill" data-bs-target="#day1-content"
+                    type="button" role="tab" aria-controls="day1-content" aria-selected="true">1. MongoDB Intro</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day2-tab-btn" data-bs-toggle="pill" data-bs-target="#day2-content"
+                    type="button" role="tab" aria-controls="day2-content" aria-selected="false">2. MongoDB Advanced</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day2-2-tab-btn" data-bs-toggle="pill" data-bs-target="#day2-2-content"
+                    type="button" role="tab" aria-controls="day2-2-content" aria-selected="false">3. HTML, CSS & JS</button>
+            </li>
+            <!-- <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day3-tab-btn" data-bs-toggle="pill" data-bs-target="#day3-content"
+                    type="button" role="tab" aria-controls="day3-content" aria-selected="false">4. Node.js</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day4-tab-btn" data-bs-toggle="pill" data-bs-target="#day4-content"
+                    type="button" role="tab" aria-controls="day4-content" aria-selected="false">5. Express.js</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day5-tab-btn" data-bs-toggle="pill" data-bs-target="#day5-content"
+                    type="button" role="tab" aria-controls="day5-content" aria-selected="false">6. APIs+MongoDB</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day6-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-content"
+                    type="button" role="tab" aria-controls="day6-content" aria-selected="false">7. React.js</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day6-5-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-5-content"
+                    type="button" role="tab" aria-controls="day6-5-content" aria-selected="false">8. Router & React Hooks </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day6-6-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-6-content"
+                    type="button" role="tab" aria-controls="day6-6-content" aria-selected="false">9. Library Frontend</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day6-7-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-7-content"
+                    type="button" role="tab" aria-controls="day6-7-content" aria-selected="false">10. Deployment</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day7-tab-btn" data-bs-toggle="pill" data-bs-target="#day7-content"
+                    type="button" role="tab" aria-controls="day7-content" aria-selected="false">11. Redux</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day8-tab-btn" data-bs-toggle="pill" data-bs-target="#day8-content"
+                    type="button" role="tab" aria-controls="day8-content" aria-selected="false">12. Advanced
+                    React</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day9-tab-btn" data-bs-toggle="pill" data-bs-target="#day9-content"
+                    type="button" role="tab" aria-controls="day9-content" aria-selected="false">13. Full Stack
+                    App</button>
+            </li> -->
+        </ul>
+
+        <!-- Main Day Content -->
+        <div class="tab-content" id="day-tab-content">
+            
+            <div class="tab-pane fade show active" id="day1-content" role="tabpanel" aria-labelledby="day1-tab-btn">
+<div class="card shadow-sm mb-4">
+  <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light)">
+    <h2 class="my-2">MongoDB: Introduction & Fundamentals</h2>
+  </div>
+  <div class="card-body">
+    <!-- Session Navigation -->
+    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-session1-tab" data-bs-toggle="pill" data-bs-target="#pills-session1"
+          type="button" role="tab" aria-controls="pills-session1" aria-selected="true">
+          Introduction & Setup
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-session2-tab" data-bs-toggle="pill" data-bs-target="#pills-session2"
+          type="button" role="tab" aria-controls="pills-session2" aria-selected="false">
+          MongoDB Fundamentals & Lab
+        </button>
+      </li>
+    </ul>
+
+    <!-- Session Content -->
+    <div class="tab-content" id="pills-tabContent">
+      <!-- Session 1 Content -->
+      <div class="tab-pane fade show active" id="pills-session1" role="tabpanel" aria-labelledby="pills-session1-tab">
+        <h2 class="mb-3">Introduction & Environment Setup</h2>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3>Course Overview</h3>
+          </div>
+          <div class="card-body">
+            <h5>Objective</h5>
+            <p>
+              Introduce MongoDB, Node.js, Express.js, React and the practical relevance of these technologies in
+              the FinTech domain.
+            </p>
+            <h5>Prerequisites</h5>
+            <p>
+              Familiarity with any RDBMS (like SQL) and Web Programming
+              Fundamentals (HTML, CSS, JavaScript).
+            </p>
+
+            <h5>Text Book & References</h5>
+            <ul>
+              <li>
+                <strong>Text Book:</strong> MERN Quick Start Guide by Eddy
+                Wilson Iriarte Koroliova (Packt)
+              </li>
+              <li>
+                <strong>Reference:</strong> Pro MERN Stack by Vasan Subramanian
+                (Apress)
+              </li>
+              <li>
+                <strong>Online:</strong>
+                <a href="https://www.w3schools.com/" target="_blank">W3Schools</a>
+                and
+                <a href="https://github.com/markerikson/react-redux-links" target="_blank">Curated Tutorials</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3>What is the MERN Stack?</h3>
+          </div>
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-8 fs-5">
+                <p>
+                  The MERN stack is a popular and powerful collection of
+                  technologies used to build full-stack web applications.
+                </p>
+                <ul>
+                  <li>
+                    <strong>M</strong>ongoDB: A NoSQL, document-based database.
+                  </li>
+                  <li>
+                    <strong>E</strong>xpress.js: A back-end web application
+                    framework for Node.js.
+                  </li>
+                  <li>
+                    <strong>R</strong>eact: A front-end JavaScript library for
+                    building user interfaces.
+                  </li>
+                  <li>
+                    <strong>N</strong>ode.js: A back-end JavaScript runtime
+                    environment that runs code on the server.
+                  </li>
+                </ul>
+                <p>
+                  Together, these components allow you to build a three-tier
+                  architecture (frontend, backend, database) entirely with
+                  JavaScript and JSON.
+                </p>
+              </div>
+              <div class="col-md-4 text-center">
+                <img src="./images/comparison-webvsfintech.png" class="img-fluid rounded course-image"
+                alt="MERN Stack Connection Diagram" />
+                <p><strong>How the parts connect:</strong></p>
+                <img src="./images/mern-stack-development.jpg" class="img-fluid rounded course-image"
+                  alt="MERN Stack Connection Diagram" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header text-center">
+            <h3>How It All Works: Request → Response Flow</h3>
+          </div>
+
+          <div class="card-body text-center">
+            <p>
+              Simulate request & response flow in MERN
+              stack.
+            </p>
+            <button id="run-simulation-btn" class="btn mb-4">
+              Run Simulation
+            </button>
+
+            <!-- REQUEST FLOW -->
+            <div class="row text-center mb-4 align-items-center">
+              <div class="col-md-3 flow-step" id="step1">
+                <div class="p-3">
+                  <strong>1. Client (React)</strong><br />
+                  User sends request
+                </div>
+              </div>
+              <div class="col-md-1" id="arrow1">
+                <span class="flow-arrow">→</span>
+              </div>
+              <div class="col-md-3 flow-step" id="step2">
+                <div class="p-3">
+                  <strong>2. Server (Node/Express)</strong><br />
+                  API receives request
+                </div>
+              </div>
+              <div class="col-md-1" id="arrow2">
+                <span class="flow-arrow">→</span>
+              </div>
+              <div class="col-md-3 flow-step" id="step3">
+                <div class="p-3">
+                  <strong>3. Database (MongoDB)</strong><br />
+                  Query executed
+                </div>
+              </div>
+            </div>
+
+            <!-- ARROWS (REQUEST) -->
+
+            <!-- RESPONSE FLOW -->
+            <div class="row text-center align-items-center">
+
+
+
+
+              <div class="col-md-3 flow-step response-step" id="step6">
+                <div class="p-3">
+                  <strong>6. Client</strong><br />
+                  Updates UI
+                </div>
+              </div>
+              <div class="col-md-1">
+                <span class="flow-arrow"  id="arrow4">←</span>
+              </div>
+              <div class="col-md-3 flow-step response-step" id="step5">
+                <div class="p-3">
+                  <strong>5. Server</strong><br />
+                  Sends JSON response
+                </div>
+              </div>
+              <div class="col-md-1">
+                <span class="flow-arrow"  id="arrow3">←</span>
+              </div>
+              <div class="col-md-3 flow-step response-step" id="step4">
+                <div class="p-3">
+                  <strong>4. Database</strong><br />
+                  Returns data
+                </div>
+              </div>
+            </div>
+
+
+            <p id="simulation-log" class="mt-4 text-muted fst-italic fw-bold"></p>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3>Lab: Environment Installation</h3>
+          </div>
+          <div class="card-body">
+            
+            <div class="accordion" id="installationAccordion">
+              <!-- VS Code -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="false" aria-controls="collapseOne">
+                    1. Visual Studio Code
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                  data-bs-parent="#installationAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>
+                        <strong>Windows:</strong> Download the installer from
+                        the
+                        <a href="https://code.visualstudio.com/" target="_blank">official website</a>
+                        and run it. Ensure you check the "Add to PATH" option
+                        during installation.
+                      </li>
+                      <li>
+                        <strong>macOS:</strong> Download the ZIP file, extract
+                        it, and drag <code>Visual Studio Code.app</code> to your
+                        <code>/Applications</code> folder.
+                      </li>
+                      <li>
+                        <strong>Linux:</strong> Download the appropriate
+                        <code>.deb</code> (for Debian/Ubuntu) or
+                        <code>.rpm</code> (for Fedora/RHEL) package and install
+                        it. Alternatively, use Snap:
+                        <code>sudo snap install --classic code</code>.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Node.js -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    2. Node.js & NPM
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                  data-bs-parent="#installationAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>
+                        <strong>Windows & macOS:</strong> Download the LTS
+                        (Long-Term Support) version installer from the
+                        <a href="https://nodejs.org/" target="_blank">official website</a>
+                        and run it. NPM is included.
+                      </li>
+                      <h5>(Set-ExecutionPolicy RemoteSigned -Force)</h5>
+                      <li>
+                        <strong>Linux:</strong> It's recommended to use Node
+                        Version Manager (nvm). Follow the
+                        <a href="https://github.com/nvm-sh/nvm#installing-and-updating" target="_blank">installation
+                          script</a>, then run <code>nvm install --lts</code>.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- MongoDB -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    3. MongoDB Community Server
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                  data-bs-parent="#installationAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>
+                        <strong>Windows:</strong> Download the MSI installer
+                        from the
+                        <a href="https://www.mongodb.com/try/download/community" target="_blank">MongoDB Community
+                          Server download page</a>. Follow the wizard and install it as a service.
+                      </li>
+                      <li>
+                        <strong>macOS:</strong> The recommended method is using
+                        Homebrew. Run
+                        <code>brew tap mongodb/brew</code> followed by
+                        <code>brew install mongodb-community</code>.
+                      </li>
+                      <li>
+                        <strong>Linux (Ubuntu):</strong> Follow the official
+                        guide to
+                        <a href="https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/"
+                          target="_blank">install MongoDB on Ubuntu</a>
+                        using the <code>apt</code> package manager.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Postman -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    4. Postman
+                  </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                  data-bs-parent="#installationAccordion">
+                  <div class="accordion-body">
+                    <p>
+                      For all operating systems (Windows, macOS, Linux), go to
+                      the
+                      <a href="https://www.postman.com/downloads/" target="_blank">Postman downloads page</a>, download
+                      the appropriate version, and install it.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <h5>Verify Installations</h5>
+            <p>
+              <strong>For Windows, macOS, and Linux.</strong>
+            </p>
+            <div class="code-block">
+              <pre><code>
+code --version
+
+node -v
+npm -v
+
+mongod --version
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session 2 Content -->
+      <div class="tab-pane fade" id="pills-session2" role="tabpanel" aria-labelledby="pills-session2-tab">
+        <h2 class="mb-3">MongoDB Fundamentals & Lab</h2>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3>Relational (SQL) vs. NoSQL Databases</h3>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <img src="./images/difference_sql_nosql.jpg" class="img-fluid rounded course-image" alt="SQL vs NoSQL Diagram" />
+            </div>
+            <h4>Relational Databases (e.g., MySQL, PostgreSQL)</h4>
+            <ul>
+              <li>Data is stored in tables with rows and columns.</li>
+              <li>
+                A strict schema defines the table structure, data types, and
+                relationships.
+              </li>
+              <li>Uses SQL (Structured Query Language).</li>
+              </ul>
+            <h4>NoSQL Databases (e.g., MongoDB, Cassandra, Neo4j)</h4>
+            <ul>
+              <li>
+                Data can be stored in various formats like document (JSON-like),
+                key-value, graph.
+              </li>
+              <li>
+                Flexible or dynamic schema allows for storing varied data
+                structures.
+              </li>
+              <li>Built for scalability and high performance.</li>
+              </ul>
+              <img src="./images/table-card.png" class="img-fluid rounded course-image" alt="SQL vs NoSQL Diagram" />
+
+              <div class="code-block">
+                <pre><code>
+MySQL databases → use SQL
+SELECT * FROM users WHERE age > 25;
+
+MongoDB → uses MQL (JSON-style queries)
+db.users.find({ age: { $gt: 25 } })
+</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3>Lab: MongoDB Operations(CRUD)</h3>
+            <img src="./images/CRUD.png" class="img-fluid rounded course-image" alt="MongoDB Compass Interface" />
+          </div>
+          <div class="card-body">
+            
+            <h5 class="mt-3">1. Shell</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <h5>Standalone `mongosh` Terminal</h5>
+                <p>
+                  This is a command-line application. It's great for server management
+                  and scripting.
+                </p>
+                <img src="./images/mongoshell.png" class="img-fluid rounded course-image"
+                  alt="A standalone mongosh terminal window." />
+              </div>
+              <div class="col-md-6">
+                <h5>MongoDB Compass Embedded Shell</h5>
+                <p>
+                  Compass is a GUI tool that includes a built-in shell at the
+                  bottom. It's convenient for running quick queries while
+                  visually exploring your data.
+                </p>
+                <img src="./images/mongo-compass-shell.png" class="img-fluid rounded course-image"
+                  alt="The embedded shell inside MongoDB Compass." />
+              </div>
+            </div>
+            <hr />
+
+            <h5>2. List and Select a Database</h5>
+            <div class="code-block">
+              <pre><code>
+- show dbs
+
+- use "db_name"
+
+- db.createCollection("collection_name")</code></pre>
+            </div>
+            
+            <h5 class="mt-3">3. Insert a Single Document</h5>
+            <div class="code-block">
+              <pre><code>insertOne(
+  {key1:"value1", key2:"value2" }
+)</code></pre>
+            </div>
+            
+            <h5 class="mt-3">4. Insert Multiple Documents</h5>
+            <div class="code-block">
+              <pre><code>insertMany([
+  { key1:"value1", key2:"value2" },
+  { key1:"value1", key2:"value2" , key3:"value3" },
+  { key1:"value1", key2:"value2" , key3:"value3" },
+  { key1:"value1", key2:"value2" , key3:"value3", key4: "value4" }
+]);</code></pre>
+            </div>
+           
+            <h5 class="mt-3">5. Perform Basic Operations (CRUD)</h5>
+            <div class="code-block">
+              <pre><code>
+- find()
+
+- find({ keyname: "value" })
+
+- updateOne(
+  { key: "value" },
+  { $set: { key: "newvalue" } }
+  )
+
+- deleteOne({ key: "value" })
+
+- countDocuments()</code></pre>
+            </div>           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            </div>
+        
+
+            <div class="tab-pane fade " id="day2-content" role="tabpanel" aria-labelledby="day2-tab-btn">
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-center"  style="background-color: var(--bs-dark); color: var(--bs-light);">
+        <h2 class="my-2">MongoDB: Advanced Operations</h2>
+    </div>
+    <div class="card-body" >
+        <!-- Session Navigation -->
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day2" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-session3-tab" data-bs-toggle="pill" data-bs-target="#pills-session3" type="button" role="tab" aria-controls="pills-session3" aria-selected="true">Advanced CRUD & Aggregation</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-session4-tab" data-bs-toggle="pill" data-bs-target="#pills-session4" type="button" role="tab" aria-controls="pills-session4" aria-selected="false">Scalability & Advanced Concepts</button>
+            </li>
+        </ul>
+
+        <!-- Session Content -->
+        <div class="tab-content" id="pills-tabContent-day2">
+            <!-- Session 3 Content -->
+            <div class="tab-pane fade show active" id="pills-session3" role="tabpanel" aria-labelledby="pills-session3-tab">
+            <h2 class="mb-3">Advanced CRUD & Aggregation</h2>
+            <img src="./images/mongo-comapss.png" class="img-fluid rounded course-image" alt="MongoDB Compass Interface"/>            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>BSON & Data Types</h3>
+                </div>
+                <div class="card-body">
+                    <p>MongoDB stores data in <strong>BSON</strong> (Binary JSON), not plain JSON. This allows it to support more data types and be more efficient.</p>
+                    
+                    <h5 class="mt-4">JSON vs BSON</h5>
+                    <div class="row align-items-center mb-4">
+                        <div class="col-md-5">
+                            <div class="card bg-light border-secondary h-100">
+                                <div class="card-header text-center"><strong>JSON</strong> (Text)</div>
+                                <div class="card-body text-center" >
+                                    <p class="small">Human Readable, Text-based</p>
+                                    <div class="bg-white border p-2 text-start font-monospace small mb-2">
+                                        {<br>
+                                        &nbsp;&nbsp;"age": 25,<br>
+                                        &nbsp;&nbsp;"date": "2023-01-01"<br>
+                                        }
+                                    </div>
+                                    <span class="badge bg-success">Slower to Parse</span>
+                                    <span class="badge bg-success">Fewer Types</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-center fs-2 text-muted d-none d-md-block">&rarr;</div>
+                        <div class="col-md-5">
+                            <div class="card bg-light text-white border-0 h-100">
+                                <div class="card-header text-center"><strong>BSON</strong> (Binary)</div>
+                                <div class="card-body text-center  bg-light" style="color: var(--bs-body-color);">
+                                    <p class="small">Machine Optimized, Binary</p>
+                                    <div class="bg-white border p-2 text-start font-monospace small mb-2">
+                                        \x16\x00\x00\x00\x02age\x00...
+                                    </div>
+                                    <span class="badge bg-success">Fast Search</span>
+                                    <span class="badge bg-success">Rich Types (Date, BinData)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="mt-4">MongoDB Data Types</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 50%">Type</th>
+                                    <th style="width: 50%">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>String</strong></td>
+                                    <td><span>"Hello World",'07894561374'</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ObjectId</strong></td>
+                                    <td><span>ObjectId("507f1...")</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Boolean</strong></td>
+                                    <td><span>true</span> / <span>false</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Date</strong></td>
+                                    <td><span>ISODate("2023-10-10")</span></td>
+                                </tr>
+                                 <tr>
+                                    <td><strong>Int32</strong></td>
+                                    <td><span>45(Range: -2 Billion to 2 Billion)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Int64</strong></td>
+                                    <td><span>Large Number(7894561374)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Double</strong></td>
+                                    <td><span>456.12</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Binary Data (BinData)</strong></td>
+                                    <td>
+                                        <div>
+                                            <span>Image (.png, .jpg)*</span><br/>
+                                            <span>PDF / Excel</span><br/>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td><strong>Embedded Object</strong></td>
+                                    <td><span>{ city: "NY", zip: 10001 }</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Array</strong></td>
+                                    <td><span>[ "A", "B", 10, {x:1} ]</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Null</strong></td>
+                                    <td><span>null</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Regular Expression</strong></td>
+                                    <td><span>/^abc/i</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Timestamp</strong></td>
+                                    <td><span>Timestamp(169..., 1)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                 
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Lab: Advanced CRUD Operations</h3>
+                </div>
+                <div class="card-body">
+                    <h5>1. Create Database and Collection</h5>
+                    <p>DB- `company` and collection- `employees`</p>
+                <h5 class="mt-3">2. Insert Documents</h5>
+                    <p>(emp_id: string, name: string, dept: string, salary: number, experience: number, age: Number)</p>
+                    <p>3. Execute Queries</p>
+                    <div class="code-block"><pre><code>
+Read: Find employees in the 'Development' department
+
+Update: Increase salary by 10% for employees with more than 5 years of experience
+
+Delete: Remove employees with less than 1 year of experience
+        </code></pre></div>
+            
+                    <h5 class="mt-3">4. Advanced Queries (Condition, Sort, Projection)</h5>
+                    <p>Find all employees in Development dept, sort them by experience in descending order, and show only their name and salary.</p>
+                    <div class="code-block"><pre><code>$match, $sort, $project</code></pre></div>
+                    <h5 class="mt-3">5. Verify and Display</h5>
+                    <div class="code-block"><pre><code>find()</code></pre></div>
+                    <br/><div class="code-block"><pre><code>find().pretty()</code></pre></div>                   
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Lab: Aggregation Pipeline</h3>
+                </div>
+                <div class="card-body">
+                    <p>The aggregation pipeline is a powerful framework for data analysis. It processes documents through a series of stages.</p>
+                    <div class="d-flex justify-content-center my-3">
+                        <!-- 
+                            IMAGE PROMPT: "A simple flowchart of the MongoDB Aggregation Pipeline. Show a collection of document icons on the left. 
+                            An arrow leads to a box labeled 'Stage 1: $match', which filters some documents out. Another arrow leads to a box 
+                            labeled 'Stage 2: $group', which combines the remaining documents into a single result document on the right."
+                        -->
+                        <img src="./images/AggregationPipeline.png" class="img-fluid rounded course-image" alt="Aggregation Pipeline Diagram">
+                        <img src="./images/lookup-unwind-group-sort.png" class="img-fluid rounded course-image" alt="Lookup, Unwind, Group, Sort Stages in Aggregation Pipeline">
+                    </div>
+            
+                    <table class="table table-bordered mt-3">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Stage</th>
+                                <th>Purpose</th>
+                                <th>SQL Equivalent</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>$match</code></td>
+                                <td>Filters documents, similar to a <code>find()</code> query.</td>
+                                <td><code>WHERE</code></td>
+                                <td><code>{ status: "Active" }</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>$group</code></td>
+                                <td>Groups documents by a specified key to perform aggregate calculations (e.g., sum, average).</td>
+                                <td><code>GROUP BY</code></td>
+                                <td><code>{ _id: "$dept", total: { $sum: 1 } }</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>$sort</code></td>
+                                <td>Sorts the documents based on a specified field.</td>
+                                <td><code>ORDER BY</code></td>
+                                <td><code>{ age: -1 }</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>$limit</code></td>
+                                <td>Limits the number of documents passed to the next stage.</td>
+                                <td><code>LIMIT</code></td>
+                                <td><code>5</code> (Top 5 results)</td>
+                            </tr>
+                            <tr>
+                                <td><code>$unwind</code></td>
+                                <td>Splits array values into separate documents.</td>
+                                <td><code>LATERAL VIEW</code> / <code>CROSS JOIN</code></td>
+                                <td><code>"$tags"</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>$project</code></td>
+                                <td>Selects, renames, or removes fields in the output.</td>
+                                <td><code>SELECT</code></td>
+                                <td><code>{ username: "$name", age: 1, _id: 0 }</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>$lookup</code></td>
+                                <td>Adds matching data from another collection.</td>
+                                <td><code>LEFT OUTER JOIN</code></td>
+                                <td><code>{ from: "orders", as: "products" }</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <div class="code-block"><pre><code>db.employees.aggregate([ ])</code></pre></div>
+                    <p><strong>1. $match (Filtering)</strong></p>
+                    <p class="mt-3"><strong>2. $group (Aggregating)</strong></p>
+                    <p class="mt-3"><strong>3. $sort (Ordering)</strong></p>
+                    <p class="mt-3"><strong>4. $limit (Restricting)</strong></p>
+                    <p class="mt-3"><strong>5. $unwind (Flattening Arrays)</strong></p>
+                    <div class="code-block"><pre><code>New document: { name: "Anik", skills: ["Java", "MongoDB"] }</code></pre></div>
+                    <p class="mt-3"><strong>6. $project (Reshaping Documents)</strong></p>
+                    <p class="mt-3"><strong>7. $lookup (Left Outer Join)</strong></p>
+                    <div class="code-block"><pre><code>
+New collection "departments"
+[{ dept_name: "Engineering", manager: "Someone" }]
+
+$lookup: {
+  from: "second collection name",
+  localField: "field from collection_1 which have common values in collection_2",
+  foreignField: "field from collection_2 which have common values in collection_1",
+  as: "output array name"
+}
+</code></pre></div>
+
+                    <h5 class="mt-4"> <div class="card-header">The Importance of Sequence</div></h5>
+                    <p>The power of the pipeline comes from chaining stages together. The order matters! The output of one stage becomes the input for the next. For performance, it's almost always better to <strong>filter first</strong> with <code>$match</code> to reduce the number of documents processed by later stages.</p>
+                    
+                    <div class="text-center my-3">
+                         <!-- 
+                            IMAGE PROMPT: "A comparison diagram showing two MongoDB aggregation pipelines. The 'Efficient' pipeline on top shows: Collection -> $match (many documents become few) -> $group. The 'Inefficient' pipeline below shows: Collection -> $group (processes many documents) -> $match. Use green checkmarks for efficient and red 'X' for inefficient."
+                        -->
+                        <img src="./images/Efficient+vs+Inefficient+Pipeline+Order.png" class="img-fluid rounded course-image" alt="Pipeline Order Diagram">
+                    </div>
+            
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card border-success mb-3">
+                                <div class="card-header">Recommended Sequence (Best Performance)</div>
+                                <div class="card-body bg-light">
+                                    <div class="d-flex flex-wrap align-items-center justify-content-center text-center">
+                                        <div class="p-2 border rounded bg-white m-1 shadow-sm" style="min-width: 100px;"><strong>1. $match</strong><br><small class="text-muted">Filter Early</small></div>
+                                        <div class="text-success fw-bold fs-4 m-1">&rarr;</div>
+                                        <div class="p-2 border rounded bg-white m-1 shadow-sm" style="min-width: 100px;"><strong>2. $sort/$limit</strong><br><small class="text-muted">Reduce Size</small></div>
+                                        <div class="text-success fw-bold fs-4 m-1">&rarr;</div>
+                                        <div class="p-2 border rounded bg-white m-1 shadow-sm" style="min-width: 100px;"><strong>3. $lookup</strong><br><small class="text-muted">Join Data</small></div>
+                                        <div class="text-success fw-bold fs-4 m-1">&rarr;</div>
+                                        <div class="p-2 border rounded bg-white m-1 shadow-sm" style="min-width: 100px;"><strong>4. $project</strong><br><small class="text-muted">Reshape</small></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card border-danger mb-3">
+                                <div class="card-header">Sequences to Avoid (Performance Killers)</div>
+                                <div class="card-body bg-light">
+                                    <ul class="mb-0">
+                                        <li class="mb-2"><strong>$unwind before $match</strong></li>
+                                        <li class="mb-2"><strong>$lookup before $match</strong></li>
+                                        <li><strong>$group before $match</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <h5 class="mt-4"><div class="card-header">A Multi-Stage Pipeline</div></h5>
+                    <div class="code-block"><pre><code>
+([
+    { $match: { } },
+    { $group: { } },
+    { $sort: { } }
+])</code></pre></div>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Session 4 Content -->
+            <div class="tab-pane fade" id="pills-session4" role="tabpanel" aria-labelledby="pills-session4-tab">
+            <h2 class="mb-3">Scalability & Advanced Concepts</h2>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Lab: Storing Files with GridFS</h3>
+                </div>
+                <div class="card-body">
+                    <p>GridFS is a specification for storing and retrieving files that exceed the BSON-document size limit of 16 MB. It divides a file into smaller chunks and stores each chunk as a separate document.</p>
+                    
+                    <div class="alert alert-info">
+                        <strong>Why do we need this?</strong></div>
+
+                    <h5 class="mt-4">Storage Formats</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-3 h-100 border-primary">
+                                <div class="card-header bg-primary text-white text-center"><strong>Files &lt; 16MB (Standard)</strong></div>
+                                <div class="card-body">
+                                    <p class="card-text small">Stored as a single field inside a document using <strong>BinData</strong>.</p>
+                                    <div class="p-2 border rounded bg-light font-monospace" style="font-size: 0.8rem;">
+                                        {<br>
+                                        &nbsp;&nbsp;"_id": ObjectId("..."),<br>
+                                        &nbsp;&nbsp;"name": "avatar.png",<br>
+                                        &nbsp;&nbsp;"data": <span class="badge bg-secondary">BinData(...)</span><br>
+                                        }
+                                    </div>
+                                    <div class="text-center mt-2"><small class="text-muted">1 Document = 1 File</small></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3 h-100 border-warning">
+                                <div class="card-header bg-warning text-dark text-center"><strong>Files &gt; 16MB (GridFS)</strong></div>
+                                <div class="card-body">
+                                    <p class="card-text small">Split into <strong>fs.files</strong> (metadata) and <strong>fs.chunks</strong> (data).</p>
+                                    <div class="d-flex align-items-center justify-content-between border p-2 rounded bg-light mb-2">
+                                        <div class="font-monospace" style="font-size: 0.7rem;">
+                                            <strong>fs.files</strong><br>
+                                            { "filename": "movie.mp4" }
+                                        </div>
+                                        <div class="fs-5">&rarr;</div>
+                                        <div class="d-flex flex-column" style="width: 40%;">
+                                            <div class="bg-secondary text-white text-center rounded mb-1" style="font-size: 0.6rem;">Chunk 1</div>
+                                            <div class="bg-secondary text-white text-center rounded mb-1" style="font-size: 0.6rem;">Chunk 2</div>
+                                            <div class="text-center" style="font-size: 0.6rem;">...</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center"><small class="text-muted">1 File = Many Documents</small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="mt-4">Workflow</h5>
+                    <div class="d-flex justify-content-center align-items-center mb-4 flex-wrap">
+                        <div class="p-3 bg-primary text-white rounded text-center m-2" style="width: 120px;">
+                            <strong>Large File</strong><br>(e.g., 50MB Video)
+                        </div>
+                        <div class="fs-2 text-muted m-2">&rarr;</div>
+                        <div class="p-3 border border-primary rounded text-center m-2 bg-light">
+                            <strong>GridFS Driver</strong><br>Splits file
+                        </div>
+                        <div class="fs-2 text-muted m-2">&rarr;</div>
+                        <div class="d-flex flex-column">
+                            <div class="p-2 bg-warning text-dark rounded text-center m-1 border">
+                                <strong>fs.files</strong><br><small>Metadata (Name, Size)</small>
+                            </div>
+                            <div class="d-flex">
+                                <div class="p-1 bg-secondary text-white rounded text-center m-1" style="font-size: 0.8em;">Chunk 1</div>
+                                <div class="p-1 bg-secondary text-white rounded text-center m-1" style="font-size: 0.8em;">Chunk 2</div>
+                                <div class="p-1 bg-secondary text-white rounded text-center m-1" style="font-size: 0.8em;">...</div>
+                            </div>
+                            <div class="text-center"><small><strong>fs.chunks</strong> collection</small></div>
+                        </div>
+                    </div>
+
+                    <h5 class="mt-4">Comparison: Storage Strategies</h5>
+                    <table class="table table-sm table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Feature</th>
+                                <th>Standard BSON (&lt; 16MB)</th>
+                                <th>GridFS (&gt; 16MB)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Storage Method</strong></td>
+                                <td>Single Document (BinData)</td>
+                                <td>Multiple Documents (Chunks)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Atomicity</strong></td>
+                                <td>Atomic (All or nothing)</td>
+                                <td>Not Atomic (Multi-doc update)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Access Speed</strong></td>
+                                <td>Fast (Single read)</td>
+                                <td>Slower (Stitching chunks)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                   
+
+                    <div class="text-center my-3">
+                        <!-- 
+                            IMAGE PROMPT: "A diagram explaining MongoDB GridFS. On the left, show a large PDF file icon. Arrows point from it to 
+                            multiple smaller 'chunk' icons in the middle. On the right, show two boxes representing MongoDB collections: 'fs.files' 
+                            (containing one document with metadata) and 'fs.chunks' (containing multiple documents, one for each chunk)."
+                        -->
+                        <img src="./images/GridFS.png" class="img-fluid rounded course-image" alt="GridFS Diagram">
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Replication (High Availability)</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Replication</strong> means keeping the same data on multiple MongoDB servers. This group is called a <strong>replica set</strong>. If one server fails, another one can take over, so your app stays online.</p>
+
+                    <h5 class="mt-4">Replica Set Images</h5>
+                    <div class="row g-3 mb-2">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-header bg-light"><strong>Image 1: Replica Set Structure</strong></div>
+                                <div class="card-body text-center">
+                                    <img src="./images/ReplicaSet.png" class="img-fluid rounded course-image" alt="MongoDB Replica Set Structure">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-header bg-light"><strong>Image 2: Replication Process</strong></div>
+                                <div class="card-body text-center">
+                                    <img src="./images/replication.png" class="img-fluid rounded course-image" alt="MongoDB Replication Process">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="mt-4">How Replica Set Works</h5>
+                    <div class="row g-3 text-center align-items-center my-2">
+                        <div class="col-md-3">
+                            <div class="card border-primary h-100">
+                                <div class="card-header bg-primary text-white">Client App</div>
+                                <div class="card-body">
+                                    <p class="mb-0 small">Write Request<br>(Insert/Update)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 d-none d-md-block fs-4 text-muted">&rarr;</div>
+                        <div class="col-md-3">
+                            <div class="card border-success h-100">
+                                <div class="card-header bg-success text-white">Primary Server</div>
+                                <div class="card-body">
+                                    <p class="mb-0 small">Accepts all writes first</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 d-none d-md-block fs-4 text-muted">&rarr;</div>
+                        <div class="col-md-4">
+                            <div class="card border-secondary h-100">
+                                <div class="card-header bg-secondary text-white">Secondary Servers</div>
+                                <div class="card-body">
+                                    <p class="mb-0 small">Copy data from Primary<br>(Replication)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info mt-3 mb-4" role="alert">
+                        <strong>Failover:</strong> If the Primary goes down, one Secondary is automatically elected as the new Primary.
+                    </div>
+
+                   <h5 class="mt-4">Why We Use Replication</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Situation</th>
+                                    <th>Without Replication</th>
+                                    <th>With Replication</th>
+                                    <th>Takeaway</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Primary server fails</td>
+                                    <td>App may go offline</td>
+                                    <td>Secondary is elected as new Primary</td>
+                                    <td>High availability</td>
+                                </tr>
+                                <tr>
+                                    <td>Data safety</td>
+                                    <td>Single copy of data</td>
+                                    <td>Multiple copies of same data</td>
+                                    <td>Better reliability</td>
+                                </tr>
+                                <tr>
+                                    <td>Read traffic</td>
+                                    <td>Single server load</td>
+                                    <td>Reads can be distributed to secondaries</td>
+                                    <td>Better performance for heavy reads</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Sharding (Scalability)</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Sharding</strong> splits a big collection so different servers each own a slice of the data. MongoDB can then handle more users, more writes, and more records without one server becoming a bottleneck.</p>              
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-header bg-light"><strong>Image 1: Cluster Layout</strong></div>
+                                <div class="card-body text-center">
+                                    <img src="./images/Sharding.png" class="img-fluid rounded course-image" alt="Sharded Cluster Diagram">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-header bg-light"><strong>Image 2: Data Flow</strong></div>
+                                <div class="card-body text-center">
+                                    <img src="./images/sharding1.png" class="img-fluid rounded course-image" alt="Shard Flow Diagram">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mt-3 mb-4">
+                        <table class="table table-sm table-bordered align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Detail</th>
+                                    <th>Explanation</th>
+                                    <th>Why It Matters</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Application & mongos router</td>
+                                    <td>The app talks to a router named <code>mongos</code> instead of directly to servers.</td>
+                                    <td>One router keeps traffic organized and sends each query to the right shard.</td>
+                                </tr>
+                                <tr>
+                                    <td>Shards (Shard A, B, C)</td>
+                                    <td>Each shard stores part of the dataset (e.g., customers starting with A-G).</td>
+                                    <td>Distributes load so no single server is overwhelmed.</td>
+                                </tr>
+                                <tr>
+                                    <td>Config servers</td>
+                                    <td>Hold a map of which shard owns which range of data.</td>
+                                    <td>Mongos uses that map to read/write without guessing.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 class="mt-4">Request Path With Sharding</h5>
+                    <div class="row g-3 text-center align-items-center my-2">
+                        <div class="col-md-3">
+                            <div class="card border-primary h-100">
+                                <div class="card-header bg-primary text-white">Client App</div>
+                                <div class="card-body">
+                                    <p class="mb-0 small">Sends read/write</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 d-none d-md-block fs-4 text-muted">&rarr;</div>
+                        <div class="col-md-3">
+                            <div class="card border-info h-100">
+                                <div class="card-header bg-info text-white">mongos Router</div>
+                                <div class="card-body">
+                                    <p class="mb-0 small">Checks config servers' map</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 d-none d-md-block fs-4 text-muted">&rarr;</div>
+                        <div class="col-md-4">
+                            <div class="card border-success h-100">
+                                <div class="card-header bg-success text-white">Target Shard</div>
+                                <div class="card-body">
+                                    <p class="mb-0 small">Handles the data slice</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info mt-3 mb-4" role="alert">
+                        <strong>Easy phrasing:</strong> Sharding lets many servers share the work while <code>mongos</code> keeps the traffic going to the right place.
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Need</th>
+                                    <th>Single Server</th>
+                                    <th>Sharded Deployment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Data size</td>
+                                    <td>Fits comfortably within a single machine (e.g., < 100 GB).</td>
+                                    <td>Too large for one disk or memory; grows rapidly.</td>
+                                </tr>
+                                <tr>
+                                    <td>Write throughput</td>
+                                    <td>Moderate writes (hundreds/sec).</td>
+                                    <td>High writes (thousands/sec) across diverse keys.</td>
+                                </tr>
+                                <tr>
+                                    <td>Operational cost</td>
+                                    <td>Cheaper to maintain.</td>
+                                    <td>Higher ops cost but required for scale.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                     </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+            </div>
+        
+
+            <div class="tab-pane fade " id="day2-2-content" role="tabpanel" aria-labelledby="day2-2-tab-btn">
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light);">
+        <h2 class="my-2">HTML, CSS and JS</h2>
+    </div>
+    <div class="card-body">
+        <!-- Session Navigation -->
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day2-2" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-html-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-html" type="button" role="tab" aria-controls="pills-html"
+                    aria-selected="true">HTML - The Bones</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-css-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-css" type="button" role="tab" aria-controls="pills-css"
+                    aria-selected="false">CSS - The Skin & Clothes</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-js-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-js" type="button" role="tab" aria-controls="pills-js"
+                    aria-selected="false">JS - Behavior & Interaction</button>
+            </li>
+        </ul>
+
+        <!-- Session Content -->
+        <div class="tab-content" id="pills-tabContent-day2-2">
+            <div class="tab-pane fade show active" id="pills-html" role="tabpanel"
+                aria-labelledby="pills-html-tab">
+                <h3>HTML: The Structural Bones</h3>
+                <div class="alert alert-info">
+                    <strong>What is HTML?</strong> HTML (HyperText Markup Language) is the standard language for creating web pages. It defines the structure and content of a webpage using elements like headings, paragraphs, links, and images.
+                </div>
+                <div class="alert alert-secondary">
+                    <strong>Analogy:</strong> Just like the human body has bones that provide structure and support, HTML provides the basic structure for web pages. Without bones, the body would collapse; without HTML, there's no foundation for content.
+                </div>
+                <img src="./images/HTML Analogy Image.png" alt="HTML Analogy Image" class="img-fluid rounded course-image">
+                <div class="alert alert-success">
+                    <strong>Example:</strong> Building a house - HTML is like the blueprint and foundation. You need the walls and rooms defined before you can decorate.
+                </div>
+                <div class="alert alert-light">
+                    <strong>How to Use HTML:</strong> Start with a basic structure: &lt;!DOCTYPE html&gt;, &lt;html&gt;, &lt;head&gt;, &lt;body&gt;. Use tags like &lt;h1&gt; for headings, &lt;p&gt; for paragraphs, &lt;a&gt; for links. Save files with .html extension and open in a browser.
+                </div>
+                <div class="text-center my-4">
+                    <h4>Workflow: How HTML Works</h4>
+<p>1. Start with &lt;html&gt; (the body)</p>
+<p>2. Add &lt;head&gt; (the brain - metadata)</p>
+<p>3. Create &lt;body&gt; (the main structure)</p>
+<p>4. Use elements like &lt;h1&gt;, &lt;p&gt;, &lt;div&gt; (bones and organs)</p>
+<p>↓</p>
+<p>Result: A structured webpage ready for styling</p>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">Small HTML Code Example</div>
+                    <div class="card-body">
+                        <pre class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    &lt;p&gt;This is a simple HTML page.&lt;/p&gt;
+    <!-- &lt;a href="https://example.com"&gt;Visit Example&lt;/a&gt; -->
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="pills-css" role="tabpanel"
+                aria-labelledby="pills-css-tab">
+                <h3>CSS: The Skin, Muscles & Clothes</h3>
+                <div class="alert alert-info">
+                    <strong>What is CSS?</strong> CSS (Cascading Style Sheets) is a language used to describe the presentation of a document written in HTML. It controls the layout, colors, fonts, and overall appearance of web pages.
+                </div>
+                <div class="alert alert-secondary">
+                    <strong>Analogy:</strong> CSS is like the skin, muscles, and clothes that make the body look good and function properly. While bones provide structure, CSS adds color, shape, and movement.
+                </div>
+                <img src="./images/CSS Analogy Image.png" alt="CSS Analogy Image" class="img-fluid rounded course-image">
+                <div class="alert alert-success">
+                    <strong>Example:</strong> Interior design - CSS is like painting walls, arranging furniture, and adding decorations to the house built with HTML.
+                </div>
+                <div class="alert alert-light">
+                    <strong>How to Use CSS:</strong> Link a CSS file to HTML using &lt;link&gt; in the &lt;head&gt;, or use &lt;style&gt; tags. Use selectors to target HTML elements and apply properties like color, font-size, margin. For Bootstrap, include the CDN link and use pre-built classes.
+                </div>
+                <div class="text-center my-4">
+                    <h4>Visual Workflow: How CSS Works</h4>
+                    <p>1. Link CSS file to HTML</p>
+                    <p>2. Select elements (bones) to style</p>
+                    <p>3. Apply properties like color, size, position</p>
+                    <p>4. Use selectors, classes, IDs for precision</p>
+                    <p>↓</p>
+                    <p>Result: A beautiful, styled webpage</p>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">Small CSS Code Example</div>
+                    <div class="card-body">
+                        <pre class="code-block">body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}</pre>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">Bootstrap Example: Simple Styled Page</div>
+                    <div class="card-body">
+                        <div class="card-body">
+                        <p>Bootstrap is the most popular CSS framework. Instead of writing custom CSS for every button, card, and layout, Bootstrap provides pre-built, responsive CSS classes that you can simply add to your HTML elements.</p>
+                        <h6>Eg: Pre-fabricated Furniture</h6>
+                        <p>Writing plain CSS is like cutting wood and building a chair from scratch. Using Bootstrap is like buying an IKEA chair; the pieces are already perfectly sized and styled, you just assemble them.</p>
+                    </div>
+                        <pre class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Bootstrap Example&lt;/title&gt;
+    <!-- &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt; -->
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1 class="text-primary text-center"&gt;Welcome to Bootstrap&lt;/h1&gt;
+        &lt;p class="lead"&gt;This page uses Bootstrap for styling.&lt;/p&gt;
+        &lt;button class="btn btn-success"&gt;Click Me&lt;/button&gt;
+    &lt;/div&gt;
+    <!-- &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt; -->
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="pills-js" role="tabpanel"
+                aria-labelledby="pills-js-tab">
+                <h3>JavaScript: The Brain & Behaviors</h3>
+                <div class="alert alert-info">
+                    <strong>What is JavaScript?</strong> JavaScript is a programming language that adds logic, interactivity, and dynamic behavior to web pages. It can read and change HTML/CSS, respond to user actions, and connect to back-end services.
+                </div>
+                <div class="alert alert-secondary">
+                    <strong>Analogy:</strong> If HTML is bones and CSS is skin/clothes, JavaScript is the muscles and nervous system that make the body move and respond.
+                </div>
+                <img src="./images/js.png" alt="JavaScript Analogy Image" class="img-fluid rounded course-image">
+                <div class="alert alert-warning">
+                    <strong>Image Prompt:</strong> Visualize a person thinking, moving arms and legs, and reacting to a button push. That is JavaScript making a page interactive.
+                </div>
+                <div class="alert alert-success">
+                    <strong>Real-World Example:</strong> A traffic light system (green/red/yellow) changing states based on time and sensors is like JS reacting to events and updating the UI.
+                </div>
+                <div class="alert alert-light">
+                    <strong>How to Use JavaScript:</strong> Place JS inside &lt;script&gt; tags in HTML or load an external .js file using &lt;script src="app.js"&gt;. Use event listeners, functions, and DOM methods (querySelector, addEventListener) to make changes.
+                </div>
+                <div class="text-center my-4">
+                    <h4>Workflow: HTML vs CSS vs JS</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">HTML: structure (tags and content)</li>
+                        <li class="list-group-item">CSS: style (color, layout, fonts)</li>
+                        <li class="list-group-item">JS: behavior (events, animation, data handling)</li>
+                    </ul>
+                    <p class="mt-3">In MERN:</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Node.js:</strong> Server executes JS on backend</li>
+                        <li class="list-group-item"><strong>Express:</strong> API layer for routing requests</li>
+                        <li class="list-group-item"><strong>React:</strong> Frontend JS library with component-driven UI</li>
+                        <li class="list-group-item"><strong>MongoDB:</strong> Database storing JS-serializable data (JSON/BSON)</li>
+                    </ul>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">Small JS Code Example</div>
+                    <div class="card-body">
+                        <pre class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;JS Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 id="title"&gt;Click the button&lt;/h1&gt;
+    &lt;button id="clickButton"&gt;Click Me&lt;/button&gt;
+
+    &lt;script&gt;
+        const button = document.getElementById('clickButton');
+        button.addEventListener('click', () =&gt; {
+            document.getElementById('title').textContent = 'Hello from JavaScript!';
+            button.classList.toggle('btn-primary');
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        
+
+        </div>
+    </main>
+
+    <!-- Reusable Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-body text-center">
+                <!-- The image will be placed here by JavaScript. The modal is dismissable by clicking the image. -->
+                <img src="" class="img-fluid rounded" id="modalImage" alt="Enlarged course image"
+                    data-bs-dismiss="modal" style="cursor: pointer;">
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-muted py-4">
+        <p>&copy; 2026 C-DAC Patna. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Dynamic Content Loader & Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Theme Toggle Logic ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+
+            // Load saved theme or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            htmlElement.setAttribute('data-bs-theme', savedTheme);
+            updateThemeButton(savedTheme);
+
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                htmlElement.setAttribute('data-bs-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeButton(newTheme);
+            });
+
+            function updateThemeButton(theme) {
+                if (theme === 'dark') {
+                themeToggleBtn.textContent = 'Light Mode';
+                    themeToggleBtn.className = 'btn btn-outline-warning position-absolute top-0 end-0 m-3';
+                } else {
+                themeToggleBtn.textContent = 'Dark Mode';
+                    themeToggleBtn.className = 'btn btn-outline-light position-absolute top-0 end-0 m-3';
+                }
+            }
+
+            // Dynamic loading script removed for standalone file
+
+            // --- All simulation functions are defined here in the global scope ---
+            const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+            async function runSimulation() {
+                const runBtn = document.getElementById('run-simulation-btn');
+                const log = document.getElementById('simulation-log');
+                if (!runBtn || !log) return;
+                const elements = [
+                    document.getElementById('step1'), document.getElementById('arrow1'), document.getElementById('step2'), document.getElementById('arrow2'), document.getElementById('step3'), document.getElementById('step4'), document.getElementById('arrow4'), document.getElementById('step5'), document.getElementById('arrow5'), document.getElementById('step6')
+                ];
+                const logs = [
+                    '1. Request starts from the Client (e.g., your browser).', null, '2. The request travels to the Server (Node.js/Express).', null, '3. The Server queries the Database (MongoDB) for information.', '4. The Database finds the information and returns it to the Server.', null, '5. The Server formats the data (usually as JSON) and sends it back as a response.', null, '6. The Client receives the data and updates the user interface. Done!'
+                ];
+                const responseElements = document.querySelectorAll('.response-step, .response-arrow');
+                runBtn.disabled = true;
+                elements.forEach(el => el?.querySelector('div')?.classList.remove('highlight'));
+                responseElements.forEach(el => el.style.visibility = 'hidden');
+                log.textContent = 'Starting simulation...';
+                await sleep(500);
+                for (let i = 0; i < elements.length; i++) {
+                    const el = elements[i];
+                    if (!el) continue;
+                    if (el.classList.contains('response-step') || el.classList.contains('response-arrow')) { el.style.visibility = 'visible'; }
+                    if (el.classList.contains('flow-step')) {
+                        el.querySelector('div').classList.add('highlight');
+                        if (logs[i]) log.textContent = logs[i];
+                        await sleep(1500);
+                        el.querySelector('div').classList.remove('highlight');
+                    }
+                }
+                log.textContent = 'Simulation complete! Click the button to run it again.';
+                runBtn.disabled = false;
+            }
+
+            // --- Event Loop Simulation Logic ---
+            const simSteps = [
+                { log: "Simulation ready. Click Next to start.", stack: [], apis: [], queue: [] },
+                { log: "1. `console.log('start')` pushed to Stack.", stack: ['console.log("start")'], apis: [], queue: [] },
+                { log: "`console.log('start')` executes.", stack: [], apis: [], queue: [] },
+                { log: "2. `setTimeout` pushed to Stack.", stack: ['setTimeout'], apis: [], queue: [] },
+                { log: "`setTimeout` executes. Timer starts in APIs.", stack: [], apis: ['Timer (1s)'], queue: [] },
+                { log: "3. `console.log('end')` pushed to Stack.", stack: ['console.log("end")'], apis: ['Timer (1s)'], queue: [] },
+                { log: "`console.log('end')` executes.", stack: [], apis: ['Timer (1s)'], queue: [] },
+                { log: "4. Timer completes. Callback moves to Queue.", stack: [], apis: [], queue: ['cb()'] },
+                { log: "5. Event Loop checks Stack (Empty) & Queue (Has item).", stack: [], apis: [], queue: ['cb()'] },
+                { log: "Callback pushed to Stack.", stack: ['cb()'], apis: [], queue: [] },
+                { log: "Callback executes.", stack: ['console.log("inside")'], apis: [], queue: [] },
+                { log: "Done.", stack: [], apis: [], queue: [] }
+            ];
+
+            let simIndex = 0;
+            let simInterval = null;
+
+            function updateSimUI() {
+                const step = simSteps[simIndex];
+                if (!step) return;
+
+                const logEl = document.getElementById('event-loop-log');
+                const stackEl = document.getElementById('call-stack');
+                const apisEl = document.getElementById('node-apis');
+                const queueEl = document.getElementById('callback-queue');
+
+                if (logEl) logEl.textContent = step.log;
+
+                const makeItems = (items) => items.map(i => `<div class="event-loop-item">${i}</div>`).join('');
+
+                if (stackEl) stackEl.innerHTML = makeItems(step.stack);
+                if (apisEl) apisEl.innerHTML = makeItems(step.apis);
+                if (queueEl) queueEl.innerHTML = makeItems(step.queue);
+
+                const btnPrev = document.getElementById('btn-sim-prev');
+                const btnNext = document.getElementById('btn-sim-next');
+                if (btnPrev) btnPrev.disabled = simIndex <= 0;
+                if (btnNext) btnNext.disabled = simIndex >= simSteps.length - 1;
+            }
+
+            // Initialize the modal ONCE
+            const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+            const modalImage = document.getElementById('modalImage');
+
+            // --- Event Delegation for Dynamic Content ---
+            document.body.addEventListener('click', (e) => {
+                // Simulation Button
+                if (e.target.id === 'run-simulation-btn') {
+                    runSimulation();
+                }
+                // Event Loop Simulation Buttons
+                if (e.target.id === 'btn-sim-next') {
+                    if (simIndex < simSteps.length - 1) {
+                        simIndex++;
+                        updateSimUI();
+                    }
+                }
+                if (e.target.id === 'btn-sim-prev') {
+                    if (simIndex > 0) {
+                        simIndex--;
+                        updateSimUI();
+                    }
+                }
+                if (e.target.id === 'btn-sim-reset') {
+                    simIndex = 0;
+                    clearInterval(simInterval);
+                    updateSimUI();
+                }
+                if (e.target.id === 'btn-sim-auto') {
+                    if (simIndex >= simSteps.length - 1) simIndex = 0;
+                    clearInterval(simInterval);
+                    updateSimUI();
+                    simInterval = setInterval(() => {
+                        if (simIndex < simSteps.length - 1) {
+                            simIndex++;
+                            updateSimUI();
+                        } else {
+                            clearInterval(simInterval);
+                        }
+                    }, 1000);
+                }
+                // Image Modal
+                if (e.target.classList.contains('course-image')) {
+                    modalImage.src = e.target.src;
+                    imageModal.show();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

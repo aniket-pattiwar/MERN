@@ -1,0 +1,44 @@
+Day 3 Notes: Server-side Development with Node.js
+
+What is Node.js?
+- It's a Runtime Environment, not a programming language.
+- Built on Chrome's V8 JavaScript Engine.
+- Allows you to run JavaScript on the backend/server.
+- Key characteristics: Asynchronous, Single-threaded, Non-blocking I/O.
+
+When to Use Node.js:
+- Good for: Real-time apps (Chat), API servers, Streaming (Netflix), Single Page App backends.
+- Bad for: Heavy CPU tasks (Video Editing, complex math, AI) because it is single-threaded and heavy tasks block the whole app.
+
+Node.js Architecture & Event Loop:
+- Analogy: Like a bank with one teller (Event Loop) and a back-office team (Worker Pool).
+- Call Stack: Tracks where we are in the code (Last In, First Out).
+- Node APIs: Handles asynchronous tasks (like setTimeout, database calls, or file reads) in the background.
+- Callback Queue: Waiting area for finished async tasks.
+- Event Loop: Constantly checks if the Call Stack is empty. If empty, it moves completed tasks from the Callback Queue to the Call Stack.
+
+Modules:
+- Code organization by splitting logic into separate files (modules).
+- Exporting: module.exports = functionName;
+- Importing: const functionName = require('./filename');
+
+Built-in Modules:
+1. HTTP: Used to create a web server.
+   - Example: Setting up a server that listens on port 3000 and responds to incoming requests.
+
+2. File System (fs): Used to read and write files on the server.
+   - fs.writeFile(): Creates or writes to a file.
+   - fs.readFile(): Reads the contents of a file.
+   - Important detail: Use 'utf8' encoding when reading. 
+     - Without 'utf8': Node returns a Buffer (binary 0s and 1s, e.g., <Buffer 48 65...>).
+     - With 'utf8': Node converts the binary into readable text.
+
+Testing with Jest:
+- Testing is crucial for making sure code is reliable before deployment.
+- Installation: run `npm install --save-dev jest`.
+- Setup: Add `"test": "jest"` to the scripts section of your package.json.
+- Syntax:
+  test('adds 1 + 2 to equal 3', () => {
+    expect(add(1, 2)).toBe(3);
+  });
+- Run the tests in the terminal using `npm test`.

@@ -1,0 +1,197 @@
+APIS AND MONGODB - DAY 5 NOTES
+
+BACKEND ARCHITECTURE AND SETUP
+==============================
+
+The page talks about building a backend for a library system. The whole system has different parts that work together:
+
+1. Client (React or Postman for testing)
+2. Router (handles URL endpoints)
+3. Controller (handles logic)
+4. Repository (handles database communication)
+5. Database (MongoDB stores data)
+
+
+RESTFUL API ENDPOINTS FOR LIBRARY PROJECT
+==========================================
+
+These are the basic operations needed:
+
+- POST to /api/books - allows adding a new book
+- GET to /api/books - shows all books
+- GET to /api/books with ID - shows one specific book
+- PUT to /api/books with ID - allows updating a book
+- DELETE to /api/books with ID - removes a book
+- POST to /api/books/upload - lets you upload book cover image
+
+
+FETCHING DATA WITH QUERY PARAMETERS
+====================================
+
+Query parameters are extra information added to the URL after the question mark to filter or change the data returned.
+
+Two ways to fetch data:
+
+Fetch API - This is built into the browser, free, no installation needed. You have to manually handle JSON and check errors yourself. Code is a bit longer.
+
+Axios - This is a library you need to install. It automatically handles JSON and errors for you. The code is cleaner and shorter. It also has extra features like interceptors and easy timeout handling.
+
+
+DETAILED COMPARISON AXIOS VS FETCH
+==================================
+
+Built-in
+- Axios needs to be installed
+- Fetch is already in the browser
+
+JSON handling
+- Axios automatically uses res.data
+- Fetch requires you to use res.json()
+
+Error handling
+- Axios handles errors automatically
+- Fetch needs you to check response ok manually
+
+Request body
+- Axios takes objects directly
+- Fetch needs JSON.stringify
+
+Interceptors
+- Axios has them available
+- Fetch does not have them
+
+Timeout
+- Axios is easy to set timeout
+- Fetch does not have built-in timeout
+
+Progress tracking
+- Axios supports it
+- Fetch does not support it
+
+Old browser support
+- Axios is better
+- Fetch needs polyfill for old browsers
+
+Syntax
+- Axios is cleaner and shorter
+- Fetch is slightly longer
+
+
+SENDING DATA TO THE SERVER
+===========================
+
+POST Request - sending new data
+- Use POST method
+- Add Content Type header as json
+- Use JSON.stringify to send the data
+- Examples show sending user data like name and age
+
+PUT Request - updating existing data
+- Use PUT method with ID in the URL path
+- Also needs Content Type header as json
+- Also needs JSON.stringify for the data
+- The ID tells which item to update
+
+
+SETTING UP THE LIBRARY PROJECT
+==============================
+
+First steps:
+1. Create a folder called backend
+2. Initialize npm with npm init y
+3. Install required packages express mongoose cors dotenv nodemon
+
+These packages do:
+- express: the web server framework
+- mongoose: talks to MongoDB database
+- cors: allows requests from different sources
+- dotenv: manages secret settings
+- nodemon: restarts server automatically when code changes
+
+
+FOLDER STRUCTURE FOR THE PROJECT
+================================
+
+The project is organized in layers:
+
+backend folder contains:
+- config folder for database connection setup
+- controllers folder for request and response handling
+- models folder for database schema definitions
+- repositories folder for database access code
+- routes folder for URL endpoints
+- index.js file as the main entry point
+
+
+DATABASE CONNECTION
+===================
+
+MongoDB connection code:
+- Tries to connect to mongodb at localhost on port 27017
+- Database name is libraryDB
+- If connection fails it prints an error message and stops
+
+
+DEFINING WHAT DATA LOOKS LIKE
+=============================
+
+Book schema defines what information a book record has:
+- title: text field, required
+- author: text field, required
+- isbn: text field, should be unique
+- status: text field, default value is Available
+- coverImage: text field for image path
+
+
+IMPLEMENTING THE API
+====================
+
+The Repository Pattern separates two concerns:
+- Business logic goes in Controller
+- Database work goes in Repository
+
+Repository handles the database directly:
+- findAll method returns all books from database
+
+Controller handles HTTP requests and responses:
+- getAllBooks gets the request from user
+- Calls repository to get the data
+- Sends data back to user
+- If there is an error sends 500 status with error message
+
+Routes map the URLs to controller functions:
+- GET to / calls getAllBooks controller function
+
+
+ADVANCED FEATURES
+=================
+
+File Uploads:
+- Install multer library for file handling
+- Create upload middleware
+- POST endpoint for creating books
+- POST endpoint for uploading files at /upload
+- Checks if file exists before saving
+
+Entry Point Setup:
+- Import all required libraries
+- Set up express app
+- Connect to database
+- Use CORS to allow requests from different origins
+- Use express.json to process json data
+- Serve uploaded files as static files
+- Set up the books routes
+- Start server on port 5000
+
+
+RUNNING THE PROJECT
+===================
+
+Steps to run:
+1. Create uploads folder
+2. Run node index.js to start the server
+
+Testing with Postman:
+- POST to http://localhost:5000/api/books to add a book
+- GET to http://localhost:5000/api/books to see all books
+- POST to http://localhost:5000/api/books/upload to upload an image

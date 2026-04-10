@@ -1,0 +1,460 @@
+ASSIGNMENT: React.js
+
+EXERCISE 1: Set Up Vite React Project
+======================================
+
+Create a new React app using Vite:
+
+1. Run: npm create vite@latest my-react-app
+
+2. Select React and JavaScript
+3. Navigate to folder: cd my-react-app
+4. Install dependencies: npm install
+5. Start development server: npm run dev
+6. Open in browser and verify default app is running
+
+Deliverable: Screenshot of running Vite app in browser
+
+
+========================================
+EXERCISE 2: Build Header Component
+======================================
+
+Create file: src/Header.jsx
+
+Code requirements:
+- Function component named Header
+- Accept props.title
+- Display title in <h1> tag
+- Style with backgroundColor: '#0d1117' and color: 'white'
+- Add padding: '1rem'
+- Export the component
+
+Expected Result:
+When used as <Header title="My App" />, should display "My App" in white text on dark background
+
+
+Full Code Template to Complete:
+function Header(props) {
+  return (
+    <header style={{ __________, __________, __________ }}>
+      <h1>__________</h1>
+    </header>
+  );
+}
+export default __________;
+
+
+========================================
+EXERCISE 3: Build Content Component
+======================================
+
+Create file: src/Content.jsx
+
+Code requirements:
+- Function component named Content
+- Display inside <main> tag
+- Show a paragraph with text: "Welcome to MERN Stack"
+- Add padding: '1rem'
+- Optional: Add some descriptive text below the welcome message
+- Export the component
+
+Expected Result:
+Display main content with padding and welcome message
+
+
+Full Code Template to Complete:
+function Content() {
+  return (
+    <main style={{ __________ }}>
+      <p>__________</p>
+      <p>You can add more content here...</p>
+    </main>
+  );
+}
+export default __________;
+
+
+========================================
+EXERCISE 4: Build Footer Component
+======================================
+
+Create file: src/Footer.jsx
+
+Code requirements:
+- Function component named Footer
+- Get current year dynamically using: new Date().getFullYear()
+- Display in <footer> tag
+- Show copyright text with current year: © 2026 Company. All Rights Reserved.
+- Add styling: padding: '1rem', borderTop: '1px solid #ccc'
+- Export the component
+
+Expected Result:
+Footer that automatically shows current year (2026, and will update to 2027 next year)
+
+
+Full Code Template to Complete:
+function Footer() {
+  const currentYear = __________;
+  return (
+    <footer style={{ __________, __________ }}>
+      <p>© {__________} Company. All Rights Reserved.</p>
+    </footer>
+  );
+}
+export default __________;
+
+
+========================================
+EXERCISE 5: Assemble Components in App.jsx
+======================================
+
+Modify file: src/App.jsx
+
+Code requirements:
+- Import Header.jsx
+- Import Content.jsx  
+- Import Footer.jsx
+- Import './App.css'
+- Remove all default Vite code
+- Create layout with all three components:
+  - Header with title prop: "MERN Stack for FinTech"
+  - Content component
+  - Footer component
+- Wrap in a div with className="App"
+
+Expected Result:
+App displaying Header at top, Content in middle, Footer at bottom
+
+
+Full Code Template to Complete:
+import '___________';
+import __________ from '___________';
+import __________ from '___________';
+import __________ from '___________';
+
+function App() {
+  return (
+    <div className="App">
+      <Header title="__________" />
+      <__________ />
+      <__________ />
+    </div>
+  );
+}
+
+export default App;
+
+
+========================================
+EXERCISE 6: Add CSS Styling
+======================================
+
+Create/Modify file: src/App.css
+
+Code requirements:
+- Center the .App container (text-align: center)
+- Style main paragraph with:
+  - Font size: 1.2rem
+  - Color: #333
+  - Add padding to main content area
+- Add margin between components
+- Optional: Add a max-width container, add hover effects
+
+Example CSS needed:
+- .App { text-align: center; }
+- main { padding: 2rem; }
+- main p { font-size: 1.2rem; color: #333; }
+
+Test: Verify App.jsx imports this CSS file with: import './App.css';
+
+
+========================================
+EXERCISE 7: Use Props - Add Subtitle
+======================================
+
+Modify file: src/Header.jsx
+
+Current code:
+function Header(props) {
+  return (
+    <header style={{ backgroundColor: '#0d1117', color: 'white', padding: '1rem' }}>
+      <h1>{props.title}</h1>
+    </header>
+  );
+}
+
+Changes needed:
+- Accept a new prop: props.subtitle
+- Display subtitle below title in an <h2> or <p> tag
+- Style subtitle with color: '#999' or '#aaa' for gray color
+
+New usage in App.jsx:
+<Header 
+  title="MERN Stack for FinTech" 
+  subtitle="Learn Full Stack Development" 
+/>
+
+Updated Header Code:
+function Header(props) {
+  return (
+    <header style={{ backgroundColor: '#0d1117', color: 'white', padding: '1rem' }}>
+      <h1>{props.title}</h1>
+      <p style={{ color: '________' }}>________</p>
+    </header>
+  );
+}
+
+
+========================================
+EXERCISE 8: Create a Banner Component
+======================================
+
+Create file: src/Banner.jsx
+
+Code requirements:
+- Function component named Banner
+- Accept props:
+  - props.message (string)
+  - props.bgColor (background color, default 'lightblue')
+  - props.textColor (text color, default 'black')
+- Display banner as a <div> with the message
+- Apply background and text colors
+- Add padding and margin
+- Export component
+
+Usage example:
+<Banner message="Welcome to React!" bgColor="lightgreen" textColor="darkgreen" />
+
+Expected Result:
+Colorful banner component with custom colors
+
+
+Template:
+function Banner(props) {
+  return (
+    <div style={{
+      backgroundColor: props.bgColor || '________',
+      color: props.textColor || '________',
+      padding: '________',
+      margin: '________',
+      textAlign: 'center',
+      borderRadius: '5px'
+    }}>
+      <p>{__________}</p>
+    </div>
+  );
+}
+export default __________;
+
+
+========================================
+EXERCISE 9: Props with Multiple Config
+======================================
+
+Create file: src/Card.jsx
+
+Code requirements:
+- Function component named Card
+- Accept props:
+  - props.title
+  - props.description
+  - props.imageUrl
+- Display as a card with:
+  - Image at top (use <img src={props.imageUrl} />)
+  - Title in <h3>
+  - Description in <p>
+  - Border: '1px solid #ddd'
+  - Padding: '1rem'
+  - Border radius: '8px'
+- Export component
+
+Usage in App.jsx:
+<Card 
+  title="React Basics"
+  description="Learn the fundamentals of React"
+  imageUrl="./images/react-logo.png"
+/>
+
+Note: Create placeholder imageUrl or use a web image URL
+
+Template:
+function Card(props) {
+  return (
+    <div style={{ border: '__________', padding: '________', borderRadius: '______' }}>
+      <img src={__________} alt="Card" style={{ width: '100%' }} />
+      <h3>{__________}</h3>
+      <p>{__________}</p>
+    </div>
+  );
+}
+export default __________;
+
+
+========================================
+EXERCISE 10: List Component with Loop
+======================================
+
+Create file: src/CourseList.jsx
+
+Code requirements:
+- Function component named CourseList
+- Accept props.courses (array of course objects)
+- Each course object has: { id, name, duration }
+- Loop through array using .map()
+- Display each course as an <li> in a <ul>
+- Show course name and duration
+- Export component
+
+Usage in App.jsx:
+const courses = [
+  { id: 1, name: 'React Basics', duration: '4 weeks' },
+  { id: 2, name: 'Advanced React', duration: '6 weeks' },
+  { id: 3, name: 'Node.js Backend', duration: '5 weeks' }
+];
+
+<CourseList courses={courses} />
+
+Expected Result:
+Unordered list showing all courses with their durations
+
+Template:
+function CourseList(props) {
+  return (
+    <ul>
+      {props.courses.map((course) => (
+        <li key={__________}>
+          {__________} - {__________}
+        </li>
+      ))}
+    </ul>
+  );
+}
+export default __________;
+
+
+========================================
+EXERCISE 11: Component with State Prep
+======================================
+
+Create file: src/Welcome.jsx
+
+Code requirements:
+- Function component named Welcome
+- Accept props.userName
+- Display personalized welcome message
+- If props.userName is provided, show: "Welcome, {userName}!"
+- If props.userName is not provided, show: "Welcome, Guest!"
+- Use ternary operator: props.userName ? '...' : '...'
+
+Usage:
+<Welcome userName="John" />
+<Welcome />
+
+Expected Result:
+First shows "Welcome, John!"
+Second shows "Welcome, Guest!"
+
+Template:
+function Welcome(props) {
+  return (
+    <div>
+      <h2>
+        {props.userName ? __________ : '__________'}
+      </h2>
+    </div>
+  );
+}
+export default __________;
+
+
+========================================
+EXERCISE 12: Conditional Rendering
+======================================
+
+Create file: src/Status.jsx
+
+Code requirements:
+- Function component named Status
+- Accept props.isOnline (boolean - true or false)
+- If isOnline is true: Show "🟢 Online" with green color
+- If isOnline is false: Show "🔴 Offline" with red color
+- Use conditional ? : operator or if/else
+- Add padding and styling
+
+Usage:
+<Status isOnline={true} />    // shows green online
+<Status isOnline={false} />   // shows red offline
+
+Expected Result:
+Status indicator that changes color based on isOnline prop
+
+Template:
+function Status(props) {
+  return (
+    <div style={{ padding: '1rem' }}>
+      {props.isOnline ? (
+        <p style={{ color: '________' }}>🟢 __________</p>
+      ) : (
+        <p style={{ color: '________' }}>🔴 __________</p>
+      )}
+    </div>
+  );
+}
+export default __________;
+
+
+========================================
+FINAL CHALLENGE: Complete Mini App
+======================================
+
+Integrate all exercises into one working app:
+
+Requirements:
+1. App.jsx imports and displays:
+   - Header with title and subtitle
+   - Banner component
+   - Content component
+   - CourseList component (with sample courses array)
+   - Card component (at least one)
+   - Welcome component
+   - Status component (toggle online/offline)
+   - Footer
+
+2. All components should be styled and properly formatted
+
+3. At least 3 different props passed between components
+
+4. App should run without console errors
+
+5. All components should display correctly in browser
+
+Deliverable: 
+- Screenshot of completed app
+- Run: npm run dev and open in browser
+- Verify all components render with no errors
+- Code files: App.jsx, App.css, Header.jsx, Content.jsx, Footer.jsx, Banner.jsx, Card.jsx, CourseList.jsx, Welcome.jsx, Status.jsx
+
+
+========================================
+SUBMISSION CHECKLIST
+====================
+
+□ Exercise 1: Vite project created and running
+□ Exercise 2: Header.jsx created with props
+□ Exercise 3: Content.jsx created
+□ Exercise 4: Footer.jsx with dynamic year
+□ Exercise 5: App.jsx assembles all components
+□ Exercise 6: App.css styling applied
+□ Exercise 7: Header props enhanced with subtitle
+□ Exercise 8: Banner.jsx created with multiple props
+□ Exercise 9: Card.jsx created with image and content
+□ Exercise 10: CourseList.jsx displays array of courses
+□ Exercise 11: Welcome.jsx with conditional message
+□ Exercise 12: Status.jsx with color-coded indicator
+□ Final Challenge: All components working together
+□ No console errors in browser
+□ npm run dev runs successfully
+□ All files properly exported/imported
+
+========================================

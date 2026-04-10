@@ -1,0 +1,139 @@
+DAY 5 - ASSIGNMENT - API
+
+COMPLETE API FLOW
+1. config/db.js - database connection
+2. models/Product.js - product schema
+3. repositories/productRepository.js - all database methods
+4. controllers/productController.js - all controller functions
+5. routes/productRoutes.js - all routes with file upload
+6. index.js - main entry point and server setup
+
+Database: productDB
+Port: 5000
+
+1. Write code to get users from the API with query parameters:
+URL: https://api.example.com/users?name=Rahul&age=25
+
+Using Axios with params object
+
+2. Write code to POST a new user with this data:
+name: "John"
+age: 30
+
+URL: https://api.example.com/users
+
+using Axios
+
+3. Write code to update user with ID 123 to:
+name: "UpdatedName"
+age: 28
+
+URL: https://api.example.com/users/123
+
+using Axios
+
+4. Write config/db.js code to connect to MongoDB:
+- Use productDB database
+- Handle connection errors
+- Export the connectDB function
+
+
+5. Write models/Product.js code to create a Product schema with:
+- name (required string)
+- price (required number)
+- sku (unique string)
+- status (string with default "In Stock")
+- imageUrl (string)
+- Export the model
+
+
+6. Write repositories/productRepository.js with these methods:
+- findAll() - returns all products
+- findById(id) - returns one product by id
+- create(productData) - adds new product
+- update(id, productData) - updates product
+- delete(id) - deletes product
+
+7. Write controllers/productController.js with these functions:
+- getAllProducts(req, res) - get all products
+- getProductById(req, res) - get one product
+- createProduct(req, res) - create new product
+- updateProduct(req, res) - update product
+- deleteProduct(req, res) - delete product
+
+All should use the repository and handle errors
+
+8. Write routes/productRoutes.js to map these routes:
+- GET / - call getAllProducts
+- GET /:id - call getProductById
+- POST / - call createProduct
+- PUT /:id - call updateProduct
+- DELETE /:id - call deleteProduct
+
+9. Add to routes/productRoutes.js:
+- POST /upload - use multer to upload single file named "imageUrl"
+- Return the file path on success
+- Return error if no file uploaded
+
+10. Write index.js with:
+- Import all packages and routes
+- Connect to database
+- Setup CORS
+- Setup express.json()
+- Setup static files at /uploads
+- Setup product routes at /api/products
+- Listen on port 5000 and print server running message
+
+
+11. Write axios code to get products with try-catch error handling:
+- Catch request errors
+- Catch response errors
+- Print error message
+
+12. Write axios code with request interceptor that:
+- Adds Authorization header with token "Bearer xyz123"
+- Logs the request URL
+
+13. Write axios code to get users by filtering with these params:
+- name=Rahul
+- age=25
+Build the URL string with these parameters
+
+14. For each endpoint write the Postman test steps:
+
+1. POST http://localhost:5000/api/products
+   - Add product with name and price in JSON body
+
+2. GET http://localhost:5000/api/products
+   - Get all products
+
+3. GET http://localhost:5000/api/products/123
+   - Get product with ID 123
+
+4. PUT http://localhost:5000/api/products/123
+   - Update product with ID 123
+
+5. DELETE http://localhost:5000/api/products/123
+   - Delete product with ID 123
+
+6. POST http://localhost:5000/api/products/upload
+   - Upload image file
+
+
+
+15. Create a new API's for Student Management:
+Do same as Que 14 but for Student instead of Product
+
+Student schema fields:
+- name (required)
+- email (required, unique)
+- rollNumber (required, unique)
+- marks (number, default 0)
+
+
+Endpoints needed in backend and then test by supertest
+- POST /api/students - create student
+- GET /api/students - get all students
+- GET /api/students/:id - get one student
+- PUT /api/students/:id - update student
+- DELETE /api/students/:id - delete student

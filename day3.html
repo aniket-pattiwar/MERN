@@ -1,0 +1,286 @@
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light);">
+        <h2 class="my-2">Server-side Development with Node.js</h2>
+    </div>
+    <div class="card-body">
+        <!-- Session Navigation -->
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day3" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-session5-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-session5" type="button" role="tab" aria-controls="pills-session5"
+                    aria-selected="true">Node.js Core</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-session7-tab" data-bs-toggle="pill" data-bs-target="#pills-session7"
+                    type="button" role="tab" aria-controls="pills-session7" aria-selected="false">Event Loop
+                    & Async</button>
+            </li>
+        </ul>
+
+        <!-- Session Content -->
+        <div class="tab-content" id="pills-tabContent-day3">
+            <!-- Sessions 5-6 -->
+            <div class="tab-pane fade show active" id="pills-session5" role="tabpanel"
+                aria-labelledby="pills-session5-tab">
+                <h2 class="mb-3">Node.js Architecture & Modules</h2>
+
+                <!-- What is Node.js Visual -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card text-center p-4"
+                            style="background-color: var(--bs-dark); color: var(--bs-light);">
+                            <h1 class="display-6">What is Node.js?</h1>
+                            <p class="lead">It's not a language. It's a <strong>Runtime Environment</strong>.</p>
+                            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                <span class="badge bg-success fs-6">Chrome V8 Engine</span>
+                                <span class="badge bg-info text-dark fs-6">Asynchronous</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why, When, Pros, Cons -->
+                <div class="row mb-4">
+                    <!-- When to use -->
+                    <div class="col-md-6">
+                        <div class="card h-100" style="border-color: var(--bs-success);  padding: 0.5rem;">
+                            <div class="card-header"
+                                style="background-color: var(--bs-success); color: var(--bs-light);"><strong>When to
+                                    use</strong></div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Real-time Features</strong> (live stock prices, trading dashboards)
+                                    </li>
+                                    <li class="list-group-item"><strong>Streaming</strong> (Netflix, YouTube)</li>
+                                    <li class="list-group-item"><strong>Single Page Apps</strong> (React Backends)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- When NOT to use -->
+                    <div class="col-md-6">
+                        <div class="card h-100" style="border-color: var(--bs-danger); padding: 0.5rem;">
+                            <div class="card-header"
+                                style="background-color: var(--bs-danger); color: var(--bs-light);"><strong>When NOT
+                                    to use</strong></div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Heavy CPU Tasks</strong> (Video Editing, AI)
+                                    </li>
+                                    <li class="list-group-item"><strong>Complex Math</strong> (Data Science)</li>
+                                    <li class="list-group-item"><strong>Complex financial modeling</strong></li>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               
+
+             
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Node.js Fundamentals</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>1. Node.js Script</h5>
+                        <hr class="my-4">
+                        <h5>2. Modules: Organizing Code</h5>
+                        <div class="code-block">
+                            <pre><code>
+function add(a, b) {
+  return a + b;
+}
+module.exports = add;
+</code></pre>
+                        </div><br />
+                        <hr class="my-4">
+                        <h5>3. Creating a Web Server (HTTP)</h5>
+                        <div class="code-block px-2">
+                            <pre><code>Server running at http://localhost:3000/</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Session 7 -->
+            <div class="tab-pane fade" id="pills-session7" role="tabpanel" aria-labelledby="pills-session7-tab">
+                <h2 class="mb-3">The Event Loop & Asynchronous Lab</h2>
+
+                <!-- Simplified Explanation Card -->
+                <div class="card mb-4">
+                    <div class="card-header text-white">
+                        <h3>What is the Event Loop?</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Node.js uses a Single-Threaded Event Loop
+                                <p>Eg.<strong>Circular conveyor belt</strong> in a factory.
+                                    It keeps checking for new tasks and processes them without waiting for long tasks to
+                                    finish,
+                                </p>
+                                <ol class="simple-flow">
+                                    <li><strong>Input</strong>: Tasks come in (like HTTP requests)</li>
+                                    <li><strong>Stack</strong>: Tasks are processed one by one</li>
+                                    <li><strong>Waiting</strong>: Long tasks are sent to background</li>
+                                    <li><strong>Queue</strong>: Completed tasks wait their turn</li>
+                                    <li><strong>Loop</strong>: When stack is empty, queue tasks run</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4 p-2">
+
+
+                    <h5>1. Understanding Asynchronous Code</h5>
+                    <p>Node.js is non-blocking. It doesn't wait for timers to finish before moving to the next line.
+                    </p>
+                    <div class="code-block">
+                        <pre><code>
+console.log("Start");
+
+setTimeout(() => {
+  console.log("After 2 seconds");
+}, 2000);
+
+console.log("End");</code></pre>
+                    </div>
+                </div>
+                <!-- Graphical/Chart View -->
+                <div class="card mb-4">
+                    <div class="card-header text-white">
+                        <h3>How the Event Loop Works</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Color Coded Steps -->
+                        <div class="mt-4">
+                            <div class="d-flex flex-wrap gap-2 justify-content-center">
+                                <div class="p-3 rounded" style="background:#ffcdd2; border-left:4px solid #f44336;">
+                                    <strong class="text-danger">1. Sync Code</strong>
+                                    <p class="mb-0 small">console.log() runs immediately</p>
+                                </div>
+                                <div class="p-3 rounded" style="background:#fff9c4; border-left:4px solid #ffeb3b;">
+                                    <strong class="text-warning">2. Async Task</strong>
+                                    <p class="mb-0 small">setTimeout sent to APIs</p>
+                                </div>
+                                <div class="p-3 rounded" style="background:#c8e6c9; border-left:4px solid #4caf50;">
+                                    <strong class="text-success">3. More Sync</strong>
+                                    <p class="mb-0 small">More code keeps running</p>
+                                </div>
+                                <div class="p-3 rounded" style="background:#bbdefb; border-left:4px solid #2196f3;">
+                                    <strong class="text-primary">4. Queue Wait</strong>
+                                    <p class="mb-0 small">Callback waits in queue</p>
+                                </div>
+                                <div class="p-3 rounded" style="background:#e1bee7; border-left:4px solid #9c27b0;">
+                                    <strong class="text-purple">5. Event Loop</strong>
+                                    <p class="mb-0 small">Moves callback to stack</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Loop Phases -->
+
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h3>Event Loop Simulation</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap">
+                            <button id="btn-sim-reset" class="btn btn-danger">Reset</button>
+                            <button id="btn-sim-prev" class="btn btn-secondary">Back</button>
+                            <button id="btn-sim-next" class="btn btn-primary">Next &rarr;</button>
+                            <button id="btn-sim-auto" class="btn btn-success">Auto Play</button>
+                        </div>
+                        <div class="event-loop-sim">
+                            <div class="event-loop-box box-stack">
+                                <h6>Call Stack (LIFO)</h6>
+                                <div id="call-stack"></div>
+                            </div>
+                            <div class="event-loop-box box-apis">
+                                <h6>Node APIs</h6>
+                                <div id="node-apis"></div>
+                            </div>
+                            <div class="event-loop-box box-queue">
+                                <h6>Callback Queue</h6>
+                                <div id="callback-queue"></div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <div id="event-loop-log" class="text-center p-3 rounded fw-bold border code-output">
+                                Simulation ready.</div>
+                        </div>
+                    </div>
+                </div>
+
+               
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Working with Files (fs)</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>1. The File System (fs) Module</h5>
+                        <p>Node.js has a built-in module called <code>fs</code> to work with files.</p>
+
+                        <div class="alert alert-info">
+                            <strong>Why 'utf8'?</strong><br>
+                            Files are stored as 0s and 1s (Binary).
+                            <ul>
+                                <li>Without <code>'utf8'</code>: You get a <strong>Buffer</strong> (e.g.,
+                                    <code>&lt;Buffer 48 65...&gt;</code>).
+                                </li>
+                                <li>With <code>'utf8'</code>: Node converts it to readable <strong>Text</strong>.</li>
+                            </ul>
+                        </div>
+
+                        <h5>2. Write and Read a File</h5>
+
+                        <h6>Block 1: Import (Setup)</h6>
+                        <p><code>fs</code> module.</p>
+                        <div class="code-block">
+                            <pre><code>const fs = require('fs');</code></pre>
+                        </div><br />
+
+                        <h6>Block 2: Write (The Action)</h6>
+                        <p><code>fs.writeFile</code> to create the file.</p>
+                        <h6>Block 3: Read (The Verification)</h6>
+                        <p><code>fs.readFile</code> to read the file.</p>
+
+                    </div>
+                </div>
+                <h5 class="mt-4">2. Testing with Jest</h5>
+                <p>Testing is crucial for reliability.<br />
+                    Install Jest: <code>npm install --save-dev jest</code>.
+                </p>
+                <div class="code-block">
+                    Test file
+                    <pre><code>
+const math = require('./math');
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(math.add(1, 2)).toBe(3);
+});
+
+test('subtracts 5 - 2 to equal 3', () => {
+    expect(math.subtract(5, 2)).toBe(3);
+});</code></pre>
+                </div>
+                <p class="mt-3">Add a "test" script to `package.json` file: `"test": "jest"`. Run tests with `npm test`.
+                </p>
+                <div class="text-center my-3">
+                    <img src="./images/npm-test.png" class="img-fluid rounded course-image" alt="Jest Test Output">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

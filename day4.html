@@ -1,0 +1,145 @@
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light);">
+        <h2 class="my-2">Server-side Development with Express.js</h2>
+    </div>
+    <div class="card-body">
+        <!-- Session Navigation -->
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day4" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-session8-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-session8" type="button" role="tab" aria-controls="pills-session8"
+                    aria-selected="true">Express.js Intro</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-session10-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-session10" type="button" role="tab" aria-controls="pills-session10"
+                    aria-selected="false">Middleware & Errors</button>
+            </li>
+        </ul>
+
+        <!-- Session Content -->
+        <div class="tab-content" id="pills-tabContent-day4">
+            <!-- Sessions 8-9 -->
+            <div class="tab-pane fade show active" id="pills-session8" role="tabpanel"
+                aria-labelledby="pills-session8-tab">
+                <h2 class="mb-3">Introduction to Express.js</h2>
+                <div class="card mb-4">
+
+                    <div class="card-body fs-4">
+                        Express.js is a minimal and flexible web application framework for Node.js that provides a
+                        robust set of features to build web and mobile applications.
+                        <div class="text-center my-3">
+                            <img src="./images/express-flow.png" class="img-fluid rounded course-image"
+                                alt="Express Layer">
+                        </div>
+                        <h5>1. Setup Express Project</h5>
+                        <div class="code-block">
+                            <pre><code>
+npm init -y
+
+npm install express
+
+<!-- # Install EJS template engine (optional but recommended)
+npm install ejs -->
+</code></pre>
+                        </div>
+
+                        <h5 class="mt-4">2. Create the Express Server</h5>
+                        <p>Index.js- This code sets up the server, includes a logger middleware, and defines first
+                            routes.</p>
+                        <div class="code-block">
+                            <pre><code>
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+app.get('/', (req,res)=>{
+res.send("Hello Express");
+});
+
+app.listen(5000, () => {
+  console.log('Server running at http://localhost:5000/');
+});
+</code></pre>
+                        </div>
+                        <h5 class="mt-4">3. Test with Postman</h5>
+                        <p>e.g., a `POST` request to `http://localhost:5000/add`.</p>
+                        <div class="text-center my-3">
+                            <img src="./images/postman-test.png" class="img-fluid rounded course-image"
+                                alt="Postman Test">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Session 7 -->
+            <div class="tab-pane fade" id="pills-session10" role="tabpanel" aria-labelledby="pills-session10-tab">
+                <h2 class="mb-3">Express Middleware & Error Handling</h2>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Middleware</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Middleware functions are functions that have access to the request object (<code>req</code>),
+                            the response object (<code>res</code>), and the <code>next</code> function in the
+                            application's request-response cycle. They can execute code, make changes to the request and
+                            response objects, and end the cycle or pass control to the next middleware.</p>
+                        <div class="text-center my-3">
+                            <!-- 
+                                IMAGE PROMPT: "A flowchart showing the Express.js middleware pipeline. An 'Incoming Request' arrow points to a series of boxes labeled 'Middleware 1 (e.g., Logger)', 'Middleware 2 (e.g., Authentication)', 'Route Handler'. An arrow points from the Route Handler to an 'Outgoing Response'. Show how each middleware can pass control to the next using `next()`."
+                            -->
+                            <img src="./images/middleware.png" class="img-fluid rounded course-image"
+                                alt="Middleware Pipeline">
+                        </div>
+                        <hr class="my-4">
+
+                        <div class="card-header">
+                            <h3>Advanced Middleware & Testing</h3>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="mt-4">1. Custom 404 Error Handler (in `index.js`)</h5>
+                            <div class="code-block">
+                                <pre><code>
+app.use((req, res, next) => {
+  res.status(404).send("Sorry, that page doesn't exist!");
+});</code></pre>
+                            </div>
+                            <h5 class="mt-4">2. Global Error Handler</h5>
+                            <p>This special middleware has four arguments. Use it to catch any server errors.</p>
+                            <div class="code-block">
+                                <pre><code>
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});</code></pre>
+                            </div>
+                            <div class="text-center my-3">
+                                <img src="./images/Error+Handling+Flow.png" class="img-fluid rounded course-image"
+                                    alt="Error Handling Flow">
+                            </div>
+                            <h5 class="mt-4">3. Testing Express Routes with Jest & Supertest</h5>
+                            <p>Install Supertest: <code>npm install --save-dev supertest</code>.</p>
+                            <div class="code-block">
+                                <pre><code>
+const request = require('supertest');
+const app = require('./index');
+
+describe('GET /', () => {
+  it('Homepage resp', async () => {
+    const response = await request(app).get('/');
+    expect(response.statusCode).toBe(200);
+    expect(response.text).toContain('Welcome');
+  });
+});
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>HTML Demo</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div>
+            <h1 style="color:red; background-color:yellow;">My First Page</h1>
+            <p class="lead" id="all-paragraphs">All paragraphs</p>
+            <button id="click-button" class="fs-4">Click Me</button>
+        </div>
+        <script async defer>
+        const button = document.getElementById('click-button');
+
+        button.addEventListener('click',()=>{
+            document.getElementById('all-paragraphs').textContent = 'This is a paragraph created by JavaScript!';
+        }
+    )
+        
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

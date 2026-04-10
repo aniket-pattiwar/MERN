@@ -1,0 +1,46 @@
+Day 1 Notes - MongoDB Intro and Basics
+
+MERN stands for:
+MongoDB - that's the database, NoSQL type, stores data in flexible documents like JSON.
+Express.js - framework for the backend, works with Node.js.
+React - library for building the user interface on the front end.
+Node.js - lets you run JavaScript on the server side.
+
+How the whole thing flows:
+User on client (React) makes a request, like clicking something.
+Server (Node/Express) gets the request.
+Server talks to database (MongoDB) to get data.
+DB sends data back to server.
+Server sends response to client.
+Client updates the UI.
+
+For setup, need to install:
+Visual Studio Code - code editor, get from code.visualstudio.com.
+Node.js and NPM - download from nodejs.org, NPM comes with it.
+MongoDB Community Server - from mongodb.com.
+Postman - for testing APIs, postman.com.
+
+After install, check versions:
+code --version
+node -v
+npm -v
+mongod --version
+
+Now MongoDB basics.
+SQL vs NoSQL:
+SQL databases like MySQL have tables with fixed columns, use SQL queries, good for structured data.
+NoSQL like MongoDB has flexible documents, no fixed schema, better for changing data or big scale.
+
+Example queries:
+SQL: SELECT * FROM users WHERE age > 25;
+Mongo: db.users.find({ age: { $gt: 25 } })
+
+CRUD operations:
+Create - insertOne({name: "John", age: 30}) for one doc, insertMany([{name: "Jane"}, {name: "Bob"}]) for multiple.
+Read - find() for all docs, find({age: {$gt: 25}}) for filtered, findOne({name: "John"}) for first match.
+Update - updateOne({name: "John"}, {$set: {age: 31}}) for one, updateMany({age: {$lt: 30}}, {$set: {status: "young"}}) for many.
+Delete - deleteOne({name: "John"}) for one, deleteMany({age: {$gt: 60}}) for many.
+Count - countDocuments() for total, countDocuments({age: {$gt: 25}}) for filtered count.
+Replace - replaceOne({name: "John"}, {name: "Johnny", age: 31}) to replace whole doc.
+
+To start: show dbs to list, use db_name to switch, db.createCollection("name") to make a collection.

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERN Stack for FinTech Course</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+/* ================= BASE ================= */
+body {
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+/* LIGHT THEME */
+[data-bs-theme="light"] body {
+    background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+    color: #1f2937;
+}
+
+/* DARK THEME */
+[data-bs-theme="dark"] body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+}
+
+/* ================= HEADER ================= */
+.course-header {
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-radius: 0 0 20px 20px;
+}
+
+/* Light */
+[data-bs-theme="light"] .course-header {
+    background: linear-gradient(135deg, #4f46e5, #3b82f6);
+    color: white;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .course-header {
+    background-color: #161b22;
+    border-bottom: 1px solid #30363d;
+}
+
+/* ================= NAV ================= */
+.nav-pills .nav-link {
+    border-radius: 999px;
+    margin: 5px 5px;
+    transition: 0.3s;
+}
+
+.nav-pills .nav-link.active {
+    transform: scale(1.05);
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5), 0 0 0 2px #ffc107;
+}
+
+.nav-pills .nav-link.active::before {
+    font-family: "bootstrap-icons";
+    content: "\f5b1"; /* bi-slash-circle */
+    margin-right: 6px;
+}
+
+/* Light */
+[data-bs-theme="light"] .nav-pills .nav-link.active {
+    background: linear-gradient(90deg, #6366f1, #3b82f6);
+    color: white;
+}
+
+/* Light Theme - Nav Hover */
+[data-bs-theme="light"] .nav-pills .nav-link:hover:not(.active) {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #b45309;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .nav-pills .nav-link.active {
+    background-color: #238636;
+    color: #ffffff;
+}
+
+/* Dark Theme - Nav Hover */
+[data-bs-theme="dark"] .nav-pills .nav-link:hover:not(.active) {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+}
+
+/* ================= CARDS ================= */
+.card {
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Light */
+[data-bs-theme="light"] .card {
+    background: white;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Dark */
+[data-bs-theme="dark"] .card {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+}
+
+/* ================= CARD HEADER ================= */
+.card-header {
+    background: transparent;
+    font-weight: 600;
+}
+
+/* Light */
+[data-bs-theme="light"] .card-header {
+    color: #1d4ed8;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .card-header {
+            background-color: #161b22 !important;
+    color: #e6edf3 !important;
+    border-bottom: 1px solid #30363d;
+}
+
+/* ================= BUTTONS ================= */
+button, .btn {
+    border-radius: 999px;
+    border: none;
+    padding: 6px 16px;
+    transition: 0.3s;
+}
+
+/* Light */
+[data-bs-theme="light"] button,
+[data-bs-theme="light"] .btn {
+    background: linear-gradient(90deg, #6366f1, #3b82f6);
+    color: white;
+}
+
+/* Dark */
+[data-bs-theme="dark"] button:not(.btn-outline-warning):not(.btn-outline-light):not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-secondary),
+[data-bs-theme="dark"] .btn:not(.btn-outline-warning):not(.btn-outline-light):not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-secondary) {
+    background-color: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+}
+[data-bs-theme="dark"] .btn:hover:not(.btn-outline-warning):not(.btn-outline-light) { background-color: #30363d; }
+
+
+
+/* ================= CODE BLOCK ================= */
+.code-block {
+    padding: 1rem;
+    border-radius: 10px;
+    font-family: monospace;
+    position: relative;
+}
+
+/* Light */
+[data-bs-theme="light"] .code-block {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .code-block {
+    background-color: #010409;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+}
+
+
+
+/* ================= OUTPUT ================= */
+.code-output {
+    margin-top: 1rem;
+    border-radius: 10px;
+    font-family: monospace;
+}
+
+/* Light */
+[data-bs-theme="light"] .code-output {
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .code-output {
+    background-color: #010409;
+    color: #3fb950;
+    border: 1px solid #30363d;
+}
+
+/* ================= FLOW ================= */
+.flow-step div {
+    border-radius: 12px;
+    padding: 10px;
+    transition: 0.3s;
+}
+.flow-arrow {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #7f5af0;
+    text-shadow: 0 0 10px rgba(127,90,240,0.8);
+}
+/* Light */
+[data-bs-theme="light"] .flow-step div {
+    background: #e0e7ff;
+    border: 1px solid #c7d2fe;
+}
+
+[data-bs-theme="light"] .response-step div {
+    background: #d1fae5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .flow-step div {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+}
+
+[data-bs-theme="dark"] .response-step div {
+    background-color: #0d1117;
+    border: 1px solid #238636;
+    color: #3fb950;
+}
+
+/* ================= EVENT LOOP ================= */
+.event-loop-box {
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* Light */
+[data-bs-theme="light"] .event-loop-box {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .event-loop-box {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+}
+
+/* Event Loop Items */
+.event-loop-item {
+    border-radius: 6px;
+    padding: 8px;
+    margin-top: 8px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+[data-bs-theme="light"] .event-loop-item {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+}
+[data-bs-theme="dark"] .event-loop-item {
+    background-color: #21262d;
+    border: 1px solid #30363d;
+}
+
+/* ================= IMAGE ================= */
+.course-image {
+    max-height: 350px;
+    object-fit: contain;
+    margin: 1rem auto;
+    display: block;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+/* Light */
+[data-bs-theme="light"] .course-image {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Dark */
+[data-bs-theme="dark"] .course-image {
+    background-color: #ffffff; /* keep images legible if they have transparent text */
+    border: 1px solid #30363d;
+    opacity: 0.9;
+}
+
+.course-image:hover {
+    transform: scale(1.5);
+}
+
+/* ================= HIGHLIGHT ================= */
+.highlight {
+    transform: scale(1.05);
+}
+
+/* Light */
+[data-bs-theme="light"] .highlight {
+    border: 2px solid #f59e0b;
+}
+
+/* Dark */
+[data-bs-theme="dark"] .highlight {
+    border: 2px solid #58a6ff !important;
+    box-shadow: 0 0 10px rgba(88,166,255,0.2);
+}
+
+/* ================= BOOTSTRAP UTILITY OVERRIDES FOR DARK MODE ================= */
+/* Force light backgrounds to be dark in dark mode */
+        [data-bs-theme="dark"] h1, [data-bs-theme="dark"] h2, [data-bs-theme="dark"] h3, 
+        [data-bs-theme="dark"] h4, [data-bs-theme="dark"] h5, [data-bs-theme="dark"] h6 {
+            color: #e6edf3 !important;
+        }
+        
+        [data-bs-theme="dark"] [style*="color: white"],
+        [data-bs-theme="dark"] [style*="color: black"],
+        [data-bs-theme="dark"] [style*="color: var(--bs-light)"],
+        [data-bs-theme="dark"] [style*="color: var(--bs-dark)"],
+        [data-bs-theme="dark"] [style*="color: #333"] {
+            color: #c9d1d9 !important;
+        }
+        
+        [data-bs-theme="dark"] [style*="background: linear-gradient"],
+        [data-bs-theme="dark"] [style*="background-color: var(--bs-dark)"] {
+            background: #161b22 !important;
+        }
+        
+        /* Event Loop Visuals and Custom Hex Colors */
+        [data-bs-theme="dark"] [style*="background:#e3f2fd"],
+        [data-bs-theme="dark"] [style*="background:#fff3e0"],
+        [data-bs-theme="dark"] [style*="background:#f3e5f5"],
+        [data-bs-theme="dark"] [style*="background:#e8f5e9"],
+        [data-bs-theme="dark"] [style*="background:#ffcdd2"],
+        [data-bs-theme="dark"] [style*="background:#fff9c4"],
+        [data-bs-theme="dark"] [style*="background:#c8e6c9"],
+        [data-bs-theme="dark"] [style*="background:#bbdefb"],
+        [data-bs-theme="dark"] [style*="background:#e1bee7"] {
+            background: #21262d !important;
+            color: #c9d1d9 !important;
+        }
+        
+        [data-bs-theme="dark"] .text-purple { color: #d2a8ff !important; }
+        [data-bs-theme="dark"] .text-warning { color: #d29922 !important; }
+        
+[data-bs-theme="dark"] .bg-light,
+[data-bs-theme="dark"] .bg-white {
+    background-color: #161b22 !important;
+    color: #c9d1d9 !important;
+}
+
+/* Mute dark texts to light grey */
+[data-bs-theme="dark"] .text-dark,
+        [data-bs-theme="dark"] .text-muted,
+        [data-bs-theme="dark"] .text-black {
+    color: #8b949e !important;
+}
+
+/* Fix borders */
+[data-bs-theme="dark"] .border,
+[data-bs-theme="dark"] .border-primary,
+[data-bs-theme="dark"] .border-secondary,
+[data-bs-theme="dark"] .border-success,
+[data-bs-theme="dark"] .border-danger,
+[data-bs-theme="dark"] .border-warning,
+[data-bs-theme="dark"] .border-info,
+[data-bs-theme="dark"] .border-light,
+[data-bs-theme="dark"] .border-dark {
+    border-color: #30363d !important;
+}
+
+/* Tone down vibrant backgrounds */
+        [data-bs-theme="dark"] .bg-success { background-color: #238636 !important; color: #e6edf3 !important; border-color: #238636 !important; }
+        [data-bs-theme="dark"] .bg-danger { background-color: #da3633 !important; color: #e6edf3 !important; border-color: #da3633 !important; }
+        [data-bs-theme="dark"] .bg-primary { background-color: #1f6feb !important; color: #e6edf3 !important; border-color: #1f6feb !important; }
+        [data-bs-theme="dark"] .bg-warning { background-color: #9e6a03 !important; color: #e6edf3 !important; border-color: #9e6a03 !important; }
+        [data-bs-theme="dark"] .bg-info { background-color: #086054 !important; color: #e6edf3 !important; border-color: #086054 !important; }
+        [data-bs-theme="dark"] .bg-secondary { background-color: #30363d !important; color: #e6edf3 !important; border-color: #30363d !important; }
+        [data-bs-theme="dark"] .bg-dark { background-color: #0d1117 !important; color: #e6edf3 !important; border-color: #0d1117 !important; }
+
+[data-bs-theme="dark"] .text-success { color: #3fb950 !important; }
+[data-bs-theme="dark"] .text-danger { color: #f85149 !important; }
+[data-bs-theme="dark"] .text-primary { color: #58a6ff !important; }
+        [data-bs-theme="dark"] .text-white { color: #e6edf3 !important; }
+        
+        /* Modals */
+        [data-bs-theme="dark"] .modal-content {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+        }
+        [data-bs-theme="dark"] .modal-header,
+        [data-bs-theme="dark"] .modal-footer {
+            border-color: #30363d;
+        }
+
+/* Tables */
+[data-bs-theme="dark"] .table { color: #c9d1d9; border-color: #30363d; }
+[data-bs-theme="dark"] .table-light, [data-bs-theme="dark"] .table-light th, [data-bs-theme="dark"] .table-light td, [data-bs-theme="dark"] .table-dark th, [data-bs-theme="dark"] .table thead th { background-color: #161b22 !important; color: #e6edf3 !important; border-color: #30363d !important; }
+[data-bs-theme="dark"] .table-striped>tbody>tr:nth-of-type(odd)>* { background-color: #0d1117; color: #c9d1d9; }
+[data-bs-theme="dark"] .table-hover>tbody>tr:hover>* { background-color: #1f2428; color: #c9d1d9; }
+[data-bs-theme="dark"] .table-bordered>:not(caption)>*>* { border-color: #30363d; }
+
+/* Accordions */
+[data-bs-theme="dark"] .accordion-item { background-color: #161b22; border-color: #30363d; }
+[data-bs-theme="dark"] .accordion-button { background-color: #161b22; color: #c9d1d9; }
+[data-bs-theme="dark"] .accordion-button:not(.collapsed) { background-color: #0d1117; color: #58a6ff; box-shadow: inset 0 -1px 0 #30363d; }
+[data-bs-theme="dark"] .accordion-button::after { filter: invert(1) grayscale(100%) brightness(200%); }
+</style>
+</head>
+
+<body>
+
+    <header class="course-header text-center position-relative">
+        <div class="container">
+            <h1 class="display-4">MERN Stack for FinTech</h1>
+            <p class="lead">A comprehensive course from setup to deployment.</p>
+        </div>
+        <button id="theme-toggle" class="btn btn-outline-light position-absolute top-0 end-0 m-3">Dark Mode</button>
+    </header>
+
+    <main class="container" id="main-container">
+        <!-- Main Day Navigation -->
+        <ul class="nav nav-pills justify-content-center gap-2 mb-4" id="day-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="day1-tab-btn" data-bs-toggle="pill" data-bs-target="#day1-content"
+                    type="button" role="tab" aria-controls="day1-content" aria-selected="true">1. MongoDB Intro</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day2-tab-btn" data-bs-toggle="pill" data-bs-target="#day2-content"
+                    type="button" role="tab" aria-controls="day2-content" aria-selected="false">2. MongoDB Advanced</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day2-2-tab-btn" data-bs-toggle="pill" data-bs-target="#day2-2-content"
+                    type="button" role="tab" aria-controls="day2-2-content" aria-selected="false">3. HTML, CSS & JS</button>
+            </li>
+             <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day3-tab-btn" data-bs-toggle="pill" data-bs-target="#day3-content"
+                    type="button" role="tab" aria-controls="day3-content" aria-selected="false">4. Node.js</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day4-tab-btn" data-bs-toggle="pill" data-bs-target="#day4-content"
+                    type="button" role="tab" aria-controls="day4-content" aria-selected="false">5. Express.js</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day5-tab-btn" data-bs-toggle="pill" data-bs-target="#day5-content"
+                    type="button" role="tab" aria-controls="day5-content" aria-selected="false">6. APIs+MongoDB</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day6-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-content"
+                    type="button" role="tab" aria-controls="day6-content" aria-selected="false">7. React.js</button>
+            </li>
+            <!-- <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day6-5-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-5-content"
+                    type="button" role="tab" aria-controls="day6-5-content" aria-selected="false">8. Router & React Hooks </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day6-6-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-6-content"
+                    type="button" role="tab" aria-controls="day6-6-content" aria-selected="false">9. Library Frontend</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day6-7-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-7-content"
+                    type="button" role="tab" aria-controls="day6-7-content" aria-selected="false">10. Deployment</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day7-tab-btn" data-bs-toggle="pill" data-bs-target="#day7-content"
+                    type="button" role="tab" aria-controls="day7-content" aria-selected="false">11. Redux</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day8-tab-btn" data-bs-toggle="pill" data-bs-target="#day8-content"
+                    type="button" role="tab" aria-controls="day8-content" aria-selected="false">12. Advanced
+                    React</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day9-tab-btn" data-bs-toggle="pill" data-bs-target="#day9-content"
+                    type="button" role="tab" aria-controls="day9-content" aria-selected="false">13. Full Stack
+                    App</button>
+            </li> -->
+        </ul>
+
+        <!-- Main Day Content -->
+        <div class="tab-content" id="day-tab-content">
+            <!-- Content will be loaded dynamically by the script below -->
+        </div>
+    </main>
+
+    <!-- Reusable Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-body text-center">
+                <!-- The image will be placed here by JavaScript. The modal is dismissable by clicking the image. -->
+                <img src="" class="img-fluid rounded" id="modalImage" alt="Enlarged course image"
+                    data-bs-dismiss="modal" style="cursor: pointer;">
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-muted py-4">
+        <p>&copy; 2026 C-DAC Patna. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Dynamic Content Loader & Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Theme Toggle Logic ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+
+            // Load saved theme or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            htmlElement.setAttribute('data-bs-theme', savedTheme);
+            updateThemeButton(savedTheme);
+
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                htmlElement.setAttribute('data-bs-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeButton(newTheme);
+            });
+
+            function updateThemeButton(theme) {
+                if (theme === 'dark') {
+                themeToggleBtn.textContent = 'Light Mode';
+                    themeToggleBtn.className = 'btn btn-outline-warning position-absolute top-0 end-0 m-3';
+                } else {
+                themeToggleBtn.textContent = 'Dark Mode';
+                    themeToggleBtn.className = 'btn btn-outline-light position-absolute top-0 end-0 m-3';
+                }
+            }
+
+            // --- Dynamic Content Loading ---
+            const dayTabContent = document.getElementById('day-tab-content');
+            // Define days explicitly to handle 6.5
+            const days = ['1', '2', '2.2', '3', '4', '5', '6', '6.5', '6.6', '6.7', '7', '8', '9'];
+
+            days.forEach((day, index) => {
+                const fileId = `day${day}`;
+                const domId = `day${day.replace('.', '-')}`; // Replace dot with hyphen for valid CSS selectors
+
+                const pane = document.createElement('div');
+                pane.className = `tab-pane fade ${index === 0 ? 'show active' : ''}`;
+                pane.id = `${domId}-content`;
+                pane.setAttribute('role', 'tabpanel');
+                pane.setAttribute('aria-labelledby', `${domId}-tab-btn`);
+                dayTabContent.appendChild(pane);
+
+                fetch(`${fileId}.html`)
+                    .then(res => {
+                        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                        return res.text();
+                    })
+                    .then(html => {
+                        pane.innerHTML = html;
+                    })
+                    .catch(e => {
+                        pane.innerHTML = `<div class="alert alert-danger">Error loading ${fileId}.html: ${e.message}</div>`;
+                    });
+            });
+
+            // --- All simulation functions are defined here in the global scope ---
+            const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+            async function runSimulation() {
+                const runBtn = document.getElementById('run-simulation-btn');
+                const log = document.getElementById('simulation-log');
+                if (!runBtn || !log) return;
+                const elements = [
+                    document.getElementById('step1'), document.getElementById('arrow1'), document.getElementById('step2'), document.getElementById('arrow2'), document.getElementById('step3'), document.getElementById('step4'), document.getElementById('arrow4'), document.getElementById('step5'), document.getElementById('arrow5'), document.getElementById('step6')
+                ];
+                const logs = [
+                    '1. Request starts from the Client (e.g., your browser).', null, '2. The request travels to the Server (Node.js/Express).', null, '3. The Server queries the Database (MongoDB) for information.', '4. The Database finds the information and returns it to the Server.', null, '5. The Server formats the data (usually as JSON) and sends it back as a response.', null, '6. The Client receives the data and updates the user interface. Done!'
+                ];
+                const responseElements = document.querySelectorAll('.response-step, .response-arrow');
+                runBtn.disabled = true;
+                elements.forEach(el => el?.querySelector('div')?.classList.remove('highlight'));
+                responseElements.forEach(el => el.style.visibility = 'hidden');
+                log.textContent = 'Starting simulation...';
+                await sleep(500);
+                for (let i = 0; i < elements.length; i++) {
+                    const el = elements[i];
+                    if (!el) continue;
+                    if (el.classList.contains('response-step') || el.classList.contains('response-arrow')) { el.style.visibility = 'visible'; }
+                    if (el.classList.contains('flow-step')) {
+                        el.querySelector('div').classList.add('highlight');
+                        if (logs[i]) log.textContent = logs[i];
+                        await sleep(1500);
+                        el.querySelector('div').classList.remove('highlight');
+                    }
+                }
+                log.textContent = 'Simulation complete! Click the button to run it again.';
+                runBtn.disabled = false;
+            }
+
+            // --- Event Loop Simulation Logic ---
+            const simSteps = [
+                { log: "Simulation ready. Click Next to start.", stack: [], apis: [], queue: [] },
+                { log: "1. `console.log('start')` pushed to Stack.", stack: ['console.log("start")'], apis: [], queue: [] },
+                { log: "`console.log('start')` executes.", stack: [], apis: [], queue: [] },
+                { log: "2. `setTimeout` pushed to Stack.", stack: ['setTimeout'], apis: [], queue: [] },
+                { log: "`setTimeout` executes. Timer starts in APIs.", stack: [], apis: ['Timer (1s)'], queue: [] },
+                { log: "3. `console.log('end')` pushed to Stack.", stack: ['console.log("end")'], apis: ['Timer (1s)'], queue: [] },
+                { log: "`console.log('end')` executes.", stack: [], apis: ['Timer (1s)'], queue: [] },
+                { log: "4. Timer completes. Callback moves to Queue.", stack: [], apis: [], queue: ['cb()'] },
+                { log: "5. Event Loop checks Stack (Empty) & Queue (Has item).", stack: [], apis: [], queue: ['cb()'] },
+                { log: "Callback pushed to Stack.", stack: ['cb()'], apis: [], queue: [] },
+                { log: "Callback executes.", stack: ['console.log("inside")'], apis: [], queue: [] },
+                { log: "Done.", stack: [], apis: [], queue: [] }
+            ];
+
+            let simIndex = 0;
+            let simInterval = null;
+
+            function updateSimUI() {
+                const step = simSteps[simIndex];
+                if (!step) return;
+
+                const logEl = document.getElementById('event-loop-log');
+                const stackEl = document.getElementById('call-stack');
+                const apisEl = document.getElementById('node-apis');
+                const queueEl = document.getElementById('callback-queue');
+
+                if (logEl) logEl.textContent = step.log;
+
+                const makeItems = (items) => items.map(i => `<div class="event-loop-item">${i}</div>`).join('');
+
+                if (stackEl) stackEl.innerHTML = makeItems(step.stack);
+                if (apisEl) apisEl.innerHTML = makeItems(step.apis);
+                if (queueEl) queueEl.innerHTML = makeItems(step.queue);
+
+                const btnPrev = document.getElementById('btn-sim-prev');
+                const btnNext = document.getElementById('btn-sim-next');
+                if (btnPrev) btnPrev.disabled = simIndex <= 0;
+                if (btnNext) btnNext.disabled = simIndex >= simSteps.length - 1;
+            }
+
+            // Initialize the modal ONCE
+            const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+            const modalImage = document.getElementById('modalImage');
+
+            // --- Event Delegation for Dynamic Content ---
+            document.body.addEventListener('click', (e) => {
+                // Simulation Button
+                if (e.target.id === 'run-simulation-btn') {
+                    runSimulation();
+                }
+                // Event Loop Simulation Buttons
+                if (e.target.id === 'btn-sim-next') {
+                    if (simIndex < simSteps.length - 1) {
+                        simIndex++;
+                        updateSimUI();
+                    }
+                }
+                if (e.target.id === 'btn-sim-prev') {
+                    if (simIndex > 0) {
+                        simIndex--;
+                        updateSimUI();
+                    }
+                }
+                if (e.target.id === 'btn-sim-reset') {
+                    simIndex = 0;
+                    clearInterval(simInterval);
+                    updateSimUI();
+                }
+                if (e.target.id === 'btn-sim-auto') {
+                    if (simIndex >= simSteps.length - 1) simIndex = 0;
+                    clearInterval(simInterval);
+                    updateSimUI();
+                    simInterval = setInterval(() => {
+                        if (simIndex < simSteps.length - 1) {
+                            simIndex++;
+                            updateSimUI();
+                        } else {
+                            clearInterval(simInterval);
+                        }
+                    }, 1000);
+                }
+                // Image Modal
+                if (e.target.classList.contains('course-image')) {
+                    modalImage.src = e.target.src;
+                    imageModal.show();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

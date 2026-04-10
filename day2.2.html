@@ -1,0 +1,227 @@
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light);">
+        <h2 class="my-2">HTML, CSS and JS</h2>
+    </div>
+    <div class="card-body">
+        <!-- Session Navigation -->
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day2-2" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-html-tab" data-bs-toggle="pill" data-bs-target="#pills-html"
+                    type="button" role="tab" aria-controls="pills-html" aria-selected="true">HTML - The Bones</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-css-tab" data-bs-toggle="pill" data-bs-target="#pills-css"
+                    type="button" role="tab" aria-controls="pills-css" aria-selected="false">CSS - The Skin &
+                    Clothes</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-js-tab" data-bs-toggle="pill" data-bs-target="#pills-js"
+                    type="button" role="tab" aria-controls="pills-js" aria-selected="false">JS - Behavior &
+                    Interaction</button>
+            </li>
+        </ul>
+
+        <!-- Session Content -->
+        <div class="tab-content" id="pills-tabContent-day2-2">
+            <div class="tab-pane fade show active" id="pills-html" role="tabpanel" aria-labelledby="pills-html-tab">
+                <h3>HTML: The Structural Bones</h3>
+                <div class="alert alert-info">
+                    <strong>What is HTML?</strong> HTML (HyperText Markup Language) is the standard language for
+                    creating web pages. It defines the structure and content of a webpage using elements like headings,
+                    paragraphs, links, and images.
+                </div>
+                <div class="alert alert-secondary">
+                    <strong>Analogy:</strong> Just like the human body has bones that provide structure and support,
+                    HTML provides the basic structure for web pages. Without bones, the body would collapse; without
+                    HTML, there's no foundation for content.
+                </div>
+                <img src="./images/HTML Analogy Image.png" alt="HTML Analogy Image"
+                    class="img-fluid rounded course-image">
+                <div class="alert alert-success">
+                    <strong>Example:</strong> Building a house - HTML is like the blueprint and foundation. You need the
+                    walls and rooms defined before you can decorate.
+                </div>
+                <div class="alert alert-light">
+                    <strong>How to Use HTML:</strong> Start with a basic structure: &lt;!DOCTYPE html&gt;, &lt;html&gt;,
+                    &lt;head&gt;, &lt;body&gt;. Use tags like &lt;h1&gt; for headings, &lt;p&gt; for paragraphs,
+                    &lt;a&gt; for links. Save files with .html extension and open in a browser.
+                </div>
+                <div class="card text-start mb-3">
+                    <div class="card-header">Workflow: How HTML Works</div>
+                   <div class="px-4">
+                    <p>1. Start with &lt;html&gt; (the body)</p>
+                    <p>2. Add &lt;head&gt; (the brain - metadata)</p>
+                    <p>3. Create &lt;body&gt; (the main structure)</p>
+                    <p>4. Use elements like &lt;h1&gt;, &lt;p&gt;, &lt;div&gt; (bones and organs)</p>
+                    <p>Result: A structured webpage ready for styling</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">Small HTML Code Example</div>
+                    <div class="card-body">
+                        <pre class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    &lt;p&gt;This is a simple HTML page.&lt;/p&gt;
+    &lt;a href="https://example.com"&gt;Visit Example&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="pills-css" role="tabpanel" aria-labelledby="pills-css-tab">
+                <h3>CSS: The Skin, Muscles & Clothes</h3>
+                <div class="alert alert-info">
+                    <strong>What is CSS?</strong> CSS (Cascading Style Sheets) is a language used to describe the
+                    presentation of a document written in HTML. It controls the layout, colors, fonts, and overall
+                    appearance of web pages.
+                </div>
+                <div class="alert alert-secondary">
+                    <strong>Analogy:</strong> CSS is like the skin, muscles, and clothes that make the body look good
+                    and function properly. While bones provide structure, CSS adds color, shape, and movement.
+                </div>
+                <img src="./images/CSS Analogy Image.png" alt="CSS Analogy Image"
+                    class="img-fluid rounded course-image">
+                <div class="alert alert-success">
+                    <strong>Example:</strong> Interior design - CSS is like painting walls, arranging furniture, and
+                    adding decorations to the house built with HTML.
+                </div>
+                <div class="alert alert-light">
+                    <strong>How to Use CSS:</strong> Link a CSS file to HTML using &lt;link&gt; in the &lt;head&gt;, or
+                    use &lt;style&gt; tags. Use selectors to target HTML elements and apply properties like color,
+                    font-size, margin. For Bootstrap, include the CDN link and use pre-built classes.
+                </div>
+                <div class="text-center my-4">
+                    <h4>Visual Workflow: How CSS Works</h4>
+                    <p>1. Link CSS file to HTML</p>
+                    <p>2. Select elements (bones) to style</p>
+                    <p>3. Apply properties like color, size, position</p>
+                    <p>4. Use selectors, classes, IDs for precision</p>
+                    <p>↓</p>
+                    <p>Result: A beautiful, styled webpage</p>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">Small CSS Code Example</div>
+                    <div class="card-body">
+                        <pre class="code-block">body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}</pre>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">Bootstrap Example: Simple Styled Page</div>
+                    <div class="card-body">
+                        <div class="card-body">
+                            <p>Bootstrap is the most popular CSS framework. Instead of writing custom CSS for every
+                                button, card, and layout, Bootstrap provides pre-built, responsive CSS classes that you
+                                can simply add to your HTML elements.</p>
+                            <h6>Eg: Pre-fabricated Furniture</h6>
+                            <p>Writing plain CSS is like cutting wood and building a chair from scratch. Using Bootstrap
+                                is like buying an IKEA chair; the pieces are already perfectly sized and styled, you
+                                just assemble them.</p>
+                        </div>
+                        <pre class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Bootstrap Example&lt;/title&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1 class="text-primary text-center"&gt;Welcome to Bootstrap&lt;/h1&gt;
+        &lt;p class="lead"&gt;This page uses Bootstrap for styling.&lt;/p&gt;
+        &lt;button class="btn btn-success"&gt;Click Me&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="pills-js" role="tabpanel" aria-labelledby="pills-js-tab">
+                <h3>JavaScript: The Brain & Behaviors</h3>
+                <div class="alert alert-info">
+                    <strong>What is JavaScript?</strong> JavaScript is a programming language that adds logic,
+                    interactivity, and dynamic behavior to web pages. It can read and change HTML/CSS, respond to user
+                    actions, and connect to back-end services.
+                </div>
+                <div class="alert alert-secondary">
+                    <strong>Analogy:</strong> If HTML is bones and CSS is skin/clothes, JavaScript is the muscles and
+                    nervous system that make the body move and respond.
+                </div>
+                <img src="./images/js.png" alt="JavaScript Analogy Image" class="img-fluid rounded course-image">
+                <div class="alert alert-success">
+                    <strong>Example:</strong> A traffic light system (green/red/yellow) changing states based
+                    on time and sensors is like JS reacting to events and updating the UI.
+                </div>
+                <div class="alert alert-light">
+                    <strong>How to Use JavaScript:</strong> Place JS inside &lt;script&gt; tags in HTML or load an
+                    external .js file using &lt;script src="app.js"&gt;. Use event listeners, functions, and DOM methods
+                    (querySelector, addEventListener) to make changes.
+                </div>
+                <div class="text-center my-4">
+                    <h4>Workflow: HTML vs CSS vs JS</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">HTML: structure (tags and content)</li>
+                        <li class="list-group-item">CSS: style (color, layout, fonts)</li>
+                        <li class="list-group-item">JS: behavior (events, animation, data handling)</li>
+                    </ul>
+                    <p class="mt-3">In MERN:</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Node.js:</strong> Server executes JS on backend</li>
+                        <li class="list-group-item"><strong>Express:</strong> API layer for routing requests</li>
+                        <li class="list-group-item"><strong>React:</strong> Frontend JS library with component-driven UI
+                        </li>
+                        <li class="list-group-item"><strong>MongoDB:</strong> Database storing JS-serializable data
+                            (JSON/BSON)</li>
+                    </ul>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">Small JS Code Example</div>
+                    <div class="card-body">
+                        <pre class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;JS Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 id="title"&gt;Click the button&lt;/h1&gt;
+    &lt;button id="clickButton"&gt;Click Me&lt;/button&gt;
+
+    &lt;script&gt;
+        const button = document.getElementById('clickButton');
+        button.addEventListener('click', () =&gt; {
+            document.getElementById('title').textContent = 'This is a paragraph created by JavaScript!';
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

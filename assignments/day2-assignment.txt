@@ -1,0 +1,48 @@
+Day 2 Assignment - Data Modeling with Countries and States
+
+Question 1: Countries Collection CRUD
+1. Create a database called 'world_db'.
+2. Create a collection called 'countries'.
+3. Insert the following documents.
+
+   - {
+       name: "USA",
+       capital: "Washington, D.C.",
+       states: [
+         { name: "California", capital: "Sacramento" },
+         { name: "Texas", capital: "Austin" }
+       ]
+     }
+   - {
+       name: "India",
+       capital: "New Delhi",
+       states: [
+         { name: "Maharashtra", capital: "Mumbai" },
+         { name: "Karnataka", capital: "Bengaluru" },
+         { name: "Tamil Nadu", capital: "Chennai" },
+         { name: "Uttar Pradesh", capital: "Lucknow" },
+         { name: "Rajasthan", capital: "Jaipur" }
+       ]
+     }
+
+4. Find the document for "India".
+
+5. Add a new state, { name: "Gujarat", capital: "Gandhinagar" }, to India's 'states' array.
+
+6. Write a query to find only the states of India. Use a projection.
+
+Question 2: Advanced Queries & Aggregation
+1. Using the 'countries' collection, find the country that has a state named "Texas".
+
+2. Write a query to pull the state "Karnataka" from the 'states' array in the India document.
+
+3. Create an aggregation pipeline that does the following:
+   - Unwinds the 'states' array.
+   - Counts the total number of states listed across all countries in the collection.
+   - Groups the result to show a single total count.
+
+   Example pipeline structure:
+   [
+     { $unwind: "$states" },
+     { $count: "total_states_in_db" }
+   ]

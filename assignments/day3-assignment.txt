@@ -1,0 +1,14 @@
+Day 3 Assignment - Node.js Basics (Simplified)
+
+Question 1: Creating a Basic Server
+1. Create a file named `server.js`.
+2. Set up an HTTP server using the built-in `http` module.
+3. Make the server listen on port 3000 and respond with "Hello, Node.js!".
+
+Question 2: Asynchronous Code
+1. Create a new file called `asyncDemo.js`.
+2. Write a script that logs "Start" to the console.
+3. Add a `setTimeout` function that logs "Timer Finished" after a 1-second delay.
+4. Add `console.log("Middle")`.
+3. Add a `setTimeout` function that logs "Timer Finished" after a 2-second delay.
+4. Add `console.log("End")` at the bottom and observe the output order when you run it.

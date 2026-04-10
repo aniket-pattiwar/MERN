@@ -1,0 +1,99 @@
+Day 2.2 Detailed Notes: HTML, CSS, and JavaScript Fundamentals
+
+HTML: The Structural Bones of the Web
+
+What it is: HTML (HyperText Markup Language) defines the structure and content of a webpage.
+Analogy: The blueprint, framing, and foundation of a house.
+
+Key Concepts:
+Elements and Tags: HTML uses tags to create elements. Most have opening and closing tags (e.g., <p>text</p>), some are self closing (e.g., <img src="image.jpg">).
+Common Tags:
+- html: The root element that wraps everything.
+- head: Contains metadata, the page title, and links to CSS files.
+- body: Contains all the visible content on the page.
+- h1 to h6: Headings, where h1 is the largest and most important.
+- p: Paragraphs of text.
+- a: Anchor tags for links. It uses the "href" attribute to set the destination.
+- div and span: Containers for grouping elements together. Div is a block (takes up the whole width), span is inline (only takes up the space it needs).
+- input, button: Form controls to allow user interaction.
+Attributes: Provide extra information about elements. Common ones include "id" (a unique identifier), "class" (a group identifier for styling), and "src" (the source file for an image).
+
+HTML Example:
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FinTech Dashboard</title>
+</head>
+<body>
+  <div id="header">
+    <h1>Welcome to Your Account</h1>
+  </div>
+  <div class="content">
+    <p>Your current balance is $5,000.</p>
+    <button id="refreshBtn">Refresh Balance</button>
+  </div>
+</body>
+</html>
+
+CSS: The Skin, Paint, and Design
+
+What it is: CSS (Cascading Style Sheets) controls how HTML elements are displayed on screen, including layout, colors, and typography.
+Analogy: Painting the house, choosing the furniture, and arranging the rooms.
+
+Key Concepts:
+Selectors: How you target specific HTML elements to style them.
+- Element Selector: Targets all elements of a specific type (e.g., p { color: black; }).
+- Class Selector: Targets elements with a specific class attribute. It starts with a dot (e.g., .content { padding: 10px; }).
+- ID Selector: Targets a single element with a specific ID. It starts with a hash (e.g., #header { background: blue; }).
+The Box Model: Every HTML element is treated as a box. It consists of margins (outer invisible space), borders (the outline), padding (inner space between the border and content), and the actual content itself.
+Including CSS: The best practice is to put CSS in an External file (like style.css) and link it in the HTML head.
+
+CSS Example:
+/* Targeting by ID */
+#header {
+  background-color: #1a202c;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+/* Targeting by Class */
+.content {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  border: 1px solid #ccc;
+}
+
+Bootstrap Framework:
+Bootstrap is a massive, pre written CSS file. Instead of writing custom CSS for a button from scratch, you just add Bootstrap classes to your HTML like class="btn btn-primary". It saves huge amounts of time, especially for creating grid layouts and responsive designs (making the website look good on both phones and desktops).
+
+JavaScript: The Brain and Behaviors
+
+What it is: A programming language that allows you to implement complex features, logic, and interactivity on web pages.
+Analogy: The electricity, plumbing, and smart home systems that make the house actually function and respond to your actions.
+
+Key Concepts:
+Variables: Containers for storing data. Use 'const' for values that will never change, and 'let' for values that will change later.
+Data Types: Strings (text), Numbers, Booleans (true or false), Arrays (lists of items), and Objects (collections of key and value pairs).
+Functions: Blocks of reusable code designed to perform a particular task.
+DOM Manipulation: The DOM (Document Object Model) is how JavaScript sees the HTML structure. JavaScript can access and change the DOM. It can read text, change colors, hide elements, or create brand new HTML elements on the fly.
+Events: JavaScript can listen for user actions, like mouse clicks, keyboard presses, or form submissions, and trigger specific functions in response.
+
+JS Example:
+// 1. Select the button and paragraph from the HTML using the DOM
+const btn = document.getElementById('refreshBtn');
+const balanceText = document.querySelector('.content p');
+
+// 2. Define a function with the logic to run
+const updateBalance = () => {
+    let newBalance = 5000 + Math.floor(Math.random() * 100);
+    balanceText.textContent = 'Your current balance is $' + newBalance + '.';
+    balanceText.style.color = 'green';
+};
+
+// 3. Attach an event listener to the button to trigger the function on click
+btn.addEventListener('click', updateBalance);
+
+How They Fit in the MERN Stack:
+HTML, CSS, and JS form the foundation of the Front End.
+React (the R in MERN) is a massive library written entirely in JavaScript. It makes generating HTML and handling UI logic much faster and more organized.
+Node.js (the N in MERN) allows you to run JavaScript on the server (the Back End). This means you only need to learn one language (JavaScript) to build both the front and back of your application.

@@ -1,0 +1,115 @@
+Day 2 Notes: MongoDB Advanced Operations
+
+Advanced CRUD and Aggregation
+
+BSON and Data Types
+
+MongoDB doesn't store data as plain text JSON. It uses BSON (Binary JSON).
+Why BSON? It's a binary format that is faster for computers to parse and supports more data types than JSON.
+Key Data Types:
+ObjectId: A unique 12 byte ID automatically generated for each document. Acts as the primary key.
+String: Standard text.
+Boolean: true or false.
+Date: Stores the current date and time.
+Int32 and Int64: For whole numbers of different sizes.
+Double: For floating point (decimal) numbers.
+BinData: For storing binary data like a small image or a file directly inside a document (must be less than 16MB).
+Embedded Object: A document nested inside another document. Example: { user: { name: "John", age: 30 } }.
+Array: A list of values, which can be of any data type.
+
+Advanced CRUD Lab Concepts
+
+Query Operators: Used for more complex filtering.
+$gt: Greater Than. Example: db.employees.find({ experience: { $gt: 5 } })
+$lt: Less Than. Example: db.employees.find({ experience: { $lt: 1 } })
+
+Update Operators:
+$set: Sets the value of a field.
+$mul: Multiply. Used to multiply the value of a field by a number. Great for percentage increases. Example: db.employees.updateOne({ name: "Grace" }, { $mul: { salary: 1.1 } }) (Gives a 10% raise).
+
+Projection:
+This means selecting which fields to include or exclude in your query results.
+1 means include the field.
+0 means exclude the field.
+Example: db.employees.find({}, { name: 1, salary: 1, _id: 0 }) will show only the name and salary, and hide the default _id field.
+
+Sort:
+Used to order the results.
+1 means sort in ascending order (A to Z, 1 to 10).
+-1 means sort in descending order (Z to A, 10 to 1).
+Example: db.employees.find().sort({ experience: -1 })
+
+Practical Example Queries:
+Read: Find employees in the Engineering department
+db.employees.find({ department: "Engineering" })
+
+Update: Increase salary by 10% for employees with more than 5 years of experience
+db.employees.updateMany({ experience: { $gt: 5 } }, { $mul: { salary: 1.1 } })
+
+Delete: Remove employees with less than 1 year of experience
+db.employees.deleteMany({ experience: { $lt: 1 } })
+
+Advanced Query with Condition, Projection, and Sort:
+db.employees.find({ department: "Engineering" }, { name: 1, salary: 1, _id: 0 }).sort({ experience: -1 })
+
+Aggregation Pipeline
+
+What it is: A powerful tool for performing multi stage data processing and analysis. Think of it as a factory assembly line for your data.
+How it works: You pass documents through a series of stages. The output of one stage becomes the input for the next.
+Syntax: db.collection.aggregate([ { stage_1 }, { stage_2 }, ... ])
+
+Most Common Stages:
+$match: Filters documents. (Like WHERE in SQL). Performance Tip: Use $match as early as possible!
+$group: Groups documents by a key and calculates aggregate values (like sum, average, count). (Like GROUP BY in SQL).
+$sort: Sorts the output documents. (Like ORDER BY in SQL).
+$project: Reshapes documents: selects, renames, or removes fields. (Like SELECT in SQL).
+$unwind: Deconstructs an array field. If a document has an array of 3 items, $unwind will create 3 separate documents.
+$lookup: Performs a left outer join to another collection to combine data. (Like LEFT JOIN in SQL).
+
+Example Queries for Stages:
+$match Example:
+db.employees.aggregate([ { $match: { department: "Engineering" } } ])
+
+$group Example:
+db.employees.aggregate([ { $group: { _id: null, averageSalary: { $avg: "$salary" } } } ])
+
+$sort and $limit Example:
+db.employees.aggregate([ { $sort: { salary: -1 } }, { $limit: 3 } ])
+
+$unwind Example:
+db.employees.aggregate([ { $unwind: "$skills" } ])
+
+Multi stage pipeline Example (Match, Group, Sort):
+db.employees.aggregate([
+  { $match: { department: "Engineering" } },
+  { $group: { _id: "$department", averageSalary: { $avg: "$salary" } } },
+  { $sort: { averageSalary: -1 } }
+])
+
+Scalability and Advanced Concepts
+
+GridFS: Storing Large Files
+
+Problem: MongoDB documents have a size limit of 16 MB. You can't store large files (like videos or high res images) directly.
+Solution: GridFS is MongoDB's system for storing files larger than 16 MB.
+How it works: It breaks the large file into smaller chunks (e.g., 255 KB each) and stores these chunks in a dedicated collection (fs.chunks). A separate collection (fs.files) stores the metadata about the file (like the filename and type).
+
+GridFS Commands:
+Store a file: mongofiles -d companyDB put my-large-file.pdf
+Retrieve a file: mongofiles -d companyDB get my-large-file.pdf
+
+Replication: For High Availability
+
+What it is: The process of keeping identical copies of your data across multiple servers. This group of servers is called a Replica Set.
+How it works: One server is the Primary (receives all write operations). The other servers are Secondaries that copy data from the primary.
+Why it's important: If the Primary server fails, a Secondary is automatically elected as the new Primary. This provides High Availability and prevents your application from going down.
+
+Sharding: For Horizontal Scalability
+
+What it is: The process of distributing data from a very large collection across multiple servers (or shards).
+How it works: Each shard stores a piece of the total data. A special router called mongos directs application queries to the correct shard.
+Why it's important: When your dataset becomes too large or has too much traffic for a single server to handle, sharding allows you to scale horizontally by adding more servers to share the load.
+
+Sharding Commands (Run in mongos):
+Enable sharding on database: sh.enableSharding("companyDB")
+Shard collection by employee_id: sh.shardCollection("companyDB.employees", { employee_id: 1 })

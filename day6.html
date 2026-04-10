@@ -1,0 +1,250 @@
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light);">
+        <h2 class="my-2">Front-End with React.js</h2>
+    </div>
+    <div class="card-body">
+        <!-- Session Navigation -->
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day5" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-session11-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-session11" type="button" role="tab" aria-controls="pills-session11"
+                    aria-selected="true">React Concepts</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-session12-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-session12" type="button" role="tab" aria-controls="pills-session12"
+                    aria-selected="false">React Lab</button>
+            </li>
+        </ul>
+
+        <!-- Session Content -->
+        <div class="tab-content" id="pills-tabContent-day5">
+            <!-- Session 11 -->
+            <div class="tab-pane fade show active" id="pills-session11" role="tabpanel"
+                aria-labelledby="pills-session11-tab">
+                <h2 class="mb-3">Core React Concepts</h2>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Single Page Applications (SPA)</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>A SPA is a web application that loads a single HTML page and dynamically updates content as
+                            the
+                            user interacts with it. This provides a faster, more fluid user experience, similar to a
+                            desktop or mobile app.</p>
+                       
+                        <div class="text-center my-3">
+                            <!-- 
+                                IMAGE PROMPT: "A diagram comparing a Multi-Page App (MPA) and a Single-Page App (SPA). The MPA side shows every user action (click) leading to a full new page load from the server. The SPA side shows an initial page load, and subsequent clicks only fetch small pieces of JSON data to update parts of the existing page."
+                            -->
+                            <img src="./images/MPAvsSPA.png" class="img-fluid rounded course-image" alt="MPA vs SPA">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Component-Oriented Architecture</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>React is built around the idea of components. A component is a self-contained, reusable
+                            piece of the UI. You build complex UIs by composing simple components together.</p>
+                       
+                     
+                        <div class="d-flex justify-content-center">
+                            <!-- 
+                                IMAGE PROMPT: "A diagram of a webpage UI. The entire page is outlined and labeled 'App Component'. Inside, the header is outlined and labeled 'Header Component', a sidebar is labeled 'Sidebar Component', and the main content area is labeled 'Content Component'. This visually shows how a UI is composed of smaller components."
+                            -->
+                            <img src="./images/ComponentArchitecture.png" class="img-fluid rounded course-image"
+                                alt="Component Architecture">
+                            <img src="./images/Lego_Color_Bricks.jpg" class="img-fluid rounded course-image"
+                                alt="LEGO Bricks">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>JSX, Babel, and Webpack</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>These tools work together to let you write modern React code that can run in any browser.
+                        </p>
+                        <ul>
+                            <li><code>JSX (JavaScript XML):</code> A syntax extension for JavaScript that lets you
+                                write HTML-like code directly in your JavaScript files. It makes creating UI structures
+                                intuitive.</li>
+                            <li><code>Babel:</code> A JavaScript compiler that converts modern JavaScript and JSX
+                                into older, more compatible JavaScript that all browsers can understand.</li>
+                            <li><code>Webpack:</code> A module bundler. It takes all your JavaScript files, CSS
+                                files, and other assets and bundles them into a few optimized files for the browser to
+                                download.</li>
+                        </ul>
+                        
+                                            </div>
+                </div>
+
+            </div>
+
+            <!-- Session 12 -->
+            <div class="tab-pane fade" id="pills-session12" role="tabpanel" aria-labelledby="pills-session12-tab">
+                <h2 class="mb-3">React App</h2>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Tool: Vite vs. Create React App (CRA)</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>The tools used to create React applications.
+                            While Create React App was the standard for many years, modern tools like
+                            <strong>Vite</strong> offer significant advantages, especially in speed.
+                        </p>
+                        <table class="table table-bordered table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Create React App (Legacy)</th>
+                                    <th>Vite (Modern)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Setup Command</strong></td>
+                                    <td><code>npx create-react-app my-app</code></td>
+                                    <td><code>npm create vite@latest</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Development Server Speed</strong></td>
+                                    <td>Slower (bundles all code first)</td>
+                                    <td><strong>Extremely Fast</strong> (serves files on demand)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hot Module Replacement (HMR)</strong></td>
+                                    <td>Slow</td>
+                                    <td><strong>Near-instant</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Current Status</strong></td>
+                                    <td>No longer the recommended choice for new React apps. Tooling is not modern.</td>
+                                    <td><strong>Actively developed</strong> and recommended by the React community.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Pros</strong></td>
+                                    <td>- Simple for basic projects</td>
+                                    <td>- Incredibly fast development<br>- Modern and efficient<br>- More flexible</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="mt-3 fw-bold">We will use Vite. Its
+                            speed and modern approach provide a better learning and development experience, which is why
+                            it is the preferred choice for new React projects.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Create a React SPA</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>1. Environment Setup with Vite</h5>
+                        <p>Vite is a modern and extremely fast build tool that has become a popular alternative to
+                            Create
+                            React App. It provides a much faster development experience.</p>
+                        <div class="code-block">
+                            <pre><code>npm create vite@latest</code></pre>
+                        </div>
+                        <p class="mt-3">Vite will ask you a few questions:</p>
+                        <ul>
+                            <li><strong>Project name:</strong> › `frontend`</li>
+                            <li><strong>Select a framework:</strong> › `React`</li>
+                            <li><strong>Select a variant:</strong> › `JavaScript`</li>
+                        </ul>
+                        <p class="mt-3">Then run -</p>
+                        <div class="code-block">
+<pre><code>cd frontend
+npm install
+npm run dev</code></pre>
+                        </div>
+                        <p class="mt-3">To expose this to our local network (so we can test on our phone), run it with the <code>--host</code> flag:</p>
+                        <div class="code-block">
+                            <pre><code>npm run dev -- --host</code></pre>
+                        </div>
+                        <hr class="my-4">
+
+                        <h5>2. Create Reusable Components</h5>
+                        <p><code>`Header`, `Content` and `Footer`</code></p>
+                        <p><strong>`src/Header.jsx`</strong></p>
+                        <div class="code-block">
+<pre><code>
+function Header(props) {
+  return (
+    &lt;header style={{ backgroundColor: '#0d1117', color: 'white', padding: '1rem' }}&gt;
+      &lt;h1&gt;{props.title}&lt;/h1&gt;
+    &lt;/header&gt;
+  );
+}
+export default Header;</code></pre>
+                        </div>
+                        <p class="mt-3"><strong>`src/Content.jsx`</strong></p>
+                        <div class="code-block">
+<pre><code>function Content() {
+  return (
+    &lt;main style={{ padding: '1rem' }}&gt;
+      &lt;p&gt;Welcome to MERN stack.&lt;/p&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+                        </div>
+                        <p class="mt-3"><strong>`src/Footer.jsx`</strong></p>
+                        <div class="code-block">
+<pre><code>function Footer() {
+const currentYear = new Date().getFullYear();
+  return (
+    &lt;footer style={{ padding: '1rem', borderTop: '1px solid #ccc' }}&gt;
+      &lt;p&gt;&copy; {currentYear} FinTech Course. All Rights Reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+  );
+}
+</code></pre>
+                        </div>
+                        <hr class="my-4">
+                        <h5>3. Assemble the App and Pass Props</h5>
+                        <div class="code-block">
+<pre><code>import './App.css';
+import Header from './Header.jsx';
+
+function App() {
+  return (
+    &lt;div className="App"&gt;
+      &lt;Header title="MERN Stack for FinTech" /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+                        </div>
+                        <hr class="my-4">
+                        <h5>4. Styling the Components</h5>
+                        <p><strong>`src/App.css`</strong> or `src/index.css`</p>
+                        <div class="code-block">
+<pre><code>.App {
+  text-align: center;
+}
+
+main p {
+  font-size: 1.2rem;
+  color: #333;
+}</code></pre>
+                        </div>
+                        <p class="mt-3">Import in `App.jsx` or `main.jsx`</p>
+                        <div class="text-center my-3">
+                            <img src="./images/final-react-app.png" class="img-fluid rounded course-image"
+                                alt="Final React App">
+                        </div>
+                    </div>
+                </div>             
+            </div>
+        </div>
+    </div>
+</div>

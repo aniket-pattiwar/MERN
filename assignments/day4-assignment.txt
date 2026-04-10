@@ -1,0 +1,17 @@
+Day 4 Assignment - Express.js Basics
+
+Question 1: Setting up an Express Server
+1. Initialize a new Node project (`npm init -y`) and install Express (`npm install express`).
+2. Create a file named `app.js`.
+3. Import Express and start a server listening on port 3000.
+4. When the server starts, log "Express server is running on port 3000" to the console.
+
+Question 2: Creating Routes
+1. Add a GET route to the root URL (`/`) that responds with the text "Welcome to the FinTech API!".
+2. Add a GET route to `/about` that responds with "This API powers our FinTech application."
+
+Question 3: Handling JSON Data (POST Request)
+1. Add the built-in middleware to parse incoming JSON data (`app.use(express.json())`).
+2. Create a POST route at `/users`.
+3. When a POST request is made to `/users`, the route should read a `name` property from the request body (req.body.name).
+4. Respond with a JSON object or string saying: "User [name] has been created successfully!". Test this using Postman.

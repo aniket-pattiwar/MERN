@@ -1,0 +1,462 @@
+<div class="card shadow-sm mb-4">
+  <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light)">
+    <h2 class="my-2">MongoDB: Introduction & Fundamentals</h2>
+  </div>
+  <div class="card-body">
+    <!-- Session Navigation -->
+    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-session1-tab" data-bs-toggle="pill" data-bs-target="#pills-session1"
+          type="button" role="tab" aria-controls="pills-session1" aria-selected="true">
+          Introduction & Setup
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-session2-tab" data-bs-toggle="pill" data-bs-target="#pills-session2"
+          type="button" role="tab" aria-controls="pills-session2" aria-selected="false">
+          MongoDB Fundamentals & Lab
+        </button>
+      </li>
+    </ul>
+
+    <!-- Session Content -->
+    <div class="tab-content" id="pills-tabContent">
+      <!-- Session 1 Content -->
+      <div class="tab-pane fade show active" id="pills-session1" role="tabpanel" aria-labelledby="pills-session1-tab">
+        <h2 class="mb-3">Introduction & Environment Setup</h2>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3>Course Overview</h3>
+          </div>
+          <div class="card-body">
+            <h5>Objective</h5>
+            <p>
+              Introduce MongoDB, Node.js, Express.js, React and the practical relevance of these technologies in
+              the FinTech domain.
+            </p>
+            <h5>Prerequisites</h5>
+            <p>
+              Familiarity with any RDBMS (like SQL) and Web Programming
+              Fundamentals (HTML, CSS, JavaScript).
+            </p>
+
+            <h5>Text Book & References</h5>
+            <ul>
+              <li>
+                <strong>Text Book:</strong> MERN Quick Start Guide by Eddy
+                Wilson Iriarte Koroliova (Packt)
+              </li>
+              <li>
+                <strong>Reference:</strong> Pro MERN Stack by Vasan Subramanian
+                (Apress)
+              </li>
+              <li>
+                <strong>Online:</strong>
+                <a href="https://www.w3schools.com/" target="_blank">W3Schools</a>
+                and
+                <a href="https://github.com/markerikson/react-redux-links" target="_blank">Curated Tutorials</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3>What is the MERN Stack?</h3>
+          </div>
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-8 fs-5">
+                <p>
+                  The MERN stack is a popular and powerful collection of
+                  technologies used to build full-stack web applications.
+                </p>
+                <ul>
+                  <li>
+                    <strong>M</strong>ongoDB: A NoSQL, document-based database.
+                  </li>
+                  <li>
+                    <strong>E</strong>xpress.js: A back-end web application
+                    framework for Node.js.
+                  </li>
+                  <li>
+                    <strong>R</strong>eact: A front-end JavaScript library for
+                    building user interfaces.
+                  </li>
+                  <li>
+                    <strong>N</strong>ode.js: A back-end JavaScript runtime
+                    environment that runs code on the server.
+                  </li>
+                </ul>
+                <p>
+                  Together, these components allow you to build a three-tier
+                  architecture (frontend, backend, database) entirely with
+                  JavaScript and JSON.
+                </p>
+              </div>
+              <div class="col-md-4 text-center">
+                <img src="./images/comparison-webvsfintech.png" class="img-fluid rounded course-image"
+                alt="MERN Stack Connection Diagram" />
+                <p><strong>How the parts connect:</strong></p>
+                <img src="./images/mern-stack-development.jpg" class="img-fluid rounded course-image"
+                  alt="MERN Stack Connection Diagram" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header text-center">
+            <h3>How It All Works: Request → Response Flow</h3>
+          </div>
+
+          <div class="card-body text-center">
+            <p>
+              Simulate request & response flow in MERN
+              stack.
+            </p>
+            <button id="run-simulation-btn" class="btn mb-4">
+              Run Simulation
+            </button>
+
+            <!-- REQUEST FLOW -->
+            <div class="row text-center mb-4 align-items-center">
+              <div class="col-md-3 flow-step" id="step1">
+                <div class="p-3">
+                  <strong>1. Client (React)</strong><br />
+                  User sends request
+                </div>
+              </div>
+              <div class="col-md-1" id="arrow1">
+                <span class="flow-arrow">→</span>
+              </div>
+              <div class="col-md-3 flow-step" id="step2">
+                <div class="p-3">
+                  <strong>2. Server (Node/Express)</strong><br />
+                  API receives request
+                </div>
+              </div>
+              <div class="col-md-1" id="arrow2">
+                <span class="flow-arrow">→</span>
+              </div>
+              <div class="col-md-3 flow-step" id="step3">
+                <div class="p-3">
+                  <strong>3. Database (MongoDB)</strong><br />
+                  Query executed
+                </div>
+              </div>
+            </div>
+
+            <!-- ARROWS (REQUEST) -->
+
+            <!-- RESPONSE FLOW -->
+            <div class="row text-center align-items-center">
+
+
+
+
+              <div class="col-md-3 flow-step response-step" id="step6">
+                <div class="p-3">
+                  <strong>6. Client</strong><br />
+                  Updates UI
+                </div>
+              </div>
+              <div class="col-md-1">
+                <span class="flow-arrow"  id="arrow4">←</span>
+              </div>
+              <div class="col-md-3 flow-step response-step" id="step5">
+                <div class="p-3">
+                  <strong>5. Server</strong><br />
+                  Sends JSON response
+                </div>
+              </div>
+              <div class="col-md-1">
+                <span class="flow-arrow"  id="arrow3">←</span>
+              </div>
+              <div class="col-md-3 flow-step response-step" id="step4">
+                <div class="p-3">
+                  <strong>4. Database</strong><br />
+                  Returns data
+                </div>
+              </div>
+            </div>
+
+
+            <p id="simulation-log" class="mt-4 text-muted fst-italic fw-bold"></p>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3>Lab: Environment Installation</h3>
+          </div>
+          <div class="card-body">
+            
+            <div class="accordion" id="installationAccordion">
+              <!-- VS Code -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="false" aria-controls="collapseOne">
+                    1. Visual Studio Code
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                  data-bs-parent="#installationAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>
+                        <strong>Windows:</strong> Download the installer from
+                        the
+                        <a href="https://code.visualstudio.com/" target="_blank">official website</a>
+                        and run it. Ensure you check the "Add to PATH" option
+                        during installation.
+                      </li>
+                      <li>
+                        <strong>macOS:</strong> Download the ZIP file, extract
+                        it, and drag <code>Visual Studio Code.app</code> to your
+                        <code>/Applications</code> folder.
+                      </li>
+                      <li>
+                        <strong>Linux:</strong> Download the appropriate
+                        <code>.deb</code> (for Debian/Ubuntu) or
+                        <code>.rpm</code> (for Fedora/RHEL) package and install
+                        it. Alternatively, use Snap:
+                        <code>sudo snap install --classic code</code>.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Node.js -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    2. Node.js & NPM
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                  data-bs-parent="#installationAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>
+                        <strong>Windows & macOS:</strong> Download the LTS
+                        (Long-Term Support) version installer from the
+                        <a href="https://nodejs.org/" target="_blank">official website</a>
+                        and run it. NPM is included.
+                      </li>
+                      <h5>(Set-ExecutionPolicy RemoteSigned -Force)</h5>
+                      <li>
+                        <strong>Linux:</strong> It's recommended to use Node
+                        Version Manager (nvm). Follow the
+                        <a href="https://github.com/nvm-sh/nvm#installing-and-updating" target="_blank">installation
+                          script</a>, then run <code>nvm install --lts</code>.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- MongoDB -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    3. MongoDB Community Server
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                  data-bs-parent="#installationAccordion">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>
+                        <strong>Windows:</strong> Download the MSI installer
+                        from the
+                        <a href="https://www.mongodb.com/try/download/community" target="_blank">MongoDB Community
+                          Server download page</a>. Follow the wizard and install it as a service.
+                      </li>
+                      <li>
+                        <strong>macOS:</strong> The recommended method is using
+                        Homebrew. Run
+                        <code>brew tap mongodb/brew</code> followed by
+                        <code>brew install mongodb-community</code>.
+                      </li>
+                      <li>
+                        <strong>Linux (Ubuntu):</strong> Follow the official
+                        guide to
+                        <a href="https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/"
+                          target="_blank">install MongoDB on Ubuntu</a>
+                        using the <code>apt</code> package manager.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Postman -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    4. Postman
+                  </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                  data-bs-parent="#installationAccordion">
+                  <div class="accordion-body">
+                    <p>
+                      For all operating systems (Windows, macOS, Linux), go to
+                      the
+                      <a href="https://www.postman.com/downloads/" target="_blank">Postman downloads page</a>, download
+                      the appropriate version, and install it.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <h5>Verify Installations</h5>
+            <p>
+              <strong>For Windows, macOS, and Linux.</strong>
+            </p>
+            <div class="code-block">
+              <pre><code>
+code --version
+
+node -v
+npm -v
+
+mongod --version
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session 2 Content -->
+      <div class="tab-pane fade" id="pills-session2" role="tabpanel" aria-labelledby="pills-session2-tab">
+        <h2 class="mb-3">MongoDB Fundamentals & Lab</h2>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3>Relational (SQL) vs. NoSQL Databases</h3>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <img src="./images/difference_sql_nosql.jpg" class="img-fluid rounded course-image" alt="SQL vs NoSQL Diagram" />
+            </div>
+            <h4>Relational Databases (e.g., MySQL, PostgreSQL)</h4>
+            <ul>
+              <li>Data is stored in tables with rows and columns.</li>
+              <li>
+                A strict schema defines the table structure, data types, and
+                relationships.
+              </li>
+              <li>Uses SQL (Structured Query Language).</li>
+              </ul>
+            <h4>NoSQL Databases (e.g., MongoDB, Cassandra, Neo4j)</h4>
+            <ul>
+              <li>
+                Data can be stored in various formats like document (JSON-like),
+                key-value, graph.
+              </li>
+              <li>
+                Flexible or dynamic schema allows for storing varied data
+                structures.
+              </li>
+              <li>Built for scalability and high performance.</li>
+              </ul>
+              <img src="./images/table-card.png" class="img-fluid rounded course-image" alt="SQL vs NoSQL Diagram" />
+
+              <div class="code-block">
+                <pre><code>
+MySQL databases → use SQL
+SELECT * FROM users WHERE age > 25;
+
+MongoDB → uses MQL (JSON-style queries)
+db.users.find({ age: { $gt: 25 } })
+</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3>Lab: MongoDB Operations(CRUD)</h3>
+            <img src="./images/CRUD.png" class="img-fluid rounded course-image" alt="MongoDB Compass Interface" />
+          </div>
+          <div class="card-body">
+            
+            <h5 class="mt-3">1. Shell</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <h5>Standalone `mongosh` Terminal</h5>
+                <p>
+                  This is a command-line application. It's great for server management
+                  and scripting.
+                </p>
+                <img src="./images/mongoshell.png" class="img-fluid rounded course-image"
+                  alt="A standalone mongosh terminal window." />
+              </div>
+              <div class="col-md-6">
+                <h5>MongoDB Compass Embedded Shell</h5>
+                <p>
+                  Compass is a GUI tool that includes a built-in shell at the
+                  bottom. It's convenient for running quick queries while
+                  visually exploring your data.
+                </p>
+                <img src="./images/mongo-compass-shell.png" class="img-fluid rounded course-image"
+                  alt="The embedded shell inside MongoDB Compass." />
+              </div>
+            </div>
+            <hr />
+
+            <h5>2. List and Select a Database</h5>
+            <div class="code-block">
+              <pre><code>
+- show dbs
+
+- use "db_name"
+
+- db.createCollection("collection_name")</code></pre>
+            </div>
+            
+            <h5 class="mt-3">3. Insert a Single Document</h5>
+            <div class="code-block">
+              <pre><code>insertOne(
+  {key1:"value1", key2:"value2" }
+)</code></pre>
+            </div>
+            
+            <h5 class="mt-3">4. Insert Multiple Documents</h5>
+            <div class="code-block">
+              <pre><code>insertMany([
+  { key1:"value1", key2:"value2" },
+  { key1:"value1", key2:"value2" , key3:"value3" },
+  { key1:"value1", key2:"value2" , key3:"value3" },
+  { key1:"value1", key2:"value2" , key3:"value3", key4: "value4" }
+]);</code></pre>
+            </div>
+           
+            <h5 class="mt-3">5. Perform Basic Operations (CRUD)</h5>
+            <div class="code-block">
+              <pre><code>
+- find()
+
+- find({ keyname: "value" })
+
+- updateOne(
+  { key: "value" },
+  { $set: { key: "newvalue" } }
+  )
+
+- deleteOne({ key: "value" })
+
+- countDocuments()</code></pre>
+            </div>           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

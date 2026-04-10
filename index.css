@@ -1,0 +1,88 @@
+body {
+    font-size: 1.1rem;
+    background: radial-gradient(circle at top left, #1a1f3c, #0d1117 60%);
+    color: #e6edf3;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Header */
+.course-header {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Glass Cards */
+.card {
+    background: rgba(22, 27, 34, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 25px rgba(88,166,255,0.4);
+}
+
+/* Neon Titles */
+.card-header {
+    background: transparent;
+    color: #58a6ff !important;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(88,166,255,0.7);
+}
+
+/* Buttons */
+button, .btn {
+    border-radius: 999px;
+    background: linear-gradient(90deg, #7f5af0, #2cb67d);
+    border: none;
+    color: white;
+    box-shadow: 0 0 15px rgba(127,90,240,0.5);
+}
+
+button:hover {
+    box-shadow: 0 0 25px rgba(127,90,240,0.9);
+}
+
+/* Code block */
+.code-block {
+    background: #0b0f14;
+    border-left: 4px solid #7f5af0;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+}
+
+/* Navigation pills */
+.nav-pills .nav-link {
+    border-radius: 999px;
+    margin: 0 5px;
+    transition: 0.3s;
+}
+
+.nav-pills .nav-link.active {
+    background: linear-gradient(90deg, #7f5af0, #58a6ff);
+    box-shadow: 0 0 15px rgba(127,90,240,0.7);
+}
+
+/* Flow diagram glow */
+.flow-step div {
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 10px rgba(88,166,255,0.2);
+}
+
+/* Image styling */
+.course-image {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 0 25px rgba(127,90,240,0.4);
+}
+
+.course-image:hover {
+    transform: scale(1.5);
+    box-shadow: 0 0 50px rgba(127,90,240,0.8);
+}

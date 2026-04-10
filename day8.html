@@ -1,0 +1,198 @@
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light);">
+        <h2 class="my-2">Advanced React & Deployment</h2>
+    </div>
+    <!-- Session Navigation -->
+    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day7" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-session15-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-session15" type="button" role="tab" aria-controls="pills-session15"
+                aria-selected="true">Hooks & Context API</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-session16-tab" data-bs-toggle="pill" data-bs-target="#pills-session16"
+                type="button" role="tab" aria-controls="pills-session16" aria-selected="false">Advanced
+                Labs</button>
+        </li>
+    </ul>
+
+    <!-- Session Content -->
+    <div class="tab-content" id="pills-tabContent-day7">
+        <!-- Session 15 -->
+        <div class="tab-pane fade show active" id="pills-session15" role="tabpanel"
+            aria-labelledby="pills-session15-tab">
+            <h2 class="mb-3">React Hooks & Context API</h2>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Concept: React Hooks</h3>
+                </div>
+                <div class="card-body">
+                    <p>Hooks are functions that let you "hook into" React state and lifecycle features from function
+                        components. They allow you to use state and other React features without writing a class.
+                    </p>
+                    <ul>
+                        <li><strong>`useState`</strong>: Lets you add state to a functional component.</li>
+                        <li><strong>`useEffect`</strong>: Lets you perform side effects in your components, such as
+                            fetching data, subscribing to events, or manually changing the DOM.</li>
+                    </ul>
+                    <h6>Real-World Analogy: A Personal Whiteboard</h6>
+                    <p>Think of `useState` as giving a component its own personal whiteboard. It can write down
+                        information (`state`), read it, and update it. When the information on the whiteboard
+                        changes, the component knows it needs to re-render to show the new information.</p>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Concept: The Context API</h3>
+                </div>
+                <div class="card-body">
+                    <p>The Context API is React's built-in way to solve the "prop drilling" problem for global
+                        state. It allows you to share state across the entire app (or a part of it) without passing
+                        props down manually at every level.</p>
+                    <h6>Real-World Analogy: A Public Announcement System</h6>
+                    <p>Instead of whispering a message down a long line of people (prop drilling), the Context API
+                        is like a PA system for your building. A component can make an announcement (provide a
+                        value), and any other component in the building can listen to that announcement (consume the
+                        value) without anyone in between needing to be involved.</p>
+                    <div class="text-center my-3">
+                        <!-- 
+                                IMAGE PROMPT: "A diagram showing the React Context API. A top 'Provider' component wraps several nested components. A deeply nested 'Consumer' component has an arrow pointing directly back to the 'Provider', bypassing all intermediate components, to receive its data."
+                            -->
+                        <img src="./images/context-api.png" class="img-fluid rounded course-image" alt="Context API">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sessions 16-17 -->
+        <div class="tab-pane fade" id="pills-session16" role="tabpanel" aria-labelledby="pills-session16-tab">
+            <h2 class="mb-3">Advanced React Labs</h2>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Lab 14: Refactoring with Hooks & Context</h3>
+                </div>
+                <div class="card-body">
+                    <h5>1. Refactoring a Class Component to use `useState`</h5>
+                    <p>Below is a simple counter, first as a class component and then as a functional component
+                        using the `useState` hook.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Before (Class Component)</strong></p>
+                            <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                                <pre><code>import React from 'react';
+
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+  }
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;p&gt;Count: {this.state.count}&lt;/p&gt;
+        &lt;button onClick={() => this.setState({ count: this.state.count + 1 })}&gt;
+          Increment
+        &lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>After (Functional Component with Hook)</strong></p>
+                            <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                                <pre><code>import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() => setCount(count + 1)}&gt;
+        Increment
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h5>2. Using Context API for a Theme</h5>
+                    <p>Let's create a theme (light/dark mode) that any component can access.</p>
+                    <p><strong>`src/ThemeContext.js`</strong></p>
+                    <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                        <pre><code>import React, { createContext, useState, useContext } from 'react';
+
+const ThemeContext = createContext();
+
+export const useTheme = () => useContext(ThemeContext);
+
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, toggleTheme }}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  );
+};</code></pre>
+                    </div>
+
+                    <p class="mt-3">Wrap your app in the provider in <strong>`src/main.jsx`</strong>:</p>
+                    <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                        <pre><code>// ... other imports
+import { ThemeProvider } from './ThemeContext';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  &lt;React.StrictMode&gt;
+    &lt;ThemeProvider&gt;
+      &lt;App /&gt;
+    &lt;/ThemeProvider&gt;
+  &lt;/React.StrictMode&gt;
+);</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Labs 15 & 16: External Services, Testing & Deployment</h3>
+                </div>
+                <div class="card-body">
+                    <h5>1. Integrating a Mock Payment Gateway</h5>
+                    <p>Real payment gateways are complex. For this lab, we simulate the concept. You would typically
+                        use an SDK (Software Development Kit) provided by a service like Stripe or PayPal.</p>
+                    <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                        <pre><code>// A mock payment component
+function PaymentButton({ amount }) {
+  const handlePayment = () => {
+    // In a real app, this would open the payment provider's modal.
+    alert(`Simulating payment of $${amount}... Payment successful!`);
+  };
+
+  return &lt;button onClick={handlePayment}&gt;Pay ${amount}&lt;/button&gt;;
+}</code></pre>
+                    </div>
+
+                    <hr class="my-4">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

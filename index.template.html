@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERN Stack for FinTech Course</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-size: 1.2rem;
+        }
+        .course-header {
+            background-color: #0d1117;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+        }
+        .nav-pills .nav-link {
+            color: #495057;
+        }
+        .card-header {
+            background-color: #e9ecef;
+        }
+        .code-block {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            position: relative; /* Needed for button positioning */
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #565e6a;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            opacity: 0.7;
+        }
+        .copy-btn:hover {
+            opacity: 1;
+        }
+        .code-output {
+            background-color: #f7f7f9;
+            color: #212529;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border: 1px solid #e1e1e8;
+            font-family: monospace;
+            margin-top: 1rem;
+        }
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .flow-step { text-align: center; margin: 10px; }
+        .flow-arrow { font-size: 2rem; color: #0d6efd; }
+        .flow-step div {
+            transition: all 0.3s ease-in-out;
+        }
+        .highlight {
+            border-color: #ffc107 !important;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.6);
+        }
+        .response-step, .response-arrow { visibility: hidden; }
+        .event-loop-sim { display: flex; justify-content: space-around; text-align: center; }
+        .event-loop-box { border: 2px solid #ccc; border-radius: 5px; padding: 10px; width: 22%; background-color: #fff; }
+        .event-loop-box h6 { border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 10px; }
+        .event-loop-item { background-color: #e9ecef; border: 1px solid #ced4da; border-radius: 3px; padding: 5px; margin-top: 5px; transition: all 0.5s ease-in-out; }
+        .event-loop-item.highlight-item { background-color: #ffc107; }
+        .course-image {
+            max-height: 350px;
+            object-fit: contain;
+            margin: 1rem auto;
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #dee2e6;
+        }
+
+        .course-image:hover {
+            /* Make the image pop out significantly on hover */
+            transform: scale(2);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 100; /* Ensure it's on top of other content */
+            position: relative; /* Required for z-index to work */
+        }
+        /* Styles for the image modal */
+        #imageModal .modal-dialog {
+            max-width: 90%;
+        }
+        #imageModal .modal-content {
+            background-color: transparent;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="course-header text-center">
+        <div class="container">
+            <h1 class="display-4">MERN Stack for FinTech</h1>
+            <p class="lead">A comprehensive course from setup to deployment.</p>
+        </div>
+    </header>
+
+    <main class="container" id="main-container">
+        <!-- Main Day Navigation -->
+        <ul class="nav nav-pills nav-fill mb-3" id="day-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="day1-tab-btn" data-bs-toggle="pill" data-bs-target="#day1-content" type="button" role="tab" aria-controls="day1-content" aria-selected="true">1. MongoDB Intro</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day2-tab-btn" data-bs-toggle="pill" data-bs-target="#day2-content" type="button" role="tab" aria-controls="day2-content" aria-selected="false">2. MongoDB Advanced</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day3-tab-btn" data-bs-toggle="pill" data-bs-target="#day3-content" type="button" role="tab" aria-controls="day3-content" aria-selected="false">3. Node.js</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day4-tab-btn" data-bs-toggle="pill" data-bs-target="#day4-content" type="button" role="tab" aria-controls="day4-content" aria-selected="false">4. Express.js</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day5-tab-btn" data-bs-toggle="pill" data-bs-target="#day5-content" type="button" role="tab" aria-controls="day5-content" aria-selected="false">5. React.js</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day6-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-content" type="button" role="tab" aria-controls="day6-content" aria-selected="false">6. Redux</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day7-tab-btn" data-bs-toggle="pill" data-bs-target="#day7-content" type="button" role="tab" aria-controls="day7-content" aria-selected="false">7. Advanced React</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day8-tab-btn" data-bs-toggle="pill" data-bs-target="#day8-content" type="button" role="tab" aria-controls="day8-content" aria-selected="false">8. Full Stack API</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day9-tab-btn" data-bs-toggle="pill" data-bs-target="#day9-content" type="button" role="tab" aria-controls="day9-content" aria-selected="false">9. Full Stack App</button>
+            </li>
+        </ul>
+
+        <!-- Main Day Content -->
+        <div class="tab-content" id="day-tab-content">
+            <!--INJECT_CONTENT_HERE-->
+        </div>
+    </main>
+
+    <!-- Reusable Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-body text-center">
+                <!-- The image will be placed here by JavaScript. The modal is dismissable by clicking the image. -->
+                <img src="" class="img-fluid rounded" id="modalImage" alt="Enlarged course image"
+                    data-bs-dismiss="modal" style="cursor: pointer;">
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-muted py-4">
+        <p>&copy; 2026 C-DAC Patna. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Dynamic Content Loader & Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- All simulation functions are defined here in the global scope ---
+            const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+            async function runSimulation() {
+                const runBtn = document.getElementById('run-simulation-btn');
+                const log = document.getElementById('simulation-log');
+                if (!runBtn || !log) return; 
+                const elements = [
+                    document.getElementById('step1'), document.getElementById('arrow1'), document.getElementById('step2'), document.getElementById('arrow2'), document.getElementById('step3'), document.getElementById('step4'), document.getElementById('arrow4'), document.getElementById('step5'), document.getElementById('arrow5'), document.getElementById('step6')
+                ];
+                const logs = [
+                    '1. Request starts from the Client (e.g., your browser).', null, '2. The request travels to the Server (Node.js/Express).', null, '3. The Server queries the Database (MongoDB) for information.', '4. The Database finds the information and returns it to the Server.', null, '5. The Server formats the data (usually as JSON) and sends it back as a response.', null, '6. The Client receives the data and updates the user interface. Done!'
+                ];
+                const responseElements = document.querySelectorAll('.response-step, .response-arrow');
+                runBtn.disabled = true;
+                elements.forEach(el => el?.querySelector('div')?.classList.remove('highlight'));
+                responseElements.forEach(el => el.style.visibility = 'hidden');
+                log.textContent = 'Starting simulation...';
+                await sleep(500);
+                for (let i = 0; i < elements.length; i++) {
+                    const el = elements[i];
+                    if (!el) continue;
+                    if (el.classList.contains('response-step') || el.classList.contains('response-arrow')) { el.style.visibility = 'visible'; }
+                    if (el.classList.contains('flow-step')) {
+                        el.querySelector('div').classList.add('highlight');
+                        if (logs[i]) log.textContent = logs[i];
+                        await sleep(1500);
+                        el.querySelector('div').classList.remove('highlight');
+                    }
+                }
+                log.textContent = 'Simulation complete! Click the button to run it again.';
+                runBtn.disabled = false;
+            }
+            const createItem = (text, id) => `<div class="event-loop-item" id="${id}">${text}</div>`;
+            async function runEventLoopSimulation() {
+                const runEventLoopBtn = document.getElementById('run-event-loop-btn');
+                const eventLog = document.getElementById('event-loop-log');
+                const callStackBox = document.getElementById('call-stack');
+                const nodeApisBox = document.getElementById('node-apis');
+                const callbackQueueBox = document.getElementById('callback-queue');
+                if (!runEventLoopBtn || !eventLog || !callStackBox) return; 
+                runEventLoopBtn.disabled = true;
+                callStackBox.innerHTML = ''; nodeApisBox.innerHTML = ''; callbackQueueBox.innerHTML = '';
+                const logStep = async (message, delay) => { eventLog.textContent = message; await sleep(delay); };
+                await logStep('Simulation started. Synchronous code runs first.', 1000);
+                callStackBox.innerHTML += createItem("console.log('start')", "item1");
+                await logStep("1. `console.log('start')` is pushed to the Call Stack.", 1500);
+                document.getElementById('item1').classList.add('highlight-item');
+                await logStep("It executes and is popped off the stack.", 1500);
+                document.getElementById('item1').remove();
+                callStackBox.innerHTML += createItem("setTimeout(cb, 1000)", "item2");
+                await logStep("2. `setTimeout` is pushed to the Call Stack.", 1500);
+                document.getElementById('item2').classList.add('highlight-item');
+                await logStep("Its timer is handed off to the Node APIs. It's popped off the stack.", 1500);
+                document.getElementById('item2').remove();
+                nodeApisBox.innerHTML += createItem("Timer (1s)", "item3");
+                callStackBox.innerHTML += createItem("console.log('end')", "item4");
+                await logStep("3. `console.log('end')` is pushed to the stack.", 1500);
+                document.getElementById('item4').classList.add('highlight-item');
+                await logStep("It executes and is popped off the stack.", 1500);
+                document.getElementById('item4').remove();
+                await logStep("4. After 1 second, the timer in the Node API completes...", 1500);
+                document.getElementById('item3').remove();
+                callbackQueueBox.innerHTML += createItem("setTimeout callback", "item5");
+                await logStep("...and its callback is placed in the Callback Queue.", 1500);
+                await logStep("5. The Event Loop sees the Call Stack is empty and moves the callback to the stack.", 2000);
+                document.getElementById('item5').remove();
+                callStackBox.innerHTML += createItem("Callback Executes", "item6");
+                await logStep("The callback runs and is popped off. The program is finished.", 2000);
+                document.getElementById('item6').remove();
+                eventLog.textContent = 'Simulation complete!';
+                runEventLoopBtn.disabled = false;
+            }
+            // --- Attach all event listeners ONCE ---
+            const runSimBtn = document.getElementById('run-simulation-btn');
+            if (runSimBtn) runSimBtn.addEventListener('click', runSimulation);
+            const runEventLoopBtn = document.getElementById('run-event-loop-btn');
+            if (runEventLoopBtn) runEventLoopBtn.addEventListener('click', runEventLoopSimulation);
+            // Initialize the modal ONCE
+            const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+            const modalImage = document.getElementById('modalImage');
+            // Attach image zoom listeners to ALL images
+            document.querySelectorAll('.course-image').forEach(image => {
+                image.addEventListener('click', () => {
+                    modalImage.src = image.src;
+                    imageModal.show();
+                });
+            });
+            // Attach copy button listeners to ALL copy buttons
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const pre = button.parentElement.querySelector('pre');
+                    const code = pre.innerText;
+                    navigator.clipboard.writeText(code).then(() => {
+                        button.innerText = 'Copied!';
+                        setTimeout(() => { button.innerText = 'Copy'; }, 2000);
+                    }).catch(err => console.error('Failed to copy text: ', err));
+                });
+            });
+            // The inner Bootstrap tabs work automatically via data-attributes. No manual JS is needed.
+        });
+    </script>
+</body>
+
+</html>
+
+
+<!-- node build.js -->
+ <!-- Run this to generate index.html file from all dayX.html files -->

@@ -1,0 +1,21 @@
+Day 2.2 Assignment: Building a Simple Interactive Webpage
+
+Question 1: HTML Structure
+1. Create a new file named index.html.
+2. Set up the basic HTML structure with doctype, html, head, and body tags.
+3. Inside the head, add a title tag with the text My FinTech App.
+4. Inside the body, add a header tag (h1) with the text Welcome to the Dashboard.
+5. Add a paragraph tag (p) below the header with an id of statusMessage and text System is ready.
+6. Add a button element below the paragraph with an id of actionButton and text Click to Update.
+
+Question 2: CSS Styling(Use custom css or/and bootstrap)
+1. Create a new file named style.css and link it in your HTML head section using the link tag.
+2. Set the body font family to Arial and the background color to a light gray (e.g., #f4f4f9).
+3. Center align the text of the h1 header and change its color to dark blue.
+4. Style the button to have a green background, white text, padding of 10px 20px, and remove the default border.
+
+Question 3: JavaScript Interactivity
+1. Create a script tag at the bottom of your HTML body (or create a separate script.js file and link it).
+2. Select the button using document.getElementById.
+3. Add a click event listener to the button.
+4. When the button is clicked, change the text of the statusMessage paragraph to System updated successfully!

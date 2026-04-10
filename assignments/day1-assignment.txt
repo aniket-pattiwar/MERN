@@ -1,0 +1,33 @@
+Day 1 Assignment - MongoDB CRUD Operations
+
+Question 1: Animal Collection CRUD
+1. Create a collection called "animals" and insert the following documents:
+   - { name: "Lion", type: "Mammal", habitat: "Savanna" }
+   - { name: "Eagle", type: "Bird", habitat: "Mountains" }
+   - { name: "Shark", type: "Fish", habitat: "Ocean" }
+
+2. Find all animals in the collection.
+
+3. Find animals where type is "Mammal".
+
+4. Update the Lion's habitat to "Grassland".
+
+5. Delete the Shark document.
+
+6. Count the remaining documents in the animals collection.
+
+Question 2: Plant Collection CRUD
+1. Create a collection called "plants" and insert the following documents:
+   - { name: "Rose", type: "Flower", color: "Red" }
+   - { name: "Oak", type: "Tree", color: "Green" }
+   - { name: "Cactus", type: "Succulent", color: "Green" }
+
+2. Find all plants in the collection.
+
+3. Find plants where color is "Green".
+
+4. Update the Rose's color to "Pink".
+
+5. Delete the Cactus document.
+
+6. Count the remaining documents in the plants collection.

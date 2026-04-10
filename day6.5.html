@@ -1,0 +1,481 @@
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light);">
+        <h2 class="my-2">Routers & Hooks/classes</h2>
+    </div>
+    <div class="card-body">
+        <!-- Session Navigation -->
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day6-5" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-session-hooks-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-session-hooks" type="button" role="tab" aria-controls="pills-session-hooks"
+                    aria-selected="true">Hooks</button>
+            </li>
+
+        </ul>
+
+        <!-- Session Content -->
+        <div class="tab-content" id="pills-tabContent-day6-5">
+            <div class="tab-pane fade show active" id="pills-session-hooks" role="tabpanel"
+                aria-labelledby="pills-session-hooks-tab">
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3>1. React Router: The GPS of your App</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Graphical View -->
+                        <div class="row align-items-center mb-4">
+                            <div class="col-md-6 text-center">
+                                <div class="border p-3 rounded bg-light h-100">
+                                    <h5>Traditional HTML (MPA)</h5>
+                                    <div class="d-flex justify-content-center align-items-center gap-2 my-3">
+                                        <div class="badge bg-secondary">Click Link</div>
+                                        <span class="fs-4">&rarr;</span>
+                                        <div class="badge bg-danger">Server Request</div>
+                                        <span class="fs-4">&rarr;</span>
+                                        <div class="badge bg-secondary">Full Reload 🔄</div>
+                                    </div>
+                                    <small class="text-muted">Screen flashes white. Slow.</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <div class="border p-3 rounded bg-white border-primary h-100 shadow-sm">
+                                    <h5>React Router (SPA)</h5>
+                                    <div class="d-flex justify-content-center align-items-center gap-2 my-3">
+                                        <div class="badge bg-primary">Click Link</div>
+                                        <span class="fs-4 text-primary">&rarr;</span>
+                                        <div class="badge bg-success">JS Intercepts</div>
+                                        <span class="fs-4 text-primary">&rarr;</span>
+                                        <div class="badge bg-primary">Swap Component ✨</div>
+                                    </div>
+                                    <small class="text-success fw-bold">Instant. No Reload.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Why is it required?</h5>
+                                <p>React builds <strong>Single Page Applications (SPAs)</strong>. Without a router, you
+                                    can't have different URLs (like <code>/about</code>, <code>/contact</code>) or
+                                    browser history (back button support) without reloading the page.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Alternatives?</h5>
+                                <ul>
+                                    <li><strong>Conditional Rendering:</strong>
+                                        <code>{ page === 'home' && &lt;Home /&gt; }</code> (Messy for big apps).
+                                    </li>
+                                    <li><strong>Other Libraries:</strong> TanStack Router, Wouter.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h5 class="mt-3">Step 1: Create Page Components</h5>
+                        <p>Create two files in your <code>src</code> folder:</p>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>// src/Home.jsx
+export default function Home() {
+  return &lt;h2&gt;Home Page&lt;/h2&gt;;
+}
+
+// src/About.jsx
+export default function About() {
+  return &lt;h2&gt;About Us&lt;/h2&gt;;
+}</code></pre>
+                        </div>
+
+                        <h5 class="mt-3">Step 2: Implement Routing in `App.jsx`</h5>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+
+function App() {
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;nav&gt;
+        &lt;Link to="/"&gt;Home&lt;/Link&gt; | &lt;Link to="/about"&gt;About&lt;/Link&gt;
+      &lt;/nav&gt;
+      &lt;Routes&gt;
+        &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+        &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
+      &lt;/Routes&gt;
+    &lt;/BrowserRouter&gt;
+  );
+}</code></pre>
+                        </div>
+
+                        <h5 class="mt-3">Step 3: Entry Point (`main.jsx`)</h5>
+                        <p>You do <strong>not</strong> need to remove <code>&lt;React.StrictMode&gt;</code>. It works
+                            perfectly with React Router. Keep it to catch potential problems.</p>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;,
+)</code></pre>
+                        </div>
+
+                        <h5 class="mt-4">React Router Components Cheatsheet</h5>
+                        <p>Here is a quick summary of the components we just used:</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Component</th>
+                                        <th>Role / Functionality</th>
+                                        <th>Example</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>&lt;BrowserRouter&gt;</code></td>
+                                        <td><strong>The Container.</strong> Enables routing for the app. Must wrap
+                                            everything.</td>
+                                        <td><code>&lt;BrowserRouter&gt;...&lt;/BrowserRouter&gt;</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;Routes&gt;</code></td>
+                                        <td><strong>The Switch.</strong> Groups routes and ensures only one shows at a
+                                            time.</td>
+                                        <td><code>&lt;Routes&gt;...&lt;/Routes&gt;</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;Route&gt;</code></td>
+                                        <td><strong>The Map.</strong> Defines a path and the component to render.</td>
+                                        <td><code>&lt;Route path="/home" element={&lt;Home/&gt;} /&gt;</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;Link&gt;</code></td>
+                                        <td><strong>The Navigation.</strong> Changes the URL without reloading the page
+                                            (unlike <code>&lt;a&gt;</code>).</td>
+                                        <td><code>&lt;Link to="/about"&gt;About&lt;/Link&gt;</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-warning text-dark">
+                        <h3>2. Classes vs. Hooks: The Evolution</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>React originally used <strong>Class Components</strong>. In 2018, <strong>Hooks</strong> were
+                            introduced to make Functional Components powerful. Hooks are now the industry standard.</p>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>Class Components (Old)</th>
+                                        <th>Functional Components + Hooks (New)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Syntax</strong></td>
+                                        <td><code>class App extends React.Component</code></td>
+                                        <td><code>function App()</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>State</strong></td>
+                                        <td><code>this.state = { count: 0 }</code></td>
+                                        <td><code>const [count, setCount] = useState(0)</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Lifecycle</strong></td>
+                                        <td><code>componentDidMount()</code></td>
+                                        <td><code>useEffect()</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Complexity</strong></td>
+                                        <td>High (requires <code>this</code> binding)</td>
+                                        <td>Low (Standard JavaScript functions)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <h6>Class Structure</h6>
+                                <pre class="bg-light p-2 border rounded"><code>class Counter extends Component {
+  constructor() {
+    this.state = { count: 0 };
+  }
+  render() {
+    return &lt;div&gt;{this.state.count}&lt;/div&gt;
+  }
+}</code></pre>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Hook Structure</h6>
+                                <pre class="bg-light p-2 border rounded"><code>function Counter() {
+  const [count, setCount] = useState(0);
+  
+  return &lt;div&gt;{count}&lt;/div&gt;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-dark">
+                        <h3>3. Essential Hooks Toolkit</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Hooks are like tools in a toolbelt. You grab only what you need.</p>
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Hook Name</th>
+                                    <th>Role / Purpose</th>
+                                    <th>Real-World Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>useState</code></td>
+                                    <td><strong>Memory</strong>. Stores data that changes.</td>
+                                    <td>Input form text, Counter value, Toggle switch.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>useEffect</code></td>
+                                    <td><strong>Side Effects</strong>. Runs code after render.</td>
+                                    <td>Fetching API data, Setting a timer, Updating document title.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>useContext</code></td>
+                                    <td><strong>Global Data</strong>. Avoids prop drilling.</td>
+                                    <td>User login status, Dark/Light theme preference.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>useRef</code></td>
+                                    <td><strong>DOM Access</strong>. Reference elements directly.</td>
+                                    <td>Focusing an input field automatically.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>useParams</code></td>
+                                    <td><strong>URL Data</strong>. Reads dynamic URL parts.</td>
+                                    <td>Getting <code>123</code> from <code>/product/123</code>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h3>3.5. Real-World Scenarios (Concepts)</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>1. The Digital Clock</h5>
+                        <p><strong>Goal:</strong> Display a clock that updates every second.</p>
+                        <ul>
+                            <li><strong>useState:</strong> Stores the current time string (e.g., "10:45:01 AM").</li>
+                            <li><strong>useEffect:</strong> Sets up a timer that updates the state every 1000ms. It also
+                                cleans up the timer when the component is removed to stop it from running in the
+                                background.</li>
+                        </ul>
+
+                        <hr class="my-3">
+
+                        <h5>2. Window Size Tracker</h5>
+                        <p><strong>Goal:</strong> Detect if the user is on Mobile or Desktop by tracking window width.
+                        </p>
+                        <ul>
+                            <li><strong>useState:</strong> Stores the current width number (e.g., 1024).</li>
+                            <li><strong>useEffect:</strong> Attaches a "resize" event listener to the browser window.
+                                When the user resizes, it updates the state. It removes the listener when done to avoid
+                                memory leaks.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h3>4. Lab: The "Like" Counter (useState)</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Let's build a simple "Like" button feature found in social media apps.</p>
+
+                        <div class="d-flex justify-content-center my-4">
+                            <div class="card text-center shadow" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Post Title</h5>
+                                    <p class="card-text">This is a great post about React!</p>
+                                    <button class="btn btn-outline-danger">
+                                        Likes: <strong>42</strong>
+                                    </button>
+                                    <div class="mt-2 text-muted small">Clicking updates the number instantly</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5>The Code</h5>
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>import React, { useState } from 'react';
+
+function LikeCounter() {
+  // 1. Define State: [variable, setterFunction] = useState(initialValue)
+  const [likes, setLikes] = useState(42);
+
+  return (
+    &lt;div className="card"&gt;
+      &lt;h5&gt;Post Title&lt;/h5&gt;
+      &lt;p&gt;This is a great post about React!&lt;/p&gt;
+      
+      {/* 2. Update State on Click */}
+      &lt;button onClick={() => setLikes(likes + 1)}&gt;
+        Likes: {likes}
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h3>5. Challenge: Why does it reset on refresh?</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>The Problem:</strong> When you refresh the page, the likes go back to default. Why?
+                            Because <code>useState</code> stores data in <strong>RAM (Memory)</strong>. When the page
+                            reloads, the memory is cleared.</p>
+
+                        <div class="alert alert-warning">
+                            <strong>Real-World Analogy:</strong>
+                            <ul>
+                                <li><strong>React State (RAM):</strong> Like writing on a whiteboard. If you wipe it
+                                    (refresh), it's gone.</li>
+                                <li><strong>Database/Storage:</strong> Like carving into stone or writing in a diary. It
+                                    stays even if you leave the room.</li>
+                            </ul>
+                        </div>
+
+                        <h5>The Solution: Local Storage + useEffect</h5>
+                        <p>To make it persist like YouTube, we need to save the value whenever it changes. We can use
+                            the browser's <strong>Local Storage</strong>.</p>
+
+                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                            <pre><code>import React, { useState, useEffect } from 'react';
+
+function PersistentLikeCounter() {
+  // 1. Load saved data (or default to 0)
+  // We use a function inside useState so this only runs once when the app starts.
+
+  const [likes, setLikes] = useState(
+    () => {
+    const savedValue = localStorage.getItem('my_likes');
+    return savedValue ? parseInt(savedValue) : 0;
+  }
+  );
+
+  // 2. Save data whenever it changes
+
+  useEffect(() => {
+    localStorage.setItem('my_likes', likes);
+  }, [likes]); // [likes] tells React: "Run this code only when 'likes' changes"
+
+  return (
+    &lt;div&gt;
+      &lt;h3&gt;Persistent Counter&lt;/h3&gt;
+      &lt;button onClick={() => setLikes(likes + 1)}&gt;
+        Likes: {likes}
+      &lt;/button&gt;
+      &lt;p&gt;&lt;small&gt;(Try refreshing the page!)&lt;/small&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h3>6. Summary: Why did we need these Hooks?</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Here is a breakdown of why we used <code>useState</code> and <code>useEffect</code> in the
+                            example above, and how we handled this before hooks.</p>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Goal</th>
+                                        <th>Without Hook / Old Class Way</th>
+                                        <th>With Hook (Functional Component)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Remembering "Likes"</strong><br><small>(State Management)</small>
+                                        </td>
+                                        <td>
+                                            <strong>Variable:</strong> <code>let likes = 0;</code><br>
+                                            <em>Problem:</em> React doesn't know it changed, so the UI never updates.
+                                            When the component re-renders, the variable resets to 0.
+                                            <br><br>
+                                            <strong>Old Class:</strong> <code>this.state = { likes: 0 }</code>
+                                        </td>
+                                        <td>
+                                            <strong>Hook:</strong> <code>useState(0)</code><br>
+                                            <em>Solution:</em> React "hooks" into this variable, remembers it between
+                                            renders, and updates the UI automatically when it changes.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Saving to Storage</strong><br><small>(Side Effects)</small></td>
+                                        <td>
+                                            <strong>Manual:</strong> Writing <code>localStorage.setItem</code> directly
+                                            in the function body.<br>
+                                            <em>Problem:</em> It runs on <strong>every single render</strong>, slowing
+                                            down the app.
+                                            <br><br>
+                                            <strong>Old Class:</strong> <code>componentDidUpdate()</code>
+                                        </td>
+                                        <td>
+                                            <strong>Hook:</strong> <code>useEffect(..., [likes])</code><br>
+                                            <em>Solution:</em> It runs <strong>only</strong> when <code>likes</code>
+                                            changes. It's precise and efficient automation.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h5 class="mt-3">Visual Flow</h5>
+                        <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap text-center">
+                            <div class="border p-3 rounded bg-light">
+                                <strong>User Clicks</strong><br>
+                                <small>Event</small>
+                            </div>
+                            <div class="fs-4">&rarr;</div>
+                            <div class="border p-3 rounded bg-warning bg-opacity-10 border-warning">
+                                <strong>useState</strong><br>
+                                <small>Updates UI & Memory</small>
+                            </div>
+                            <div class="fs-4">&rarr;</div>
+                            <div class="border p-3 rounded bg-info bg-opacity-10 border-info">
+                                <strong>useEffect</strong><br>
+                                <small>Detects Change & Saves to Storage</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
