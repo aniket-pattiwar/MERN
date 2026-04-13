@@ -1,0 +1,47 @@
+Day 6.6 Notes: Library App Frontend
+
+1. Setup & Dependencies
+- Create the frontend application using Vite, a modern build tool for React that provides fast development and optimized production builds.
+- Install necessary dependencies: axios for making HTTP requests to the API, react-router-dom for handling client-side routing, and bootstrap for responsive CSS styling.
+- In main.jsx, import Bootstrap's CSS file after the React imports to apply the styles globally across the app.
+
+2. Book List Component
+- Create a new file components/BookList.jsx to handle fetching and displaying the list of books from the API.
+- Import React, useState, useEffect from 'react', and axios.
+- Initialize state: const [books, setBooks] = useState([]); to store the array of books.
+- Use useEffect with an empty dependency array to fetch books once when the component mounts: useEffect(() => { fetchBooks(); }, []);
+- Define fetchBooks as an async function: try { const res = await axios.get('http://localhost:5000/api/books'); setBooks(res.data); } catch (err) { console.error("Error fetching books:", err); }
+- Define handleDelete as an async function taking id: if (window.confirm('Are you sure you want to delete this book?')) { try { await axios.delete(`http://localhost:5000/api/books/${id}`); fetchBooks(); } catch (err) { console.error("Error deleting book:", err); } }
+- In the return JSX: div with className="container mt-4", h2 "Library Books", div with className="row", map over books array to create div with className="col-md-4 mb-4" for each book.
+- Inside each book div: div with className="card h-100 shadow-sm", conditional rendering of img if book.coverImage exists with src={`http://localhost:5000/${book.coverImage}`}, alt={book.title}, style height 250px objectFit cover.
+- Then div className="card-body", h5 className="card-title" {book.title}, h6 className="card-subtitle mb-2 text-muted" "By {book.author}", p className="card-text small" "ISBN: {book.isbn}", button className="btn btn-danger btn-sm" onClick={() => handleDelete(book._id)} "Delete".
+
+3. Add Book Form (with File Upload)
+- Create components/AddBook.jsx to handle the form for adding new books, including file upload for cover images.
+- Import React, useState from 'react', axios, and useNavigate from 'react-router-dom'.
+- State variables: const [formData, setFormData] = useState({ title: '', author: '', isbn: '' }); const [file, setFile] = useState(null);
+- const navigate = useNavigate(); to redirect after successful submission.
+- handleChange function: (e) => { setFormData({ ...formData, [e.target.name]: e.target.value }); }
+- handleFileChange function: (e) => { setFile(e.target.files[0]); }
+- handleSubmit async function: (e) => { e.preventDefault(); try { const data = new FormData(); data.append('title', formData.title); data.append('author', formData.author); data.append('isbn', formData.isbn); if (file) { data.append('coverImage', file); } await axios.post('http://localhost:5000/api/books/add', data); navigate('/'); } catch (err) { alert('Error adding book'); console.error(err); } }
+- JSX structure: div className="container mt-4", div className="card shadow p-4" with style maxWidth 600px margin 0 auto, h2 "Add New Book", form onSubmit={handleSubmit}.
+- Inside form: div className="mb-3" with label "Title" and input type="text" name="title" className="form-control" onChange={handleChange} required.
+- Similarly for author and isbn.
+- div className="mb-3" label "Cover Image" input type="file" className="form-control" onChange={handleFileChange}.
+- button type="submit" className="btn btn-primary w-100" "Add Book".
+
+4. Wiring it up (App.jsx)
+- In App.jsx, set up the routing and navigation for the app.
+- Import BrowserRouter, Routes, Route, Link from 'react-router-dom', and BookList and AddBook components.
+- Wrap the entire app in BrowserRouter.
+- Create a navbar: nav className="navbar navbar-expand-lg navbar-dark bg-dark", inside div className="container", Link className="navbar-brand" to="/" "Library App", div with Link className="btn btn-outline-light me-2" to="/" "Home", Link className="btn btn-primary" to="/add" "Add Book".
+- Then Routes component with Route path="/" element={<BookList />}, Route path="/add" element={<AddBook />}.
+
+5. Final UI & Integration Checklist
+- The final UI shows a clean interface with a dark navbar, book cards in a grid layout, and a centered form for adding books.
+- Key points for integrating the React frontend with a Node/Express backend:
+  - CORS (Cross-Origin Resource Sharing): Since the frontend runs on port 5173 (Vite default) and backend on 5000, the backend must allow cross-origin requests. Add app.use(cors()) in the Express server index.js file.
+  - API Base URL: In development, hardcode 'http://localhost:5000' for API calls. In production, use environment variables like import.meta.env.VITE_API_URL to make it configurable.
+  - The useEffect Hook: Place API calls for fetching initial data inside useEffect with an empty dependency array [] to ensure they run only once on component mount, preventing infinite re-rendering loops.
+  - Handling File Uploads: Files cannot be sent as JSON. Use the FormData object to create multipart/form-data requests. Append text fields and the file, then POST. Axios automatically sets the correct Content-Type header when it detects FormData.
+  - Serving Static Images: The frontend's img src attributes point to the backend's URL, e.g., 'http://localhost:5000/uploads/image.jpg'. The backend must serve the uploads folder statically using app.use(express.static('uploads')) in Express.

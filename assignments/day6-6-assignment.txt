@@ -1,0 +1,11 @@
+Day 6.6 Assignment: Country App Frontend
+
+1. Set up a new Vite React project and install axios, react-router-dom, and bootstrap. Add Bootstrap CSS import in main.jsx.
+
+2. Create a components/CountryList.jsx component that fetches countries from 'http://localhost:5000/api/countries' using axios and useState/useEffect.
+Display them in Bootstrap cards showing name, capital, and flag image if available. Include a delete button that confirms and deletes via API.
+
+3. Create a components/AddCountry.jsx component with a form for country name, capital, and flag image upload.
+Use FormData to submit to 'http://localhost:5000/api/countries/add' and navigate back to home on success.
+
+4. In App.jsx, set up BrowserRouter with routes for '/' (CountryList) and '/add' (AddCountry). Include a navbar with links to Home and Add Country.

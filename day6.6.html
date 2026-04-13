@@ -18,34 +18,32 @@
                 aria-labelledby="pills-session-library-fe-tab">
 
                 <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header text-white">
                         <h3>1. Setup & Dependencies</h3>
                     </div>
                     <div class="card-body">
-                        <p>Let's create the frontend to consume our Library API. We will use Vite, Axios for API calls,
+                        <p>Create the frontend to consume Library API. Use Vite, Axios for API calls,
                             and Bootstrap for styling.</p>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>npm create vite@latest library-client -- --template react
-cd library-client
+                        <div class="code-block">
+                            <pre><code>npm create vite@latest
+
 npm install axios react-router-dom bootstrap</code></pre>
                         </div>
-                        <p>Add Bootstrap in <code>src/main.jsx</code>:</p>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                        <p>Add Bootstrap in <code>main.jsx</code>:</p>
+                        <div class="code-block">
                             <pre><code>import 'bootstrap/dist/css/bootstrap.min.css';</code></pre>
                         </div>
                     </div>
                 </div>
 
                 <div class="card mb-4">
-                    <div class="card-header bg-info text-dark">
+                    <div class="card-header text-dark">
                         <h3>2. Book List Component</h3>
                     </div>
                     <div class="card-body">
-                        <p>Create <code>src/components/BookList.jsx</code> to fetch and display books.</p>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
+                        <p>Create <code>components/BookList.jsx</code> to fetch and display books.</p>
+                        <div class="code-block">
+                            <pre><code>
 const BookList = () => {
     const [books, setBooks] = useState([]);
 
@@ -101,19 +99,18 @@ const BookList = () => {
         &lt;/div&gt;
     );
 };
-
-export default BookList;</code></pre>
+</code></pre>
                         </div>
                     </div>
                 </div>
 
                 <div class="card mb-4">
-                    <div class="card-header bg-success text-white">
+                    <div class="card-header text-white">
                         <h3>3. Add Book Form (with File Upload)</h3>
                     </div>
                     <div class="card-body">
-                        <p>Create <code>src/components/AddBook.jsx</code> to handle form data and image upload.</p>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
+                        <p>Create <code>components/AddBook.jsx</code> to handle form data and image upload.</p>
+                        <div class="code-block">
                             <pre><code>import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -132,29 +129,26 @@ const AddBook = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            let coverImagePath = '';
-            
-            // 1. Upload Image if selected
-            if (file) {
-                const data = new FormData();
-                data.append('coverImage', file);
-                const uploadRes = await axios.post('http://localhost:5000/api/books/upload', data);
-                coverImagePath = uploadRes.data.filePath;
-            }
-
-            // 2. Create Book Record with image path
-            await axios.post('http://localhost:5000/api/books', {
-                ...formData,
-                coverImage: coverImagePath
-            });
-
-            navigate('/'); // Redirect to Home
-        } catch (err) {
-            alert('Error adding book');
-            console.error(err);
-        }
+     e.preventDefault();
+ 
+     try {
+         const data = new FormData();
+ 
+         data.append('title', formData.title);
+         data.append('author', formData.author);
+         data.append('isbn', formData.isbn);
+ 
+         if (file) {
+             data.append('coverImage', file);
+         }
+ 
+         await axios.post('http://localhost:5000/api/books/add', data);
+ 
+         navigate('/');
+     } catch (err) {
+         alert('Error adding book');
+         console.error(err);
+     }
     };
 
     return (
@@ -191,13 +185,13 @@ export default AddBook;</code></pre>
                 </div>
 
                 <div class="card mb-4">
-                    <div class="card-header bg-warning text-dark">
+                    <div class="card-header text-dark">
                         <h3>4. Wiring it up (App.jsx)</h3>
                     </div>
                     <div class="card-body">
-                        <p>Setup routes in <code>src/App.jsx</code>.</p>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+                        <p>Routes in <code>App.jsx</code>.</p>
+                        <div class="code-block">
+<pre><code>import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import BookList from './components/BookList';
 import AddBook from './components/AddBook';
 
@@ -228,31 +222,27 @@ export default App;</code></pre>
                 </div>
 
                 <div class="card mb-4">
-                    <div class="card-header bg-secondary text-white">
+                    <div class="card-header text-white">
                         <h3>5. Final UI & Integration Checklist</h3>
                     </div>
                     <div class="card-body">
-                        <h5 class="mb-3">Visualizing the Result</h5>
                         <div class="text-center my-3">
-                            <!-- 
-                                IMAGE PROMPT: "A screenshot of a React web application for a Library. The top navigation bar has a brand logo 'Library App' and links for 'Home' and 'Add Book'. The main content area displays a grid of book cards. Each card shows a book cover image, title (e.g., 'The Great Gatsby'), author, ISBN, and a red 'Delete' button. One card might be missing an image, showing a placeholder. The design uses Bootstrap styling."
-                            -->
                             <img src="./images/library-app-ui.png" class="img-fluid rounded course-image"
                                 alt="Library App Final UI">
                         </div>
 
                         <h5 class="mt-4">Key Focus Points for Integration</h5>
-                        <p>When connecting your React frontend to a Node/Express backend, keep these critical points in
+                        <p>When connecting the React frontend to a Node/Express backend, keep these critical points in
                             mind:</p>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <strong>1. CORS (Cross-Origin Resource Sharing):</strong><br>
-                                Your backend (port 5000) must explicitly allow requests from your frontend (port 5173).
-                                Ensure <code>app.use(cors())</code> is in your Express <code>index.js</code>.
+                                Backend (port 5000) must explicitly allow requests from frontend (port 5173).
+                                Ensure <code>app.use(cors())</code> is present in Express - <code>index.js</code>.
                             </li>
                             <li class="list-group-item">
                                 <strong>2. API Base URL:</strong><br>
-                                Hardcoding <code>http://localhost:5000</code> works for dev, but in production, you'll
+                                Hardcoding <code>http://localhost:5000</code> works for dev, but in production, 
                                 use environment variables (<code>import.meta.env.VITE_API_URL</code>).
                             </li>
                             <li class="list-group-item">
@@ -263,7 +253,7 @@ export default App;</code></pre>
                             </li>
                             <li class="list-group-item">
                                 <strong>4. Handling File Uploads:</strong><br>
-                                You cannot send files as JSON. You must use the <code>FormData</code> object and set the
+                                Cannot send files as JSON. Use the <code>FormData</code> object and set the
                                 request header (Axios does this automatically when it sees FormData).
                             </li>
                             <li class="list-group-item">

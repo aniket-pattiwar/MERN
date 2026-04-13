@@ -1,0 +1,49 @@
+Day 6.5 Notes: Routers & Hooks/classes
+
+1. React Router: The GPS of your App
+- Traditional HTML (MPA): Click link -> Server request -> Full reload (slow)
+- React Router (SPA): Click link -> JS intercepts -> Swap component (instant)
+- Required for SPAs to have different URLs and browser history without reload.
+- Alternatives: Conditional rendering (messy), other libraries like TanStack Router, Wouter.
+- Page Components: Create Home and About components.
+- Implement in App.jsx: Import BrowserRouter, Routes, Route, Link; wrap with BrowserRouter, add nav with Links, Routes with Route elements.
+- Entry point: Keep React.StrictMode.
+- Components:
+  - BrowserRouter: Container, wraps everything.
+  - Routes: Groups routes, ensures one shows.
+  - Route: Defines path and component.
+  - Link: Navigation, changes URL without reload.
+
+2. Classes vs. Hooks: The Evolution
+- React originally used Class Components, then Hooks in 2018 for Functional Components.
+- Comparison:
+  - Syntax: class App extends React.Component vs function App()
+  - State: this.state = {count:0} vs const [count, setCount] = useState(0)
+  - Lifecycle: componentDidMount() vs useEffect()
+  - Complexity: High vs Low
+- Code examples for Counter.
+
+3. Essential Hooks Toolkit
+- useState: Memory, stores changing data (input text, counter, toggle)
+- useEffect: Side effects, runs after render (API fetch, timer, update title)
+- useContext: Global data, avoids prop drilling (user login, theme)
+- useRef: DOM access, reference elements (focus input)
+- useParams: URL data, reads dynamic parts (id from /product/123)
+
+4. Examples
+- Digital Clock: useState for time, useEffect for timer update and cleanup.
+- Window Size Tracker: useState for width, useEffect for resize listener and cleanup.
+
+5. The "Like" Counter (useState)
+- useState(42), button onClick setLikes(likes+1)
+
+6. Why does it reset on refresh?
+- State is in RAM, cleared on refresh.
+- Solution: Use localStorage.
+- Initialize useState with localStorage.getItem or 0
+- useEffect to setItem when likes change.
+
+7. Why did we need these Hooks?
+- For state management: Variables don't update UI, classes are complex; useState hooks into variable.
+- For side effects: Manual runs every render; useEffect runs only on change.
+- Flow: User clicks -> useState updates UI & memory -> useEffect detects change & saves.

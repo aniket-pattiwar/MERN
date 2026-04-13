@@ -1,0 +1,6 @@
+Day 6.5 Assignment: Routers & Hooks
+
+1. Create two simple page components: Home and About. Each should return an h2 with the page name.
+2. In App.jsx, set up React Router using BrowserRouter, Routes, Route, and Link to navigate between Home (/) and About (/about) pages.
+3. Create a LikeCounter component using useState that starts at 0 and increments on button click.
+4. Modify the LikeCounter to persist the likes count in localStorage using useEffect, so it doesn't reset on refresh.
