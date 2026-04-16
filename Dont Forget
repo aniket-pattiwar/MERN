@@ -1,5 +1,7 @@
 TOKEN
 
+Hashing
+
 PROTECTED ROUTE
 
 firebase
@@ -9,3 +11,103 @@ aws
 test
 
 git
+
+
+When do you actually need Bootstrap JS?
+
+Only if you use:
+
+Modal
+Dropdown
+Tooltip
+Collapse
+Carousel
+
+👉 If you're just using buttons, grid, forms → CSS alone is enough.
+
+
+
+❓ Step 9: Common Student Confusions
+❌ “Context replaces Redux”
+
+👉 Clarify:
+
+Context = data sharing
+Redux = state management system
+❌ “Redux is always better”
+
+👉 Clarify:
+
+Overkill for small apps
+❌ “Context has no performance issues”
+
+👉 Explain:
+
+Re-renders happen
+
+
+
+Context lets any component directly access shared data without passing props step-by-step.
+
+Super Simple Summary
+🧵 Prop Drilling → pass data step by step
+🌐 Context → share data globally (no props)
+🏪 Redux → manage complex global state with rules
+🎯 Easy Rule for Students
+Small app → Prop Drilling
+Medium app → Context
+Large app → Redux
+
+###########################################################
+
+| Feature        | `vite.config`           | `eslint.config`           |
+| -------------- | ----------------------- | ------------------------- |
+| Purpose        | Build & dev server      | Code linting & quality    |
+| Runs when      | Dev/build time          | During development / CI   |
+| Affects output | Yes                     | No (just warnings/errors) |
+| Required?      | Yes (for customization) | Optional but recommended  |
+
+
+Here’s the simplest way to understand it:
+
+* **vite config (`vite.config`)**
+  Controls how your React app **runs and builds**.
+  Think: server, speed, plugins, build output.
+
+* **eslint config (`eslint.config`)**
+  Controls how your code is **checked for mistakes and style issues**.
+  Think: warnings, errors, clean code.
+
+👉 In short:
+
+* **Vite = run the app**
+* **ESLint = check the code**
+
+#########################################################
+How They Work Together
+Vite runs your React app fast ⚡
+ESLint keeps your code clean 🧹
+You often integrate ESLint into Vite via plugins or run it separately
+
+#########################################################
+
+“Redux is useful when one component updates data and another unrelated component needs it.”
+
+Better Real-Life Analogy
+Navbar (Cart icon) = shows total items
+Product page = adds items
+
+👉 They don’t know each other
+👉 Redux connects them
+
+“One component updates data, another unrelated component reads it → Redux is useful”
+
+
+
+##############################
+src/app/store.js → store setup
+src/features/cart/cartSlice.js → slice (add/remove logic)
+src/components/Navbar.jsx → shows cart count
+src/components/ProductPage.jsx → buttons to update cart
+src/App.jsx → combines components
+src/main.jsx → wraps app with Provider

@@ -2,7 +2,7 @@
     <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light);">
         <h2 class="my-2">State Management with Redux</h2>
     </div>
-    <div class="card-body" >
+    <div class="card-body">
         <!-- Session Navigation -->
         <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day6" role="tablist">
             <li class="nav-item" role="presentation">
@@ -13,7 +13,7 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-session14-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-session14" type="button" role="tab" aria-controls="pills-session14"
-                    aria-selected="false">Redux & Routing Lab</button>
+                    aria-selected="false">Redux & Routing</button>
             </li>
         </ul>
 
@@ -22,22 +22,6 @@
             <!-- Session 13 -->
             <div class="tab-pane fade show active" id="pills-session13" role="tabpanel"
                 aria-labelledby="pills-session13-tab">
-                <h2 class="mb-3">Core State Management Concepts</h2>
-
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h3>Concept: What is "State"?</h3>
-                    </div>
-                    <div class="card-body">
-                        <p>In React, "state" is any data that describes a component's condition. It's the memory of the
-                            component. When the state changes, React automatically re-renders the component to reflect
-                            those changes.</p>
-                        <h6>Real-World Analogy: A Light Switch</h6>
-                        <p>A light switch has a state: it can be either "on" or "off". When you flip the switch (an
-                            action), you change its state, and the room's appearance (the UI) changes instantly.</p>
-                    </div>
-                </div>
-
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>The Problem: Prop Drilling</h3>
@@ -46,7 +30,7 @@
                         <p>In a large React app, you often need to pass data from a top-level component to a deeply
                             nested component. Passing this data through many intermediate components that don't need it
                             is called "prop drilling." It makes code hard to read and maintain.</p>
-                        <h6>Real-World Analogy: Passing a Message</h6>
+                        <h5>Example: Passing a Message</h5>
                         <p>Imagine telling a secret to the first person in a long line, who then has to whisper it to
                             the next, and so on, until it reaches the last person. The people in the middle don't care
                             about the message, but they are forced to participate in passing it along.</p>
@@ -54,8 +38,8 @@
                             <!-- 
                                 IMAGE PROMPT: "A diagram showing 'prop drilling' in React. A top 'App' component has a piece of state. An arrow shows the state being passed as a prop to 'Component A', then from A to 'Component B', and finally from B to 'Component C', which is the only one that actually uses the state. Components A and B are shown as transparent or greyed out to indicate they are just passing the prop through."
                             -->
-                            <img src="./images/prop-drilling.png"
-                                class="img-fluid rounded course-image" alt="Prop Drilling">
+                            <img src="./images/prop-drilling.png" class="img-fluid rounded course-image"
+                                alt="Prop Drilling">
                         </div>
                     </div>
                 </div>
@@ -68,216 +52,303 @@
                         <p>Redux solves prop drilling by creating a single, centralized "store" for your entire
                             application's state. Any component can access or update this state without needing props
                             passed down to it.</p>
-                        <h6>Real-World Analogy: A Central Bank</h6>
+                        <h5>Example: A Central Bank</h5>
                         <p>Instead of passing cash from person to person, everyone uses a central bank (the
                             <strong>Store</strong>). If you want to change your balance, you fill out a deposit slip (an
                             <strong>Action</strong>) and give it to the teller (the <strong>Reducer</strong>), who
-                            updates your account. Anyone with permission can check the balance at any time.</p>
+                            updates your account. Anyone with permission can check the balance at any time.
+                        </p>
                         <div class="text-center my-3">
                             <!-- 
                                 IMAGE PROMPT: "A diagram of the Redux Unidirectional Data Flow. An arrow goes from 'UI' to 'Action', then to 'Reducer', then to 'Store'. A final arrow goes from 'Store' back to 'UI', completing the loop. Label the arrows: 1. Dispatch Action, 2. Reducer handles Action, 3. Store is Updated, 4. UI re-renders."
                             -->
-                            <img src="./images/redux-flow.png"
-                                class="img-fluid rounded course-image" alt="Redux Flow">
+                            <img src="./images/redux-flow.png" class="img-fluid rounded course-image" alt="Redux Flow">
                         </div>
                     </div>
                 </div>
+
+
             </div>
 
             <!-- Session 14 -->
             <div class="tab-pane fade" id="pills-session14" role="tabpanel" aria-labelledby="pills-session14-tab">
-                <h2 class="mb-3">Labs 11-13: Redux & Routing in Practice</h2>
-
+                <h2 class="mb-3">Redux & Routing</h2>
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3>Lab 11: Implementing Redux with Redux Toolkit</h3>
+                        <h3>App Structure</h3>
                     </div>
                     <div class="card-body">
-                        <p>We will build a simple counter. The modern, recommended way to use Redux is with
-                            <strong>Redux Toolkit</strong>, which simplifies the setup.</p>
-                        <h5>1. Installation</h5>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>npm install @reduxjs/toolkit react-redux</code></pre>
+
+                        <div class="app-structure">
+                            <div class="tree-node">App</div>
+                            <div class="tree-branch">
+                                <span class="tree-line">├──</span> <span class="tree-item">Navbar (shows cart
+                                    count)</span>
+                            </div>
+                            <div class="tree-branch">
+                                <span class="tree-line">└──</span> <span class="tree-item">ProductPage (adds/removes
+                                    items)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3>Without Redux</h3>
+                        </div>
+                        <div class="card-body">
+
+                            &lt;App&gt; </br>
+                            &lt;Navbar cartCount={cartCount} /&gt; </br>
+                            &lt;ProductPage setCartCount={setCartCount} /&gt; </br>
+                            &lt;/App&gt;
+                            </br>
+                            </br>
+                            <h5>Problem:</h5>
+                            <h6>Passing props everywhere </h6>
+                            <h6>Components are not directly related</h6>
+                            <h6>Gets messy in big apps</h6>
                         </div>
 
-                        <h5 class="mt-4">2. Create a "Slice" (`src/features/counter/counterSlice.js`)</h5>
-                        <p>A "slice" automatically generates reducers and actions from a simple object.</p>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>import { createSlice } from '@reduxjs/toolkit';
 
-export const counterSlice = createSlice({
-  name: 'counter',
-  initialState: { value: 0 },
-  reducers: {
-    increment: (state) => { state.value += 1; },
-    decrement: (state) => { state.value -= 1; },
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h3>Solution: Implementing Redux with Redux Toolkit</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Build a simple cart. The modern, recommended way to use Redux is with
+                                    <strong>Redux Toolkit</strong>, which simplifies the setup.
+                                </p>
+                                <pre>src/
+│
+├── app/
+│   └── store.js
+│
+├── features/
+│   └── cart/
+│       └── cartSlice.js
+│
+├── components/
+│   ├── Navbar.jsx
+│   └── ProductPage.jsx
+│
+├── App.jsx
+├── main.jsx</pre>
+
+
+                                <h5>1. Installation</h5>
+                                <div class="code-block">
+                                    <pre><code>npm install @reduxjs/toolkit react-redux</code></pre>
+                                </div>
+
+                                <h5 class="mt-4">2. Create a "Slice" (`features/cart/cartSlice.js`)</h5>
+                                <p>A "slice" automatically generates reducers and actions from a simple object.</p>
+                                <div class="code-block">
+                                    <pre><code><span class="keyword">import</span> { createSlice } <span class="keyword">from</span> <span class="string">'@reduxjs/toolkit'</span>;
+
+<span class="keyword">const</span> cartSlice = createSlice({
+  <span class="property">name</span>: <span class="string">'cart'</span>,
+  <span class="property">initialState</span>: {
+    <span class="property">items</span>: <span class="number">0</span>
   },
+  <span class="property">reducers</span>: {
+    <span class="function">addItem</span>: (<span class="parameter">state</span>) <span class="operator">=&gt;</span> {
+      state.<span class="property">items</span> <span class="operator">+=</span> <span class="number">1</span>;
+    },
+    <span class="function">removeItem</span>: (<span class="parameter">state</span>) <span class="operator">=&gt;</span> {
+      <span class="keyword">if</span> (state.<span class="property">items</span> <span class="operator">&gt;</span> <span class="number">0</span>) {
+        state.<span class="property">items</span> <span class="operator">-=</span> <span class="number">1</span>;
+      }
+    }
+  }
 });
 
-export const { increment, decrement } = counterSlice.actions;
-export default counterSlice.reducer;</code></pre>
-                        </div>
+<span class="keyword">export</span> <span class="keyword">const</span> { addItem, removeItem } = cartSlice.<span class="property">actions</span>;
+<span class="keyword">export</span> <span class="keyword">default</span> cartSlice.<span class="property">reducer</span>;</code></pre>
+                                </div>
 
-                        <h5 class="mt-4">3. Configure the Store (`src/app/store.js`)</h5>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+                                <h5 class="mt-4">3. Configure the Store (`app/store.js`)</h5>
+                                <div class="code-block">
+                                    <pre><code><span class="keyword">import</span> { configureStore } <span class="keyword">from</span> <span class="string">'@reduxjs/toolkit'</span>;
+<span class="keyword">import</span> cartReducer <span class="keyword">from</span> <span class="string">'./cartSlice'</span>;
 
-export default configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
-});</code></pre>
-                        </div>
+<span class="keyword">const</span> store = configureStore({
+  <span class="property">reducer</span>: {
+    <span class="property">cart</span>: cartReducer
+  }
+});
 
-                        <h5 class="mt-4">4. Provide the Store (`src/main.jsx`)</h5>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import store from './app/store';
-import { Provider } from 'react-redux';
+<span class="keyword">export</span> <span class="keyword">default</span> store;</code></pre>
+                                </div>
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+                                <h5 class="mt-4">4. Provide the Store (`main.jsx`)</h5>
+                                <div class="code-block">
+                                    <pre><code>
+<span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store'</span>;
+<span class="keyword">import</span> { Provider } <span class="keyword">from</span> <span class="string">'react-redux'</span>;
+
+ReactDOM.createRoot(document.getElementById(<span class="string">'root'</span>)).render(
   &lt;React.StrictMode&gt;
     &lt;Provider store={store}&gt;
       &lt;App /&gt;
     &lt;/Provider&gt;
   &lt;/React.StrictMode&gt;
 );</code></pre>
-                        </div>
+                                </div>
 
-                        <h5 class="mt-4">5. Use the State in a Component (`src/App.jsx`)</h5>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>import { useSelector, useDispatch } from 'react-redux';
-import { decrement, increment } from './features/counter/counterSlice';
+                                <h5 class="mt-4">5. Navbar.jsx (Reads Data)</h5>
 
-function App() {
-  const count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
 
-  return (
+
+                                <div class="code-block">
+                                    <pre><code><span class="keyword">import</span> { useSelector } <span class="keyword">from</span> <span class="string">'react-redux'</span>;
+
+<span class="keyword">function</span> Navbar() {
+  <span class="keyword">const</span> items = useSelector((<span class="parameter">state</span>) <span class="operator">=&gt;</span> state.cart.items);
+
+  <span class="keyword">return</span> (
+    &lt;h2&gt;Cart Items: {items}&lt;/h2&gt;
+  );
+}
+
+<span class="keyword">export</span> <span class="keyword">default</span> Navbar;</code></pre>
+                                </div>
+
+
+                                <h5 class="mt-4">6. ProductPage.jsx (Updates Data)</h5>
+
+                                <div class="code-block">
+                                    <pre><code><span class="keyword">import</span> { useDispatch } <span class="keyword">from</span> <span class="string">'react-redux'</span>;
+<span class="keyword">import</span> { addItem, removeItem } <span class="keyword">from</span> <span class="string">'./cartSlice'</span>;
+
+<span class="keyword">function</span> ProductPage() {
+  <span class="keyword">const</span> dispatch = useDispatch();
+
+  <span class="keyword">return</span> (
     &lt;div&gt;
-      &lt;h1&gt;Count: {count}&lt;/h1&gt;
-      &lt;button onClick={() => dispatch(increment())}&gt;Increment&lt;/button&gt;
-      &lt;button onClick={() => dispatch(decrement())}&gt;Decrement&lt;/button&gt;
+      &lt;button onClick={() <span class="operator">=&gt;</span> dispatch(addItem())}&gt;
+        Add Item
+      &lt;/button&gt;
+
+      &lt;button onClick={() <span class="operator">=&gt;</span> dispatch(removeItem())}&gt;
+        Remove Item
+      &lt;/button&gt;
     &lt;/div&gt;
   );
 }
 
-export default App;</code></pre>
-                        </div>
-                    </div>
-                </div>
+<span class="keyword">export</span> <span class="keyword">default</span> ProductPage;</code></pre>
+                                </div>
 
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h3>Lab 12: Async Redux & Middleware</h3>
-                    </div>
-                    <div class="card-body">
-                        <p>Redux middleware lets you add extra functionality. Redux Toolkit's `createAsyncThunk` is the
-                            standard way to handle API calls.</p>
-                        <h6>Real-World Analogy: A Personal Assistant</h6>
-                        <p>Think of `createAsyncThunk` as a personal assistant. You tell the assistant, "Go fetch my
-                            coffee" (dispatch the thunk). The assistant handles the process: going to the cafe
-                            (pending), getting the coffee (fulfilled), or finding the cafe closed (rejected), and then
-                            reports back to you.</p>
-                        <h5 class="mt-4">Example: Fetching User Data</h5>
-                        <p>This example shows how to create a thunk to fetch user data from an API.</p>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+                                <h5 class="mt-4">7. Use the State in a Component (`src/App.jsx`)</h5>
+                                <div class="code-block">
+                                    <pre><code><span class="keyword">import</span> Navbar <span class="keyword">from</span> <span class="string">'./Navbar'</span>;
+<span class="keyword">import</span> ProductPage <span class="keyword">from</span> <span class="string">'./ProductPage'</span>;
+
+<span class="keyword">function</span> App() {
+  <span class="keyword">return</span> (
+    &lt;div&gt;
+      &lt;Navbar /&gt;
+      &lt;ProductPage /&gt;
+    &lt;/div&gt;
+  );
+}
+
+<span class="keyword">export</span> <span class="keyword">default</span> App;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li><strong>Step 1:</strong>"Navbar needs cart count"</li>
+                            <li><strong>Step 2:</strong>"Product page updates cart"</li>
+                            <li><strong>Step 3:</strong>"They are NOT directly connected"</li>
+                            <li><strong>Step 4:</strong>"Redux acts as a middleman (store)"</li>
+                        </ul>
+
+                        <p class="ms-2"><strong>Example:</strong></p>
+                        <ul>
+                            <li>Click <em>Add Item</em></li>
+                            <li><code>dispatch(addItem())</code></li>
+                            <li>Redux updates store</li>
+                            <li>Navbar automatically updates</li>
+                        </ul>
+                        <p class="ms-2"><em>"Redux is used when multiple components need to share and update the same
+                                data without passing props."</em></p>
+
+                        <!-- <div class="card mb-4">
+                            <div class="card-header">
+                                <h3>Async Redux & Middleware</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Redux middleware lets you add extra functionality. Redux Toolkit's `createAsyncThunk`
+                                    is the
+                                    standard way to handle API calls.</p>
+                                <h6>Example: A Personal Assistant</h6>
+                                <p>Think of `createAsyncThunk` as a personal assistant. You tell the assistant, "Go
+                                    fetch my
+                                    coffee" (dispatch the thunk). The assistant handles the process: going to the cafe
+                                    (pending), getting the coffee (fulfilled), or finding the cafe closed (rejected),
+                                    and then
+                                    reports back to you.</p>
+                                <h5 class="mt-4">Example: Fetching User Data</h5>
+                                <p>This example shows how to create a thunk to fetch user data from an API.</p>
+                                <div class="code-block">
+                                    <pre><code><span class="keyword">import</span> { createSlice, createAsyncThunk } <span class="keyword">from</span> <span class="string">'@reduxjs/toolkit'</span>;
 
 // 1. Create the async thunk
-export const fetchUserById = createAsyncThunk(
-  'users/fetchById',
-  async (userId) => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
-    return response.json();
+<span class="keyword">export</span> <span class="keyword">const</span> fetchUserById = createAsyncThunk(
+  <span class="string">'users/fetchById'</span>,
+  <span class="keyword">async</span> (<span class="parameter">userId</span>) <span class="operator">=&gt;</span> {
+    <span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">`https://jsonplaceholder.typicode.com/users/${userId}`</span>);
+    <span class="keyword">return</span> response.json();
   }
 );
 
 // 2. Create the slice to handle the thunk's lifecycle
-const usersSlice = createSlice({
-  name: 'users',
-  initialState: { entity: null, loading: 'idle' },
-  reducers: {},
-  extraReducers: (builder) => {
+<span class="keyword">const</span> usersSlice = createSlice({
+  <span class="property">name</span>: <span class="string">'users'</span>,
+  <span class="property">initialState</span>: { <span class="property">entity</span>: <span class="keyword">null</span>, <span class="property">loading</span>: <span class="string">'idle'</span> },
+  <span class="property">reducers</span>: {},
+  <span class="property">extraReducers</span>: (<span class="parameter">builder</span>) <span class="operator">=&gt;</span> {
     builder
-      .addCase(fetchUserById.pending, (state) => {
-        state.loading = 'loading';
+      .addCase(fetchUserById.pending, (<span class="parameter">state</span>) <span class="operator">=&gt;</span> {
+        state.<span class="property">loading</span> = <span class="string">'loading'</span>;
       })
-      .addCase(fetchUserById.fulfilled, (state, action) => {
-        state.loading = 'idle';
-        state.entity = action.payload;
+      .addCase(fetchUserById.fulfilled, (<span class="parameter">state</span>, <span class="parameter">action</span>) <span class="operator">=&gt;</span> {
+        state.<span class="property">loading</span> = <span class="string">'idle'</span>;
+        state.<span class="property">entity</span> = action.<span class="property">payload</span>;
       });
   },
 });
 
-export default usersSlice.reducer;</code></pre>
-                        </div>
-                    </div>
-                </div>
+<span class="keyword">export</span> <span class="keyword">default</span> usersSlice.<span class="property">reducer</span>;</code></pre>
+                                </div>
+                            </div>
+                        </div> -->
 
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h3>Lab 13: Routing with React Router</h3>
-                    </div>
-                    <div class="card-body">
-                        <p>React Router is the standard library for handling navigation in a React SPA.</p>
-                        <h5>1. Installation</h5>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>npm install react-router-dom</code></pre>
-                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h3>Routing with useParams() hook</h3>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="mt-4">1. Advanced: Dynamic Routes</h5>
+                                <p>Dynamic routes allow you to match URL patterns, like a user ID.</p>
+                                <div class="code-block">
+                                    <pre><code><span class="keyword">import</span> { useParams } <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;
 
-                        <h5 class="mt-4">2. Setup and Basic Routing</h5>
-                        <p>Wrap your app in `BrowserRouter` and define your routes.</p>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>// In main.jsx or App.jsx
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-
-const HomePage = () => &lt;h1&gt;Home Page&lt;/h1&gt;;
-const AboutPage = () => &lt;h1&gt;About Page&lt;/h1&gt;;
-
-function App() {
-  return (
-    &lt;BrowserRouter&gt;
-      &lt;nav&gt;
-        &lt;Link to="/"&gt;Home&lt;/Link&gt; | &lt;Link to="/about"&gt;About&lt;/Link&gt;
-      &lt;/nav&gt;
-      &lt;Routes&gt;
-        &lt;Route path="/" element={&lt;HomePage /&gt;} /&gt;
-        &lt;Route path="/about" element={&lt;AboutPage /&gt;} /&gt;
-      &lt;/Routes&gt;
-    &lt;/BrowserRouter&gt;
-  );
-}</code></pre>
-                        </div>
-
-                        <h5 class="mt-4">3. Advanced: Dynamic Routes</h5>
-                        <p>Dynamic routes allow you to match URL patterns, like a user ID.</p>
-                        <div class="code-block"><button class="copy-btn" title="Copy to clipboard">Copy</button>
-                            <pre><code>import { useParams } from 'react-router-dom';
-
-// A component to display user details
-const UserProfile = () => {
-  // useParams() hook reads the dynamic part of the URL
-  let { userId } = useParams();
-  return &lt;h1&gt;Profile for User ID: {userId}&lt;/h1&gt;;
+<span class="keyword">const</span> UserProfile = () <span class="operator">=&gt;</span> {
+  <span class="keyword">let</span> { userId } = useParams(); // it reads the dynamic part of the URL
+  <span class="keyword">return</span> &lt;h1&gt;Profile for User ID: {userId}&lt;/h1&gt;;
 };
 
-// In your Routes setup:
-&lt;Route path="/users/:userId" element={&lt;UserProfile /&gt;} /&gt;
+&lt;Route path=<span class="string">"/users/:userId"</span> element={&lt;UserProfile /&gt;} /&gt;
 
-// A link to this route would look like:
-&lt;Link to="/users/123"&gt;View User 123&lt;/Link&gt;</code></pre>
-                        </div>
-                        <h6 class="mt-3">Browser Output (when visiting `/users/123`):</h6>
-                        <div class="code-output">
-                            <pre>Profile for User ID: 123</pre>
+&lt;Link to=<span class="string">"/users/123"</span>&gt;View User 123&lt;/Link&gt;</code></pre>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>

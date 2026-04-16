@@ -419,7 +419,7 @@ button, .btn {
 
     <header class="course-header text-center position-relative">
         <div class="container">
-            <h1 class="display-4">MERN Stack</h1>
+            <h1 class="display-4">MERN Stack for FinTech</h1>
             <p class="lead">A comprehensive course from setup to deployment.</p>
         </div>
         <button id="theme-toggle" class="btn btn-outline-light position-absolute top-0 end-0 m-3">Dark Mode</button>
@@ -465,24 +465,29 @@ button, .btn {
                     type="button" role="tab" aria-controls="day6-6-content" aria-selected="false">9. Library Frontend</button>
             </li>
              
-         <!--   <li class="nav-item" role="presentation">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="day10-tab-btn" data-bs-toggle="pill" data-bs-target="#day10-content"
+                    type="button" role="tab" aria-controls="day10-content" aria-selected="false">10. Prop drilling</button>
+            </li>
+
+            <li class="nav-item" role="presentation">
                 <button class="nav-link" id="day7-tab-btn" data-bs-toggle="pill" data-bs-target="#day7-content"
                     type="button" role="tab" aria-controls="day7-content" aria-selected="false">11. Redux</button>
             </li>
-            <li class="nav-item" role="presentation">
+           <!-- <li class="nav-item" role="presentation">
                 <button class="nav-link" id="day8-tab-btn" data-bs-toggle="pill" data-bs-target="#day8-content"
                     type="button" role="tab" aria-controls="day8-content" aria-selected="false">12. Advanced
-                    React</button>
+                    React</button> -->
             </li>
-            <li class="nav-item" role="presentation">
+            <!-- <li class="nav-item" role="presentation">
                 <button class="nav-link" id="day6-7-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-7-content"
-                    type="button" role="tab" aria-controls="day6-7-content" aria-selected="false">10. Deployment</button>
-            </li>
-            <li class="nav-item" role="presentation">
+                    type="button" role="tab" aria-controls="day6-7-content" aria-selected="false">12. Deployment</button>
+            </li> -->
+            <!-- <li class="nav-item" role="presentation">
                 <button class="nav-link" id="day9-tab-btn" data-bs-toggle="pill" data-bs-target="#day9-content"
                     type="button" role="tab" aria-controls="day9-content" aria-selected="false">13. Full Stack
                     App</button>
-            </li> -->
+            </li>  -->
         </ul>
 
         <!-- Main Day Content -->
@@ -544,7 +549,7 @@ button, .btn {
             // --- Dynamic Content Loading ---
             const dayTabContent = document.getElementById('day-tab-content');
             // Define days explicitly to handle 6.5
-            const days = ['1', '2', '2.2', '3', '4', '5', '6', '6.5', '6.6', '6.7', '7', '8', '9'];
+            const days = ['1', '2', '2.2', '3', '4', '5', '6', '6.5', '6.6', '6.7', '10', '7', '8', '9'];
 
             days.forEach((day, index) => {
                 const fileId = `day${day}`;

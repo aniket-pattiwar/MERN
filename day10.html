@@ -1,0 +1,524 @@
+<div class="card shadow-sm mb-4">
+    <div class="card-header text-center" style="background-color: var(--bs-dark); color: var(--bs-light);">
+        <h2 class="my-2">Prop Drilling vs Context API</h2>
+    </div>
+    <div class="card-body" >
+        <!-- Session Navigation -->
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-day10" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-part1-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-part1" type="button" role="tab" aria-controls="pills-part1"
+                    aria-selected="true">Prop Drilling Version</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-part2-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-part2" type="button" role="tab" aria-controls="pills-part2"
+                    aria-selected="false">Context API Version</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-part3-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-part3" type="button" role="tab" aria-controls="pills-part3"
+                    aria-selected="false">Comparison</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-part4-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-part4" type="button" role="tab" aria-controls="pills-part4"
+                    aria-selected="false">Bonus Features</button>
+            </li>
+        </ul>
+
+        <!-- Session Content -->
+        <div class="tab-content" id="pills-tabContent-day10">
+            <!-- PART 1 -->
+            <div class="tab-pane fade show active" id="pills-part1" role="tabpanel"
+                aria-labelledby="pills-part1-tab">
+                <h2 class="mb-3">PART 1: PROP DRILLING VERSION</h2>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>What is Prop Drilling?</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Prop drilling occurs when you need to pass data from a top-level component down to a deeply nested component through multiple intermediate components that don't actually need that data. This makes the code harder to read, maintain, and refactor.</p>
+                        <p>In this example, we'll store the theme state in the App component and pass it down through props to the Navbar and then to each page component.</p>
+                        <div class="text-center my-3">
+                            <!-- 
+                                IMAGE PROMPT: "A diagram showing prop drilling. App component at the top with theme state. Arrow to Navbar passing theme and toggleTheme. Then Navbar passes theme to Home/About/Login pages. Show intermediate components as greyed out since they don't use the props."
+                            -->
+                            <img src="./images/prop-drilling-demo.png"
+                                class="img-fluid rounded course-image" alt="Prop Drilling Demo">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Setup & Folder Structure</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>Installation</h5>
+                        <div class="code-block">
+                            <pre><code>npm install react-router-dom</code></pre>
+                        </div>
+
+                        <h5>Folder Structure</h5>
+                        <div class="code-block">
+                            <pre><code>src/
+├── App.jsx
+├── main.jsx
+├── components/
+│   ├── Navbar.jsx
+│   ├── Home.jsx
+│   ├── About.jsx
+│   └── Login.jsx
+└── index.css</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>App.jsx - Root Component with Theme State</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>The App component manages the theme state and passes it down to child components. Notice how we have to pass theme and toggleTheme to Navbar, which then passes theme to the pages.</p>
+                        <div class="code-block">
+                            <pre><code>import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import About from './components/About';
+import Login from './components/Login';
+
+function App() {
+  // Theme state stored at the top level
+  const [theme, setTheme] = useState('light');
+
+  // Function to toggle theme
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  // Console log to show re-renders
+  console.log('App re-rendered');
+
+  return (
+    &lt;Router&gt;
+      &lt;div className={`app ${theme}`}&gt;
+        {/* Pass theme and toggleTheme to Navbar */}
+        &lt;Navbar theme={theme} toggleTheme={toggleTheme} /&gt;
+        &lt;Routes&gt;
+          {/* Pass theme to each page component */}
+          &lt;Route path="/" element={&lt;Home theme={theme} /&gt;} /&gt;
+          &lt;Route path="/about" element={&lt;About theme={theme} /&gt;} /&gt;
+          &lt;Route path="/login" element={&lt;Login theme={theme} /&gt;} /&gt;
+        &lt;/Routes&gt;
+      &lt;/div&gt;
+    &lt;/Router&gt;
+  );
+}
+
+export default App;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Navbar.jsx - Receives Props and Passes to Pages</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>The Navbar component receives theme and toggleTheme as props. It uses toggleTheme for the button but doesn't need theme itself. However, it still has to receive and potentially pass theme down.</p>
+                        <div class="code-block">
+                            <pre><code>import { Link } from 'react-router-dom';
+
+function Navbar({ theme, toggleTheme }) {
+  // Console log to show re-renders
+  console.log('Navbar re-rendered');
+
+  return (
+    &lt;nav className={`navbar navbar-expand-lg ${theme === 'dark' ? 'navbar-dark bg-dark' : 'navbar-light bg-light'}`}&gt;
+      &lt;div className="container"&gt;
+        &lt;Link className="navbar-brand" to="/"&gt;My App&lt;/Link&gt;
+        &lt;div className="navbar-nav"&gt;
+          &lt;Link className="nav-link" to="/"&gt;Home&lt;/Link&gt;
+          &lt;Link className="nav-link" to="/about"&gt;About&lt;/Link&gt;
+          &lt;Link className="nav-link" to="/login"&gt;Login&lt;/Link&gt;
+        &lt;/div&gt;
+        &lt;button className="btn btn-outline-primary ms-auto" onClick={toggleTheme}&gt;
+          Toggle {theme === 'light' ? 'Dark' : 'Light'} Theme
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  );
+}
+
+export default Navbar;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Page Components (Home.jsx, About.jsx, Login.jsx)</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Each page component receives the theme prop and uses it to style the page. This is the deepest level where the theme is actually needed.</p>
+                        <h5>Home.jsx</h5>
+                        <div class="code-block">
+                            <pre><code>function Home({ theme }) {
+  // Console log to show re-renders
+  console.log('Home re-rendered');
+
+  const styles = {
+    backgroundColor: theme === 'dark' ? '#333' : '#fff',
+    color: theme === 'dark' ? '#fff' : '#000',
+    minHeight: '80vh',
+    padding: '2rem'
+  };
+
+  return (
+    &lt;div style={styles}&gt;
+      &lt;h1&gt;Home Page&lt;/h1&gt;
+      &lt;p&gt;Welcome to the home page. Current theme: {theme}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Home;</code></pre>
+                        </div>
+
+                        <h5>About.jsx</h5>
+                        <div class="code-block">
+                            <pre><code>function About({ theme }) {
+  console.log('About re-rendered');
+
+  const styles = {
+    backgroundColor: theme === 'dark' ? '#333' : '#fff',
+    color: theme === 'dark' ? '#fff' : '#000',
+    minHeight: '80vh',
+    padding: '2rem'
+  };
+
+  return (
+    &lt;div style={styles}&gt;
+      &lt;h1&gt;About Page&lt;/h1&gt;
+      &lt;p&gt;This is the about page. Current theme: {theme}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default About;</code></pre>
+                        </div>
+
+                        <h5>Login.jsx</h5>
+                        <div class="code-block">
+                            <pre><code>function Login({ theme }) {
+  console.log('Login re-rendered');
+
+  const styles = {
+    backgroundColor: theme === 'dark' ? '#333' : '#fff',
+    color: theme === 'dark' ? '#fff' : '#000',
+    minHeight: '80vh',
+    padding: '2rem'
+  };
+
+  return (
+    &lt;div style={styles}&gt;
+      &lt;h1&gt;Login Page&lt;/h1&gt;
+      &lt;p&gt;Please log in. Current theme: {theme}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Login;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 2 -->
+            <div class="tab-pane fade" id="pills-part2" role="tabpanel" aria-labelledby="pills-part2-tab">
+                <h2 class="mb-3">PART 2: CONTEXT API VERSION (REFACTOR)</h2>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>What is Context API?</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>React Context API allows you to share data (state) across the component tree without having to pass props down manually at every level. It's perfect for global app data like themes, user authentication, or language preferences.</p>
+                        <p>We'll create a ThemeContext and ThemeProvider to manage the theme state globally.</p>
+                        <div class="text-center my-3">
+                            <!-- 
+                                IMAGE PROMPT: "A diagram showing Context API. ThemeProvider wraps the app. App, Navbar, and pages all connect directly to the context without prop drilling. Show arrows from components to the central context store."
+                            -->
+                            <img src="./images/context-api-demo.png"
+                                class="img-fluid rounded course-image" alt="Context API Demo">
+                                                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>ThemeContext.jsx - Create the Context</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="code-block">
+                            <pre><code>import { createContext, useContext, useState } from 'react';
+
+const ThemeContext = createContext();
+
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, toggleTheme }}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  );
+};
+
+export const useTheme = () => useContext(ThemeContext);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>App.jsx - Simplified with Context</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>App.jsx is much cleaner. No more prop drilling!</p>
+                        <div class="code-block">
+                            <pre><code>import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './ThemeContext';
+import Navbar from './Navbar';
+import Home from './Home';
+import About from './About';
+
+function App() {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;BrowserRouter&gt;
+        &lt;Navbar /&gt;
+        &lt;Routes&gt;
+          &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+          &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
+        &lt;/Routes&gt;
+      &lt;/BrowserRouter&gt;
+    &lt;/ThemeProvider&gt;
+  );
+}
+
+export default App;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Navbar.jsx - Using Context</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Navbar now uses the useTheme hook to access theme and toggleTheme directly from context.</p>
+                        <div class="code-block">
+                            <pre><code>import { useTheme } from './ThemeContext';
+
+function Navbar() {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    &lt;div&gt;
+      &lt;button onClick={toggleTheme}&gt;
+        Switch to {theme === 'light' ? 'Dark' : 'Light'}
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Navbar;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Page Components - Using Context</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Pages now use the useTheme hook directly.</p>
+                        <h5>Home.jsx</h5>
+                        <div class="code-block">
+                            <pre><code>import { useTheme } from './ThemeContext';
+
+function Home() {
+  const { theme } = useTheme();
+
+  const styles = {
+    background: theme === 'dark' ? '#333' : '#fff',
+    color: theme === 'dark' ? '#fff' : '#000',
+    height: '100vh',
+  };
+
+  return (
+    &lt;div style={styles}&gt;
+      &lt;h1&gt;Home Page&lt;/h1&gt;
+      &lt;p&gt;Theme: {theme}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Home;</code></pre>
+                        </div>
+
+                        <p>Similarly for About.jsx and Login.jsx - just import useTheme and use it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 3 -->
+            <div class="tab-pane fade" id="pills-part3" role="tabpanel" aria-labelledby="pills-part3-tab">
+                <h2 class="mb-3">PART 3: COMPARISON</h2>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Difference Between Prop Drilling and Context API</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>Prop Drilling:</h5>
+                        <ul>
+                            <li>Data is passed through props at every level</li>
+                            <li>Intermediate components receive props they don't need</li>
+                            <li>Code becomes cluttered and hard to maintain</li>
+                            <li>Adding new components requires updating the prop chain</li>
+                            <li>Good for simple, shallow component trees</li>
+                        </ul>
+
+                        <h5>Context API:</h5>
+                        <ul>
+                            <li>Data is available globally to all components in the tree</li>
+                            <li>Components only receive what they need via hooks</li>
+                            <li>Cleaner, more maintainable code</li>
+                            <li>New components can access data without prop changes</li>
+                            <li>Best for app-wide state like themes, auth, language</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>When NOT to Use Context</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Context is great for global app state, but don't overuse it:</p>
+                        <ul>
+                            <li><strong>Simple apps:</strong> If your app is small and the component tree is shallow, prop drilling might be simpler</li>
+                            <li><strong>Component-specific state:</strong> Use local state or props for data only used by one component</li>
+                            <li><strong>Frequent updates:</strong> Context can cause unnecessary re-renders if not optimized</li>
+                            <li><strong>Complex state logic:</strong> Consider state management libraries like Redux for very complex apps</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 4 -->
+            <div class="tab-pane fade" id="pills-part4" role="tabpanel" aria-labelledby="pills-part4-tab">
+                <h2 class="mb-3">PART 4: BONUS FEATURES</h2>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Persist Theme in localStorage</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>As shown in the ThemeProvider, we can persist the theme choice so it survives page refreshes.</p>
+                        <div class="code-block">
+                            <pre><code>// In ThemeProvider
+const [theme, setTheme] = useState(() => {
+  const savedTheme = localStorage.getItem('theme');
+  return savedTheme || 'light';
+});
+
+// Save whenever theme changes
+useEffect(() => {
+  localStorage.setItem('theme', theme);
+}, [theme]);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Show Current Theme in Navbar</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Update the Navbar to show the current theme.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;button className="btn btn-outline-primary ms-auto" onClick={toggleTheme}&gt;
+  {theme === 'light' ? '🌞' : '🌙'} {theme.charAt(0).toUpperCase() + theme.slice(1)} Theme
+&lt;/button&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Complete Example with All Features</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Here's the complete ThemeContext with all bonus features:</p>
+                        <div class="code-block">
+                            <pre><code>import { createContext, useContext, useState, useEffect } from 'react';
+
+const ThemeContext = createContext();
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  return context;
+};
+
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    return saved || 'light';
+  });
+
+  const toggleTheme = () => {
+    setTheme(prev => {
+      const newTheme = prev === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      return newTheme;
+    });
+  };
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+  const value = {
+    theme,
+    toggleTheme,
+    isDark: theme === 'dark',
+    isLight: theme === 'light'
+  };
+
+  return (
+    &lt;ThemeContext.Provider value={value}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  );
+};</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></content>

@@ -53,6 +53,80 @@ button:hover {
     background: #0b0f14;
     border-left: 4px solid #7f5af0;
     box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+    border-radius: 8px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 1rem;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #e6edf3;
+    white-space: pre-wrap;
+}
+
+.code-block code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+
+/* Syntax Highlighting */
+.code-block .keyword { color: #ff7b72; }
+.code-block .string { color: #a5c9ea; }
+.code-block .number { color: #79c0ff; }
+.code-block .property { color: #ffa657; }
+.code-block .function { color: #d2a8ff; }
+.code-block .parameter { color: #ffab70; }
+.code-block .operator { color: #f85149; }
+
+/* App Structure Tree */
+.app-structure {
+    font-family: 'Fira Code', monospace;
+    background: rgba(22, 27, 34, 0.6);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.tree-node {
+    color: #58a6ff;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.tree-branch {
+    margin-left: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.tree-line {
+    color: #7f5af0;
+    margin-right: 0.5rem;
+}
+
+.tree-item {
+    color: #e6edf3;
+}
+
+/* Directory Tree in card-body */
+.card-body pre {
+    background: #0b0f14;
+    border-left: 4px solid #7f5af0;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+    border-radius: 8px;
+    margin: 1rem 0;
+    padding: 1rem;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #e6edf3;
+    white-space: pre;
+    overflow-x: auto;
 }
 
 /* Navigation pills */
