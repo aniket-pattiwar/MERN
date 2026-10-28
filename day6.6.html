@@ -268,6 +268,43 @@ export default App;</code></pre>
                 </div>
 
             </div>
+            <div class="tab-pane fade" id="pills-session-assignments" role="tabpanel"
+                aria-labelledby="pills-session-assignments-tab">
+                <div class="card mb-4">
+                    <div class="card-header text-white">
+                        <h3>Day 6.6 Assignment: Country App Frontend</h3>
+                    </div>
+                    <div class="card-body">
+                        <ol class="list-group list-group-numbered">
+                            <li class="list-group-item">
+                                Set up a new Vite React project. Install <code>axios</code>,
+                                <code>react-router-dom</code>, and <code>bootstrap</code>, then import Bootstrap CSS
+                                in <code>main.jsx</code>.
+                            </li>
+                            <li class="list-group-item">
+                                Create <code>components/CountryList.jsx</code>. Fetch countries from
+                                <code>http://localhost:5000/api/countries</code> with Axios and React state/effects.
+                                Show each country in a Bootstrap card with its name, capital, and flag image when
+                                available. Add a confirmation before deleting a country through the API.
+                            </li>
+                            <li class="list-group-item">
+                                Create <code>components/AddCountry.jsx</code> with a form for the country name,
+                                capital, and flag image. Submit the data as <code>FormData</code> to
+                                <code>http://localhost:5000/api/countries/add</code>, then navigate home after a
+                                successful submission.
+                            </li>
+                            <li class="list-group-item">
+                                In <code>App.jsx</code>, configure <code>BrowserRouter</code> routes for
+                                <code>/</code> (CountryList) and <code>/add</code> (AddCountry). Add a navbar with
+                                links to Home and Add Country.
+                            </li>
+                        </ol>
+                        <p class="mt-3 mb-0">
+                            <a href="./assignments/day6-6-assignment.txt">Open the assignment text file</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -479,10 +479,15 @@ button, .btn {
                     type="button" role="tab" aria-controls="day8-content" aria-selected="false">12. Advanced
                     React</button> -->
             </li>
-            <!-- <li class="nav-item" role="presentation">
+            <li class="nav-item" role="presentation">
                 <button class="nav-link" id="day6-7-tab-btn" data-bs-toggle="pill" data-bs-target="#day6-7-content"
                     type="button" role="tab" aria-controls="day6-7-content" aria-selected="false">12. Deployment</button>
-            </li> -->
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="assignments-tab-btn" data-bs-toggle="pill"
+                    data-bs-target="#assignments-content" type="button" role="tab"
+                    aria-controls="assignments-content" aria-selected="false">13. Assignments</button>
+            </li>
             <!-- <li class="nav-item" role="presentation">
                 <button class="nav-link" id="day9-tab-btn" data-bs-toggle="pill" data-bs-target="#day9-content"
                     type="button" role="tab" aria-controls="day9-content" aria-selected="false">13. Full Stack
@@ -492,7 +497,55 @@ button, .btn {
 
         <!-- Main Day Content -->
         <div class="tab-content" id="day-tab-content">
-            <!-- Content will be loaded dynamically by the script below -->
+            <div class="tab-pane fade" id="assignments-content" role="tabpanel"
+                aria-labelledby="assignments-tab-btn">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h2 class="my-2">Course Assignments</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Select an assignment to open its instructions.</p>
+                        <div class="list-group">
+                            <a class="list-group-item list-group-item-action"
+                                href="./assignments/day1-assignment.txt">
+                                Day 1 Assignment - MongoDB CRUD Operations
+                            </a>
+                            <a class="list-group-item list-group-item-action"
+                                href="./assignments/day2-0-assignment.txt">
+                                Day 2 Assignment - Data Modeling with Countries and States
+                            </a>
+                            <a class="list-group-item list-group-item-action"
+                                href="./assignments/day2-2-assignment.txt">
+                                Day 2.2 Assignment: Building a Simple Interactive Webpage
+                            </a>
+                            <a class="list-group-item list-group-item-action"
+                                href="./assignments/day3-assignment.txt">
+                                Day 3 Assignment - Node.js Basics (Simplified)
+                            </a>
+                            <a class="list-group-item list-group-item-action"
+                                href="./assignments/day4-assignment.txt">
+                                Day 4 Assignment - Express.js Basics
+                            </a>
+                            <a class="list-group-item list-group-item-action"
+                                href="./assignments/day5-assignment.txt">
+                                Day 5 Assignment - API
+                            </a>
+                            <a class="list-group-item list-group-item-action"
+                                href="./assignments/day6-0-assignment.txt">
+                                Day 6 Assignment: React.js
+                            </a>
+                            <a class="list-group-item list-group-item-action"
+                                href="./assignments/day6-5-assignment.txt">
+                                Day 6.5 Assignment: Routers &amp; Hooks
+                            </a>
+                            <a class="list-group-item list-group-item-action"
+                                href="./assignments/day6-6-assignment.txt">
+                                Day 6.6 Assignment: Country App Frontend
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
