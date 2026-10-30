@@ -58,6 +58,45 @@
                             <strong>Action</strong>) and give it to the teller (the <strong>Reducer</strong>), who
                             updates your account. Anyone with permission can check the balance at any time.
                         </p>
+
+<!-- Concept MCQ: Redux Core Architecture & Single Source of Truth -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Redux Core Architecture & Single Source of Truth</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the fundamental principle of state storage in Redux?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_redux_arch" onchange="handleQuizSelect(this, false, 'fb_day7_redux_arch', 'Redux provides a single unified JavaScript in-memory store.')">
+                <span><strong>A)</strong> Every component must create its own isolated SQLite database.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_redux_arch" onchange="handleQuizSelect(this, true, 'fb_day7_redux_arch', 'Redux follows the Single Source of Truth principle, where global state resides in one central store updated only via dispatched actions.')">
+                <span><strong>B)</strong> The entire global state of the application is stored in a single immutable object tree inside a centralized Store.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_redux_arch" onchange="handleQuizSelect(this, false, 'fb_day7_redux_arch', 'Redux store is in-memory JavaScript state, not browser cookies.')">
+                <span><strong>C)</strong> State is stored inside the user's browser cookies on each click.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_redux_arch" onchange="handleQuizSelect(this, false, 'fb_day7_redux_arch', 'State is read-only; changes must be made by dispatching actions to pure reducer functions.')">
+                <span><strong>D)</strong> State changes are made by directly reassigning store.state properties.</span>
+            </label>
+        </div>
+        <div id="fb_day7_redux_arch" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                         <div class="text-center my-3">
                             <!-- 
                                 IMAGE PROMPT: "A diagram of the Redux Unidirectional Data Flow. An arrow goes from 'UI' to 'Action', then to 'Reducer', then to 'Store'. A final arrow goes from 'Store' back to 'UI', completing the loop. Label the arrows: 1. Dispatch Action, 2. Reducer handles Action, 3. Store is Updated, 4. UI re-renders."
@@ -165,6 +204,45 @@
 
 <span class="keyword">export</span> <span class="keyword">const</span> { addItem, removeItem } = cartSlice.<span class="property">actions</span>;
 <span class="keyword">export</span> <span class="keyword">default</span> cartSlice.<span class="property">reducer</span>;</code></pre>
+
+<!-- Concept MCQ: Redux Toolkit (RTK) & Slices -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Redux Toolkit (RTK) & Slices</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In modern Redux Toolkit (RTK), what does createSlice() bundle together?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_rtk_slice" onchange="handleQuizSelect(this, true, 'fb_day7_rtk_slice', 'createSlice() dramatically reduces Redux boilerplate by auto-generating action types and action creators based on the reducer functions defined.')">
+                <span><strong>A)</strong> It bundles the slice name, initial state, reducer functions, and automatically generated action creators into one clean module.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_rtk_slice" onchange="handleQuizSelect(this, false, 'fb_day7_rtk_slice', 'createSlice is client-side state management, not database partitioning.')">
+                <span><strong>B)</strong> It splits the database into 10 partitions on disk.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_rtk_slice" onchange="handleQuizSelect(this, false, 'fb_day7_rtk_slice', 'createSlice has nothing to do with CSS.')">
+                <span><strong>C)</strong> It is a CSS layout tool for responsive columns.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_rtk_slice" onchange="handleQuizSelect(this, false, 'fb_day7_rtk_slice', 'RTK is dedicated to state management.')">
+                <span><strong>D)</strong> It compiles React components into web workers.</span>
+            </label>
+        </div>
+        <div id="fb_day7_rtk_slice" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                                 </div>
 
                                 <h5 class="mt-4">3. Configure the Store (`app/store.js`)</h5>
@@ -256,6 +334,165 @@ ReactDOM.createRoot(document.getElementById(<span class="string">'root'</span>))
 }
 
 <span class="keyword">export</span> <span class="keyword">default</span> App;</code></pre>
+
+
+<!-- Runnable Code Block: Redux Toolkit Store, Slices & Dispatch Flow -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Redux Toolkit Store, Slices & Dispatch Flow</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">ReduxCounterApp.jsx</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in React</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// ReduxCounterApp.jsx - Complete runnable Redux Toolkit App
+import React from 'react';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { Provider, useSelector, useDispatch } from 'react-redux';
+
+// 1. Create a Slice (State + Reducers + Actions bundled)
+const cartSlice = createSlice({
+  name: 'cart',
+  initialState: { itemsCount: 0, totalAmount: 0 },
+  reducers: {
+    addItem: (state, action) =&gt; {
+      state.itemsCount += 1;
+      state.totalAmount += action.payload; // RTK allows intuitive mutating syntax via Immer!
+    },
+    removeItem: (state, action) =&gt; {
+      if (state.itemsCount &gt; 0) {
+        state.itemsCount -= 1;
+        state.totalAmount = Math.max(0, state.totalAmount - action.payload);
+      }
+    },
+    clearCart: (state) =&gt; {
+      state.itemsCount = 0;
+      state.totalAmount = 0;
+    }
+  }
+});
+
+const { addItem, removeItem, clearCart } = cartSlice.actions;
+
+// 2. Configure the Centralized Store
+const store = configureStore({
+  reducer: {
+    cart: cartSlice.reducer
+  }
+});
+
+// 3. Child Component consuming Redux State
+function CartSummary() {
+  const { itemsCount, totalAmount } = useSelector(state =&gt; state.cart);
+  return (
+    &lt;div style={{ backgroundColor: '#f8fafc', padding: '16px', borderRadius: '8px', margin: '16px 0' }}&gt;
+      &lt;h3&gt;🛒 Shopping Cart State&lt;/h3&gt;
+      &lt;p&gt;Items in Cart: &lt;strong&gt;{itemsCount}&lt;/strong&gt;&lt;/p&gt;
+      &lt;p&gt;Total Balance: &lt;strong&gt;${totalAmount}&lt;/strong&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+// 4. Child Component dispatching Redux Actions
+function ProductList() {
+  const dispatch = useDispatch();
+
+  return (
+    &lt;div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}&gt;
+      &lt;button onClick={() =&gt; dispatch(addItem(25))} style={{ padding: '8px', cursor: 'pointer' }}&gt;
+        Add Book ($25)
+      &lt;/button&gt;
+      &lt;button onClick={() =&gt; dispatch(addItem(75))} style={{ padding: '8px', cursor: 'pointer' }}&gt;
+        Add Headset ($75)
+      &lt;/button&gt;
+      &lt;button onClick={() =&gt; dispatch(removeItem(25))} style={{ padding: '8px', cursor: 'pointer' }}&gt;
+        Remove Item ($25)
+      &lt;/button&gt;
+      &lt;button onClick={() =&gt; dispatch(clearCart())} style={{ padding: '8px', cursor: 'pointer', backgroundColor: '#fee2e2' }}&gt;
+        Clear Cart
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+// 5. Main Component wrapped in Redux Provider
+export default function App() {
+  return (
+    &lt;Provider store={store}&gt;
+      &lt;div style={{ fontFamily: 'sans-serif', maxWidth: '400px', margin: '40px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '12px' }}&gt;
+        &lt;h2&gt;⚛️ Redux Toolkit Live Demo&lt;/h2&gt;
+        &lt;CartSummary /&gt;
+        &lt;ProductList /&gt;
+      &lt;/div&gt;
+    &lt;/Provider&gt;
+  );
+}</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Demonstrates the complete Redux unidirectional data flow: UI Dispatches Action -> Reducer updates State in Central Store -> useSelector re-renders subscribed components.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Install Redux Toolkit and React-Redux: <code>npm install @reduxjs/toolkit react-redux</code></li>
+                <li>Paste this into <code>src/App.jsx</code> in your React project.</li>
+                <li>Run: <code>npm run dev</code> and open your browser.</li>
+                <li>Click the product buttons to dispatch actions to the central Redux Store!</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Visual Output:</span>
+                <code class="text-muted small">A functioning e-commerce cart badge reading state from store via useSelector and modifying it via useDispatch.</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: useSelector & useDispatch Hooks -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">useSelector & useDispatch Hooks</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In a React-Redux application, which hook is used to extract data from the Redux store state, and which hook triggers state changes?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_hooks" onchange="handleQuizSelect(this, false, 'fb_day7_hooks', 'useQuery and useMutation are from React Query / Apollo, not core Redux.')">
+                <span><strong>A)</strong> useQuery to read, and useMutation to update</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_hooks" onchange="handleQuizSelect(this, true, 'fb_day7_hooks', 'useSelector subscribes to specific pieces of the store; useDispatch returns the store\'s dispatch function to trigger reducers.')">
+                <span><strong>B)</strong> useSelector to read state from the store, and useDispatch to dispatch actions that update state.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_hooks" onchange="handleQuizSelect(this, false, 'fb_day7_hooks', 'The official React-Redux hooks are useSelector and useDispatch.')">
+                <span><strong>C)</strong> useStore to read, and useAction to write</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day7_hooks" onchange="handleQuizSelect(this, false, 'fb_day7_hooks', 'useState is React\'s local state hook, not Redux.')">
+                <span><strong>D)</strong> useState to read, and useEffect to dispatch</span>
+            </label>
+        </div>
+        <div id="fb_day7_hooks" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                                 </div>
                             </div>
                         </div>
@@ -352,3 +589,5 @@ ReactDOM.createRoot(document.getElementById(<span class="string">'root'</span>))
                 </div>
             </div>
         </div>
+        </div>
+    </div>

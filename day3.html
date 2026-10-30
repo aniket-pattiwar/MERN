@@ -13,137 +13,637 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-session7-tab" data-bs-toggle="pill" data-bs-target="#pills-session7"
                     type="button" role="tab" aria-controls="pills-session7" aria-selected="false">Event Loop
-                    & Async</button>
+                    &amp; Async</button>
             </li>
         </ul>
 
         <!-- Session Content -->
         <div class="tab-content" id="pills-tabContent-day3">
-            <!-- Sessions 5-6 -->
+            <!-- Sessions 5-6: Node.js Core -->
             <div class="tab-pane fade show active" id="pills-session5" role="tabpanel"
                 aria-labelledby="pills-session5-tab">
-                <h2 class="mb-3">Node.js Architecture & Modules</h2>
+                <h2 class="mb-3">Node.js Architecture &amp; Modules</h2>
 
                 <!-- What is Node.js Visual -->
                 <div class="row mb-4">
                     <div class="col-md-12">
                         <div class="card text-center p-4"
                             style="background-color: var(--bs-dark); color: var(--bs-light);">
-                            <h1 class="display-6">What is Node.js?</h1>
-                            <p class="lead">It's not a language. It's a <strong>Runtime Environment</strong>.</p>
+                            <h1 class="display-6">What is Node.js•</h1>
+                            <p class="lead">It's not a language. It's a <strong>Runtime Environment</strong> built on Chrome's V8 JavaScript engine.</p>
                             <div class="d-flex justify-content-center gap-3 flex-wrap">
                                 <span class="badge bg-success fs-6">Chrome V8 Engine</span>
-                                <span class="badge bg-info text-dark fs-6">Asynchronous</span>
+                                <span class="badge bg-info text-dark fs-6">Single-Threaded</span>
+                                <span class="badge bg-primary fs-6">Asynchronous Non-Blocking I/O</span>
+                                <span class="badge bg-warning text-dark fs-6">Libuv C++ Library</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Concept Diagram -->
+                <div class="text-center my-3">
+                    <img src="./images/Node.js+Architecture.png" class="img-fluid rounded course-image" alt="Node.js Internal Architecture">
+                    <small class="text-muted d-block mt-1">Figure: Node.js Architecture (V8 Engine, Libuv, Event Loop &amp; Worker Threads)</small>
+                </div>
+
+                
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Live Chat Apps & Video Streaming (WhatsApp Web / Netflix)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">When thousands of users send messages or stream videos at the exact same second, traditional servers create a separate heavy thread for each person, quickly freezing up the server. Node's single-threaded event loop handles thousands of connections smoothly without waiting, making it ideal for live, real-time apps.</p>
+</div>
+
                 <!-- Why, When, Pros, Cons -->
                 <div class="row mb-4">
                     <!-- When to use -->
-                    <div class="col-md-6">
-                        <div class="card h-100" style="border-color: var(--bs-success);  padding: 0.5rem;">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100" style="border-color: var(--bs-success); padding: 0.5rem;">
                             <div class="card-header"
-                                style="background-color: var(--bs-success); color: var(--bs-light);"><strong>When to
-                                    use</strong></div>
+                                style="background-color: var(--bs-success); color: var(--bs-light);"><strong>When to use</strong></div>
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><strong>Real-time Features</strong> (live stock prices, trading dashboards)
-                                    </li>
+                                    <li class="list-group-item"><strong>Real-time Features</strong> (live stock prices, trading dashboards)</li>
                                     <li class="list-group-item"><strong>Streaming</strong> (Netflix, YouTube)</li>
-                                    <li class="list-group-item"><strong>Single Page Apps</strong> (React Backends)
-                                    </li>
+                                    <li class="list-group-item"><strong>Single Page Apps</strong> (React Backends)</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <!-- When NOT to use -->
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
                         <div class="card h-100" style="border-color: var(--bs-danger); padding: 0.5rem;">
                             <div class="card-header"
-                                style="background-color: var(--bs-danger); color: var(--bs-light);"><strong>When NOT
-                                    to use</strong></div>
+                                style="background-color: var(--bs-danger); color: var(--bs-light);"><strong>When NOT to use</strong></div>
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><strong>Heavy CPU Tasks</strong> (Video Editing, AI)
-                                    </li>
+                                    <li class="list-group-item"><strong>Heavy CPU Tasks</strong> (Video Editing, AI)</li>
                                     <li class="list-group-item"><strong>Complex Math</strong> (Data Science)</li>
                                     <li class="list-group-item"><strong>Complex financial modeling</strong></li>
-                                   
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
-               
-
-             
-
+                <!-- Browser JS vs Node.js -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3>Node.js Fundamentals</h3>
+                        <h3>⭐ Browser JavaScript vs. Node.js</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>While both run JavaScript using Google's V8 engine, their runtime environments and available features are fundamentally different:</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>Browser JavaScript</th>
+                                        <th>Node.js (Backend Runtime)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Environment</strong></td>
+                                        <td>Client-side (runs in browsers like Chrome, Safari, Firefox)</td>
+                                        <td>Server-side (runs on OS - Linux, Windows, macOS)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Global Object</strong></td>
+                                        <td><code>window</code>, <code>document</code>, <code>history</code></td>
+                                        <td><code>global</code>, <code>process</code>, <code>globalThis</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DOM &amp; UI Access</strong></td>
+                                        <td>Yes &mdash; can manipulate HTML tags, CSS, window events</td>
+                                        <td>No &mdash; has no window, document, or DOM tree</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>File System &amp; OS Access</strong></td>
+                                        <td>No &mdash; blocked by browser security sandbox</td>
+                                        <td>Yes &mdash; full access to files (<code>fs</code>), network, and OS (<code>os</code>)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Module System</strong></td>
+                                        <td>ES Modules (<code>import / export</code>)</td>
+                                        <td>CommonJS (<code>require / module.exports</code>) &amp; ES Modules</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Primary Role</strong></td>
+                                        <td>User interaction, client validations, rendering views</td>
+                                        <td>API creation, database communication, file processing, business logic</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Living Room (Browser) vs. Locked Storage Room (Node.js)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Browser JavaScript is what guests see and touch in your living room (buttons, images, forms). Node.js is the locked storage room in the back (database passwords, private user files). For safety, web browsers are strictly locked in a sandbox so random websites cannot read your laptop files. Node.js runs safely on your server with full file system access.</p>
+</div>
+                    </div>
+                </div>
+
+                <!-- Node.js REPL -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>⭐ Node.js REPL (Read-Eval-Print Loop)</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>The <strong>REPL</strong> is an interactive shell bundled with Node.js that executes JavaScript commands line-by-line in real time without creating any files.</p>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <h6>What REPL Stands For:</h6>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><strong>Read:</strong> Reads user JavaScript input</li>
+                                    <li class="list-group-item"><strong>Eval:</strong> Evaluates/executes the code</li>
+                                    <li class="list-group-item"><strong>Print:</strong> Prints the evaluated result to the terminal</li>
+                                    <li class="list-group-item"><strong>Loop:</strong> Loops back and waits for the next input</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6>Interactive REPL Session Example:</h6>
+                                <div class="code-block">
+                                    <pre><code># Start the REPL by typing node in terminal:
+$ node
+Welcome to Node.js v20.x.x.
+Type ".help" for more information.
+
+> 5 + 10
+15
+> const greeting = "Hello FinTech";
+undefined
+> greeting.toUpperCase()
+'HELLO FINTECH'
+> _ + " Engineers!"  // '_' holds the last evaluated result
+'HELLO FINTECH Engineers!'</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <h6>Useful REPL Commands:</h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Command</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><code>.help</code></td><td>Displays all REPL dot commands</td></tr>
+                                    <tr><td><code>.exit</code> (or Ctrl + C twice)</td><td>Exits the REPL session</td></tr>
+                                    <tr><td><code>.clear</code></td><td>Resets the context / clears multi-line expressions</td></tr>
+                                    <tr><td><code>.save filename.js</code></td><td>Saves the current REPL session into a file</td></tr>
+                                    <tr><td><code>.load filename.js</code></td><td>Loads and executes an existing JavaScript file into REPL</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">A Quick Pocket Calculator & Scratchpad</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Before writing a long piece of code in a file, you open the Node REPL in your terminal just like opening a pocket calculator. You can instantly test a quick calculation, see how a JavaScript string method works (<code>'hello'.toUpperCase()</code>), or test a 2-line function in seconds without setting up any project files.</p>
+</div>
+                    </div>
+                </div>
+
+                <!-- Node.js Fundamentals -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Node.js Fundamentals &amp; Modules</h3>
                     </div>
                     <div class="card-body">
                         <h5>1. Node.js Script</h5>
+                        <p>Create a JavaScript file (e.g., <code>app.js</code>) and execute it using Node runtime:</p>
+                        <div class="code-block">
+                            <pre><code>// app.js
+console.log("Welcome to Node.js Backend Development!");
+
+// Run from terminal:
+$ node app.js</code></pre>
+                        </div>
                         <hr class="my-4">
                         <h5>2. Modules: Organizing Code</h5>
+                        <p>Node.js allows splitting code into reusable custom modules using CommonJS (<code>module.exports</code> &amp; <code>require</code>):</p>
                         <div class="code-block">
-                            <pre><code>
+                            <pre><code>// math.js (Custom Module)
 function add(a, b) {
   return a + b;
 }
-module.exports = add;
-</code></pre>
-                        </div><br />
-                        <hr class="my-4">
-                        <h5>3. Creating a Web Server (HTTP)</h5>
-                        <div class="code-block px-2">
-                            <pre><code>Server running at http://localhost:3000/</code></pre>
+function subtract(a, b) {
+  return a - b;
+}
+module.exports = { add, subtract };
+
+// app.js (Importing custom module)
+const math = require('./math');
+console.log(math.add(5, 3)); // 8</code></pre>
                         </div>
+                        <!-- Modules Architecture Diagram -->
+                        <div class="text-center my-3">
+                            <img src="./images/Node.js+Module+Imports.png" class="img-fluid rounded course-image" alt="Node.js Module Import and Export Architecture">
+                            <small class="text-muted d-block mt-1">Figure: CommonJS Module Exports &amp; Require Dependency Wiring</small>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Organized Toolboxes for Different Jobs</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Instead of throwing all your tools into one giant messy box, you keep woodworking tools in one toolbox (<code>math.js</code>) and painting tools in another (<code>colors.js</code>). In Node.js, <code>module.exports</code> and <code>require()</code> let you keep code clean and take only the exact tool you need.</p>
+</div>
+
+                        <hr class="my-4">
+                        <h5>3. Creating a Web Server (HTTP Module) ⭐</h5>
+                        <div class="text-center my-3">
+                            <img src="./images/http-request-response.svg" class="img-fluid rounded course-image" alt="HTTP Request and Response Cycle Diagram">
+                            <small class="text-muted d-block mt-1">Figure: Anatomy of an HTTP Request and Response Stream</small>
+                        </div>
+                        <p>Node.js comes with a built-in <code>http</code> core module to build lightweight web servers without requiring third-party libraries:</p>
+                        <div class="code-block">
+                            <pre><code>// server.js
+const http = require('http');
+
+const PORT = 3000;
+
+// Create HTTP server instance
+const server = http.createServer((req, res) => {
+  // Set HTTP headers: Status 200 OK & Content-Type
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+
+  // Basic Routing
+  if (req.url === '/') {
+    res.end(JSON.stringify({ message: "Welcome to Node.js HTTP Server!" }));
+  } else if (req.url === '/api/health') {
+    res.end(JSON.stringify({ status: "healthy", uptime: process.uptime() }));
+  } else {
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: "Route not found" }));
+  }
+});
+
+// Start listening on port 3000
+server.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}/`);
+});</code></pre>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">A Restaurant Waiter Taking Orders</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">The built-in <code>http</code> module is like a waiter in a restaurant: when a customer visits your website URL (<code>req.url === '/'</code>), the server receives the request, prepares the response, and serves it back to the customer (<code>res.end()</code>). If the item isn't on the menu, it politely returns 404 Not Found.</p>
+</div>
+                    </div>
+                </div>
+
+                <!-- Working with Files (fs) -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Working with Files (fs Module)</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>1. The File System (fs) Module</h5>
+                        <p>Node.js has a built-in module called <code>fs</code> to interact with the local file system (read, write, append, delete).</p>
+
+                        <div class="alert alert-info">
+                            <strong>Why 'utf8'•</strong><br>
+                            Files are stored as binary (0s and 1s).
+                            <ul class="mb-0">
+                                <li>Without <code>'utf8'</code>: You receive raw <strong>Buffer</strong> data (e.g., <code>&lt;Buffer 48 65 6c...&gt;</code>).</li>
+                                <li>With <code>'utf8'</code>: Node converts the buffer into human-readable <strong>Text</strong>.</li>
+                            </ul>
+                        </div>
+
+                        <h5 class="mt-3">2. Write and Read a File</h5>
+                        <h6>Block 1: Import fs Module</h6>
+                        <div class="code-block">
+                            <pre><code>const fs = require('fs');</code></pre>
+                        </div>
+
+                        <h6>Block 2: Write File (Asynchronous)</h6>
+                        <div class="code-block">
+                            <pre><code>fs.writeFile('log.txt', 'Transactions recorded successfully.', 'utf8', (err) => {
+  if (err) return console.error('Write Error:', err);
+  console.log('File saved successfully!');
+});</code></pre>
+                        </div>
+
+                        <h6>Block 3: Read File (Asynchronous)</h6>
+                        <div class="code-block">
+                            <pre><code>fs.readFile('log.txt', 'utf8', (err, data) => {
+  if (err) return console.error('Read Error:', err);
+  console.log('File Content:', data);
+});</code></pre>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Saving Game Progress or a Diary Entry</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Just like a video game saves your high score or settings into a file on your disk, a server uses the <code>fs</code> module to write user uploaded files, record daily server logs, or read app configuration files when the application starts up.</p>
+</div>
+                    </div>
+                </div>
+
+                <!-- Package Management with npm -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>⭐ Package Management with npm (Installing, Updating, Removing &amp; package.json vs package-lock.json)</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>npm</strong> (Node Package Manager) is the software registry and dependency management tool for Node.js projects.</p>
+                        
+                        <h5>1. Core npm Commands</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Operation</th>
+                                        <th>Command</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Initialize Project</strong></td>
+                                        <td><code>npm init -y</code></td>
+                                        <td>Creates a default <code>package.json</code> file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Install Package</strong></td>
+                                        <td><code>npm install express</code></td>
+                                        <td>Installs package in <code>node_modules</code> and saves under <code>dependencies</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Install Dev Dependency</strong></td>
+                                        <td><code>npm install --save-dev jest</code> (or <code>-D</code>)</td>
+                                        <td>Installs tools needed only during development/testing under <code>devDependencies</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Check Outdated Packages</strong></td>
+                                        <td><code>npm outdated</code></td>
+                                        <td>Lists all installed packages that have newer versions available</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Update Package</strong></td>
+                                        <td><code>npm update express</code> (or <code>npm update</code>)</td>
+                                        <td>Updates package(s) to the latest version matching semantic version rules</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Remove / Uninstall Package</strong></td>
+                                        <td><code>npm uninstall express</code></td>
+                                        <td>Removes package from <code>node_modules</code> and deletes it from <code>package.json</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h5 class="mt-4">2. package.json vs. package-lock.json</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 border-primary">
+                                    <div class="card-header bg-primary text-white"><strong>package.json (Manifest)</strong></div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>Defines project metadata (name, version, author, scripts).</li>
+                                            <li>Lists direct top-level dependencies.</li>
+                                            <li>Uses <strong>Semantic Versioning (SemVer)</strong> ranges:
+                                                <ul>
+                                                    <li><code>^4.18.2</code> (Caret): Allows minor updates &amp; patches (4.x.x)</li>
+                                                    <li><code>~4.18.2</code> (Tilde): Allows only patch updates (4.18.x)</li>
+                                                    <li><code>4.18.2</code> (Exact): Fixed version only</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 border-success">
+                                    <div class="card-header bg-success text-white"><strong>package-lock.json (Lockfile)</strong></div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>Automatically created/updated by npm.</li>
+                                            <li>Stores the <strong>exact, deterministic dependency tree</strong> including all nested sub-dependencies.</li>
+                                            <li>Contains cryptographic integrity hashes (SHA-512) for tamper detection.</li>
+                                            <li>Guarantees that <code>npm install</code> on any team member's machine or production server produces identical results.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h5>3. Testing with Jest</h5>
+                        <p>Testing is crucial for reliability.<br>
+                            Install Jest: <code>npm install --save-dev jest</code>.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>// math.test.js
+const math = require('./math');
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(math.add(1, 2)).toBe(3);
+});
+
+test('subtracts 5 - 2 to equal 3', () => {
+  expect(math.subtract(5, 2)).toBe(3);
+});</code></pre>
+                        </div>
+                        <p class="mt-3">Add a "test" script to <code>package.json</code>: <code>"test": "jest"</code>. Run tests with <code>npm test</code>.</p>
+                        <div class="text-center my-3">
+                            <img src="./images/npm-test.png" class="img-fluid rounded course-image" alt="Jest Test Output">
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Grocery Shopping List vs. Exact Store Receipt</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary"><code>package.json</code> is like a grocery list that says 'buy butter and bread' (the <code>^</code> symbol allows slightly newer versions). <code>package-lock.json</code> is the exact printed receipt listing the exact brand, size, and batch number. It ensures that when your teammate installs the project, they get the exact identical setup with zero unexpected version bugs.</p>
+</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Session 7 -->
+            <!-- Session 7: Event Loop & Async -->
             <div class="tab-pane fade" id="pills-session7" role="tabpanel" aria-labelledby="pills-session7-tab">
-                <h2 class="mb-3">The Event Loop & Asynchronous Lab</h2>
+                <h2 class="mb-3">The Event Loop &amp; Asynchronous Lab</h2>
 
                 <!-- Simplified Explanation Card -->
                 <div class="card mb-4">
                     <div class="card-header text-white">
-                        <h3>What is the Event Loop?</h3>
+                        <h3>What is the Event Loop•</h3>
                     </div>
-
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                Node.js uses a Single-Threaded Event Loop
-                                <p>Eg.<strong>Circular conveyor belt</strong> in a factory.
-                                    It keeps checking for new tasks and processes them without waiting for long tasks to
-                                    finish,
-                                </p>
+                                <p>Node.js uses a <strong>Single-Threaded Event Loop</strong>.</p>
+                                <p>Analogy: A <strong>circular conveyor belt</strong> in a factory. It continuously checks for new tasks and processes them without waiting for long I/O operations to finish.</p>
                                 <ol class="simple-flow">
-                                    <li><strong>Input</strong>: Tasks come in (like HTTP requests)</li>
-                                    <li><strong>Stack</strong>: Tasks are processed one by one</li>
-                                    <li><strong>Waiting</strong>: Long tasks are sent to background</li>
-                                    <li><strong>Queue</strong>: Completed tasks wait their turn</li>
-                                    <li><strong>Loop</strong>: When stack is empty, queue tasks run</li>
+                                    <li><strong>Input</strong>: Tasks come in (like HTTP requests).</li>
+                                    <li><strong>Stack</strong>: Synchronous tasks are processed one by one in Call Stack (LIFO).</li>
+                                    <li><strong>Waiting</strong>: Asynchronous/long tasks are delegated to background (Node C++ APIs / Libuv).</li>
+                                    <li><strong>Queue</strong>: Completed tasks wait their turn in Callback Queue.</li>
+                                    <li><strong>Loop</strong>: When the Call Stack is empty, Event Loop pushes queue tasks to the stack.</li>
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Callbacks, Callback Hell, Promises & async/await -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>⭐ Asynchronous Programming: Callbacks, Callback Hell &amp; Promises vs. async/await</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Node.js is single-threaded and non-blocking. It handles time-consuming tasks (database calls, file reads, network requests) asynchronously:</p>
+                        
+                        <h5>1. Callbacks &amp; Callback Hell (The Pyramid of Doom)</h5>
+                        <p>A <strong>callback</strong> is a function passed as an argument to another function, executed when an asynchronous operation finishes. When multiple async tasks depend on each other, callbacks become deeply nested and unreadable:</p>
+                        <div class="code-block">
+                            <pre><code>// ❌ Callback Hell (Pyramid of Doom) - Hard to read, debug, and handle errors:
+getUser(userId, (err, user) => {
+  if (err) return handleError(err);
+  getAccount(user.accountId, (err, account) => {
+    if (err) return handleError(err);
+    getTransactions(account.id, (err, transactions) => {
+      if (err) return handleError(err);
+      sendEmail(user.email, transactions, (err, result) => {
+        if (err) return handleError(err);
+        console.log("Transactions emailed successfully!");
+      });
+    });
+  });
+});</code></pre>
+                        </div>
+
+                        <h5 class="mt-4">2. Promises: Escaping Callback Hell</h5>
+                        <p>A <strong>Promise</strong> represents a value that may be available now, later, or never. It has three states: <code>Pending</code>, <code>Fulfilled (Resolved)</code>, or <code>Rejected</code>:</p>
+                        <div class="code-block">
+                            <pre><code>// Creating a Promise
+function verifyPayment(amount) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (amount > 0) resolve({ status: "SUCCESS", amount });
+      else reject(new Error("Invalid payment amount"));
+    }, 1000);
+  });
+}
+
+// Chaining Promises with .then() and .catch()
+verifyPayment(500)
+  .then(data => {
+    console.log("Payment Verified:", data);
+    return processOrder(data);
+  })
+  .then(order => console.log("Order Processed:", order))
+  .catch(err => console.error("Error occurred:", err.message));</code></pre>
+                        </div>
+
+                        <h5 class="mt-4">3. Modern async / await: Clean &amp; Synchronous-Looking</h5>
+                        <p><code>async/await</code> is syntactic sugar built on top of Promises. It allows writing asynchronous code with standard <code>try / catch</code> error handling:</p>
+                        <div class="code-block">
+                            <pre><code>// ✅ Modern, readable, clean async/await
+async function checkout(userId) {
+  try {
+    const user = await getUser(userId);
+    const account = await getAccount(user.accountId);
+    const transactions = await getTransactions(account.id);
+    await sendEmail(user.email, transactions);
+    console.log("Transactions emailed successfully!");
+  } catch (error) {
+    console.error("Checkout process failed:", error.message);
+  }
+}</code></pre>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Ordering a Pizza (Step-by-Step)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">When you order pizza, you don't stare at the oven doing nothing—you go do your homework until it's ready (asynchronous). In old JavaScript, chaining multiple dependent tasks (make dough &rarr; add cheese &rarr; bake &rarr; deliver) created nested callbacks inside callbacks ('Pyramid of Doom'). Modern <code>async / await</code> lets you write each step on clean, sequential lines just like a clear recipe.</p>
+</div>
+                    </div>
+                </div>
+
+                <!-- EventEmitter -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>⭐ Event Loop &amp; EventEmitter (events module)</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Node.js is built around an <strong>Event-Driven Architecture</strong>. The built-in <code>events</code> module allows objects to communicate by raising (emitting) and listening for custom named events.</p>
+                        <div class="code-block">
+                            <pre><code>// eventDemo.js
+const EventEmitter = require('events');
+
+// Create an instance of EventEmitter
+const paymentEmitter = new EventEmitter();
+
+// 1. Register event listener (.on)
+paymentEmitter.on('paymentReceived', (data) => {
+  console.log(`[Notification Service] Sending receipt to customer ${data.customerName} for $${data.amount}`);
+});
+
+paymentEmitter.on('paymentReceived', (data) => {
+  console.log(`[Ledger Service] Updating account balance for ID: ${data.accountId}`);
+});
+
+// 2. Trigger/Fire the event (.emit)
+console.log("Initiating transaction...");
+paymentEmitter.emit('paymentReceived', {
+  accountId: "ACC-9081",
+  customerName: "Alice",
+  amount: 250
+});</code></pre>
+                        </div>
+                        <div class="alert alert-info mt-3">
+                            <strong>Key EventEmitter Methods:</strong>
+                            <ul class="mb-0">
+                                <li><code>emitter.on(event, listener)</code>: Adds a listener function for the named event.</li>
+                                <li><code>emitter.emit(event, [arg1], [arg2])</code>: Synchronously calls each listener registered for the event.</li>
+                                <li><code>emitter.once(event, listener)</code>: Adds a one-time listener that executes only once and is then removed.</li>
+                                <li><code>emitter.removeListener(event, listener)</code>: Removes a specific listener.</li>
+                            </ul>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">A Doorbell or YouTube Subscribe Bell</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">An <code>EventEmitter</code> works just like a house doorbell. When a visitor presses the button (<code>emitter.emit('doorbell')</code>), whoever is inside listening for that sound (<code>emitter.on('doorbell')</code>) gets notified and answers the door. It keeps different parts of your app completely independent.</p>
+</div>
+                    </div>
+                </div>
+
                 <div class="card mb-4 p-2">
-
-
                     <h5>1. Understanding Asynchronous Code</h5>
-                    <p>Node.js is non-blocking. It doesn't wait for timers to finish before moving to the next line.
-                    </p>
+                    <p>Node.js is non-blocking. It doesn't wait for timers to finish before moving to the next line.</p>
                     <div class="code-block">
-                        <pre><code>
-console.log("Start");
+                        <pre><code>console.log("Start");
 
 setTimeout(() => {
   console.log("After 2 seconds");
@@ -152,6 +652,7 @@ setTimeout(() => {
 console.log("End");</code></pre>
                     </div>
                 </div>
+
                 <!-- Graphical/Chart View -->
                 <div class="card mb-4">
                     <div class="card-header text-white">
@@ -186,8 +687,7 @@ console.log("End");</code></pre>
                     </div>
                 </div>
 
-                <!-- Event Loop Phases -->
-
+                <!-- Event Loop Simulation -->
                 <div class="card mb-4">
                     <div class="card-header bg-dark text-white">
                         <h3>Event Loop Simulation</h3>
@@ -217,70 +717,854 @@ console.log("End");</code></pre>
                             <div id="event-loop-log" class="text-center p-3 rounded fw-bold border code-output">
                                 Simulation ready.</div>
                         </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">A Fast-Food Counter Chef</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Imagine a chef at a burger counter. When a customer orders fries, the chef drops them into the fryer (background timer) and immediately takes the next customer's order instead of standing still waiting for the fryer. When the timer dings, the chef bags the fries and gives them to the customer. That's how Node's Event Loop stays fast and never blocks!</p>
+</div>
                     </div>
-                </div>
-
-               
-
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h3>Working with Files (fs)</h3>
-                    </div>
-                    <div class="card-body">
-                        <h5>1. The File System (fs) Module</h5>
-                        <p>Node.js has a built-in module called <code>fs</code> to work with files.</p>
-
-                        <div class="alert alert-info">
-                            <strong>Why 'utf8'?</strong><br>
-                            Files are stored as 0s and 1s (Binary).
-                            <ul>
-                                <li>Without <code>'utf8'</code>: You get a <strong>Buffer</strong> (e.g.,
-                                    <code>&lt;Buffer 48 65...&gt;</code>).
-                                </li>
-                                <li>With <code>'utf8'</code>: Node converts it to readable <strong>Text</strong>.</li>
-                            </ul>
-                        </div>
-
-                        <h5>2. Write and Read a File</h5>
-
-                        <h6>Block 1: Import (Setup)</h6>
-                        <p><code>fs</code> module.</p>
-                        <div class="code-block">
-                            <pre><code>const fs = require('fs');</code></pre>
-                        </div><br />
-
-                        <h6>Block 2: Write (The Action)</h6>
-                        <p><code>fs.writeFile</code> to create the file.</p>
-                        <h6>Block 3: Read (The Verification)</h6>
-                        <p><code>fs.readFile</code> to read the file.</p>
-
-                    </div>
-                </div>
-                <h5 class="mt-4">2. Testing with Jest</h5>
-                <p>Testing is crucial for reliability.<br />
-                    Install Jest: <code>npm install --save-dev jest</code>.
-                </p>
-                <div class="code-block">
-                    Test file
-                    <pre><code>
-const math = require('./math');
-
-test('adds 1 + 2 to equal 3', () => {
-  expect(math.add(1, 2)).toBe(3);
-});
-
-test('subtracts 5 - 2 to equal 3', () => {
-    expect(math.subtract(5, 2)).toBe(3);
-});</code></pre>
-                </div>
-                <p class="mt-3">Add a "test" script to `package.json` file: `"test": "jest"`. Run tests with `npm test`.
-                </p>
-                <div class="text-center my-3">
-                    <img src="./images/npm-test.png" class="img-fluid rounded course-image" alt="Jest Test Output">
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- Runnable Code Block: Event Loop & Execution Phase Priority -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Event Loop & Execution Phase Priority</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">eventLoopTest.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// eventLoopTest.js - Verify the exact Call Stack vs Queue execution order
+console.log('1. [Call Stack] Synchronous start');
+
+// Macrotask Queue (Timer)
+setTimeout(() =&gt; {
+  console.log('4. [Macrotask Queue] setTimeout callback (0ms delay)');
+}, 0);
+
+// Microtask Queue (Promise)
+Promise.resolve().then(() =&gt; {
+  console.log('3. [Microtask Queue] Promise.then() callback');
+});
+
+console.log('2. [Call Stack] Synchronous end');</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Proves how the Event Loop prioritizes execution: 1) Synchronous code in the Call Stack runs first. 2) Microtask Queue (Promises, queueMicrotask) runs next. 3) Macrotask Queue (setTimeout, setImmediate) runs last.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a file named <code>eventLoopTest.js</code> in VS Code.</li>
+                <li>Paste the code above and save.</li>
+                <li>Run in terminal: <code>node eventLoopTest.js</code></li>
+                <li>Observe that 1 and 2 print first, followed by the Promise microtask (3), and finally setTimeout (4).</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">1. [Call Stack] Synchronous start \n 2. [Call Stack] Synchronous end \n 3. [Microtask Queue] Promise.then() \n 4. [Macrotask Queue] setTimeout</code>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- Concept MCQ: Event Loop Execution Order -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Event Loop Execution Order</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Consider: console.log("A"); setTimeout(() => console.log("B"), 0); console.log("C"); - What prints to the console?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_event_loop_order" onchange="handleQuizSelect(this, false, 'fb_day3_event_loop_order', 'Even with 0ms, setTimeout callback waits in the Callback Queue until the Call Stack clears.')">
+                <span><strong>A)</strong> A, B, C</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_event_loop_order" onchange="handleQuizSelect(this, true, 'fb_day3_event_loop_order', 'Synchronous statements (A and C) execute immediately on the Call Stack. Then the Event Loop pulls B from the queue.')">
+                <span><strong>B)</strong> A, C, B</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_event_loop_order" onchange="handleQuizSelect(this, false, 'fb_day3_event_loop_order', 'The timer callback cannot preempt currently executing synchronous code.')">
+                <span><strong>C)</strong> B, A, C</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_event_loop_order" onchange="handleQuizSelect(this, false, 'fb_day3_event_loop_order', 'Code executes sequentially from top to bottom.')">
+                <span><strong>D)</strong> C, B, A</span>
+            </label>
+        </div>
+        <div id="fb_day3_event_loop_order" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+
+<!-- Runnable Code Block: Custom Events with EventEmitter -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Custom Events with EventEmitter</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">eventDemo.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// eventDemo.js - Event-Driven Architecture with EventEmitter
+const EventEmitter = require('events');
+
+class ShopEmitter extends EventEmitter {}
+const shop = new ShopEmitter();
+
+// Register a continuous listener (.on)
+shop.on('orderPlaced', (item, price) =&gt; {
+  console.log(`📦 [Order Notification] New order: "${item}" ($ ${price})`);
+});
+
+// Register a one-time listener (.once)
+shop.once('firstCustomerBonus', (customerName) =&gt; {
+  console.log(`🎉 [One-time Special] Welcome ${customerName}! 20% discount coupon applied!`);
+});
+
+console.log('=== Emitting Store Events ===');
+
+// Customer 1
+shop.emit('firstCustomerBonus', 'Sarah');
+shop.emit('orderPlaced', 'Mechanical Keyboard', 85);
+
+// Customer 2 (Notice: firstCustomerBonus will NOT fire again!)
+shop.emit('firstCustomerBonus', 'David');
+shop.emit('orderPlaced', 'Wireless Mouse', 45);
+
+console.log('=============================');</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Demonstrates the Observer Pattern in Node.js. <code>.on()</code> registers a continuous event subscriber, <code>.once()</code> runs once and deregisters itself automatically, and <code>.emit()</code> publishes the event with payload data.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a file named <code>eventDemo.js</code>.</li>
+                <li>Paste the code above and save.</li>
+                <li>Run in terminal: <code>node eventDemo.js</code></li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">=== Emitting Store Events === 🎉 [One-time Special] Welcome Sarah! ... 📦 [Order Notification] ...</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: EventEmitter (events Module) -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">EventEmitter (events Module)</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Which method on an EventEmitter registers a listener that triggers only once for an event and then automatically cleans itself up?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_events" onchange="handleQuizSelect(this, false, 'fb_day3_events', 'emitter.on() listens continuously every time the event fires.')">
+                <span><strong>A)</strong> emitter.on()</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_events" onchange="handleQuizSelect(this, true, 'fb_day3_events', 'emitter.once() fires the handler once and automatically removes the listener.')">
+                <span><strong>B)</strong> emitter.once()</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_events" onchange="handleQuizSelect(this, false, 'fb_day3_events', 'emitter.emit() triggers the event; it does not register a listener.')">
+                <span><strong>C)</strong> emitter.emit()</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_events" onchange="handleQuizSelect(this, false, 'fb_day3_events', 'addListener() is an alias for emitter.on() and listens continuously.')">
+                <span><strong>D)</strong> emitter.addListener()</span>
+            </label>
+        </div>
+        <div id="fb_day3_events" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+
+<!-- Runnable Code Block: Promises and async/await Pattern -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Promises and async/await Pattern</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">asyncDemo.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// asyncDemo.js - Mastering Promises &amp; async/await
+// Simulate an asynchronous database query or network request
+function fetchUserData(userId) {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      if (userId &gt; 0) {
+        resolve({ id: userId, username: 'alex_coder', role: 'Full Stack Student' });
+      } else {
+        reject(new Error('Invalid User ID: ID must be a positive number.'));
+      }
+    }, 1000); // 1-second simulated delay
+  });
+}
+
+// Clean, readable async/await with try/catch
+async function runAsyncDemo() {
+  console.log('1. ⏳ Requesting user data from simulated database...');
+  try {
+    const user = await fetchUserData(42);
+    console.log('2. ✅ User data received successfully:', user);
+
+    console.log('3. ⏳ Attempting error test with invalid ID...');
+    await fetchUserData(-1);
+  } catch (error) {
+    console.log('4. ⚠️ Caught error cleanly with try/catch:', error.message);
+  }
+  console.log('5. 🏁 All async operations completed cleanly without callback hell!');
+}
+
+runAsyncDemo();</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Demonstrates modern asynchronous JavaScript using native Promises and <code>async/await</code>. Notice how the code reads linearly top-to-bottom like synchronous code, while errors are caught using standard <code>try/catch</code>.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a file named <code>asyncDemo.js</code>.</li>
+                <li>Paste the code above and save.</li>
+                <li>Run in terminal: <code>node asyncDemo.js</code></li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">1. ⏳ Requesting user data... 2. ✅ User data received: { id: 42, username: ... } 4. ⚠️ Caught error cleanly ...</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: Async Callbacks vs. Promises & async/await -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Async Callbacks vs. Promises & async/await</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What major advantage does async/await have over deeply nested callbacks ("Callback Hell")?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_async" onchange="handleQuizSelect(this, true, 'fb_day3_async', 'async/await eliminates the pyramid of doom and lets you handle async errors using familiar try/catch blocks.')">
+                <span><strong>A)</strong> It allows writing asynchronous code in a linear, readable style with standard try/catch error handling.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_async" onchange="handleQuizSelect(this, false, 'fb_day3_async', 'async/await is non-blocking; the Event Loop continues handling other tasks while waiting.')">
+                <span><strong>B)</strong> It pauses all CPU threads on the computer until the query completes.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_async" onchange="handleQuizSelect(this, false, 'fb_day3_async', 'async/await is built directly on top of Promises.')">
+                <span><strong>C)</strong> It eliminates the need for JavaScript Promises.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_async" onchange="handleQuizSelect(this, false, 'fb_day3_async', 'It remains completely asynchronous under the hood.')">
+                <span><strong>D)</strong> It converts asynchronous database queries into synchronous browser calls.</span>
+            </label>
+        </div>
+        <div id="fb_day3_async" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+<!-- Concept MCQ: npm & package.json vs. package-lock.json -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">npm & package.json vs. package-lock.json</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the primary role of package-lock.json in a Node.js project?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_npm" onchange="handleQuizSelect(this, false, 'fb_day3_npm', 'package-lock.json manages package versions, not git permissions.')">
+                <span><strong>A)</strong> It locks down the code so nobody can edit the repository.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_npm" onchange="handleQuizSelect(this, true, 'fb_day3_npm', 'It guarantees that every developer and production server installs the exact same nested dependency tree.')">
+                <span><strong>B)</strong> It locks the exact dependency versions and integrity hashes for 100% reproducible installs.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_npm" onchange="handleQuizSelect(this, false, 'fb_day3_npm', 'Sensitive credentials belong in .env, never in package-lock.json.')">
+                <span><strong>C)</strong> It stores environment variables and database passwords.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_npm" onchange="handleQuizSelect(this, false, 'fb_day3_npm', 'node_modules is still required to contain the actual package code.')">
+                <span><strong>D)</strong> It replaces the need for node_modules directory.</span>
+            </label>
+        </div>
+        <div id="fb_day3_npm" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+
+<!-- Runnable Code Block: File System Operations (fs Module) -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: File System Operations (fs Module)</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">fsDemo.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// fsDemo.js - Complete File Reading &amp; Writing with Error Handling
+const fs = require('fs');
+const path = require('path');
+
+const filePath = path.join(__dirname, 'demo_notes.txt');
+
+console.log('1. Starting File System demo...');
+
+// Write a file asynchronously
+const initialContent = 'Hello from Node.js File System!\nCreated at: ' + new Date().toLocaleString();
+
+fs.writeFile(filePath, initialContent, 'utf8', (err) =&gt; {
+  if (err) {
+    return console.error('❌ Error writing file:', err.message);
+  }
+  console.log('2. ✅ File successfully created:', filePath);
+
+  // Read the file back asynchronously
+  fs.readFile(filePath, 'utf8', (readErr, data) =&gt; {
+    if (readErr) {
+      return console.error('❌ Error reading file:', readErr.message);
+    }
+    console.log('3. 📄 Reading file content:\n---');
+    console.log(data);
+    console.log('---\n4. Appending a new line...');
+
+    // Append additional content
+    fs.appendFile(filePath, '\nAppended: Node.js non-blocking I/O is super fast!', (appendErr) =&gt; {
+      if (appendErr) return console.error(appendErr);
+      console.log('5. ✅ Content appended! Check your directory for "demo_notes.txt".');
+    });
+  });
+});</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Demonstrates asynchronous, non-blocking disk operations using <code>fs.writeFile()</code>, <code>fs.readFile()</code> with <code>utf8</code> character encoding, and <code>fs.appendFile()</code> without freezing the Node.js server.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a file named <code>fsDemo.js</code> in your folder.</li>
+                <li>Paste the code above and save.</li>
+                <li>Run in terminal: <code>node fsDemo.js</code></li>
+                <li>Notice that a new file named <code>demo_notes.txt</code> appears right in your folder!</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">1. Starting File System demo... 2. ✅ File successfully created 3. 📄 Reading file content...</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: File System (fs Module) -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">File System (fs Module)</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What type of data does fs.readFile("data.txt", callback) pass into its callback if no encoding (like "utf8") is specified?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_fs" onchange="handleQuizSelect(this, true, 'fb_day3_fs', 'Without specifying \'utf8\', fs.readFile returns raw binary bytes wrapped in a Buffer object.')">
+                <span><strong>A)</strong> A raw binary Buffer</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_fs" onchange="handleQuizSelect(this, false, 'fb_day3_fs', 'You only get a string if you specify the encoding, e.g., fs.readFile(&quot;data.txt&quot;, &quot;utf8&quot;, callback).')">
+                <span><strong>B)</strong> A plain JavaScript string</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_fs" onchange="handleQuizSelect(this, false, 'fb_day3_fs', 'Node.js does not parse JSON automatically. You must call JSON.parse().')">
+                <span><strong>C)</strong> A parsed JSON object</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_fs" onchange="handleQuizSelect(this, false, 'fb_day3_fs', 'fs.readFile returns the entire file as a buffer or string, not an array of lines.')">
+                <span><strong>D)</strong> An array of individual lines</span>
+            </label>
+        </div>
+        <div id="fb_day3_fs" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+
+<!-- Runnable Code Block: HTTP Web Server -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: HTTP Web Server</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">server.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// server.js - Complete, runnable HTTP Web Server
+const http = require('http');
+
+const PORT = 3000;
+
+// 1. Create the HTTP server
+const server = http.createServer((req, res) =&gt; {
+  console.log(`[${new Date().toLocaleTimeString()}] Incoming Request: ${req.method} ${req.url}`);
+
+  // 2. Routing logic
+  if (req.url === '/') {
+    // Serve HTML
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(`
+      &lt;h1&gt;🚀 Hello from Node.js HTTP Server!&lt;/h1&gt;
+      &lt;p&gt;Your web server is running successfully.&lt;/p&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/api/time"&gt;View Server Time (JSON)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/about"&gt;About Page&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    `);
+  } else if (req.url === '/api/time') {
+    // Serve JSON data
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      message: 'Node.js is running fast!',
+      currentTime: new Date().toISOString(),
+      nodeVersion: process.version
+    }));
+  } else if (req.url === '/about') {
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end('&lt;h1&gt;About Page&lt;/h1&gt;&lt;p&gt;Built with Node.js built-in http module without any external packages!&lt;/p&gt;');
+  } else {
+    // 404 Not Found
+    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end('&lt;h1&gt;404 Not Found&lt;/h1&gt;&lt;p&gt;The requested page does not exist.&lt;/p&gt;');
+  }
+});
+
+// 3. Start listening on the port
+server.listen(PORT, () =&gt; {
+  console.log(`✅ Server is active and listening at http://localhost:${PORT}/`);
+  console.log('👉 Press Ctrl + C in your terminal to stop the server.');
+});</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Node's built-in <code>http.createServer()</code> listens for network requests. <code>req.url</code> reads the requested path, <code>res.writeHead()</code> sets the status code and MIME type, and <code>res.end()</code> sends the HTML or JSON body back to the browser.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a file named <code>server.js</code> in your project folder in VS Code.</li>
+                <li>Click the <strong>Copy Code</strong> button above and paste the contents into <code>server.js</code>.</li>
+                <li>Open your terminal in VS Code (<code>Ctrl + `</code>) and run: <code>node server.js</code></li>
+                <li>Open your web browser and navigate to: <code>http://localhost:3000</code> and <code>http://localhost:3000/api/time</code></li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">✅ Server is active and listening at http://localhost:3000/</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: HTTP Web Server Module -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">HTTP Web Server Module</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the purpose of res.end() in a Node.js http.createServer request handler?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_http" onchange="handleQuizSelect(this, false, 'fb_day3_http', 'res.end() closes the HTTP response for that specific client, not the whole server.')">
+                <span><strong>A)</strong> It terminates the entire Node.js server process.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_http" onchange="handleQuizSelect(this, true, 'fb_day3_http', 'Without res.end(), the client connection will hang indefinitely waiting for more data.')">
+                <span><strong>B)</strong> It signals to the client browser that all response headers and body data have been sent.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_http" onchange="handleQuizSelect(this, false, 'fb_day3_http', 'res.end() does not perform file deletion.')">
+                <span><strong>C)</strong> It deletes the requested resource from the server hard drive.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_http" onchange="handleQuizSelect(this, false, 'fb_day3_http', 'Parsing the request body requires reading data chunks from req, not res.end().')">
+                <span><strong>D)</strong> It converts the incoming request body into a JavaScript object.</span>
+            </label>
+        </div>
+        <div id="fb_day3_http" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+
+<!-- Runnable Code Block: Node.js First Script & System Diagnostics -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Node.js First Script & System Diagnostics</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">app.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// app.js - Explore your computer's OS and Node.js environment
+const os = require('os');
+
+console.log('=== 🚀 Node.js Environment Overview ===');
+console.log('Node.js Version:   ', process.version);
+console.log('Operating System:  ', os.type(), os.platform(), os.arch());
+console.log('Total CPU Cores:   ', os.cpus().length);
+console.log('Total Memory (GB): ', (os.totalmem() / 1024 ** 3).toFixed(2), 'GB');
+console.log('Free Memory (GB):  ', (os.freemem() / 1024 ** 3).toFixed(2), 'GB');
+console.log('Current Directory: ', __dirname);
+console.log('Process ID (PID):  ', process.pid);
+console.log('========================================');</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Demonstrates how Node.js runs outside the browser sandbox with direct access to hardware, CPU cores, memory stats, and the local file system through built-in core modules like <code>os</code> and global <code>process</code>.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a file named <code>app.js</code> in VS Code.</li>
+                <li>Copy and paste the code snippet into <code>app.js</code>.</li>
+                <li>Run in terminal: <code>node app.js</code></li>
+                <li>Notice how Node.js communicates directly with your operating system hardware.</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">=== 🚀 Node.js Environment Overview === Node.js Version: v... CPU Cores: 8 ...</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: Node.js CommonJS Modules -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Node.js CommonJS Modules</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In CommonJS (the default Node.js module system), how do you expose a function or object so other files can import it with require()?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_modules" onchange="handleQuizSelect(this, false, 'fb_day3_modules', '\'export default\' is ES6 module syntax, not CommonJS.')">
+                <span><strong>A)</strong> export default myFunction;</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_modules" onchange="handleQuizSelect(this, true, 'fb_day3_modules', '\'module.exports\' is the standard CommonJS export syntax in Node.js.')">
+                <span><strong>B)</strong> module.exports = myFunction;</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_modules" onchange="handleQuizSelect(this, false, 'fb_day3_modules', '\'window\' does not exist in Node.js runtime.')">
+                <span><strong>C)</strong> window.myFunction = myFunction;</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_modules" onchange="handleQuizSelect(this, false, 'fb_day3_modules', '\'package.exports\' is invalid syntax.')">
+                <span><strong>D)</strong> package.exports = myFunction;</span>
+            </label>
+        </div>
+        <div id="fb_day3_modules" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+<!-- Concept MCQ: Node.js REPL (Read-Eval-Print Loop) -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Node.js REPL (Read-Eval-Print Loop)</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In the Node.js interactive REPL, what special variable stores the result of the most recently evaluated expression?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_repl" onchange="handleQuizSelect(this, true, 'fb_day3_repl', 'Typing \'_\' in the REPL automatically recalls the value of the last evaluated expression.')">
+                <span><strong>A)</strong> _ (underscore)</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_repl" onchange="handleQuizSelect(this, false, 'fb_day3_repl', '\'$last\' is not a reserved variable in the Node.js REPL.')">
+                <span><strong>B)</strong> $last</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_repl" onchange="handleQuizSelect(this, false, 'fb_day3_repl', '\'ans\' is common in scientific calculators, but Node.js REPL uses \'_\'.')">
+                <span><strong>C)</strong> ans</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_repl" onchange="handleQuizSelect(this, false, 'fb_day3_repl', '\'result\' is an arbitrary identifier, not the built-in REPL history variable.')">
+                <span><strong>D)</strong> result</span>
+            </label>
+        </div>
+        <div id="fb_day3_repl" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+
+<!-- Runnable Code Block: Browser JavaScript vs. Node.js Globals -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Browser JavaScript vs. Node.js Globals</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">env-check.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// env-check.js - Demonstrating Node.js Globals vs. Browser Sandbox
+console.log('=== Checking Environment Globals ===');
+
+// 1. Check for Node-specific global: 'process'
+if (typeof process !== 'undefined') {
+  console.log('✅ Running in Node.js runtime!');
+  console.log('   Platform:', process.platform);
+  console.log('   Current User Home Directory:', process.env.USERPROFILE || process.env.HOME);
+}
+
+// 2. Check for Browser-specific globals: 'window' &amp; 'document'
+try {
+  console.log(window);
+} catch (err) {
+  console.log('❌ "window" is not defined! (Browsers have DOM window, Node does NOT)');
+}
+
+try {
+  console.log(document);
+} catch (err) {
+  console.log('❌ "document" is not defined! (Node does not have HTML web page DOM)');
+}
+console.log('====================================');</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Shows why client-side browser APIs (like <code>window</code>, <code>document</code>, <code>localStorage</code>) do not exist in server-side Node.js, and how Node replaces them with <code>process</code>, <code>global</code>, and operating system bindings.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a file named <code>env-check.js</code>.</li>
+                <li>Paste the code above and save.</li>
+                <li>Run in terminal: <code>node env-check.js</code></li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">✅ Running in Node.js runtime! ... ❌ "window" is not defined!</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: Browser JS vs. Node.js -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Browser JS vs. Node.js</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Which of the following global objects is available in Node.js, but NOT in a standard browser environment?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_browser_vs_node" onchange="handleQuizSelect(this, false, 'fb_day3_browser_vs_node', '\'window\' is the global object in web browsers, not in Node.js.')">
+                <span><strong>A)</strong> window</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_browser_vs_node" onchange="handleQuizSelect(this, false, 'fb_day3_browser_vs_node', '\'document\' represents the browser DOM, which does not exist in standard Node.js.')">
+                <span><strong>B)</strong> document</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_browser_vs_node" onchange="handleQuizSelect(this, true, 'fb_day3_browser_vs_node', '\'process\' provides control over the Node runtime, environment variables (process.env), and command-line arguments.')">
+                <span><strong>C)</strong> process</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_browser_vs_node" onchange="handleQuizSelect(this, false, 'fb_day3_browser_vs_node', '\'localStorage\' is a browser Web Storage API, not a built-in Node.js API.')">
+                <span><strong>D)</strong> localStorage</span>
+            </label>
+        </div>
+        <div id="fb_day3_browser_vs_node" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+<!-- Concept MCQ: Node.js Architecture & V8 Engine -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Node.js Architecture & V8 Engine</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What allows Node.js to handle thousands of concurrent client connections efficiently despite executing JavaScript on a single thread?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_arch" onchange="handleQuizSelect(this, false, 'fb_day3_arch', 'Creating a new process per connection is resource-intensive. Node.js avoids this with its event-driven design.')">
+                <span><strong>A)</strong> It creates a new operating system process for each incoming client connection.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_arch" onchange="handleQuizSelect(this, true, 'fb_day3_arch', 'Node.js pairs Google Chrome\'s V8 engine with Libuv to delegate I/O tasks to the OS kernel, keeping the main JavaScript thread unblocked.')">
+                <span><strong>B)</strong> Non-blocking asynchronous I/O and an Event Loop powered by Libuv offload tasks to the OS.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_arch" onchange="handleQuizSelect(this, false, 'fb_day3_arch', 'The main JavaScript thread is single-threaded. Multi-core usage requires worker threads or the cluster module.')">
+                <span><strong>C)</strong> It automatically runs all JavaScript code across 16 CPU cores at the same time.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day3_arch" onchange="handleQuizSelect(this, false, 'fb_day3_arch', 'Blocking synchronous calls freeze the server and prevent other clients from being served.')">
+                <span><strong>D)</strong> It converts all asynchronous operations into blocking synchronous calls.</span>
+            </label>
+        </div>
+        <div id="fb_day3_arch" class="quiz-feedback" style="display: none;"></div>
+    </div>
 </div>

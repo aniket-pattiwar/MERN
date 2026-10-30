@@ -412,6 +412,87 @@ button, .btn {
 [data-bs-theme="dark"] .accordion-button { background-color: #161b22; color: #c9d1d9; }
 [data-bs-theme="dark"] .accordion-button:not(.collapsed) { background-color: #0d1117; color: #58a6ff; box-shadow: inset 0 -1px 0 #30363d; }
 [data-bs-theme="dark"] .accordion-button::after { filter: invert(1) grayscale(100%) brightness(200%); }
+
+/* ================= MCQ & QUIZ STYLES ================= */
+.mcq-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.mcq-card:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
+}
+.quiz-option {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    border: 1px solid var(--bs-border-color) !important;
+}
+.quiz-option:hover {
+    background-color: rgba(13, 110, 253, 0.06) !important;
+    border-color: #3b82f6 !important;
+    transform: translateX(3px);
+}
+.quiz-option input[type="radio"] {
+    cursor: pointer;
+}
+.quiz-option.correct-picked {
+    background-color: rgba(25, 135, 84, 0.12) !important;
+    border-color: #198754 !important;
+    color: #0f5132 !important;
+}
+[data-bs-theme="dark"] .quiz-option.correct-picked {
+    background-color: rgba(25, 135, 84, 0.25) !important;
+    border-color: #2ea043 !important;
+    color: #7ee787 !important;
+}
+.quiz-option.wrong-picked {
+    background-color: rgba(220, 53, 69, 0.12) !important;
+    border-color: #dc3545 !important;
+    color: #842029 !important;
+}
+[data-bs-theme="dark"] .quiz-option.wrong-picked {
+    background-color: rgba(220, 53, 69, 0.25) !important;
+    border-color: #f85149 !important;
+    color: #ffa198 !important;
+}
+.quiz-feedback {
+    animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ================= RUNNABLE CODE RUNNER STYLES ================= */
+.code-runner-card {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.code-runner-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08) !important;
+}
+.code-runner-card .code-block {
+    position: relative;
+    padding: 1.25rem 1rem 1rem 1rem;
+    font-size: 0.95rem;
+}
+.copy-btn {
+    z-index: 10;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+[data-bs-theme="dark"] .copy-btn {
+    background-color: rgba(22, 27, 34, 0.85);
+    border-color: #30363d;
+    color: #c9d1d9;
+}
+[data-bs-theme="dark"] .copy-btn:hover {
+    background-color: #238636;
+    border-color: #2ea043;
+    color: #ffffff;
+}
+
 </style>
 </head>
 
@@ -571,7 +652,60 @@ button, .btn {
 
     <!-- Dynamic Content Loader & Scripts -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        
+    // --- Interactive Quiz Handler ---
+    
+    // --- Global Snippet Copy Handler ---
+    window.copySnippet = function(buttonEl) {
+        let codeText = '';
+        const parent = buttonEl.closest('.code-runner-card') || buttonEl.closest('.code-block') || buttonEl.parentElement;
+        if (parent) {
+            const codeEl = parent.querySelector('code');
+            if (codeEl) codeText = codeEl.innerText;
+        }
+        if (!codeText) {
+            const pre = buttonEl.nextElementSibling;
+            if (pre) codeText = pre.innerText;
+        }
+        if (codeText) {
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalHtml = buttonEl.innerHTML;
+                buttonEl.innerHTML = '<i class="bi bi-check2 me-1"></i>Copied!';
+                buttonEl.classList.add('btn-success', 'text-white');
+                setTimeout(() => {
+                    buttonEl.innerHTML = originalHtml;
+                    buttonEl.classList.remove('btn-success', 'text-white');
+                }, 2000);
+            }).catch(err => {
+                console.error('Copy failed:', err);
+            });
+        }
+    };
+
+    window.handleQuizSelect = function(inputEl, isCorrect, feedbackId, explanation) {
+        const card = inputEl.closest('.mcq-card');
+        if (card) {
+            card.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('correct-picked', 'wrong-picked');
+            });
+            const chosenOption = inputEl.closest('.quiz-option');
+            if (chosenOption) {
+                chosenOption.classList.add(isCorrect ? 'correct-picked' : 'wrong-picked');
+            }
+        }
+        const feedback = document.getElementById(feedbackId);
+        if (!feedback) return;
+        feedback.style.display = 'block';
+        if (isCorrect) {
+            feedback.className = 'quiz-feedback mt-3 alert alert-success py-2 px-3 small d-flex align-items-center gap-2 shadow-sm';
+            feedback.innerHTML = '<i class="bi bi-check-circle-fill fs-5 text-success flex-shrink-0"></i><div><strong>Correct!</strong> ' + explanation + '</div>';
+        } else {
+            feedback.className = 'quiz-feedback mt-3 alert alert-danger py-2 px-3 small d-flex align-items-center gap-2 shadow-sm';
+            feedback.innerHTML = '<i class="bi bi-x-circle-fill fs-5 text-danger flex-shrink-0"></i><div><strong>Not quite right!</strong> ' + explanation + ' <span class="d-block text-secondary fst-italic mt-1">Select another option to try again.</span></div>';
+        }
+    };
+
+document.addEventListener('DOMContentLoaded', () => {
             // --- Theme Toggle Logic ---
             const themeToggleBtn = document.getElementById('theme-toggle');
             const htmlElement = document.documentElement;

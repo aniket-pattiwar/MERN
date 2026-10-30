@@ -1,4 +1,9 @@
 {
+  "name": "mern-course-website",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npx serve ."
+  },
   "dependencies": {
     "express": "^5.2.1"
   }

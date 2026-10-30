@@ -61,6 +61,45 @@ const app = initializeApp(firebaseConfig);
 
 // Export services you need (e.g., Auth)
 export const auth = getAuth(app);</code></pre>
+
+<!-- Concept MCQ: Firebase Backend-as-a-Service (BaaS) -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Firebase Backend-as-a-Service (BaaS)</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is a primary benefit of using Firebase (BaaS) for web apps?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day67_firebase" onchange="handleQuizSelect(this, false, 'fb_day67_firebase', 'Firebase is a serverless platform that abstracts away server management.')">
+                <span><strong>A)</strong> It requires you to manually manage and patch Linux operating system servers.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day67_firebase" onchange="handleQuizSelect(this, true, 'fb_day67_firebase', 'Firebase allows frontend developers to integrate auth, databases, and hosting rapidly using simple client-side SDK calls.')">
+                <span><strong>B)</strong> It provides ready-to-use cloud services (Authentication, Firestore realtime database, Cloud Storage, and Hosting) with client SDKs without writing custom backend server code.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day67_firebase" onchange="handleQuizSelect(this, false, 'fb_day67_firebase', 'Firebase is cloud-based and accessible from any web or mobile device.')">
+                <span><strong>C)</strong> It only runs on desktop computers.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day67_firebase" onchange="handleQuizSelect(this, false, 'fb_day67_firebase', 'Firebase provides backend services, while HTML and CSS remain the frontend structure.')">
+                <span><strong>D)</strong> It replaces the need for HTML and CSS.</span>
+            </label>
+        </div>
+        <div id="fb_day67_firebase" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                         </div>
                     </div>
                 </div>
@@ -165,6 +204,45 @@ describe('Header Component', () => {
                         <h5>Step 3: Upload</h5>
                         <p>Upload the <strong>contents</strong> of your <code>dist</code> folder (not the folder itself)
                             to the bucket.</p>
+
+<!-- Concept MCQ: Production Builds & Deployment -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Production Builds & Deployment</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What does the command `npm run build` produce when preparing a React (Vite) application for production deployment?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day67_prod_build" onchange="handleQuizSelect(this, true, 'fb_day67_prod_build', 'The production build minifies JavaScript, optimizes assets, removes development warnings, and outputs static assets into the dist folder.')">
+                <span><strong>A)</strong> It creates a lightweight, minified, and optimized bundle of static HTML, CSS, and JS files in the `dist` folder ready to be served by any static host or CDN.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day67_prod_build" onchange="handleQuizSelect(this, false, 'fb_day67_prod_build', 'npm run build is purely a frontend build tool.')">
+                <span><strong>B)</strong> It deletes all user accounts in the database.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day67_prod_build" onchange="handleQuizSelect(this, false, 'fb_day67_prod_build', 'That is `npm run dev`, not `npm run build`.')">
+                <span><strong>C)</strong> It spins up a live local development server with Hot Module Replacement.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day67_prod_build" onchange="handleQuizSelect(this, false, 'fb_day67_prod_build', 'npm run build builds standard web assets.')">
+                <span><strong>D)</strong> It converts the app into an Android APK file.</span>
+            </label>
+        </div>
+        <div id="fb_day67_prod_build" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
 
                         <div class="text-center my-3">
                             <img src="./images/aws-s3-deployment.png" class="img-fluid rounded course-image"

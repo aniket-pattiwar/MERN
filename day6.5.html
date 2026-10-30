@@ -21,7 +21,46 @@
                 <div class="card mb-4">
                     <div class="card-header text-white">
                         <h3>1. React Router: The GPS of your App</h3>
-                    </div>
+ 
+
+<!-- Concept MCQ: React Router: <Link> vs. <a> Tag -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">React Router: <Link> vs. <a> Tag</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Why should you always use React Router's <Link to="..."> component instead of a traditional HTML <a href="..."> tag in a React application?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_link_vs_a" onchange="handleQuizSelect(this, false, 'fb_day65_link_vs_a', 'HTML <a> tags are standard HTML, but trigger browser navigation.')">
+                <span><strong>A)</strong> <a href="..."> tags are completely deprecated in modern HTML5 browsers.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_link_vs_a" onchange="handleQuizSelect(this, true, 'fb_day65_link_vs_a', 'Using <a> causes the browser to reload the whole HTML page, wiping out any in-memory React state and resetting your app.')">
+                <span><strong>B)</strong> <Link> intercepts clicks to prevent full-page browser reloads, updating the URL and view seamlessly while preserving application state.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_link_vs_a" onchange="handleQuizSelect(this, false, 'fb_day65_link_vs_a', 'Frontend client routing has zero impact on server restarts.')">
+                <span><strong>C)</strong> <Link> forces the backend Express server to restart.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_link_vs_a" onchange="handleQuizSelect(this, false, 'fb_day65_link_vs_a', '<Link> is the primary navigation component in React Router for client-side routing.')">
+                <span><strong>D)</strong> <Link> is only used for downloading PDF documents.</span>
+            </label>
+        </div>
+        <div id="fb_day65_link_vs_a" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>                   </div>
                     <div class="card-body">
                         <!-- Graphical View -->
                         <div class="row align-items-center mb-4">
@@ -124,7 +163,46 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                         </div>
 
                         <h5 class="mt-4">React Router Components</h5>
-                        <div class="table-responsive">
+             
+
+<!-- Concept MCQ: React Router Components (<Routes> & <Route>) -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">React Router Components (<Routes> & <Route>)</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In React Router v6, which component acts as the container that inspects all child <Route> elements and renders the best matching view?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_routes_comp" onchange="handleQuizSelect(this, false, 'fb_day65_routes_comp', '<Switch> was used in React Router v5; in v6, it was replaced by <Routes>.')">
+                <span><strong>A)</strong> <Switch></span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_routes_comp" onchange="handleQuizSelect(this, true, 'fb_day65_routes_comp', '<Routes> wraps all <Route path=&quot;...&quot; element={<Comp />} /> elements and matches the current URL.')">
+                <span><strong>B)</strong> <Routes></span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_routes_comp" onchange="handleQuizSelect(this, false, 'fb_day65_routes_comp', '<RouterOutlet> is an Angular router directive, not React Router.')">
+                <span><strong>C)</strong> <RouterOutlet></span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_routes_comp" onchange="handleQuizSelect(this, false, 'fb_day65_routes_comp', '<Navigator> is not the primary routing container component.')">
+                <span><strong>D)</strong> <Navigator></span>
+            </label>
+        </div>
+        <div id="fb_day65_routes_comp" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>           <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead class="table-light">
                                     <tr>
@@ -163,10 +241,182 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                     </div>
                 </div>
 
+                <!-- Conditional Rendering -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>⭐ Conditional Rendering in React</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Conditional Rendering</strong> in React works the same way conditions work in JavaScript. It allows your UI to render different elements or components based on certain state or prop conditions.</p>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <h6>1. Ternary Operator (<code>condition ? A : B</code>)</h6>
+                                <p class="small text-muted">Ideal for binary (either/or) conditions:</p>
+                                <div class="code-block">
+                                    <pre><code>function UserGreeting({ isLoggedIn }) {
+  return (
+    &lt;div&gt;
+      {isLoggedIn ? (
+        &lt;h5 class="text-success"&gt;Welcome back, Member!&lt;/h5&gt;
+      ) : (
+        &lt;button class="btn btn-primary"&gt;Please Sign In&lt;/button&gt;
+      )}
+    &lt;/div&gt;
+  );
+}</code></pre>
+                                </div>
+
+<!-- Concept MCQ: ⭐ Conditional Rendering in React -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">⭐ Conditional Rendering in React</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Which JSX operator is most commonly used to render a component ONLY when a condition evaluates to true, and render nothing when false?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_conditional_render" onchange="handleQuizSelect(this, false, 'fb_day65_conditional_render', 'The || operator renders the right side when the left side is falsy, not when truthy.')">
+                <span><strong>A)</strong> The logical OR operator (||)</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_conditional_render" onchange="handleQuizSelect(this, true, 'fb_day65_conditional_render', 'With {condition && <Component />}, if condition is true, React renders <Component />; if false, it renders nothing.')">
+                <span><strong>B)</strong> The inline logical AND operator (&&), e.g. {isLoggedIn && <Dashboard />}</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_conditional_render" onchange="handleQuizSelect(this, false, 'fb_day65_conditional_render', 'Bitwise operators are for integer bit manipulation, not React JSX conditions.')">
+                <span><strong>C)</strong> The bitwise XOR operator (^)</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_conditional_render" onchange="handleQuizSelect(this, false, 'fb_day65_conditional_render', 'JavaScript switch statements cannot be placed directly inside inline JSX tags without wrapping in a function.')">
+                <span><strong>D)</strong> The switch/case statement directly inside JSX elements</span>
+            </label>
+        </div>
+        <div id="fb_day65_conditional_render" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <h6>2. Logical AND Operator (<code>condition &amp;&amp; A</code>)</h6>
+                                <p class="small text-muted">Ideal when you only want to render something when condition is true:</p>
+                                <div class="code-block">
+                                    <pre><code>function NotificationBell({ unreadCount }) {
+  return (
+    &lt;div&gt;
+      &lt;span&gt;Inbox&lt;/span&gt;
+      {unreadCount &gt; 0 &amp;&amp; (
+        &lt;span class="badge bg-danger ms-2"&gt;
+          {unreadCount} New
+        &lt;/span&gt;
+      )}
+    &lt;/div&gt;
+  );
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <h6>3. Early Return Pattern (<code>if / else</code>)</h6>
+                                <p class="small text-muted">Ideal for loading spinners or error screens:</p>
+                                <div class="code-block">
+                                    <pre><code>function BookDetails({ book, isLoading, error }) {
+  if (isLoading) return &lt;div class="spinner-border text-primary" role="status" /&gt;;
+  if (error) return &lt;div class="alert alert-danger"&gt;{error}&lt;/div&gt;;
+  if (!book) return &lt;p&gt;No book found.&lt;/p&gt;;
+
+  return &lt;h4&gt;{book.title} by {book.author}&lt;/h4&gt;;
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <h6>4. Switch / Object Lookup Pattern</h6>
+                                <p class="small text-muted">Ideal for multi-state conditions (e.g. Order Status):</p>
+                                <div class="code-block">
+                                    <pre><code>function OrderBadge({ status }) {
+  const badgeStyles = {
+    pending: 'badge bg-warning text-dark',
+    completed: 'badge bg-success',
+    cancelled: 'badge bg-danger'
+  };
+
+  return (
+    &lt;span className={badgeStyles[status] || 'badge bg-secondary'}&gt;
+      {status.toUpperCase()}
+    &lt;/span&gt;
+  );
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">A Room Light Switch or Weather App</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">If it's sunny outside, you don't need an umbrella; if it's raining, you open it. In React, if a user is logged in, you show a 'Logout' button; if they are logged out, you show a 'Login' button. That is <strong>Conditional Rendering</strong>: showing different UI based on state.</p>
+</div>
+                    </div>
+                </div>
+
                 <div class="card mb-4">
                     <div class="card-header text-dark">
                         <h3>2. Classes vs. Hooks: The Evolution</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: Evolution: Classes vs. Hooks -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Evolution: Classes vs. Hooks</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What was the primary reason the React team introduced Hooks (such as useState and useEffect) in React 16.8?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_classes_vs_hooks" onchange="handleQuizSelect(this, true, 'fb_day65_classes_vs_hooks', 'Hooks allow developers to reuse stateful logic cleanly across function components without classes, constructors, or complex lifecycle ceremonies.')">
+                <span><strong>A)</strong> To allow functional components to manage state and side effects without writing verbose class components or dealing with `this` binding.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_classes_vs_hooks" onchange="handleQuizSelect(this, false, 'fb_day65_classes_vs_hooks', 'React remains 100% JavaScript.')">
+                <span><strong>B)</strong> To remove JavaScript and replace it with HTML templates.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_classes_vs_hooks" onchange="handleQuizSelect(this, false, 'fb_day65_classes_vs_hooks', 'Hooks have nothing to do with styling or CSS.')">
+                <span><strong>C)</strong> To eliminate the need for CSS in frontend design.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_classes_vs_hooks" onchange="handleQuizSelect(this, false, 'fb_day65_classes_vs_hooks', 'Hooks are used primarily in Single Page Applications.')">
+                <span><strong>D)</strong> To force all web applications to be multi-page applications.</span>
+            </label>
+        </div>
+        <div id="fb_day65_classes_vs_hooks" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <p>React originally used <strong>Class Components</strong>. In 2018, <strong>Hooks</strong> were
                             introduced to make Functional Components powerful. Hooks are now the industry standard.</p>
@@ -339,6 +589,45 @@ function LikeCounter() {
   );
 }</code></pre>
                         </div>
+
+<!-- Concept MCQ: React State with useState() -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">React State with useState()</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What happens under the hood when a component calls its state updater function (e.g. setCount(count + 1))?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_use_state" onchange="handleQuizSelect(this, false, 'fb_day65_use_state', 'Calling a state setter does not refresh the webpage.')">
+                <span><strong>A)</strong> The browser completely refreshes the current webpage from the server.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_use_state" onchange="handleQuizSelect(this, true, 'fb_day65_use_state', 'React re-runs the component function with the updated state value and updates the Virtual DOM.')">
+                <span><strong>B)</strong> React enqueues the state update and triggers a re-render of the component with the new state value.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_use_state" onchange="handleQuizSelect(this, false, 'fb_day65_use_state', 'The state persists across renders.')">
+                <span><strong>C)</strong> The state variable is deleted from memory.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_use_state" onchange="handleQuizSelect(this, false, 'fb_day65_use_state', 'React state updates are non-blocking and batched for high performance.')">
+                <span><strong>D)</strong> React blocks all other user clicks for 5 seconds.</span>
+            </label>
+        </div>
+        <div id="fb_day65_use_state" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                     </div>
                 </div>
 
@@ -386,6 +675,144 @@ function PersistentLikeCounter() {
   );
 }</code></pre>
                         </div>
+
+
+<!-- Runnable Code Block: useState, useEffect & Conditional Rendering -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: useState, useEffect & Conditional Rendering</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">CounterApp.jsx</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in React</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// CounterApp.jsx - Complete runnable useState and useEffect Demo
+import React, { useState, useEffect } from 'react';
+
+export default function CounterApp() {
+  // 1. useState: Initialize count from localStorage or default to 0
+  const [count, setCount] = useState(() =&gt; {
+    const saved = localStorage.getItem('mern_counter');
+    return saved !== null ? parseInt(saved, 10) : 0;
+  });
+
+  const [themeDark, setThemeDark] = useState(false);
+
+  // 2. useEffect: Sync count changes to browser localStorage
+  useEffect(() =&gt; {
+    localStorage.setItem('mern_counter', count.toString());
+    console.log(`[useEffect] Persisted counter to localStorage: ${count}`);
+  }, [count]); // Runs whenever 'count' changes
+
+  return (
+    &lt;div style={{
+      fontFamily: 'sans-serif',
+      padding: '24px',
+      maxWidth: '450px',
+      margin: '40px auto',
+      borderRadius: '12px',
+      textAlign: 'center',
+      backgroundColor: themeDark ? '#1e293b' : '#f8fafc',
+      color: themeDark ? '#f8fafc' : '#0f172a',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+    }}&gt;
+      &lt;h2&gt;⚡ React Hooks Interactive Lab&lt;/h2&gt;
+      &lt;p&gt;State persists even when you refresh the browser!&lt;/p&gt;
+      
+      &lt;div style={{ fontSize: '48px', fontWeight: 'bold', margin: '16px 0' }}&gt;
+        {count}
+      &lt;/div&gt;
+
+      &lt;div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}&gt;
+        &lt;button onClick={() =&gt; setCount(c =&gt; c - 1)} style={{ padding: '8px 16px', fontSize: '18px' }}&gt;-&lt;/button&gt;
+        &lt;button onClick={() =&gt; setCount(0)} style={{ padding: '8px 16px', fontSize: '18px' }}&gt;Reset&lt;/button&gt;
+        &lt;button onClick={() =&gt; setCount(c =&gt; c + 1)} style={{ padding: '8px 16px', fontSize: '18px' }}&gt;+&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;hr style={{ margin: '20px 0', borderColor: '#ccc' }} /&gt;
+
+      {/* Conditional Rendering */}
+      &lt;button 
+        onClick={() =&gt; setThemeDark(prev =&gt; !prev)}
+        style={{ padding: '8px 16px', cursor: 'pointer', borderRadius: '6px' }}
+      &gt;
+        {themeDark ? '☀️ Switch to Light Mode' : '🌙 Switch to Dark Mode'}
+      &lt;/button&gt;
+
+      {count &gt;= 10 &amp;&amp; (
+        &lt;div style={{ marginTop: '16px', color: '#16a34a', fontWeight: 'bold' }}&gt;
+          🎉 Milestone reached: Double digits!
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Combines <code>useState</code> for responsive state updates, <code>useEffect</code> with a dependency array <code>[count]</code> to synchronize with browser <code>localStorage</code>, and conditional rendering using logical <code>&&</code> and ternary operators.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Paste this into <code>src/App.jsx</code> of your Vite React project.</li>
+                <li>Run <code>npm run dev</code> and open your browser.</li>
+                <li>Click the + and - buttons to update the state.</li>
+                <li>Refresh the browser tab and observe that the counter persists via <code>localStorage</code>!</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Visual Output:</span>
+                <code class="text-muted small">Interactive counter card with theme toggle and milestone alert when count >= 10.</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: Side Effects with useEffect() -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Side Effects with useEffect()</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">When does the callback inside useEffect(() => { ... }, []) execute if an empty dependency array `[]` is provided?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_use_effect" onchange="handleQuizSelect(this, false, 'fb_day65_use_effect', 'An effect without any dependency array runs on every render; with [] it runs only once on mount.')">
+                <span><strong>A)</strong> On every single re-render of the component whenever any state changes.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_use_effect" onchange="handleQuizSelect(this, true, 'fb_day65_use_effect', 'Passing an empty array [] tells React that the effect doesn\'t depend on any props or state, so it only needs to run once when the component is created.')">
+                <span><strong>B)</strong> Exactly once when the component initially mounts into the DOM.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_use_effect" onchange="handleQuizSelect(this, false, 'fb_day65_use_effect', 'useEffect is a React lifecycle hook that runs inside client-side component mounting.')">
+                <span><strong>C)</strong> Only when the user clicks the browser refresh button.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day65_use_effect" onchange="handleQuizSelect(this, false, 'fb_day65_use_effect', 'An empty array tells React to run once on mount, not to disable it.')">
+                <span><strong>D)</strong> Never; an empty array disables the effect completely.</span>
+            </label>
+        </div>
+        <div id="fb_day65_use_effect" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                     </div>
                 </div>
                 <div class="card mb-4">

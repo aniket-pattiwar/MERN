@@ -120,6 +120,45 @@
                   alt="MERN Stack Connection Diagram" />
               </div>
             </div>
+
+<!-- Concept MCQ: The MERN Stack Architecture -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">The MERN Stack Architecture</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Which four technologies form the MERN full-stack development suite and what are their roles?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_mern_stack" onchange="handleQuizSelect(this, false, 'fb_day1_mern_stack', 'This is not the MERN stack.')">
+                <span><strong>A)</strong> MySQL (Database), Ember (Frontend), Ruby (Server), Nginx (Proxy)</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_mern_stack" onchange="handleQuizSelect(this, true, 'fb_day1_mern_stack', 'MERN stands for MongoDB, Express.js, React.js, and Node.js, providing a unified end-to-end JavaScript stack.')">
+                <span><strong>B)</strong> MongoDB (NoSQL Database), Express.js (Backend Framework), React.js (Frontend UI), Node.js (JavaScript Runtime)</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_mern_stack" onchange="handleQuizSelect(this, false, 'fb_day1_mern_stack', 'These are other web technologies, not the standard MERN stack.')">
+                <span><strong>C)</strong> MariaDB, Electron, Redux, Next.js</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_mern_stack" onchange="handleQuizSelect(this, false, 'fb_day1_mern_stack', 'MERN uses Express and Node.js for backend runtime.')">
+                <span><strong>D)</strong> MongoDB, Elixir, React, NativeScript</span>
+            </label>
+        </div>
+        <div id="fb_day1_mern_stack" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
           </div>
         </div>
 
@@ -201,6 +240,45 @@
 
 
             <p id="simulation-log" class="mt-4 text-muted fst-italic fw-bold"></p>
+
+<!-- Concept MCQ: Request-Response Lifecycle in MERN -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Request-Response Lifecycle in MERN</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body text-start">
+        <p class="card-text fw-medium mb-3">What is the standard path of communication when a user clicks a button to view records in a MERN application?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_req_flow" onchange="handleQuizSelect(this, true, 'fb_day1_req_flow', 'React sends an asynchronous HTTP request to Express; Express queries MongoDB; MongoDB returns data to Express; Express sends formatted JSON back to React.')">
+                <span><strong>A)</strong> Client Browser (React) -> Backend Server (Express/Node) -> Database (MongoDB) -> Response returns back to React.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_req_flow" onchange="handleQuizSelect(this, false, 'fb_day1_req_flow', 'Databases cannot be directly contacted from frontend client browsers.')">
+                <span><strong>B)</strong> React queries MongoDB directly through browser Bluetooth.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_req_flow" onchange="handleQuizSelect(this, false, 'fb_day1_req_flow', 'React handles rendering dynamically on the client.')">
+                <span><strong>C)</strong> Node.js renders HTML and sends static pages without JavaScript.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_req_flow" onchange="handleQuizSelect(this, false, 'fb_day1_req_flow', 'MongoDB only stores and queries data.')">
+                <span><strong>D)</strong> MongoDB executes the React components on disk.</span>
+            </label>
+        </div>
+        <div id="fb_day1_req_flow" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
           </div>
         </div>
 
@@ -394,6 +472,45 @@ MongoDB → uses MQL (JSON-style queries)
 db.users.find({ age: { $gt: 25 } })
 </code></pre>
             </div>
+
+<!-- Concept MCQ: Relational (SQL) vs. NoSQL Databases -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Relational (SQL) vs. NoSQL Databases</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What distinguishes a NoSQL document database like MongoDB from a traditional SQL database like MySQL?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_sql_nosql" onchange="handleQuizSelect(this, false, 'fb_day1_sql_nosql', 'Rigid table schemas are characteristic of SQL databases; MongoDB allows flexible schema document structures.')">
+                <span><strong>A)</strong> MongoDB requires all records to have the exact same columns and data types.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_sql_nosql" onchange="handleQuizSelect(this, true, 'fb_day1_sql_nosql', 'MongoDB documents can have varied fields and embedded sub-documents without needing schema migrations.')">
+                <span><strong>B)</strong> MongoDB stores flexible, schema-free BSON/JSON documents in collections rather than rigid tables with rows and columns.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_sql_nosql" onchange="handleQuizSelect(this, false, 'fb_day1_sql_nosql', 'MongoDB supports all standard data types (strings, numbers, booleans, arrays, objects, dates).')">
+                <span><strong>C)</strong> MongoDB can only store numbers, not text.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_sql_nosql" onchange="handleQuizSelect(this, false, 'fb_day1_sql_nosql', 'SQL databases are enterprise server technologies.')">
+                <span><strong>D)</strong> SQL databases are only used on smartphones.</span>
+            </label>
+        </div>
+        <div id="fb_day1_sql_nosql" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
           </div>
         </div>
 
@@ -470,7 +587,112 @@ db.users.find({ age: { $gt: 25 } })
 - deleteOne({ key: "value" })
 
 - countDocuments()</code></pre>
-            </div>           
+            </div>
+
+
+<!-- Runnable Code Block: MongoDB Complete CRUD Operations -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: MongoDB Complete CRUD Operations</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">mongosh_crud_demo.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-terminal me-1"></i>Run in mongosh</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// mongosh_crud_demo.js - Complete runnable script for mongosh
+use schoolDB;
+
+// 1. Create (Insert Documents)
+db.students.insertOne({ name: "Alex Kumar", course: "MERN", score: 92, enrolled: true });
+
+db.students.insertMany([
+  { name: "Priya Sharma", course: "React", score: 88, enrolled: true },
+  { name: "Rohan Verma", course: "Node.js", score: 76, enrolled: false },
+  { name: "Sneha Patel", course: "MERN", score: 95, enrolled: true }
+]);
+
+// 2. Read (Find with filter and projection)
+print("=== High Scoring MERN Students ===");
+db.students.find(
+  { course: "MERN", score: { $gte: 90 } },
+  { name: 1, score: 1, _id: 0 }
+);
+
+// 3. Update (Modify record)
+db.students.updateOne(
+  { name: "Rohan Verma" },
+  { $set: { enrolled: true, score: 82 } }
+);
+
+// 4. Count &amp; Verify
+print("=== Total Enrolled Students ===");
+db.students.countDocuments({ enrolled: true });</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Runs all four CRUD operations inside MongoDB: <code>insertOne</code> and <code>insertMany</code> to write records, <code>find()</code> with query projection to fetch data, and <code>updateOne()</code> with <code>$set</code> operator.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Open your command prompt or terminal in VS Code.</li>
+                <li>Type <code>mongosh</code> and hit Enter to connect to your local MongoDB instance.</li>
+                <li>Click the <strong>Copy Code</strong> button above.</li>
+                <li>Paste the commands directly into the <code>mongosh</code> prompt and hit Enter.</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Terminal Output:</span>
+                <code class="text-muted small">=== High Scoring MERN Students === { name: 'Alex Kumar', score: 92 } ... Total Enrolled: 4</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: MongoDB CRUD Operations in mongosh -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">MongoDB CRUD Operations in mongosh</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In the MongoDB shell (mongosh), which command is used to insert a single document into a collection called "students"?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_crud" onchange="handleQuizSelect(this, false, 'fb_day1_crud', 'The method is insertOne(), not addOne().')">
+                <span><strong>A)</strong> db.students.addOne({ name: "Alex" })</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_crud" onchange="handleQuizSelect(this, true, 'fb_day1_crud', 'db.<collection>.insertOne(doc) inserts a single document into MongoDB.')">
+                <span><strong>B)</strong> db.students.insertOne({ name: "Alex" })</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_crud" onchange="handleQuizSelect(this, false, 'fb_day1_crud', 'INSERT INTO is SQL syntax, not MongoDB mongosh syntax.')">
+                <span><strong>C)</strong> INSERT INTO students VALUES ("Alex")</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day1_crud" onchange="handleQuizSelect(this, false, 'fb_day1_crud', 'create() is used in Mongoose models, but raw mongosh uses insertOne().')">
+                <span><strong>D)</strong> db.students.create({ name: "Alex" })</span>
+            </label>
+        </div>
+        <div id="fb_day1_crud" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>           
           </div>
         </div>
       </div>

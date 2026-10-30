@@ -20,8 +20,61 @@
                 <div class="card mb-4">
                     <div class="card-header text-white">
                         <h3>1. Setup & Dependencies</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: Axios vs. Fetch in React -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Axios vs. Fetch in React</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What key developer advantage does Axios offer over native fetch() when communicating with backend APIs?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_axios" onchange="handleQuizSelect(this, true, 'fb_day66_axios', 'With fetch(), you must manually do res.json() and check res.ok; Axios handles JSON parsing and HTTP error throwing out of the box.')">
+                <span><strong>A)</strong> Axios automatically parses response JSON into response.data and rejects Promises on HTTP 4xx/5xx status codes.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_axios" onchange="handleQuizSelect(this, false, 'fb_day66_axios', 'Axios is an npm library that must be installed via `npm i axios`.')">
+                <span><strong>B)</strong> Axios is built directly into HTML and requires no installation.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_axios" onchange="handleQuizSelect(this, false, 'fb_day66_axios', 'Axios works with any HTTP backend (Node.js, Python, Java, etc.).')">
+                <span><strong>C)</strong> Axios only works if the backend is written in PHP.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_axios" onchange="handleQuizSelect(this, false, 'fb_day66_axios', 'Axios is subject to all browser security policies, including CORS.')">
+                <span><strong>D)</strong> Axios disables browser security checks.</span>
+            </label>
+        </div>
+        <div id="fb_day66_axios" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
+                        <div class="alert alert-light border border-primary-subtle my-3">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+                                <strong class="text-primary-emphasis">A Digital Restaurant Tablet (The Full MERN Integration Flow)</strong>
+                            </div>
+                            <p class="mb-0 small text-body-secondary">
+                                Here is how all 4 pieces of the MERN stack work together in real life:<br>
+                                1. <strong>React (Frontend):</strong> The customer taps 'Show Books' on their tablet.<br>
+                                2. <strong>Axios (The Messenger):</strong> Sends an HTTP request across the network to <code>http://localhost:5000/api/books</code>.<br>
+                                3. <strong>Express &amp; Node (Backend Controller):</strong> Receives the request, checks permissions, and queries Mongoose.<br>
+                                4. <strong>MongoDB (Database):</strong> Retrieves the book records and returns them to Express.<br>
+                                5. <strong>Response &amp; React UI:</strong> Express sends back JSON data. React receives it and instantly renders the colorful book cards on the screen!
+                            </p>
+                        </div>
                         <p>Create the frontend to consume Library API. Use Vite, Axios for API calls,
                             and Bootstrap for styling.</p>
                         <div class="code-block">
@@ -40,7 +93,46 @@ npm install axios react-router-dom bootstrap</code></pre>
                 <div class="card mb-4">
                     <div class="card-header text-dark">
                         <h3>2. Book List Component</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: React List Rendering & the `key` Prop -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">React List Rendering & the `key` Prop</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">When rendering a dynamic array of items with .map() in React, why is a unique `key` prop required on each item element?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_keys" onchange="handleQuizSelect(this, false, 'fb_day66_keys', 'The `key` is an internal React identifier, not an encryption feature.')">
+                <span><strong>A)</strong> To encrypt each element so users cannot view it.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_keys" onchange="handleQuizSelect(this, true, 'fb_day66_keys', 'Without keys, React has to re-render and re-instantiate the entire list rather than efficiently patching only the altered items.')">
+                <span><strong>B)</strong> To help React's Virtual DOM identify which specific elements changed, were added, or were removed for optimal reconciliation.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_keys" onchange="handleQuizSelect(this, false, 'fb_day66_keys', 'CSS colors are styled via classes or inline styles.')">
+                <span><strong>C)</strong> To automatically assign a CSS color to each item.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_keys" onchange="handleQuizSelect(this, false, 'fb_day66_keys', 'Keys are purely for React\'s client-side reconciliation algorithm.')">
+                <span><strong>D)</strong> To store the item in MongoDB automatically.</span>
+            </label>
+        </div>
+        <div id="fb_day66_keys" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <p>Create <code>components/BookList.jsx</code> to fetch and display books.</p>
                         <div class="code-block">
@@ -107,7 +199,155 @@ const BookList = () => {
 
                 <div class="card mb-4">
                     <div class="card-header text-white">
-                        <h3>3. Add Book Form (with File Upload)</h3>
+                        <h3>3. Add Book Form (with File Upload)<
+
+
+<!-- Runnable Code Block: React Form State & Controlled Inputs -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: React Form State & Controlled Inputs</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">BookManager.jsx</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in React</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// BookManager.jsx - Complete runnable React Frontend with Axios &amp; Form
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+export default function BookManager() {
+  const [books, setBooks] = useState([
+    { id: 1, title: 'JavaScript: The Good Parts', author: 'Douglas Crockford', year: 2008 },
+    { id: 2, title: 'Eloquent JavaScript', author: 'Marijn Haverbeke', year: 2018 }
+  ]);
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+
+  // Handle Form Submission
+  const handleSubmit = (e) =&gt; {
+    e.preventDefault(); // Stop full-page browser refresh!
+    if (!title || !author) return alert('Please fill in all fields!');
+
+    const newBook = { id: Date.now(), title, author, year: new Date().getFullYear() };
+    setBooks(prev =&gt; [...prev, newBook]);
+    setTitle('');
+    setAuthor('');
+  };
+
+  const handleDelete = (id) =&gt; {
+    setBooks(prev =&gt; prev.filter(b =&gt; b.id !== id));
+  };
+
+  return (
+    &lt;div style={{ fontFamily: 'sans-serif', maxWidth: '600px', margin: '30px auto', padding: '20px', border: '1px solid #e2e8f0', borderRadius: '12px' }}&gt;
+      &lt;h2&gt;📚 React Frontend Book Manager&lt;/h2&gt;
+
+      {/* Add Book Form */}
+      &lt;form onSubmit={handleSubmit} style={{ display: 'flex', gap: '8px', marginBottom: '24px', flexWrap: 'wrap' }}&gt;
+        &lt;input 
+          type="text" 
+          placeholder="Book Title" 
+          value={title} 
+          onChange={(e) =&gt; setTitle(e.target.value)}
+          style={{ flex: 1, padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1' }}
+        /&gt;
+        &lt;input 
+          type="text" 
+          placeholder="Author" 
+          value={author} 
+          onChange={(e) =&gt; setAuthor(e.target.value)}
+          style={{ flex: 1, padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1' }}
+        /&gt;
+        &lt;button type="submit" style={{ padding: '8px 16px', backgroundColor: '#3b82f6', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' }}&gt;
+          Add Book
+        &lt;/button&gt;
+      &lt;/form&gt;
+
+      {/* Book List Rendering */}
+      &lt;div&gt;
+        &lt;h4&gt;Current Inventory ({books.length} books):&lt;/h4&gt;
+        &lt;ul style={{ listStyle: 'none', padding: 0 }}&gt;
+          {books.map(book =&gt; (
+            &lt;li key={book.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', margin: '6px 0', backgroundColor: '#f1f5f9', borderRadius: '6px' }}&gt;
+              &lt;div&gt;
+                &lt;strong&gt;{book.title}&lt;/strong&gt; by &lt;span style={{ color: '#64748b' }}&gt;{book.author}&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;button onClick={() =&gt; handleDelete(book.id)} style={{ padding: '4px 8px', backgroundColor: '#ef4444', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}&gt;
+                Delete
+              &lt;/button&gt;
+            &lt;/li&gt;
+          ))}
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Demonstrates controlled inputs using <code>value</code> and <code>onChange</code>, stopping default submission reloads using <code>e.preventDefault()</code>, and rendering state arrays using <code>.map()</code> with distinct <code>key</code> attributes.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Paste this into <code>src/App.jsx</code> in your React Vite application.</li>
+                <li>Run <code>npm run dev</code> in your terminal.</li>
+                <li>Type a book title and author, then click "Add Book".</li>
+                <li>Observe how the list updates instantly without refreshing the browser.</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Visual Output:</span>
+                <code class="text-muted small">A live inventory app allowing students to add new items and delete them in real time with zero page reloads.</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: Handling Form Submissions in React -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Handling Form Submissions in React</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Why is e.preventDefault() typically called inside a React form onSubmit handler?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_prevent" onchange="handleQuizSelect(this, true, 'fb_day66_prevent', 'Standard HTML forms reload the whole page on submit. e.preventDefault() cancels that default browser action so React can handle the submission with Axios.')">
+                <span><strong>A)</strong> To prevent the browser from doing a full page refresh and standard GET/POST browser reload.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_prevent" onchange="handleQuizSelect(this, false, 'fb_day66_prevent', 'It stops default navigation; it doesn\'t disable UI buttons.')">
+                <span><strong>B)</strong> To disable the submit button permanently.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_prevent" onchange="handleQuizSelect(this, false, 'fb_day66_prevent', 'Form resetting is done by updating React state variables.')">
+                <span><strong>C)</strong> To clear all inputs in the browser automatically.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_prevent" onchange="handleQuizSelect(this, false, 'fb_day66_prevent', 'Validation logic is written separately in JavaScript.')">
+                <span><strong>D)</strong> To validate whether the email address format is correct.</span>
+            </label>
+        </div>
+        <div id="fb_day66_prevent" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>/h3>
                     </div>
                     <div class="card-body">
                         <p>Create <code>components/AddBook.jsx</code> to handle form data and image upload.</p>
@@ -219,6 +459,45 @@ function App() {
 
 export default App;</code></pre>
                         </div>
+
+<!-- Concept MCQ: Full MERN Data Flow -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Full MERN Data Flow</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In a complete MERN application flow, how do the layers collaborate when a user creates a new book?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_integration" onchange="handleQuizSelect(this, false, 'fb_day66_integration', 'Browsers cannot directly connect to MongoDB for security and architectural reasons.')">
+                <span><strong>A)</strong> React talks directly to the MongoDB database without any server in between.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_integration" onchange="handleQuizSelect(this, true, 'fb_day66_integration', 'This is the standard 3-tier MERN architecture: Client (React) <-> Server (Node/Express) <-> Database (MongoDB).')">
+                <span><strong>B)</strong> React sends an HTTP POST request to Express (Node.js), which validates the input, queries MongoDB via Mongoose, and returns JSON back to update React state.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_integration" onchange="handleQuizSelect(this, false, 'fb_day66_integration', 'Databases don\'t control printers.')">
+                <span><strong>C)</strong> MongoDB sends a WebSocket notification to the user's printer.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day66_integration" onchange="handleQuizSelect(this, false, 'fb_day66_integration', 'MERN uses MongoDB (NoSQL), and React runs client-side in the browser.')">
+                <span><strong>D)</strong> Node.js compiles React JSX directly into SQL queries.</span>
+            </label>
+        </div>
+        <div id="fb_day66_integration" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                     </div>
                 </div>
 

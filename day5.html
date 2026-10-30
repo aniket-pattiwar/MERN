@@ -32,7 +32,152 @@
                 <div class="card mb-4">
                     <div class="card-header text-white">
                         <h3>Project: RESTful API Endpoints for Library</h3>
-                    </div>
+             
+
+
+<!-- Runnable Code Block: Complete RESTful CRUD API Server -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Complete RESTful CRUD API Server</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">restCrudServer.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// restCrudServer.js - Complete Runnable RESTful API Server
+const express = require('express');
+const app = express();
+const PORT = 5003;
+
+app.use(express.json());
+
+// In-memory data store for testing
+let items = [
+  { id: 1, name: 'Wireless Headphones', price: 99, category: 'electronics' },
+  { id: 2, name: 'Ergonomic Chair', price: 249, category: 'furniture' },
+  { id: 3, name: 'Mechanical Keyboard', price: 120, category: 'electronics' }
+];
+
+// 1. GET (Read All) with optional Query Param filtering: /api/items?category=electronics
+app.get('/api/items', (req, res) =&gt; {
+  const { category } = req.query;
+  let results = items;
+  if (category) {
+    results = items.filter(i =&gt; i.category.toLowerCase() === category.toLowerCase());
+  }
+  res.status(200).json({ success: true, count: results.length, data: results });
+});
+
+// 2. GET (Read Single by Path Param): /api/items/1
+app.get('/api/items/:id', (req, res) =&gt; {
+  const item = items.find(i =&gt; i.id === parseInt(req.params.id));
+  if (!item) return res.status(404).json({ success: false, error: 'Item not found' });
+  res.status(200).json({ success: true, data: item });
+});
+
+// 3. POST (Create New Item with Request Body)
+app.post('/api/items', (req, res) =&gt; {
+  const { name, price, category } = req.body;
+  if (!name || !price) {
+    return res.status(400).json({ success: false, error: 'Name and price are required fields' });
+  }
+  const newItem = { id: Date.now(), name, price: Number(price), category: category || 'general' };
+  items.push(newItem);
+  res.status(201).json({ success: true, message: 'Item created!', data: newItem });
+});
+
+// 4. PUT (Update Existing Item by Path Param &amp; Body)
+app.put('/api/items/:id', (req, res) =&gt; {
+  const item = items.find(i =&gt; i.id === parseInt(req.params.id));
+  if (!item) return res.status(404).json({ success: false, error: 'Item not found' });
+
+  item.name = req.body.name !== undefined ? req.body.name : item.name;
+  item.price = req.body.price !== undefined ? Number(req.body.price) : item.price;
+  item.category = req.body.category !== undefined ? req.body.category : item.category;
+
+  res.status(200).json({ success: true, message: 'Item updated!', data: item });
+});
+
+// 5. DELETE (Remove Item by Path Param)
+app.delete('/api/items/:id', (req, res) =&gt; {
+  const index = items.findIndex(i =&gt; i.id === parseInt(req.params.id));
+  if (index === -1) return res.status(404).json({ success: false, error: 'Item not found' });
+  const deletedItem = items.splice(index, 1)[0];
+  res.status(200).json({ success: true, message: 'Item deleted!', data: deletedItem });
+});
+
+app.listen(PORT, () =&gt; {
+  console.log(`✅ REST API Server running at http://localhost:${PORT}`);
+  console.log('👉 Try in browser: http://localhost:5003/api/items');
+  console.log('👉 Try filter:     http://localhost:5003/api/items?category=electronics');
+});</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Implements full REST principles: <code>GET</code> for retrieval, <code>POST</code> (status 201) for creation, <code>PUT</code> for modification, and <code>DELETE</code> for removal, using both URL query params and route path params.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a file named <code>restCrudServer.js</code> in your project.</li>
+                <li>Copy and paste the code above.</li>
+                <li>Run in terminal: <code>node restCrudServer.js</code></li>
+                <li>Open your browser at: <code>http://localhost:5003/api/items</code> to see the JSON output.</li>
+                <li>Filter by category: <code>http://localhost:5003/api/items?category=electronics</code></li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">✅ REST API Server running at http://localhost:5003</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: RESTful API Methods & Conventions -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">RESTful API Methods & Conventions</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">According to REST architectural conventions, which HTTP methods should be used to retrieve data, create new data, update existing data, and remove data respectively?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_rest_verbs" onchange="handleQuizSelect(this, false, 'fb_day5_rest_verbs', 'FETCH, SEND, and CLEAR are not standard HTTP request methods.')">
+                <span><strong>A)</strong> FETCH, SEND, PATCH, CLEAR</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_rest_verbs" onchange="handleQuizSelect(this, true, 'fb_day5_rest_verbs', 'GET retrieves resources, POST creates new resources, PUT/PATCH updates existing resources, and DELETE removes them.')">
+                <span><strong>B)</strong> GET, POST, PUT, DELETE</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_rest_verbs" onchange="handleQuizSelect(this, false, 'fb_day5_rest_verbs', 'POST is for resource creation, not retrieval.')">
+                <span><strong>C)</strong> POST, GET, DELETE, PUT</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_rest_verbs" onchange="handleQuizSelect(this, false, 'fb_day5_rest_verbs', 'These describe CRUD operations conceptually, but the corresponding HTTP verbs are GET, POST, PUT, DELETE.')">
+                <span><strong>D)</strong> READ, CREATE, UPDATE, DESTROY</span>
+            </label>
+        </div>
+        <div id="fb_day5_rest_verbs" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped">
@@ -83,7 +228,46 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>Query Params (in URL) with Fetch & Axios API</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: Query Parameters vs. Path Parameters -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Query Parameters vs. Path Parameters</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the primary difference between Query Parameters (e.g., /books?genre=fiction&limit=10) and Path Parameters (e.g., /books/:id)?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_query_params" onchange="handleQuizSelect(this, false, 'fb_day5_query_params', 'It is the opposite: path params identify specific records, while query params filter or paginate.')">
+                <span><strong>A)</strong> Query params identify a specific individual record, while path params are only for pagination.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_query_params" onchange="handleQuizSelect(this, true, 'fb_day5_query_params', 'Path parameters identify which resource you want, while query parameters modify how data is filtered or formatted.')">
+                <span><strong>B)</strong> Query params are optional key-value pairs used for searching, filtering, and sorting; Path params directly locate a specific resource by ID.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_query_params" onchange="handleQuizSelect(this, false, 'fb_day5_query_params', 'Never send passwords in query params as they appear in server logs and browser history.')">
+                <span><strong>C)</strong> Query params can only send passwords, while path params send JSON bodies.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_query_params" onchange="handleQuizSelect(this, false, 'fb_day5_query_params', 'Both Fetch and Axios can handle query params and path params equally.')">
+                <span><strong>D)</strong> Query params can only be read with Axios, while Path params require Fetch.</span>
+            </label>
+        </div>
+        <div id="fb_day5_query_params" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="row gap-4 m-3 justify-content-center">
                         <div class="code-block col-md-6">
                             <pre><code>
@@ -128,7 +312,46 @@ async function getUsers() {
                     <div class="card mb-4">
                         <div class="card-header">
                             <h3>POST Request - Body</h3>
-                        </div>
+             
+
+<!-- Concept MCQ: POST Requests & Request Body Parsing -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">POST Requests & Request Body Parsing</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In Express, what built-in middleware must be registered with app.use() so that incoming JSON bodies in POST requests are accessible on req.body?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_post_body" onchange="handleQuizSelect(this, false, 'fb_day5_post_body', 'express.static() serves static files like images and HTML, not JSON bodies.')">
+                <span><strong>A)</strong> app.use(express.static())</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_post_body" onchange="handleQuizSelect(this, true, 'fb_day5_post_body', 'express.json() parses incoming HTTP requests with JSON payloads and populates req.body.')">
+                <span><strong>B)</strong> app.use(express.json())</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_post_body" onchange="handleQuizSelect(this, false, 'fb_day5_post_body', 'express.body() is not an Express method.')">
+                <span><strong>C)</strong> app.use(express.body())</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_post_body" onchange="handleQuizSelect(this, false, 'fb_day5_post_body', 'express.Router() creates modular route handlers, not body parsing.')">
+                <span><strong>D)</strong> app.use(express.router())</span>
+            </label>
+        </div>
+        <div id="fb_day5_post_body" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>           </div>
                     </div>
                     <div class="row gap-4 m-3 justify-content-center">
                         <div class="code-block col-md-5">
@@ -160,7 +383,46 @@ async function getUsers() {
                     </div>
                     <div class="card-header">
                         <h3>PUT Request - Params(Path Params) & Body</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: PUT Requests & req.params -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">PUT Requests & req.params</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">For a route defined as app.put("/api/books/:id", handler), how do you extract the dynamic ID parameter from the URL inside your handler function?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_put_params" onchange="handleQuizSelect(this, false, 'fb_day5_put_params', 'req.body contains data sent in the request payload, not URL route parameters.')">
+                <span><strong>A)</strong> req.body.id</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_put_params" onchange="handleQuizSelect(this, false, 'fb_day5_put_params', 'req.query contains URL query strings after \'?\', not path params.')">
+                <span><strong>B)</strong> req.query.id</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_put_params" onchange="handleQuizSelect(this, true, 'fb_day5_put_params', 'Named route parameters like \':id\' are parsed into the req.params object.')">
+                <span><strong>C)</strong> req.params.id</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_put_params" onchange="handleQuizSelect(this, false, 'fb_day5_put_params', 'req.url is a raw string of the request path, not an object of parameters.')">
+                <span><strong>D)</strong> req.url.id</span>
+            </label>
+        </div>
+        <div id="fb_day5_put_params" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="row gap-4 m-3 justify-content-center">
                         <div class="code-block col-md-5">
                             <pre><code>
@@ -247,6 +509,125 @@ async function getUsers() {
                         </div>
 
 
+                <!-- MVC Architecture in MERN -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>⭐ Understanding MVC Architecture (Model-View-Controller) in MERN</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>MVC</strong> is an architectural pattern that separates an application into three interconnected components, ensuring clean separation of concerns and maintainability:</p>
+                        
+                        <div class="row g-3 my-2">
+                            <div class="col-md-4">
+                                <div class="card h-100 border-primary">
+                                    <div class="card-header bg-primary text-white text-center"><strong>Model (Data Layer)</strong></div>
+                                    <div class="card-body">
+                                        <p><strong>Mongoose / MongoDB</strong></p>
+                                        <ul class="small mb-0">
+                                            <li>Defines data structure, validation rules, and schema types.</li>
+                                            <li>Executes database queries (CRUD).</li>
+                                            <li>Does not know anything about the user interface.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-info">
+                                    <div class="card-header bg-info text-white text-center"><strong>View (Presentation Layer)</strong></div>
+                                    <div class="card-body">
+                                        <p><strong>React.js (SPA)</strong></p>
+                                        <ul class="small mb-0">
+                                            <li>Displays data to the user.</li>
+                                            <li>Captures user events (clicks, form inputs).</li>
+                                            <li>In decoupled MERN, React is the View consuming JSON APIs.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-warning">
+                                    <div class="card-header bg-warning text-dark text-center"><strong>Controller (Logic Layer)</strong></div>
+                                    <div class="card-body">
+                                        <p><strong>Express Route Handlers</strong></p>
+                                        <ul class="small mb-0">
+                                            <li>Acts as the middleman between Model and View.</li>
+                                            <li>Processes incoming requests (<code>req.body</code>, <code>req.params</code>).</li>
+                                            <li>Calls Models/Repositories and sends JSON responses (<code>res.json()</code>).</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4">How MVC Works in MERN Stack</h5>
+                        <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap text-center my-3">
+                            <div class="p-2 border rounded bg-light" style="min-width: 130px;">
+                                <strong>1. React (View)</strong><br><small>User clicks submit</small>
+                            </div>
+                            <div class="fs-4 text-muted">&rarr;</div>
+                            <div class="p-2 border rounded bg-warning bg-opacity-10 border-warning" style="min-width: 150px;">
+                                <strong>2. Express (Controller)</strong><br><small>Validates request</small>
+                            </div>
+                            <div class="fs-4 text-muted">&rarr;</div>
+                            <div class="p-2 border rounded bg-primary bg-opacity-10 border-primary" style="min-width: 150px;">
+                                <strong>3. Mongoose (Model)</strong><br><small>Queries MongoDB</small>
+                            </div>
+                            <div class="fs-4 text-muted">&rarr;</div>
+                            <div class="p-2 border rounded bg-success bg-opacity-10 border-success" style="min-width: 150px;">
+                                <strong>4. JSON Response</strong><br><small>Returns to React View</small>
+                            </div>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">A Restaurant Team (Kitchen, Waiter, Dining Table)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Think of MVC like a restaurant: <strong>Model</strong> is the kitchen and pantry (stores the ingredients & raw data in MongoDB); <strong>View</strong> is the dining table (the visual dish in React that the customer sees); and <strong>Controller</strong> is the waiter (takes the customer's request from the table, tells the kitchen what to prepare, and brings the food back).</p>
+</div>
+
+<!-- Concept MCQ: MVC Architecture in MERN -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">MVC Architecture in MERN</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In the MVC (Model-View-Controller) architecture of a MERN application, what is the primary role of the Controller?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_mvc" onchange="handleQuizSelect(this, false, 'fb_day5_mvc', 'The View (React frontend) renders JSX components to the user.')">
+                <span><strong>A)</strong> It renders the React JSX components directly to the user screen.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_mvc" onchange="handleQuizSelect(this, true, 'fb_day5_mvc', 'Controllers contain the business logic, process input from the request, interact with Mongoose models, and return responses.')">
+                <span><strong>B)</strong> It acts as the intermediary that receives the request, executes business logic, queries the Model, and sends the HTTP response.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_mvc" onchange="handleQuizSelect(this, false, 'fb_day5_mvc', 'MongoDB storage engines and Mongoose schemas handle indexes.')">
+                <span><strong>C)</strong> It enforces MongoDB BSON storage indexes directly on the disk.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_mvc" onchange="handleQuizSelect(this, false, 'fb_day5_mvc', 'Firewalls and network layers operate below the application MVC architecture.')">
+                <span><strong>D)</strong> It acts as the web server network firewall.</span>
+            </label>
+        </div>
+        <div id="fb_day5_mvc" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+                    </div>
+                </div>
+
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>Library Project Setup & Database Layer</h3>
@@ -312,7 +693,128 @@ const connectDB = async () => {
                         </div>
 
                         <h5 class="mt-4">4. The Model (`models/Book.js`)</h5>
-                        <p>The schema for "Book" Collection.</p>
+           
+
+
+<!-- Runnable Code Block: Mongoose Schema, Model & Database Queries -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Mongoose Schema, Model & Database Queries</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">mongooseDemo.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// mongooseDemo.js - Connecting to MongoDB &amp; using Mongoose Schemas/Models
+const mongoose = require('mongoose');
+
+// 1. Define the Schema (Blueprint)
+const bookSchema = new mongoose.Schema({
+  title: { type: String, required: [true, 'Book title is mandatory'], trim: true },
+  author: { type: String, required: true },
+  pages: { type: Number, min: 1 },
+  inStock: { type: Boolean, default: true },
+  createdAt: { type: Date, default: Date.now }
+});
+
+// 2. Compile Schema into a Model (Collection Constructor)
+const Book = mongoose.model('Book', bookSchema);
+
+async function runMongooseDemo() {
+  try {
+    // 3. Connect to MongoDB (local or MongoDB Atlas connection string)
+    console.log('⏳ Connecting to MongoDB...');
+    await mongoose.connect('mongodb://127.0.0.1:27017/libraryDemoDB');
+    console.log('✅ Connected to MongoDB successfully!');
+
+    // 4. Create and Save a Document
+    const newBook = new Book({
+      title: 'Designing Data-Intensive Applications',
+      author: 'Martin Kleppmann',
+      pages: 616
+    });
+    const savedBook = await newBook.save();
+    console.log('📖 Saved new book to MongoDB:', savedBook.title);
+
+    // 5. Query Documents
+    const foundBooks = await Book.find({ pages: { $gte: 200 } }).limit(5);
+    console.log(`🔍 Found ${foundBooks.length} book(s) with 200+ pages:`);
+    foundBooks.forEach(b =&gt; console.log(`   - "${b.title}" by ${b.author}`));
+
+  } catch (error) {
+    console.error('❌ Mongoose error:', error.message);
+  } finally {
+    await mongoose.disconnect();
+    console.log('🔌 Disconnected from MongoDB.');
+  }
+}
+
+runMongooseDemo();</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Illustrates how Mongoose models map JavaScript objects to MongoDB collections, enforce schema validation rules, and execute asynchronous queries using <code>async/await</code>.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Install Mongoose: <code>npm install mongoose</code></li>
+                <li>Ensure local MongoDB is running (or replace URL with your MongoDB Atlas URI).</li>
+                <li>Save code as <code>mongooseDemo.js</code> and run: <code>node mongooseDemo.js</code></li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">⏳ Connecting to MongoDB... ✅ Connected! 📖 Saved new book... 🔍 Found 1 book(s)...</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: Mongoose Schemas vs. Models -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Mongoose Schemas vs. Models</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the fundamental difference between a Mongoose Schema and a Mongoose Model?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_mongoose" onchange="handleQuizSelect(this, false, 'fb_day5_mongoose', 'Both are software abstractions provided by the Mongoose ODM library.')">
+                <span><strong>A)</strong> A Schema is the database server, while a Model is the client driver.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_mongoose" onchange="handleQuizSelect(this, true, 'fb_day5_mongoose', 'A Schema is the architectural blueprint. A Model (e.g. mongoose.model(\'Book\', bookSchema)) provides the querying interface (Book.find(), Book.create()).')">
+                <span><strong>B)</strong> A Schema defines the document structure and validation rules; a Model is the compiled constructor used to query and create documents in MongoDB.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_mongoose" onchange="handleQuizSelect(this, false, 'fb_day5_mongoose', 'Mongoose is specifically built for MongoDB (NoSQL).')">
+                <span><strong>C)</strong> A Schema is only used for SQL databases, while a Model is for NoSQL.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_mongoose" onchange="handleQuizSelect(this, false, 'fb_day5_mongoose', 'You cannot perform database queries directly on a raw Schema; you must compile it into a Model first.')">
+                <span><strong>D)</strong> They are completely identical with no functional difference.</span>
+            </label>
+        </div>
+        <div id="fb_day5_mongoose" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>             <p>The schema for "Book" Collection.</p>
                         <div class="code-block">
                             <pre><code>
 const bookSchema = new mongoose.Schema({
@@ -382,6 +884,98 @@ router.get('/', bookController.getAllBooks);
                         <h3>Advanced Features & Wiring</h3>
                     </div>
                     <div class="card-body">
+                        <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Airport Luggage Check-in (Multer)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">When you travel, you can't carry heavy oversized luggage in your lap. The airline check-in counter (Multer) takes your heavy bag, tags it, and puts it safely into the cargo hold (the <code>uploads/</code> folder on your server disk). Then it gives you a small claim ticket (the file path string <code>uploads/my-photo.jpg</code>) so you can record it in your database.</p>
+</div>
+
+<!-- Concept MCQ: Handling File Uploads with Multer -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Handling File Uploads with Multer</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">When sending an image or file along with text data from a client form to an Express backend via Multer, what encoding type must be set?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_multer" onchange="handleQuizSelect(this, false, 'fb_day5_multer', 'This encoding only handles simple key-value text pairs, not binary files.')">
+                <span><strong>A)</strong> application/x-www-form-urlencoded</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_multer" onchange="handleQuizSelect(this, true, 'fb_day5_multer', 'multipart/form-data splits the request body into parts, allowing binary files and text fields to be transferred together.')">
+                <span><strong>B)</strong> multipart/form-data</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_multer" onchange="handleQuizSelect(this, false, 'fb_day5_multer', 'text/plain cannot encode binary image data.')">
+                <span><strong>C)</strong> text/plain</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_multer" onchange="handleQuizSelect(this, false, 'fb_day5_multer', 'While octet-stream represents raw bytes, HTML forms with multiple fields require multipart/form-data.')">
+                <span><strong>D)</strong> application/octet-stream only</span>
+            </label>
+        </div>
+        <div id="fb_day5_multer" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+                        <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Passport Visa Check between Countries (CORS)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Your React frontend runs on <code>http://localhost:3000</code> and your Express backend runs on <code>http://localhost:5000</code>. For security, browsers treat different ports like different countries and block requests by default. <code>app.use(cors())</code> is an official entry visa that tells the browser: 'Requests from the React frontend are safe and permitted here!'.</p>
+</div>
+
+<!-- Concept MCQ: CORS (Cross-Origin Resource Sharing) -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">CORS (Cross-Origin Resource Sharing)</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Why is the cors() middleware needed when a React app at http://localhost:5173 calls an Express API at http://localhost:5000?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_cors" onchange="handleQuizSelect(this, true, 'fb_day5_cors', 'Different ports are treated as different origins by browsers. The cors package sends Access-Control-Allow-Origin headers permitting the request.')">
+                <span><strong>A)</strong> Because browsers enforce the Same-Origin Policy and block requests between different ports unless the server sends allowed CORS headers.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_cors" onchange="handleQuizSelect(this, false, 'fb_day5_cors', 'Node.js and Express handle separate ports easily.')">
+                <span><strong>B)</strong> Because Express crashes if two ports are open on the same computer.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_cors" onchange="handleQuizSelect(this, false, 'fb_day5_cors', 'CORS does not provide SSL/TLS encryption.')">
+                <span><strong>C)</strong> To encrypt HTTP requests into HTTPS automatically.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_cors" onchange="handleQuizSelect(this, false, 'fb_day5_cors', 'Compression middleware (like \'compression\') does payload compression, not CORS.')">
+                <span><strong>D)</strong> To compress JSON payloads for faster network transfer.</span>
+            </label>
+        </div>
+        <div id="fb_day5_cors" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                         <h5>1. File Uploads & Routes (`routes/bookRoutes.js`)</h5>
                         <p>Update your routes file to handle file uploads using <code>multer</code>.</p>
                         <div class="code-block">
@@ -442,6 +1036,344 @@ node index.js</code></pre>
                             <li><strong>POST (Upload)-</strong> <code>http://localhost:5000/api/books/upload</code>
                             </li>
                         </ul>
+                    </div>
+                </div>
+
+                <!-- Authentication & Authorization with JWT -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>⭐ Authentication &amp; Authorization with JWT (JSON Web Tokens) &amp; Protected Routes</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center my-3">
+                            <img src="./images/jwt-auth-flow.svg" class="img-fluid rounded course-image" alt="JWT Authentication and Protected Route Flowchart">
+                            <small class="text-muted d-block mt-1">Figure: Complete JWT Lifecycle (Login &rarr; Token Generation &rarr; LocalStorage &rarr; Auth Header &rarr; Verification)</small>
+                        </div>
+                        <p>Securing modern REST APIs requires stateless authentication so the server doesn't need to store session memory across distributed instances.</p>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 border-info">
+                                    <div class="card-header bg-info text-white"><strong>Authentication</strong></div>
+                                    <div class="card-body">
+                                        <p><strong>"Who are you?"</strong></p>
+                                        <p class="mb-0">Verifying user identity via credentials (e.g. Email &amp; Password). Upon successful verification, the server issues a signed JWT token.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 border-primary">
+                                    <div class="card-header bg-primary text-white"><strong>Authorization</strong></div>
+                                    <div class="card-body">
+                                        <p><strong>"What are you allowed to do?"</strong></p>
+                                        <p class="mb-0">Verifying user permissions/roles (e.g. <code>admin</code> vs <code>user</code>). Determining whether the authenticated user has access to a specific protected route or action.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5>1. Anatomy of a JSON Web Token (JWT)</h5>
+                        <p>A JWT is a string formatted as <code>Header.Payload.Signature</code>:</p>
+                        <ul>
+                            <li><strong>Header:</strong> Algorithm &amp; token type (e.g., HMAC SHA256, JWT).</li>
+                            <li><strong>Payload:</strong> User claims &amp; metadata (e.g., <code>userId</code>, <code>role</code>, expiration time <code>exp</code>). <em>Never put sensitive passwords here.</em></li>
+                            <li><strong>Signature:</strong> Cryptographic hash created using server secret key to ensure the token hasn't been tampered with.</li>
+                        </ul>
+
+                        <h5 class="mt-4">2. Step-by-Step Implementation</h5>
+
+                        <h6>Step A: Install Required Packages</h6>
+                        <div class="code-block">
+                            <pre><code>npm install jsonwebtoken bcryptjs</code></pre>
+                        </div>
+
+                        <h6 class="mt-3">Step B: User Model with Password Hashing (`models/User.js`)</h6>
+                        <div class="code-block">
+                            <pre><code>const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role: { type: String, enum: ['user', 'admin'], default: 'user' }
+});
+
+// Pre-save hook to hash password before saving to MongoDB
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+module.exports = mongoose.model('User', userSchema);</code></pre>
+                        </div>
+
+                        <h6 class="mt-3">Step C: Auth Controller (`controllers/authController.js`)</h6>
+                        <div class="code-block">
+                            <pre><code>const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your_super_secret_fintech_key';
+
+// 1. User Registration
+exports.register = async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return res.status(400).json({ error: 'Email already exists' });
+
+    const user = new User({ name, email, password, role });
+    await user.save();
+    res.status(201).json({ message: 'User registered successfully!' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// 2. User Login & Token Generation
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(401).json({ error: 'Invalid credentials' });
+
+    // Compare entered password with hashed password in DB
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ error: 'Invalid credentials' });
+
+    // Generate signed JWT token
+    const token = jwt.sign(
+      { id: user._id, role: user.role, name: user.name },
+      JWT_SECRET,
+      { expiresIn: '2h' }
+    );
+
+    res.json({
+      message: 'Login successful',
+      token: token,
+      user: { id: user._id, name: user.name, role: user.role }
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};</code></pre>
+                        </div>
+
+                        <h6 class="mt-3">Step D: JWT Authentication Middleware (`middleware/authMiddleware.js`)</h6>
+                        <div class="code-block">
+                            <pre><code>const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET || 'your_super_secret_fintech_key';
+
+// Middleware to verify JWT token in Authorization header
+const authenticateJWT = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, JWT_SECRET, (err, decodedUser) => {
+      if (err) {
+        return res.status(403).json({ error: 'Token is invalid or expired' });
+      }
+      req.user = decodedUser; // Attach user payload to request
+      next(); // Proceed to route controller
+    });
+  } else {
+    res.status(401).json({ error: 'Access denied: No token provided' });
+  }
+};
+
+// Optional Role Authorization Middleware (e.g. admin only)
+const authorizeRole = (role) => {
+  return (req, res, next) => {
+    if (req.user.role !== role) {
+      return res.status(403).json({ error: 'Forbidden: Insufficient permissions' });
+    }
+    next();
+  };
+};
+
+module.exports = { authenticateJWT, authorizeRole };</code></pre>
+                        </div>
+
+                        <h6 class="mt-3">Step E: Protecting Routes (`routes/bookRoutes.js`)</h6>
+                        <div class="code-block">
+                            <pre><code>const express = require('express');
+const router = express.Router();
+const bookController = require('../controllers/bookController');
+const { authenticateJWT, authorizeRole } = require('../middleware/authMiddleware');
+
+// Public route: Anyone can view books
+router.get('/', bookController.getAllBooks);
+
+// Protected route: Must provide valid Bearer token to create a book
+router.post('/', authenticateJWT, bookController.createBook);
+
+// Admin-only route: Only users with role === 'admin' can delete a book
+router.delete('/:id', authenticateJWT, authorizeRole('admin'), bookController.deleteBook);
+
+module.exports = router;</code></pre>
+                        </div>
+
+                        <h6 class="mt-3">Step F: Client-side (React with Axios) Usage</h6>
+                        <p>Send the token in the <code>Authorization</code> request header:</p>
+                        <div class="code-block">
+                            <pre><code>// In React with Axios:
+const token = localStorage.getItem('token');
+
+const response = await axios.post('http://localhost:5000/api/books', newBook, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});</code></pre>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">An Amusement Park Wristband (JWT)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary"><strong>Authentication:</strong> Showing your ticket ID at the front gate to prove who you are.<br><strong>Authorization:</strong> Having a Regular Pass vs. Rollercoaster Pass (which rides you are allowed to enter).<br><strong>JWT (JSON Web Token):</strong> Instead of guards calling the main office every time you enter a ride, you get a stamped wristband. Every ride operator just checks the stamp on your wristband and lets you in immediately.</p>
+</div>
+
+<!-- Runnable Code Block: JWT Authentication & Protected Route Server -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: JWT Authentication & Protected Route Server</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">jwtAuthServer.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// jwtAuthServer.js - Complete JWT Token Creation &amp; Protected Route Middleware
+const express = require('express');
+const jwt = require('jsonwebtoken');
+
+const app = express();
+const PORT = 5004;
+const JWT_SECRET = 'my_super_secret_jwt_key_123'; // In production, keep in .env
+
+app.use(express.json());
+
+// 1. Login Route: Issue a JWT upon credentials check
+app.post('/api/login', (req, res) =&gt; {
+  const { username, password } = req.body;
+
+  // Simple credential verification (in production, verify with bcrypt + MongoDB)
+  if (username === 'student' &amp;&amp; password === 'mern123') {
+    const payload = { id: 101, username: 'student', role: 'admin' };
+    
+    // Sign token (expires in 1 hour)
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
+    return res.json({ success: true, message: 'Authentication successful!', token });
+  }
+
+  res.status(401).json({ success: false, error: 'Invalid username or password' });
+});
+
+// 2. Authentication Middleware: Verify Bearer Token
+const verifyToken = (req, res, next) =&gt; {
+  const authHeader = req.headers['authorization']; // Expecting "Bearer &lt;token&gt;"
+  const token = authHeader &amp;&amp; authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ error: 'Access Denied: No Bearer token provided in Authorization header.' });
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, decodedUser) =&gt; {
+    if (err) {
+      return res.status(403).json({ error: 'Forbidden: Invalid or expired token.' });
+    }
+    // Attach verified user payload to the request object
+    req.user = decodedUser;
+    next();
+  });
+};
+
+// 3. Protected Route: Only accessible with a valid JWT
+app.get('/api/protected/profile', verifyToken, (req, res) =&gt; {
+  res.json({
+    message: 'Welcome to your protected profile!',
+    user: req.user,
+    secretData: 'Confidential grade records: GPA 4.0'
+  });
+});
+
+app.listen(PORT, () =&gt; {
+  console.log(`✅ JWT Auth Server running at http://localhost:${PORT}`);
+  console.log('👉 1. Login with POST /api/login {"username": "student", "password": "mern123"}');
+  console.log('👉 2. Send GET /api/protected/profile with Header: Authorization: Bearer &lt;token&gt;');
+});</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Demonstrates stateless token-based security. <code>jwt.sign()</code> issues a tamper-proof cryptographically signed token. The <code>verifyToken</code> middleware extracts the Bearer token from the <code>Authorization</code> header and verifies the signature using <code>jwt.verify()</code>.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Install jsonwebtoken: <code>npm install express jsonwebtoken</code></li>
+                <li>Save as <code>jwtAuthServer.js</code> and run: <code>node jwtAuthServer.js</code></li>
+                <li>Send a POST request in Postman or curl to <code>http://localhost:5004/api/login</code> with body: <code>{"username": "student", "password": "mern123"}</code></li>
+                <li>Copy the returned <code>token</code>, and send a GET request to <code>http://localhost:5004/api/protected/profile</code> with header: <code>Authorization: Bearer YOUR_TOKEN</code></li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">✅ JWT Auth Server running at http://localhost:5004 ... Access Granted!</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: JWT Authentication & Authorization -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">JWT Authentication & Authorization</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">How do client applications typically send a JSON Web Token (JWT) to access protected API endpoints?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_jwt" onchange="handleQuizSelect(this, false, 'fb_day5_jwt', 'Placing tokens in URL query strings exposes them in browser history, bookmarks, and server access logs.')">
+                <span><strong>A)</strong> Inside the URL query parameter as ?password=token</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_jwt" onchange="handleQuizSelect(this, true, 'fb_day5_jwt', 'The standard Bearer authentication scheme uses the Authorization header: `Authorization: Bearer <token>`.')">
+                <span><strong>B)</strong> In the HTTP Authorization header formatted as: Bearer <token></span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_jwt" onchange="handleQuizSelect(this, false, 'fb_day5_jwt', 'The title tag is for browser window labels, not HTTP request headers.')">
+                <span><strong>C)</strong> In the HTML <title> tag of the document</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day5_jwt" onchange="handleQuizSelect(this, false, 'fb_day5_jwt', 'Database names are configured on the server and are not related to client auth tokens.')">
+                <span><strong>D)</strong> By renaming the MongoDB database to the token string</span>
+            </label>
+        </div>
+        <div id="fb_day5_jwt" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                     </div>
                 </div>
             </div>

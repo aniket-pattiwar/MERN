@@ -32,6 +32,18 @@
                             <img src="./images/express-flow.png" class="img-fluid rounded course-image"
                                 alt="Express Layer">
                         </div>
+                        <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Building a House: Raw Bricks (Node HTTP) vs. Pre-Furnished Apartment (Express)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Node's built-in <code>http</code> module gives you raw bricks and cement—you have to manually build every pipe, route, and header parser from scratch. Express is like moving into a modern pre-furnished apartment: it comes with ready-to-use routing, JSON body parsers, and middleware tools so you can launch in minutes.</p>
+</div>
+                        <div class="text-center my-3">
+                            <img src="./images/express-file-details.jpg" class="img-fluid rounded course-image"
+                                alt="Express Project File and Folder Details">
+                            <small class="text-muted d-block mt-1">Figure: Express Project Directory Structure</small>
+                        </div>
                         <h5>1. Setup Express Project</h5>
                         <div class="code-block">
                             <pre><code>
@@ -44,6 +56,13 @@ npm install ejs -->
 </code></pre>
                         </div>
 
+                        <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">A Hotel Front Desk & Intercom (Express Routing)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Express routing maps different URLs to specific actions, just like dialing extensions on a hotel intercom:<br>• <code>GET /</code> &rarr; Main reception lobby ('Welcome to our hotel!')<br>• <code>GET /rooms</code> &rarr; Front desk shows you the available rooms catalog<br>• <code>POST /booking</code> &rarr; You hand over your guest details to reserve a room<br>• <code>DELETE /booking/12</code> &rarr; You cancel reservation #12</p>
+</div>
                         <h5 class="mt-4">2. Create the Express Server</h5>
                         <p>Index.js- This code sets up the server, includes a logger middleware, and defines first
                             routes.</p>
@@ -63,6 +82,13 @@ app.listen(5000, () => {
 });
 </code></pre>
                         </div>
+                        <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">A Flight Simulator or Test Driver (Postman)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Before you build the visual steering wheel and dashboard (the React frontend), you want to test whether the car engine (the Express API) starts, accelerates, and brakes properly. Postman acts as your test driver: it lets you fire GET, POST, PUT, and DELETE requests directly to your backend and see the exact JSON responses before writing a single line of frontend code.</p>
+</div>
                         <h5 class="mt-4">3. Test with Postman</h5>
                         <p>e.g., a `POST` request to `http://localhost:5000/add`.</p>
                         <div class="text-center my-3">
@@ -93,12 +119,137 @@ app.listen(5000, () => {
                             <img src="./images/middleware.png" class="img-fluid rounded course-image"
                                 alt="Middleware Pipeline">
                         </div>
+
+
+<!-- Runnable Code Block: Custom Middleware & the next() Function -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Custom Middleware & the next() Function</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">middlewareDemo.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// middlewareDemo.js - Understanding Express Middleware and next()
+const express = require('express');
+const app = express();
+const PORT = 5001;
+
+// 1. Custom Logger Middleware: runs for EVERY incoming request
+app.use((req, res, next) =&gt; {
+  const timestamp = new Date().toLocaleTimeString();
+  console.log(`📢 [LOGGER] ${timestamp} | ${req.method} ${req.url}`);
+  // Crucial: Call next() so the request continues to the next handler!
+  next();
+});
+
+// 2. Custom Security / API-Key Middleware for protected routes
+const checkApiKey = (req, res, next) =&gt; {
+  const apiKey = req.headers['x-api-key'];
+  if (apiKey === 'secret123') {
+    console.log('🔑 API Key verified successfully!');
+    next(); // Access granted
+  } else {
+    console.log('🚫 Access blocked: Missing or invalid x-api-key header');
+    res.status(401).json({ error: 'Unauthorized: Valid x-api-key header is required.' });
+  }
+};
+
+// Public Route (No auth needed)
+app.get('/public', (req, res) =&gt; {
+  res.send('&lt;h1&gt;Public Page&lt;/h1&gt;&lt;p&gt;Anyone can view this page without an API key.&lt;/p&gt;');
+});
+
+// Protected Route (Requires checkApiKey middleware)
+app.get('/protected', checkApiKey, (req, res) =&gt; {
+  res.json({ message: 'Welcome to the Secret VIP Lounge!', data: [100, 200, 300] });
+});
+
+app.listen(PORT, () =&gt; {
+  console.log(`✅ Middleware Demo running at http://localhost:${PORT}`);
+  console.log('   Public:    http://localhost:5001/public');
+  console.log('   Protected: http://localhost:5001/protected');
+});</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Middleware functions inspect or transform <code>req</code> and <code>res</code> before reaching the route handler. Calling <code>next()</code> passes execution to the next middleware in line. Omitting <code>next()</code> halts the pipeline.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a file named <code>middlewareDemo.js</code>.</li>
+                <li>Paste the code above and save.</li>
+                <li>Run in terminal: <code>node middlewareDemo.js</code></li>
+                <li>Open <code>http://localhost:5001/public</code> in your browser to see the request logged in your terminal.</li>
+                <li>Open <code>http://localhost:5001/protected</code> in browser and notice the 401 Unauthorized response!</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">📢 [LOGGER] ... | GET /public \n 🔑 API Key verified ...</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: Express Middleware & next() Function -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Express Middleware & next() Function</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What happens if a custom middleware function finishes its logic but does NOT call next() and does NOT send a response with res.send() / res.json()?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_middleware" onchange="handleQuizSelect(this, false, 'fb_day4_middleware', 'Express cannot know the middleware is done unless next() is invoked.')">
+                <span><strong>A)</strong> Express immediately skips to the next route handler.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_middleware" onchange="handleQuizSelect(this, true, 'fb_day4_middleware', 'Every middleware must either end the request-response cycle (e.g., res.json()) or call next() to pass execution to the subsequent handler.')">
+                <span><strong>B)</strong> The incoming client request will hang indefinitely until it times out.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_middleware" onchange="handleQuizSelect(this, false, 'fb_day4_middleware', 'The server stays running, but the specific client request hangs.')">
+                <span><strong>C)</strong> The Express server will automatically shut down with an uncaught exception.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_middleware" onchange="handleQuizSelect(this, false, 'fb_day4_middleware', 'A 404 handler is only reached if preceding middleware calls next() down to the end of the stack.')">
+                <span><strong>D)</strong> Express automatically returns a 404 Not Found status.</span>
+            </label>
+        </div>
+        <div id="fb_day4_middleware" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                         <hr class="my-4">
 
                         <div class="card-header">
                             <h3>Advanced Middleware & Testing</h3>
                         </div>
                         <div class="card-body">
+                            <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">A 'Dead End' Street Sign (404 Handler)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">If a GPS driver tries to turn onto a street that doesn't exist in a neighborhood (e.g. <code>/random-unknown-page</code>), a dead-end sign politely warns them: 'Sorry, this street doesn't exist!'. Placing the 404 middleware at the very bottom of your routes catches any unrecognized request and sends a clean message instead of leaving the browser hanging.</p>
+</div>
                             <h5 class="mt-4">1. Custom 404 Error Handler (in `index.js`)</h5>
                             <div class="code-block">
                                 <pre><code>
@@ -119,6 +270,13 @@ app.use((err, req, res, next) => {
                                 <img src="./images/Error+Handling+Flow.png" class="img-fluid rounded course-image"
                                     alt="Error Handling Flow">
                             </div>
+                            <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Automated Factory Quality Check (Supertest)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Before shipping canned food to stores, an automated testing machine tests each can: 'Is the seal tight• Is the weight 500g• Does the barcode scan•'. Supertest does this for your API: it programmatically fires a test request to <code>GET /</code> and verifies: 'Did the server answer with status 200• Does the body contain the welcome text•'.</p>
+</div>
                             <h5 class="mt-4">3. Testing Express Routes with Jest & Supertest</h5>
                             <p>Install Supertest: <code>npm install --save-dev supertest</code>.</p>
                             <div class="code-block">
@@ -141,5 +299,380 @@ describe('GET /', () => {
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Concept MCQ: Express.js Framework Overview -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Express.js Framework Overview</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Why do developers prefer Express.js over the bare Node.js built-in "http" module?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_intro" onchange="handleQuizSelect(this, true, 'fb_day4_intro', 'Express abstracts boilerplate HTTP parsing, headers, and URL routing into intuitive methods like app.get(), app.post(), and app.use().')">
+                <span><strong>A)</strong> Express simplifies routing, middleware integration, and JSON parsing with cleaner syntax.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_intro" onchange="handleQuizSelect(this, false, 'fb_day4_intro', 'Express is a JavaScript framework running on top of Node.js, not a compiled binary language.')">
+                <span><strong>B)</strong> Express is a compiled language that executes directly on bare metal CPU.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_intro" onchange="handleQuizSelect(this, false, 'fb_day4_intro', 'Express requires Node.js to run; it is built on top of Node\'s core HTTP architecture.')">
+                <span><strong>C)</strong> Express eliminates the need for Node.js runtime.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_intro" onchange="handleQuizSelect(this, false, 'fb_day4_intro', 'Express works with any database, and pairs particularly well with MongoDB in the MERN stack.')">
+                <span><strong>D)</strong> Express can only be used with SQL databases like PostgreSQL, not MongoDB.</span>
+            </label>
+        </div>
+        <div id="fb_day4_intro" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+
+<!-- Concept MCQ: Automated Testing with Jest & Supertest -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Automated Testing with Jest & Supertest</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the role of Supertest in Node.js/Express testing?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_supertest" onchange="handleQuizSelect(this, false, 'fb_day4_supertest', 'Tools like k6 or Artillery do load testing. Supertest is for integration/unit testing of endpoints.')">
+                <span><strong>A)</strong> It connects to live production servers to perform load stress testing.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_supertest" onchange="handleQuizSelect(this, true, 'fb_day4_supertest', 'Supertest programmatically fires requests into your app object and asserts status codes, headers, and JSON responses.')">
+                <span><strong>B)</strong> It simulates HTTP requests against your Express app instance without needing to manually start a listening network port.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_supertest" onchange="handleQuizSelect(this, false, 'fb_day4_supertest', 'Supertest is a testing utility, not a language transpiler.')">
+                <span><strong>C)</strong> It converts your JavaScript codebase into TypeScript.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_supertest" onchange="handleQuizSelect(this, false, 'fb_day4_supertest', 'Supertest tests backend HTTP endpoints without a browser.')">
+                <span><strong>D)</strong> It generates HTML user interfaces for testing in browser tabs.</span>
+            </label>
+        </div>
+        <div id="fb_day4_supertest" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+
+<!-- Runnable Code Block: 404 and Global Error Handling Middleware -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: 404 and Global Error Handling Middleware</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">errorDemo.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// errorDemo.js - Custom 404 &amp; Global 4-Parameter Error Middleware
+const express = require('express');
+const app = express();
+const PORT = 5002;
+
+// Standard working route
+app.get('/', (req, res) =&gt; {
+  res.send('&lt;h1&gt;Express Error Handling Demo&lt;/h1&gt;&lt;p&gt;&lt;a href="/trigger-error"&gt;Trigger an internal error&lt;/a&gt; or visit an invalid URL like &lt;a href="/random-url"&gt;/random-url&lt;/a&gt;.&lt;/p&gt;');
+});
+
+// Route that simulates an internal code crash
+app.get('/trigger-error', (req, res, next) =&gt; {
+  try {
+    // Deliberately simulate an error (e.g. database failure)
+    throw new Error('Database connection timed out while querying user record!');
+  } catch (err) {
+    // Pass the error directly to the Global Error Handler!
+    next(err);
+  }
+});
+
+// 1. 404 Handler: Catch all unmatched URLs (Must be placed AFTER all routes)
+app.use((req, res, next) =&gt; {
+  res.status(404).json({
+    status: 404,
+    error: 'Route Not Found',
+    path: req.originalUrl,
+    hint: 'Check your URL endpoint or method'
+  });
+});
+
+// 2. Global Error Handler: Must have exactly 4 arguments (err, req, res, next)
+app.use((err, req, res, next) =&gt; {
+  console.error('🔥 Caught by Global Error Handler:', err.message);
+  res.status(500).json({
+    status: 500,
+    error: 'Internal Server Error',
+    message: err.message,
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.listen(PORT, () =&gt; {
+  console.log(`✅ Error Handling Demo running at http://localhost:${PORT}`);
+});</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Express automatically identifies error middleware by checking for 4 parameters: <code>(err, req, res, next)</code>. Whenever any route calls <code>next(err)</code>, Express bypasses normal handlers and jumps straight to this centralized error handler.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a file named <code>errorDemo.js</code>.</li>
+                <li>Paste the code above and save.</li>
+                <li>Run in terminal: <code>node errorDemo.js</code></li>
+                <li>Visit <code>http://localhost:5002/trigger-error</code> in your browser to see the graceful 500 JSON error.</li>
+                <li>Visit <code>http://localhost:5002/unknown-page</code> to see the clean 404 JSON response.</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">🔥 Caught by Global Error Handler: Database connection timed out...</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: Express Error Handling Middleware -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Express Error Handling Middleware</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">How does Express distinguish a specialized Global Error-Handling Middleware from standard application middleware?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_error_handling" onchange="handleQuizSelect(this, false, 'fb_day4_error_handling', 'The function name does not matter; only the parameter signature is checked.')">
+                <span><strong>A)</strong> It must be named "errorHandler".</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_error_handling" onchange="handleQuizSelect(this, true, 'fb_day4_error_handling', 'Express checks fn.length === 4. Having four parameters tells Express that this function is dedicated to catching errors.')">
+                <span><strong>B)</strong> Its function definition accepts exactly four arguments: (err, req, res, next).</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_error_handling" onchange="handleQuizSelect(this, false, 'fb_day4_error_handling', 'Global error handlers must be placed at the bottom, after all route definitions, to catch upstream errors.')">
+                <span><strong>C)</strong> It must be placed at the very top of index.js before all route handlers.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_error_handling" onchange="handleQuizSelect(this, false, 'fb_day4_error_handling', 'Express error handlers are standard functions that receive (err, req, res, next) and send an error response.')">
+                <span><strong>D)</strong> It must return a Promise that rejects.</span>
+            </label>
+        </div>
+        <div id="fb_day4_error_handling" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+<!-- Concept MCQ: API Testing with Postman -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">API Testing with Postman</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Why is Postman a crucial tool during backend API development before writing React frontend code?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_postman" onchange="handleQuizSelect(this, false, 'fb_day4_postman', 'Postman is an API client for testing requests, not a code generator.')">
+                <span><strong>A)</strong> It automatically writes the entire Express backend code for you.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_postman" onchange="handleQuizSelect(this, true, 'fb_day4_postman', 'Postman lets you verify that backend endpoints work properly in isolation without needing a completed frontend interface.')">
+                <span><strong>B)</strong> It allows developers to send HTTP requests (GET, POST, PUT, DELETE) and inspect response headers and JSON bodies directly.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_postman" onchange="handleQuizSelect(this, false, 'fb_day4_postman', 'Postman does not replace your application database.')">
+                <span><strong>C)</strong> It replaces MongoDB by storing all data in the cloud without schemas.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_postman" onchange="handleQuizSelect(this, false, 'fb_day4_postman', 'JSX transpilation is handled by Babel or Vite, not Postman.')">
+                <span><strong>D)</strong> It transpiles JSX code into valid browser JavaScript.</span>
+            </label>
+        </div>
+        <div id="fb_day4_postman" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+
+<!-- Runnable Code Block: Express.js Server with Routing & JSON Parser -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Express.js Server with Routing & JSON Parser</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">server.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in IDE</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// server.js - Complete, runnable Express.js Server
+const express = require('express');
+const app = express();
+const PORT = 5000;
+
+// Built-in middleware to parse incoming JSON bodies
+app.use(express.json());
+
+// In-memory data store for demonstration
+let books = [
+  { id: 1, title: 'Clean Code', author: 'Robert C. Martin' },
+  { id: 2, title: 'The Pragmatic Programmer', author: 'Andrew Hunt' }
+];
+
+// 1. Root route - sends HTML
+app.get('/', (req, res) =&gt; {
+  res.send(`
+    &lt;h1&gt;🚀 Express.js Server is Running!&lt;/h1&gt;
+    &lt;p&gt;Try these endpoints:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/api/books"&gt;GET /api/books (View all books)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/api/books/1"&gt;GET /api/books/1 (View book #1)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  `);
+});
+
+// 2. GET all books
+app.get('/api/books', (req, res) =&gt; {
+  res.status(200).json({ success: true, count: books.length, data: books });
+});
+
+// 3. GET single book by ID parameter
+app.get('/api/books/:id', (req, res) =&gt; {
+  const bookId = parseInt(req.params.id);
+  const book = books.find(b =&gt; b.id === bookId);
+  if (!book) {
+    return res.status(404).json({ success: false, message: 'Book not found' });
+  }
+  res.status(200).json({ success: true, data: book });
+});
+
+// 4. POST create a new book
+app.post('/api/books', (req, res) =&gt; {
+  const { title, author } = req.body;
+  if (!title || !author) {
+    return res.status(400).json({ success: false, message: 'Please provide title and author' });
+  }
+  const newBook = { id: books.length + 1, title, author };
+  books.push(newBook);
+  res.status(201).json({ success: true, message: 'Book created successfully!', data: newBook });
+});
+
+// 5. Start listening
+app.listen(PORT, () =&gt; {
+  console.log(`✅ Express server running at http://localhost:${PORT}`);
+  console.log('👉 Press Ctrl + C to stop.');
+});</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Shows how Express simplifies creating web servers. <code>app.use(express.json())</code> automatically parses incoming JSON payloads, while <code>app.get()</code> and <code>app.post()</code> define endpoint routes with HTTP status codes like 200, 201, and 404.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>In your terminal, initialize and install Express: <code>npm init -y && npm install express</code></li>
+                <li>Create a file named <code>server.js</code> in your project folder.</li>
+                <li>Click <strong>Copy Code</strong> above and paste it into <code>server.js</code>.</li>
+                <li>Run in terminal: <code>node server.js</code></li>
+                <li>Open your browser at: <code>http://localhost:5000/</code> and <code>http://localhost:5000/api/books</code></li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Output:</span>
+                <code class="text-muted small">✅ Express server running at http://localhost:5000</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: Express.js Routing & Endpoints -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Express.js Routing & Endpoints</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In Express, which method defines a route handler that listens specifically for HTTP GET requests at the path "/users"?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_routing" onchange="handleQuizSelect(this, false, 'fb_day4_routing', 'app.post() is for creating new resources via POST requests, not GET.')">
+                <span><strong>A)</strong> app.post("/users", handler)</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_routing" onchange="handleQuizSelect(this, true, 'fb_day4_routing', 'app.get(&quot;/users&quot;, (req, res) => ...) handles incoming GET requests for the /users endpoint.')">
+                <span><strong>B)</strong> app.get("/users", handler)</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_routing" onchange="handleQuizSelect(this, false, 'fb_day4_routing', 'app.listen() binds the server to a network port, not a specific route path.')">
+                <span><strong>C)</strong> app.listen("/users", handler)</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day4_routing" onchange="handleQuizSelect(this, false, 'fb_day4_routing', 'app.fetch() is not an Express server routing method; fetch is a client-side web API.')">
+                <span><strong>D)</strong> app.fetch("/users", handler)</span>
+            </label>
+        </div>
+        <div id="fb_day4_routing" class="quiz-feedback" style="display: none;"></div>
     </div>
 </div>

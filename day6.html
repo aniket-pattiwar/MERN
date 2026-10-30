@@ -27,7 +27,46 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>Single Page Applications (SPA)</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: Single Page Applications (SPA) -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Single Page Applications (SPA)</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the defining characteristic of a Single Page Application (SPA) built with React?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_spa" onchange="handleQuizSelect(this, false, 'fb_day6_spa', 'Full page reloads are the definition of traditional Multi-Page Applications (MPAs).')">
+                <span><strong>A)</strong> Every click on a navigation link causes the browser to reload the entire HTML page from scratch from the server.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_spa" onchange="handleQuizSelect(this, true, 'fb_day6_spa', 'SPAs update the existing view dynamically without flashing or full-page server round-trips, giving a fast app-like experience.')">
+                <span><strong>B)</strong> The browser loads an initial HTML shell once, and subsequent UI transitions are dynamically rendered in the client DOM using JavaScript.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_spa" onchange="handleQuizSelect(this, false, 'fb_day6_spa', 'SPAs constantly make background asynchronous API calls (via Fetch or Axios) to retrieve data.')">
+                <span><strong>C)</strong> SPAs cannot fetch any data from external API servers.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_spa" onchange="handleQuizSelect(this, false, 'fb_day6_spa', 'SPAs rely entirely on JavaScript to render and update the DOM.')">
+                <span><strong>D)</strong> SPAs only work if JavaScript is disabled in the browser.</span>
+            </label>
+        </div>
+        <div id="fb_day6_spa" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <p>A SPA is a web application that loads a single HTML page and dynamically updates content as
                             the
@@ -43,10 +82,173 @@
                     </div>
                 </div>
 
+                <!-- Virtual DOM -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>⭐ The Virtual DOM &amp; Reconciliation Process</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center my-3">
+                            <img src="./images/virtual-dom-flow.svg" class="img-fluid rounded course-image" alt="React Virtual DOM Diffing and Reconciliation Flowchart">
+                            <small class="text-muted d-block mt-1">Figure: Virtual DOM Snapshot Diffing &amp; Minimal Real DOM Patching</small>
+                        </div>
+                        <p>The <strong>Virtual DOM (VDOM)</strong> is a lightweight JavaScript representation of the real DOM kept in memory and synced with the "real" DOM by a library such as ReactDOM. This process is called <strong>reconciliation</strong>.</p>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>Real Browser DOM</th>
+                                        <th>Virtual DOM (React)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Nature</strong></td>
+                                        <td>Actual tree of HTML browser nodes</td>
+                                        <td>Lightweight JavaScript Object in memory</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Manipulation Speed</strong></td>
+                                        <td>Slow &amp; expensive (triggers reflow &amp; repaint)</td>
+                                        <td>Extremely fast (pure in-memory JS calculation)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Update Mechanism</strong></td>
+                                        <td>Updates elements and often recalculates surrounding layouts</td>
+                                        <td>Batches changes and calculates minimal diff using Diffing Algorithm</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Memory Cost</strong></td>
+                                        <td>High browser memory overhead</td>
+                                        <td>Very low memory footprint</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h5 class="mt-4">How Reconciliation &amp; Diffing Works</h5>
+                        <div class="row g-3 my-2 text-center">
+                            <div class="col-md-3">
+                                <div class="p-3 border rounded bg-light h-100">
+                                    <strong class="text-primary">1. State Change</strong>
+                                    <p class="small mb-0 mt-1">Component state or props change via <code>setState</code>.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3 border rounded bg-light h-100">
+                                    <strong class="text-warning">2. New VDOM Tree</strong>
+                                    <p class="small mb-0 mt-1">React creates a fresh new Virtual DOM tree representing the new UI.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3 border rounded bg-light h-100">
+                                    <strong class="text-info">3. Diffing Algorithm</strong>
+                                    <p class="small mb-0 mt-1">React compares the new VDOM with snapshot of the previous VDOM tree.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3 border rounded bg-light h-100">
+                                    <strong class="text-success">4. Batch Real Update</strong>
+                                    <p class="small mb-0 mt-1">Only the exact changed elements are patched into the real browser DOM.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">Updating a Whiteboard vs. Rebuilding the Wall</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">If you have a whiteboard with a list of 20 names and one person changes their phone number, you just erase that single number and write the new one. You don't demolish the whole whiteboard! That is what React's <strong>Virtual DOM</strong> does: it calculates the exact tiny piece that changed and repaints only that spot in the browser.</p>
+</div>
+
+<!-- Concept MCQ: Virtual DOM & Reconciliation -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Virtual DOM & Reconciliation</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">How does React's Virtual DOM improve frontend performance compared to direct browser DOM manipulation?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_vdom" onchange="handleQuizSelect(this, false, 'fb_day6_vdom', 'The Virtual DOM is a lightweight JavaScript tree representation, not GPU assembly.')">
+                <span><strong>A)</strong> It replaces HTML with binary assembly code directly executed by the GPU.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_vdom" onchange="handleQuizSelect(this, true, 'fb_day6_vdom', 'Direct DOM manipulation is computationally expensive; diffing lightweight JavaScript objects in memory and applying batched patch updates minimizes browser reflows and repaints.')">
+                <span><strong>B)</strong> It compares new and old virtual trees (diffing) and batches only the necessary minimum changes to update the real DOM.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_vdom" onchange="handleQuizSelect(this, false, 'fb_day6_vdom', 'Discarding and recreating the entire DOM is what naive rendering does, which is slow. React only updates what changed.')">
+                <span><strong>C)</strong> It forces the browser to discard the existing DOM tree and recreate all elements on every state change.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_vdom" onchange="handleQuizSelect(this, false, 'fb_day6_vdom', 'Virtual DOM is purely a client-side rendering abstraction.')">
+                <span><strong>D)</strong> It connects directly to MongoDB without needing an Express server.</span>
+            </label>
+        </div>
+        <div id="fb_day6_vdom" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+                    </div>
+                </div>
+
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>Component-Oriented Architecture</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: Component-Oriented Architecture -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Component-Oriented Architecture</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the primary architectural benefit of React's component-based design?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_components" onchange="handleQuizSelect(this, false, 'fb_day6_components', 'Styles can be modular CSS, Tailwind, or styled-components, unrelated to databases.')">
+                <span><strong>A)</strong> It requires all CSS styles to be written directly in the database.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_components" onchange="handleQuizSelect(this, true, 'fb_day6_components', 'Components make applications easier to build, test, and maintain by separating concerns into reusable building blocks.')">
+                <span><strong>B)</strong> It breaks complex user interfaces into independent, reusable, and self-contained pieces of UI that manage their own logic and view.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_components" onchange="handleQuizSelect(this, false, 'fb_day6_components', 'React apps often have hundreds of nested components.')">
+                <span><strong>C)</strong> It limits an application to having no more than five total UI elements.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_components" onchange="handleQuizSelect(this, false, 'fb_day6_components', 'Components freely communicate by passing props and context.')">
+                <span><strong>D)</strong> It prevents components from passing data to each other.</span>
+            </label>
+        </div>
+        <div id="fb_day6_components" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <p>React is built around the idea of components. A component is a self-contained, reusable
                             piece of the UI. You build complex UIs by composing simple components together.</p>
@@ -67,7 +269,46 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>JSX, Babel, and Webpack</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: JSX, Babel & Transpilation -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">JSX, Babel & Transpilation</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What does Babel do when it encounters JSX code like `const heading = <h1>Hello MERN</h1>;`?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_jsx" onchange="handleQuizSelect(this, false, 'fb_day6_jsx', 'JSX is syntax sugar; browsers and Node cannot parse raw JSX natively.')">
+                <span><strong>A)</strong> It executes the HTML code directly inside Node.js.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_jsx" onchange="handleQuizSelect(this, true, 'fb_day6_jsx', 'Babel transforms intuitive JSX tags into standard JavaScript object-instantiation function calls that React understands.')">
+                <span><strong>B)</strong> It transpiles the JSX syntax into regular JavaScript React.createElement('h1', null, 'Hello MERN') calls.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_jsx" onchange="handleQuizSelect(this, false, 'fb_day6_jsx', 'Babel is a compiler/transpiler, not an encryption obfuscator.')">
+                <span><strong>C)</strong> It encrypts the string so users cannot inspect the element.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_jsx" onchange="handleQuizSelect(this, false, 'fb_day6_jsx', 'JSX transformation is a frontend build-time step.')">
+                <span><strong>D)</strong> It writes the text to a file on the server's local hard disk.</span>
+            </label>
+        </div>
+        <div id="fb_day6_jsx" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <p>These tools work together to let you write modern React code that can run in any browser.
                         </p>
@@ -94,7 +335,46 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>Tool: Vite vs. Create React App (CRA)</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: Vite vs. Create React App (CRA) -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Vite vs. Create React App (CRA)</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Why is Vite significantly faster than older tools like Create React App (CRA) during local development?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_vite" onchange="handleQuizSelect(this, true, 'fb_day6_vite', 'CRA bundles the entire app before serving; Vite serves files on demand over native ESM, resulting in instant server startup and instant Hot Module Replacement (HMR).')">
+                <span><strong>A)</strong> Vite uses native browser ES Modules (ESM) to serve files on demand and bundles dependencies with ultra-fast esbuild.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_vite" onchange="handleQuizSelect(this, false, 'fb_day6_vite', 'Vite fully supports debugging, sourcemaps, and console logs.')">
+                <span><strong>B)</strong> Vite disables all JavaScript debugging and console logs.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_vite" onchange="handleQuizSelect(this, false, 'fb_day6_vite', 'Vite has first-class support for React, Vue, Svelte, and TypeScript.')">
+                <span><strong>C)</strong> Vite only supports plain HTML and does not support React.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_vite" onchange="handleQuizSelect(this, false, 'fb_day6_vite', 'Vite runs standard JavaScript and TypeScript code.')">
+                <span><strong>D)</strong> Vite requires you to rewrite all components into C++.</span>
+            </label>
+        </div>
+        <div id="fb_day6_vite" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <p>The tools used to create React applications.
                             While Create React App was the standard for many years, modern tools like
@@ -210,6 +490,134 @@ const currentYear = new Date().getFullYear();
 </code></pre>
                         </div>
                         <hr class="my-4">
+                        <div class="alert alert-light border border-primary-subtle my-3">
+    <div class="d-flex align-items-center mb-1">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">💡 Simple Analogy</span>
+        <strong class="text-primary-emphasis">A Custom Coffee Order (Props)</strong>
+    </div>
+    <p class="mb-0 small text-body-secondary">Think of Props (short for Properties) like ordering a customized drink at a cafe:<br>The customer (Parent Component) says: <code>&lt;CoffeeCup size="Large" milk="Oat" sugar={1} /&gt;</code><br>The barista (Child Component) receives those custom instructions inside <code>props</code> and serves the exact custom cup! Props allow the same component to look and behave uniquely based on what the parent passes down.</p>
+</div>
+
+<!-- Runnable Code Block: Reusable Components & Passing Props -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: Reusable Components & Passing Props</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">App.jsx</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in React</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// App.jsx - Complete, runnable React Components &amp; Props Example
+import React from 'react';
+
+// Child Component that receives props
+function StudentCard({ name, track, score, isHonorRoll }) {
+  return (
+    &lt;div style={{
+      border: '1px solid #ccc',
+      borderRadius: '8px',
+      padding: '16px',
+      margin: '8px',
+      backgroundColor: isHonorRoll ? '#f0fdf4' : '#fff',
+      boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+    }}&gt;
+      &lt;h3&gt;{name} {isHonorRoll &amp;&amp; '🌟'}&lt;/h3&gt;
+      &lt;p&gt;&lt;strong&gt;Track:&lt;/strong&gt; {track}&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;Exam Score:&lt;/strong&gt; {score}%&lt;/p&gt;
+      &lt;span style={{
+        display: 'inline-block',
+        padding: '4px 8px',
+        borderRadius: '4px',
+        backgroundColor: score &gt;= 80 ? '#22c55e' : '#eab308',
+        color: '#fff',
+        fontSize: '12px'
+      }}&gt;
+        {score &gt;= 80 ? 'Distinction' : 'Passing'}
+      &lt;/span&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Parent App Component
+export default function App() {
+  return (
+    &lt;div style={{ fontFamily: 'sans-serif', padding: '20px', maxWidth: '600px', margin: 'auto' }}&gt;
+      &lt;h1&gt;🎓 MERN Student Roster&lt;/h1&gt;
+      &lt;p&gt;Demonstrating component reusability and unidirectional props flow:&lt;/p&gt;
+      
+      {/* Reusing StudentCard with different prop data */}
+      &lt;StudentCard name="Alice Johnson" track="Full Stack MERN" score={95} isHonorRoll={true} /&gt;
+      &lt;StudentCard name="Bob Smith" track="Backend Node.js" score={82} isHonorRoll={false} /&gt;
+      &lt;StudentCard name="Charlie Brown" track="Frontend React" score={78} isHonorRoll={false} /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Shows how a parent component (<code>App</code>) passes data to child components (<code>StudentCard</code>) via read-only props (strings, numbers, booleans), which the child destructures and renders into JSX.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Create a new Vite React app if not already open: <code>npm create vite@latest my-app -- --template react</code></li>
+                <li>Replace the code in <code>src/App.jsx</code> with this snippet.</li>
+                <li>Run in terminal: <code>npm run dev</code></li>
+                <li>Open the local URL (e.g. <code>http://localhost:5173</code>) in your browser.</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Visual Output:</span>
+                <code class="text-muted small">Three styled student cards rendered dynamically with custom props and conditional badges.</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: React Props & Data Flow -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">React Props & Data Flow</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Which fundamental rule governs how React components handle the `props` they receive from parents?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_props" onchange="handleQuizSelect(this, false, 'fb_day6_props', 'Props must never be mutated directly. If a value needs to change, use State.')">
+                <span><strong>A)</strong> Child components can mutate and reassign their props at any time (e.g. props.count = 5).</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_props" onchange="handleQuizSelect(this, true, 'fb_day6_props', 'React enforces a one-way data flow (top-down). Child components must treat received props as pure read-only inputs.')">
+                <span><strong>B)</strong> Props are read-only and immutable; data flows unidirectionally from parent to child.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_props" onchange="handleQuizSelect(this, false, 'fb_day6_props', 'Props can be strings, numbers, objects, arrays, and functions (like event callbacks).')">
+                <span><strong>C)</strong> Props can only contain primitive strings, never functions or objects.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day6_props" onchange="handleQuizSelect(this, false, 'fb_day6_props', 'Props are in-memory React properties, completely independent of databases.')">
+                <span><strong>D)</strong> Props are automatically saved into MongoDB every time a button is clicked.</span>
+            </label>
+        </div>
+        <div id="fb_day6_props" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                         <h5>3. Assemble the App and Pass Props</h5>
                         <div class="code-block">
 <pre><code>import './App.css';

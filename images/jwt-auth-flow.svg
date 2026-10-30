@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="clientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="serverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="tokenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="500" rx="16" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="450" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc" text-anchor="middle">JSON Web Token (JWT) Authentication &amp; Protected Route Flow</text>
+
+  <!-- Client Column -->
+  <rect x="50" y="80" width="220" height="380" rx="12" fill="#1e293b" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="50" y="80" width="220" height="45" rx="12" fill="url(#clientGrad)"/>
+  <text x="160" y="108" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Client (React App)</text>
+
+  <rect x="70" y="145" width="180" height="55" rx="8" fill="#334155"/>
+  <text x="160" y="168" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#93c5fd" text-anchor="middle">1. User Enters Login</text>
+  <text x="160" y="186" font-family="system-ui, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">email &amp; password</text>
+
+  <rect x="70" y="275" width="180" height="60" rx="8" fill="url(#tokenGrad)"/>
+  <text x="160" y="300" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">3. Stores JWT Token</text>
+  <text x="160" y="320" font-family="system-ui, sans-serif" font-size="11" fill="#fef3c7" text-anchor="middle">in localStorage</text>
+
+  <rect x="70" y="380" width="180" height="60" rx="8" fill="#334155"/>
+  <text x="160" y="405" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#a7f3d0" text-anchor="middle">5. Renders Protected Data</text>
+  <text x="160" y="425" font-family="system-ui, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">User Dashboard UI</text>
+
+  <!-- Server Column -->
+  <rect x="630" y="80" width="220" height="380" rx="12" fill="#1e293b" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="630" y="80" width="220" height="45" rx="12" fill="url(#serverGrad)"/>
+  <text x="740" y="108" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Server (Node / Express)</text>
+
+  <rect x="650" y="145" width="180" height="65" rx="8" fill="#334155"/>
+  <text x="740" y="168" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#6ee7b7" text-anchor="middle">2. Verifies &amp; Signs</text>
+  <text x="740" y="186" font-family="system-ui, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">bcrypt.compare() &amp; jwt.sign()</text>
+  <text x="740" y="200" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Generates signed token</text>
+
+  <rect x="650" y="285" width="180" height="65" rx="8" fill="#334155"/>
+  <text x="740" y="308" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#fcd34d" text-anchor="middle">4. Auth Middleware</text>
+  <text x="740" y="326" font-family="system-ui, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">jwt.verify(token, SECRET)</text>
+  <text x="740" y="340" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Decodes userId &amp; role</text>
+
+  <rect x="650" y="380" width="180" height="60" rx="8" fill="#334155"/>
+  <text x="740" y="405" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#6ee7b7" text-anchor="middle">6. Sends Protected JSON</text>
+  <text x="740" y="425" font-family="system-ui, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">res.json(booksData)</text>
+
+  <!-- Flow Arrows -->
+  <!-- Step 1 Arrow: Client to Server -->
+  <path d="M 270 172 L 625 172" stroke="#60a5fa" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+  <polygon points="625,172 615,166 615,178" fill="#60a5fa"/>
+  <rect x="360" y="152" width="180" height="24" rx="4" fill="#0f172a" stroke="#60a5fa" stroke-width="1"/>
+  <text x="450" y="168" font-family="monospace" font-size="11" fill="#93c5fd" text-anchor="middle">POST /api/auth/login</text>
+
+  <!-- Step 2 Arrow: Server to Client (Returns Token) -->
+  <path d="M 630 230 L 275 230" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrow)"/>
+  <polygon points="275,230 285,224 285,236" fill="#f59e0b"/>
+  <rect x="350" y="218" width="200" height="24" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+  <text x="450" y="234" font-family="monospace" font-size="11" fill="#fcd34d" text-anchor="middle">Response: { token: "Bearer ..." }</text>
+
+  <!-- Step 3 Arrow: Client to Server with Header -->
+  <path d="M 270 345 L 625 345" stroke="#34d399" stroke-width="3" stroke-dasharray="6,4"/>
+  <polygon points="625,345 615,339 615,351" fill="#34d399"/>
+  <rect x="320" y="325" width="260" height="24" rx="4" fill="#0f172a" stroke="#34d399" stroke-width="1"/>
+  <text x="450" y="341" font-family="monospace" font-size="10" fill="#a7f3d0" text-anchor="middle">GET /api/books [Header: Auth: Bearer token]</text>
+
+  <!-- Step 4 Arrow: Server sends Protected Data -->
+  <path d="M 630 410 L 275 410" stroke="#10b981" stroke-width="3"/>
+  <polygon points="275,410 285,404 285,416" fill="#10b981"/>
+  <rect x="360" y="398" width="180" height="24" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+  <text x="450" y="414" font-family="monospace" font-size="11" fill="#6ee7b7" text-anchor="middle">200 OK: Protected JSON Data</text>
+</svg>

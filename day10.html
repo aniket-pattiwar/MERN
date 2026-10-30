@@ -37,7 +37,46 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>What is Prop Drilling?</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: Understanding Prop Drilling -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Understanding Prop Drilling</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What does "Prop Drilling" mean in React development?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_prop_drilling" onchange="handleQuizSelect(this, true, 'fb_day10_prop_drilling', 'Prop drilling happens when middle-layer components act as passive messengers just to pipe props down the tree.')">
+                <span><strong>A)</strong> Passing props through intermediate components that do not need the data themselves, merely to reach a deeply nested child component.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_prop_drilling" onchange="handleQuizSelect(this, false, 'fb_day10_prop_drilling', 'React Native builds mobile apps; prop drilling is a state architecture pattern.')">
+                <span><strong>B)</strong> A technique to compile React apps into mobile applications.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_prop_drilling" onchange="handleQuizSelect(this, false, 'fb_day10_prop_drilling', 'Testing is done with Jest, Vitest, or React Testing Library.')">
+                <span><strong>C)</strong> Writing automated unit tests for components.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_prop_drilling" onchange="handleQuizSelect(this, false, 'fb_day10_prop_drilling', 'Props are React JavaScript arguments, not database storage.')">
+                <span><strong>D)</strong> Storing database records inside HTML local attributes.</span>
+            </label>
+        </div>
+        <div id="fb_day10_prop_drilling" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <p>Prop drilling occurs when you need to pass data from a top-level component down to a deeply nested component through multiple intermediate components that don't actually need that data. This makes the code harder to read, maintain, and refactor.</p>
                         <p>In this example, we'll store the theme state in the App component and pass it down through props to the Navbar and then to each page component.</p>
@@ -155,6 +194,45 @@ function Navbar({ theme, toggleTheme }) {
 
 export default Navbar;</code></pre>
                         </div>
+
+<!-- Concept MCQ: Problems Caused by Prop Drilling -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Problems Caused by Prop Drilling</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the primary maintenance drawback of severe prop drilling across 6 or more component levels?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_prop_drilling_issues" onchange="handleQuizSelect(this, true, 'fb_day10_prop_drilling_issues', 'If you rename or remove a prop, you must touch every single intermediate component in the hierarchy even though they never actually used the data.')">
+                <span><strong>A)</strong> It creates tight coupling and makes refactoring or moving intermediary components tedious and prone to breaking.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_prop_drilling_issues" onchange="handleQuizSelect(this, false, 'fb_day10_prop_drilling_issues', 'CSS styling is completely unaffected by props.')">
+                <span><strong>B)</strong> It prevents the website from using any CSS styles.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_prop_drilling_issues" onchange="handleQuizSelect(this, false, 'fb_day10_prop_drilling_issues', 'Prop drilling is purely client-side React code.')">
+                <span><strong>C)</strong> It forces the database to re-index all collections.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_prop_drilling_issues" onchange="handleQuizSelect(this, false, 'fb_day10_prop_drilling_issues', 'Client component architecture does not limit user capacity.')">
+                <span><strong>D)</strong> It limits the application to a maximum of 10 users.</span>
+            </label>
+        </div>
+        <div id="fb_day10_prop_drilling_issues" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                     </div>
                 </div>
 
@@ -244,7 +322,46 @@ export default Login;</code></pre>
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>What is Context API?</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: React Context API Building Blocks -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">React Context API Building Blocks</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Which three fundamental APIs are required to share state across components using React Context?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_context_api" onchange="handleQuizSelect(this, false, 'fb_day10_context_api', 'These are Redux concepts, not React\'s built-in Context API.')">
+                <span><strong>A)</strong> createStore(), dispatch(), and reducer()</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_context_api" onchange="handleQuizSelect(this, true, 'fb_day10_context_api', 'createContext creates the Context object, Provider supplies the value to the subtree, and useContext consumes the value.')">
+                <span><strong>B)</strong> createContext(), <Context.Provider value={...}>, and useContext()</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_context_api" onchange="handleQuizSelect(this, false, 'fb_day10_context_api', 'These are standard hooks, not the Context creation mechanism.')">
+                <span><strong>C)</strong> useState(), useMemo(), and useCallback()</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_context_api" onchange="handleQuizSelect(this, false, 'fb_day10_context_api', 'These are legacy React-Redux higher-order component methods.')">
+                <span><strong>D)</strong> connect(), Provider, and mapStateToProps</span>
+            </label>
+        </div>
+        <div id="fb_day10_context_api" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <p>React Context API allows you to share data (state) across the component tree without having to pass props down manually at every level. It's perfect for global app data like themes, user authentication, or language preferences.</p>
                         <p>We'll create a ThemeContext and ThemeProvider to manage the theme state globally.</p>
@@ -285,6 +402,151 @@ export const ThemeProvider = ({ children }) => {
 
 export const useTheme = () => useContext(ThemeContext);</code></pre>
                         </div>
+
+
+<!-- Runnable Code Block: React Context API Architecture -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: React Context API Architecture</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">ContextDemo.jsx</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-code-slash me-1"></i>Copy & Run in React</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// ContextDemo.jsx - Complete runnable Context API implementation
+import React, { createContext, useContext, useState } from 'react';
+
+// 1. Create the Context
+const ThemeContext = createContext();
+
+// 2. Provider Component
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () =&gt; setTheme(t =&gt; (t === 'light' ? 'dark' : 'light'));
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, toggleTheme }}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  );
+}
+
+// 3. Custom Hook for easy consumption
+export function useTheme() {
+  return useContext(ThemeContext);
+}
+
+// 4. Nested Deep Child Component (No props passed from parent!)
+function ThemeToggleButton() {
+  const { theme, toggleTheme } = useTheme();
+  return (
+    &lt;button
+      onClick={toggleTheme}
+      style={{
+        padding: '10px 20px',
+        borderRadius: '8px',
+        cursor: 'pointer',
+        fontSize: '16px',
+        border: 'none',
+        backgroundColor: theme === 'light' ? '#0f172a' : '#f8fafc',
+        color: theme === 'light' ? '#f8fafc' : '#0f172a'
+      }}
+    &gt;
+      Current Theme: {theme.toUpperCase()} (Click to Toggle)
+    &lt;/button&gt;
+  );
+}
+
+// 5. Intermediate Component (Demonstrates ZERO prop drilling)
+function HeaderBar() {
+  return (
+    &lt;header style={{ padding: '16px', borderBottom: '1px solid #ccc', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}&gt;
+      &lt;h3&gt;🚀 MyApp Navigation&lt;/h3&gt;
+      &lt;ThemeToggleButton /&gt; {/* Deep consumer without passing any props through HeaderBar! */}
+    &lt;/header&gt;
+  );
+}
+
+// 6. Main App
+export default function App() {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;div style={{ fontFamily: 'sans-serif', minHeight: '300px', padding: '20px' }}&gt;
+        &lt;HeaderBar /&gt;
+        &lt;main style={{ marginTop: '20px' }}&gt;
+          &lt;h2&gt;Welcome to Prop-Drilling Free Architecture&lt;/h2&gt;
+          &lt;p&gt;The ThemeToggleButton accesses global theme state directly via useContext() without passing props through intermediate components!&lt;/p&gt;
+        &lt;/main&gt;
+      &lt;/div&gt;
+    &lt;/ThemeProvider&gt;
+  );
+}</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Eliminates prop drilling by broadcasting global state directly from <code>ThemeProvider</code> down to any descendant component via <code>useContext()</code>.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>Paste this into <code>src/App.jsx</code> of your Vite React project.</li>
+                <li>Run <code>npm run dev</code> in terminal.</li>
+                <li>Click the theme button in the header.</li>
+                <li>Notice how the state updates cleanly across the component tree without any prop drilling!</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Visual Output:</span>
+                <code class="text-muted small">A fully working React app with global ThemeProvider and a nested child reading theme directly via useTheme().</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: Consuming Context with useContext() -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Consuming Context with useContext()</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">How does a deeply nested component access the current theme value from ThemeContext without any props being passed to it?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_consuming_context" onchange="handleQuizSelect(this, true, 'fb_day10_consuming_context', 'useContext(ThemeContext) hooks directly into the nearest ThemeContext.Provider above it in the component tree.')">
+                <span><strong>A)</strong> const { theme } = useContext(ThemeContext);</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_consuming_context" onchange="handleQuizSelect(this, false, 'fb_day10_consuming_context', 'Direct DOM querying bypasses React\'s state model and won\'t trigger reactivity.')">
+                <span><strong>B)</strong> const theme = document.getElementById("theme").value;</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_consuming_context" onchange="handleQuizSelect(this, false, 'fb_day10_consuming_context', 'React Context is scoped to component trees, not placed on the global window object.')">
+                <span><strong>C)</strong> const theme = window.ThemeContext;</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_consuming_context" onchange="handleQuizSelect(this, false, 'fb_day10_consuming_context', 'Context eliminates the need to receive theme via props.')">
+                <span><strong>D)</strong> const theme = props.getTheme();</span>
+            </label>
+        </div>
+        <div id="fb_day10_consuming_context" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                     </div>
                 </div>
 
@@ -388,7 +650,46 @@ export default Home;</code></pre>
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>Difference Between Prop Drilling and Context API</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: When to Use Context API -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">When to Use Context API</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Which type of data is the best candidate for management via React Context API?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_when_to_use" onchange="handleQuizSelect(this, false, 'fb_day10_when_to_use', 'A single input field should use local useState, not global Context.')">
+                <span><strong>A)</strong> Local text input state inside a single search bar.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_when_to_use" onchange="handleQuizSelect(this, true, 'fb_day10_when_to_use', 'Context is ideal for data that needs to be accessible by many components at different nesting levels.')">
+                <span><strong>B)</strong> Global or cross-cutting application state needed by many disparate components, such as UI theme, authenticated user info, or language preference.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_when_to_use" onchange="handleQuizSelect(this, false, 'fb_day10_when_to_use', 'Isolated UI state belongs in local useState.')">
+                <span><strong>C)</strong> A temporary counter that is only used inside one modal popup.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_when_to_use" onchange="handleQuizSelect(this, false, 'fb_day10_when_to_use', 'Media files belong on cloud object storage (S3/Cloudinary), not React Context.')">
+                <span><strong>D)</strong> Storing large binary video files on the client device.</span>
+            </label>
+        </div>
+        <div id="fb_day10_when_to_use" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <h5>Prop Drilling:</h5>
                         <ul>
@@ -413,7 +714,46 @@ export default Home;</code></pre>
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3>When NOT to Use Context</h3>
-                    </div>
+             
+
+<!-- Concept MCQ: When NOT to Overuse Context -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">When NOT to Overuse Context</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Why should you avoid putting rapidly changing state (e.g. high-frequency cursor coordinates or keystrokes) into a top-level Context?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_when_not_to_use" onchange="handleQuizSelect(this, true, 'fb_day10_when_not_to_use', 'Frequent updates to a context cause widespread re-renders among all consumers, which can lead to UI stutter.')">
+                <span><strong>A)</strong> Because whenever a Context value changes, all components consuming that Context re-render, potentially causing performance bottlenecks.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_when_not_to_use" onchange="handleQuizSelect(this, false, 'fb_day10_when_not_to_use', 'React re-renders components; it doesn\'t delete them.')">
+                <span><strong>B)</strong> Because React will delete the component tree from memory.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_when_not_to_use" onchange="handleQuizSelect(this, false, 'fb_day10_when_not_to_use', 'Context can hold any JavaScript value, including objects, arrays, and functions.')">
+                <span><strong>C)</strong> Because Context can only hold numbers, never objects or strings.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day10_when_not_to_use" onchange="handleQuizSelect(this, false, 'fb_day10_when_not_to_use', 'There is no browser throttle, but frequent re-rendering degrades user experience.')">
+                <span><strong>D)</strong> Because browsers limit Context updates to once every minute.</span>
+            </label>
+        </div>
+        <div id="fb_day10_when_not_to_use" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       </div>
                     <div class="card-body">
                         <p>Context is great for global app state, but don't overuse it:</p>
                         <ul>
@@ -521,4 +861,4 @@ export const ThemeProvider = ({ children }) => {
             </div>
         </div>
     </div>
-</div></content>
+</div>

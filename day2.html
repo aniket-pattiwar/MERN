@@ -27,7 +27,46 @@
                     <p>MongoDB stores data in <strong>BSON</strong> (Binary JSON), not plain JSON. This allows it to support more data types and be more efficient.</p>
                     
                     <h5 class="mt-4">JSON vs BSON</h5>
-                    <div class="row align-items-center mb-4">
+             
+
+<!-- Concept MCQ: BSON vs. JSON in MongoDB -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">BSON vs. JSON in MongoDB</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">Why does MongoDB store documents internally in BSON (Binary JSON) format instead of plain text JSON?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_bson" onchange="handleQuizSelect(this, true, 'fb_day2_bson', 'BSON includes length prefixes and explicit type tags that allow MongoDB to scan documents rapidly without parsing raw text strings.')">
+                <span><strong>A)</strong> BSON allows faster traversal and parsing, and natively supports rich data types like Date, ObjectId, and binary data.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_bson" onchange="handleQuizSelect(this, false, 'fb_day2_bson', 'BSON is a binary encoding, not human-readable text.')">
+                <span><strong>B)</strong> BSON is human-readable plain English with no brackets.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_bson" onchange="handleQuizSelect(this, false, 'fb_day2_bson', 'BSON is a serialization format, not an encryption cipher.')">
+                <span><strong>C)</strong> BSON encrypts all documents with a military password.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_bson" onchange="handleQuizSelect(this, false, 'fb_day2_bson', 'BSON is MongoDB\'s standard storage format.')">
+                <span><strong>D)</strong> BSON is only used on floppy disks.</span>
+            </label>
+        </div>
+        <div id="fb_day2_bson" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       <div class="row align-items-center mb-4">
                         <div class="col-md-5">
                             <div class="card bg-light border-secondary h-100">
                                 <div class="card-header text-center"><strong>JSON</strong> (Text)</div>
@@ -61,7 +100,46 @@
                     </div>
 
                     <h5 class="mt-4">MongoDB Data Types</h5>
-                    <div class="table-responsive">
+             
+
+<!-- Concept MCQ: MongoDB ObjectId Structure -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">MongoDB ObjectId Structure</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the default unique identifier assigned to every MongoDB document in the `_id` field?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_objectid" onchange="handleQuizSelect(this, false, 'fb_day2_objectid', 'SQL databases commonly use auto-incrementing integers; MongoDB uses a 12-byte ObjectId.')">
+                <span><strong>A)</strong> An auto-incrementing integer (1, 2, 3...)</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_objectid" onchange="handleQuizSelect(this, true, 'fb_day2_objectid', 'ObjectId ensures global uniqueness across distributed machines and automatically encodes the creation time of the document.')">
+                <span><strong>B)</strong> A 12-byte BSON ObjectId containing a 4-byte timestamp, 5-byte random value, and 3-byte counter.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_objectid" onchange="handleQuizSelect(this, false, 'fb_day2_objectid', 'ObjectIds are 24-character hexadecimal strings representing 12 raw bytes.')">
+                <span><strong>C)</strong> A random 6-digit SMS OTP</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_objectid" onchange="handleQuizSelect(this, false, 'fb_day2_objectid', 'ObjectIds do not store client MAC addresses.')">
+                <span><strong>D)</strong> The user's MAC address</span>
+            </label>
+        </div>
+        <div id="fb_day2_objectid" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>       <div class="table-responsive">
                         <table class="table table-hover align-middle table-bordered">
                             <thead class="table-light">
                                 <tr>
@@ -157,6 +235,45 @@ Delete: Remove employees with less than 1 year of experience
                     <h5 class="mt-3">4. Advanced Queries (Condition, Sort, Projection)</h5>
                     <p>Find all employees in Development dept, sort them by experience in descending order, and show only their name and salary.</p>
                     <div class="code-block"><pre><code>$match, $sort, $project</code></pre></div>
+
+<!-- Concept MCQ: MongoDB Query Projections -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">MongoDB Query Projections</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In the query db.books.find({ rating: { $gte: 4 } }, { title: 1, author: 1, _id: 0 }), what does `{ title: 1, author: 1, _id: 0 }` accomplish?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_query_projection" onchange="handleQuizSelect(this, false, 'fb_day2_query_projection', 'Sorting is performed using the .sort() method.')">
+                <span><strong>A)</strong> It sorts the books alphabetically by title.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_query_projection" onchange="handleQuizSelect(this, true, 'fb_day2_query_projection', 'The second argument to find() is the projection document. 1 includes a field, and _id: 0 excludes the otherwise default _id.')">
+                <span><strong>B)</strong> It is a projection that returns only the title and author fields, explicitly excluding the default _id field.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_query_projection" onchange="handleQuizSelect(this, false, 'fb_day2_query_projection', 'find() queries documents; it never updates them.')">
+                <span><strong>C)</strong> It updates the book rating to 0.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_query_projection" onchange="handleQuizSelect(this, false, 'fb_day2_query_projection', 'find() does not perform deletions.')">
+                <span><strong>D)</strong> It deletes all books with less than 4 stars.</span>
+            </label>
+        </div>
+        <div id="fb_day2_query_projection" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
                     <h5 class="mt-3">5. Verify and Display</h5>
                     <div class="code-block"><pre><code>find()</code></pre></div>
                     <br/><div class="code-block"><pre><code>find().pretty()</code></pre></div>                   
@@ -178,6 +295,113 @@ Delete: Remove employees with less than 1 year of experience
                         <img src="./images/AggregationPipeline.png" class="img-fluid rounded course-image" alt="Aggregation Pipeline Diagram">
                         <img src="./images/lookup-unwind-group-sort.png" class="img-fluid rounded course-image" alt="Lookup, Unwind, Group, Sort Stages in Aggregation Pipeline">
                     </div>
+
+
+<!-- Runnable Code Block: MongoDB Multi-Stage Aggregation Pipeline -->
+<div class="card border-primary-subtle shadow-sm my-3 code-runner-card">
+    <div class="card-header bg-primary-subtle text-primary-emphasis d-flex justify-content-between align-items-center py-2 flex-wrap gap-2">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-play-circle-fill me-2 text-primary fs-5"></i>
+            <strong>Runnable Code: MongoDB Multi-Stage Aggregation Pipeline</strong>
+            <span class="badge bg-primary text-white ms-2 font-monospace">aggregation_demo.js</span>
+        </div>
+        <span class="badge bg-body border text-body-secondary small"><i class="bi bi-terminal me-1"></i>Run in mongosh</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="code-block m-0 rounded-0 position-relative">
+            <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn shadow-sm" onclick="copySnippet(this)" title="Copy whole code snippet">
+                <i class="bi bi-clipboard me-1"></i>Copy Code
+            </button>
+            <pre class="m-0"><code class="language-javascript">// aggregation_demo.js - Complete Multi-Stage Aggregation in mongosh
+use storeAnalyticsDB;
+
+// 1. Insert sample orders
+db.orders.drop(); // Clear previous runs
+db.orders.insertMany([
+  { customer: "Alice", product: "MacBook Pro", amount: 1999, status: "completed" },
+  { customer: "Bob", product: "Mechanical Keyboard", amount: 120, status: "completed" },
+  { customer: "Alice", product: "USB-C Hub", amount: 45, status: "completed" },
+  { customer: "Charlie", product: "Gaming Monitor", amount: 350, status: "cancelled" },
+  { customer: "Bob", product: "Wireless Mouse", amount: 60, status: "completed" }
+]);
+
+// 2. Execute Aggregation Pipeline: $match -&gt; $group -&gt; $sort
+db.orders.aggregate([
+  // Stage 1: Filter out cancelled orders ($match)
+  { $match: { status: "completed" } },
+
+  // Stage 2: Group by customer and compute total spent &amp; order count ($group)
+  {
+    $group: {
+      _id: "$customer",
+      totalSpent: { $sum: "$amount" },
+      ordersPlaced: { $sum: 1 }
+    }
+  },
+
+  // Stage 3: Sort by highest spender first ($sort)
+  { $sort: { totalSpent: -1 } }
+]);</code></pre>
+        </div>
+        <div class="bg-body-secondary p-3 border-top small">
+            <div class="mb-2">
+                <strong class="text-primary-emphasis"><i class="bi bi-info-circle me-1"></i>How it works:</strong>
+                <span class="text-body-secondary">Processes documents in stages: <code>$match</code> filters completed orders, <code>$group</code> calculates total revenue and order counts per customer using <code>$sum</code>, and <code>$sort</code> sorts descending.</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <strong class="text-success"><i class="bi bi-terminal me-1"></i>Step-by-Step Instructions:</strong>
+            </div>
+            <ol class="mb-2 ps-3 text-secondary-emphasis">
+                <li>In your terminal, enter the MongoDB Shell: <code>mongosh</code></li>
+                <li>Copy the snippet above with the <strong>Copy Code</strong> button.</li>
+                <li>Paste it into <code>mongosh</code> and press Enter.</li>
+                <li>Observe the aggregated report grouped by customer with sorted totals!</li>
+            </ol>
+            <div class="d-flex align-items-start gap-2 flex-wrap">
+                <span class="badge bg-dark-subtle text-dark-emphasis border">Expected Terminal Output:</span>
+                <code class="text-muted small">[ { _id: 'Alice', totalSpent: 2044, ordersPlaced: 2 }, { _id: 'Bob', totalSpent: 180, ordersPlaced: 2 } ]</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Concept MCQ: MongoDB Aggregation Pipeline -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">MongoDB Aggregation Pipeline</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">In a MongoDB Aggregation Pipeline, which stage performs filtering (equivalent to a SQL WHERE clause), and which stage groups documents by a key?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_aggregation" onchange="handleQuizSelect(this, false, 'fb_day2_aggregation', '$sort orders records and $limit caps result count.')">
+                <span><strong>A)</strong> $sort for filtering, and $limit for grouping</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_aggregation" onchange="handleQuizSelect(this, true, 'fb_day2_aggregation', '$match filters documents to pass only matching ones to the next stage; $group aggregates documents by an accumulator key.')">
+                <span><strong>B)</strong> $match for filtering, and $group for grouping</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_aggregation" onchange="handleQuizSelect(this, false, 'fb_day2_aggregation', '$project reshapes fields and $lookup performs left outer joins.')">
+                <span><strong>C)</strong> $project for filtering, and $lookup for grouping</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_aggregation" onchange="handleQuizSelect(this, false, 'fb_day2_aggregation', 'The standard aggregation pipeline stage names are $match and $group.')">
+                <span><strong>D)</strong> $filter for filtering, and $combine for grouping</span>
+            </label>
+        </div>
+        <div id="fb_day2_aggregation" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
             
                     <table class="table table-bordered mt-3">
                         <thead class="table-light">
@@ -314,7 +538,46 @@ $lookup: {
             <div class="card mb-4">
                 <div class="card-header">
                     <h3>Lab: Storing Files with GridFS</h3>
-                </div>
+             
+
+<!-- Concept MCQ: Storing Large Files with GridFS -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">Storing Large Files with GridFS</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">When should you use GridFS in MongoDB rather than embedding a file inside a standard BSON document?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_gridfs" onchange="handleQuizSelect(this, false, 'fb_day2_gridfs', 'Passwords and short strings belong in standard fields.')">
+                <span><strong>A)</strong> When storing small text passwords.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_gridfs" onchange="handleQuizSelect(this, true, 'fb_day2_gridfs', 'GridFS breaks large files (e.g. video clips, audio, large PDFs) into 255KB chunks across fs.files and fs.chunks collections.')">
+                <span><strong>B)</strong> When the file size exceeds MongoDB's 16MB document size limit.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_gridfs" onchange="handleQuizSelect(this, false, 'fb_day2_gridfs', 'GridFS stores raw binary chunks; it does not convert media formats.')">
+                <span><strong>C)</strong> When you want to convert the file into an MP3 audio track.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_gridfs" onchange="handleQuizSelect(this, false, 'fb_day2_gridfs', 'GridFS is for large binary files of any format.')">
+                <span><strong>D)</strong> GridFS is only used for CSS stylesheets.</span>
+            </label>
+        </div>
+        <div id="fb_day2_gridfs" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>   </div>
                 <div class="card-body">
                     <p>GridFS is a specification for storing and retrieving files that exceed the BSON-document size limit of 16 MB. It divides a file into smaller chunks and stores each chunk as a separate document.</p>
                     
@@ -522,6 +785,45 @@ $lookup: {
                         </table>
                     </div>
 
+<!-- Concept MCQ: MongoDB Replication (Replica Sets) -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">MongoDB Replication (Replica Sets)</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What happens in a MongoDB Replica Set if the Primary node suddenly crashes or loses network connectivity?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_replication" onchange="handleQuizSelect(this, false, 'fb_day2_replication', 'Replica Sets are designed for high availability and fault tolerance; data is replicated across all nodes.')">
+                <span><strong>A)</strong> All data is immediately wiped and the cluster shuts down.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_replication" onchange="handleQuizSelect(this, true, 'fb_day2_replication', 'Automated failover ensures the database cluster remains available for reads and writes without human intervention.')">
+                <span><strong>B)</strong> The remaining Secondary nodes automatically hold an election and promote one Secondary to become the new Primary node within seconds.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_replication" onchange="handleQuizSelect(this, false, 'fb_day2_replication', 'Secondaries can even continue serving read requests if readPreference is configured.')">
+                <span><strong>C)</strong> The cluster permanently blocks all read requests.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_replication" onchange="handleQuizSelect(this, false, 'fb_day2_replication', 'MongoDB remains MongoDB.')">
+                <span><strong>D)</strong> The database reverts to an SQL database.</span>
+            </label>
+        </div>
+        <div id="fb_day2_replication" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>>
+
                 </div>
             </div>
             
@@ -642,8 +944,48 @@ $lookup: {
                         </table>
                     </div>
 
+<!-- Concept MCQ: MongoDB Sharding (Horizontal Scaling) -->
+<div class="card bg-body-tertiary border-secondary-subtle my-3 shadow-sm mcq-card">
+    <div class="card-header bg-transparent py-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                <i class="bi bi-question-circle me-1"></i>MCQ
+            </span>
+            <strong class="text-secondary-emphasis">MongoDB Sharding (Horizontal Scaling)</strong>
+        </div>
+        <small class="text-muted">Select the correct answer</small>
+    </div>
+    <div class="card-body">
+        <p class="card-text fw-medium mb-3">What is the primary purpose of Sharding in MongoDB?</p>
+        <div class="d-flex flex-column gap-2">
+            
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_sharding" onchange="handleQuizSelect(this, true, 'fb_day2_sharding', 'When a dataset exceeds the RAM or storage capacity of a single server, sharding partitions data across independent shard instances.')">
+                <span><strong>A)</strong> Horizontal scaling (scale-out) by distributing large datasets and query loads across multiple server machines using a shard key.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_sharding" onchange="handleQuizSelect(this, false, 'fb_day2_sharding', 'Sharding partitions database collections, not image compression.')">
+                <span><strong>B)</strong> Compressing JPEG images so they take less space.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_sharding" onchange="handleQuizSelect(this, false, 'fb_day2_sharding', 'Sharding is a distributed database architecture.')">
+                <span><strong>C)</strong> Translating JavaScript code into Python.</span>
+            </label>
+
+            <label class="form-check p-2 rounded bg-body quiz-option">
+                <input class="form-check-input ms-1 me-2" type="radio" name="q_day2_sharding" onchange="handleQuizSelect(this, false, 'fb_day2_sharding', 'Sharding scales capacity so thousands of concurrent users can query smoothly.')">
+                <span><strong>D)</strong> Preventing users from logging into the system.</span>
+            </label>
+        </div>
+        <div id="fb_day2_sharding" class="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>>
+
                      </div>
             </div>
             </div>
         </div>
     </div>
+</div>
